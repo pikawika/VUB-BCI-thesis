@@ -75,7 +75,7 @@ The instructions below highlight the steps needed to recreate the used anaconda 
     pip install mne
     ```
 
-------
+
 
 
 ### Installing BrainFlow for Python connection
@@ -97,7 +97,7 @@ Whilst [OpenBCI LSL for Python connection](https://docs.openbci.com/Software/Com
     pip install brainflow
     ```
 
-------
+
 
 ### Configuring the environment from the YML file
 
