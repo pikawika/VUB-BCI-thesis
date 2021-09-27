@@ -7,7 +7,9 @@ This repository includes installation instructions, source code, extra documenta
 
 ## Table of contents
 
-[[_TOC_]]
+- [Contact information](#contact-information)
+- [Documentation](#documentation)
+  - [Installation instructions](#installation-instructions)
 
 
 

@@ -4,7 +4,12 @@ OpenBCI hardware and software works best on Windows. Some software, such as Open
 
 ## Table of contents
 
-[[_TOC_]]
+- [Author](#author)
+- [OpenBCI GUI](#openbci-gui)
+- [Setting up Anaconda environment](#setting-up-anaconda-environment)
+  * [Configuring the base environment](#configuring-the-base-environment)
+  * [Installing BrainFlow for Python connection](#installing-brainflow-for-python-connection)
+  * [Configuring the environment from the YML file](#configuring-the-environment-from-the-yml-file)
 
 
 
