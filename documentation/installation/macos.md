@@ -11,7 +11,7 @@ OpenBCI hardware and software works best on Windows. Some software, such as Open
   * [Installing BrainFlow for Python connection](#installing-brainflow-for-python-connection)
   * [Configuring the environment from the YML file](#configuring-the-environment-from-the-yml-file)
 
-
+<hr><hr>
 
 ## Author
 
@@ -19,7 +19,7 @@ OpenBCI hardware and software works best on Windows. Some software, such as Open
 | ---------------- | -------------------- | --------------------------------------------------------- | ----------------------------------------------------------- |
 | Lennert Bontinck | Master Thesis writer | [lennert.bontinck@vub.be](mailto:lennert.bontinck@vub.be) | [info@lennertbontinck.com](mailto:info@lennertbontinck.com) |
 
-
+<hr><hr>
 
 ## OpenBCI GUI
 
@@ -30,7 +30,7 @@ Installing OpenBCI GUI should be straightforward and the steps can be followed f
 - Instal `OpenBCI GUI`.
   - **WARNING**: V5.0.6, which was the latest version as of September 2021, has a bug on macOS where only a white screen is shown. Using the older V5.0.5 should work. This older version can be found under [the GitHub releases](https://github.com/OpenBCI/OpenBCI_GUI/releases).
 
-
+<hr><hr>
 
 ## Setting up Anaconda environment
 
@@ -72,9 +72,8 @@ The instructions below highlight the steps needed to recreate the used anaconda 
     pip install mne
     ```
 
-- Try [code samples from brainflow](https://brainflow.readthedocs.io/en/stable/Examples.html#python)
 
-  - Or see seperate [notebook containing initial tries](../../sample_code/first_attempts.ipynb).
+<hr>
 
 ### Installing BrainFlow for Python connection
 
@@ -95,6 +94,8 @@ Whilst [OpenBCI LSL for Python connection](https://docs.openbci.com/Software/Com
     pip install brainflow
     ```
 
+<hr>
+
 ### Configuring the environment from the YML file
 
 The anaconda macOS environment is also exported to the `bci-master-thesis-environment-mac.yml` YML file. This file is available [here](environments/bci-master-thesis-environment-mac.yml). You can load it in via the terminal as follows:
@@ -106,3 +107,6 @@ cd bci-master-thesis/documentation/installation/environments
 # Configure a new environment from the YML file
 conda env create -f bci-master-thesis-environment-mac.yml
 ```
+
+* * *
+© [Lennert Bontinck](https://www.lennertbontinck.com/) VUB 2021-2022

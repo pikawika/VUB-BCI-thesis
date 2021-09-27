@@ -11,7 +11,7 @@ This repository includes installation instructions, source code, extra documenta
 - [Documentation](#documentation)
   - [Installation instructions](#installation-instructions)
 
-
+<hr><hr>
 
 ## Contact information
 
@@ -21,7 +21,7 @@ This repository includes installation instructions, source code, extra documenta
 | Geraint Wiggins  | Supervisor           | [geraint.wiggins@vub.be](mailto:geraint.wiggins@vub.be)   | /                                                           |
 | Arnau Dillen     | Supervisor           | [arnau.dillen@vub.be](mailto:arnau.dillen@vub.be)         | /                                                           |
 
-
+<hr><hr>
 
 ## Documentation
 
@@ -31,3 +31,6 @@ OpenBCI hardware and software works best on Windows. Some software, such as Open
 
 - Install instructions for macOS can be found [here](documentation/installation/macos.md) (NOT RECOMMENDED).
 
+
+* * *
+© [Lennert Bontinck](https://www.lennertbontinck.com/) VUB 2021-2022
