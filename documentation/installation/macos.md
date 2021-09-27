@@ -47,12 +47,6 @@ The instructions below highlight the steps needed to recreate the used anaconda 
     -  `R 3.6.1`
   - Doing so should install a whole suite of packages by default 
 
-- The following packages need to be installed additionally
-
-  - `pandas` (and its dependencies)
-  - `pyqtgraph` (and dependencies)
-  - `matplotlib` (and dependencies)
-
 - Using your terminal, activate the newly created environment
 
   - ```shell
