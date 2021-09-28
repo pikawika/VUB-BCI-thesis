@@ -12,7 +12,7 @@ This repository includes installation instructions, source code, extra documents
   - [Installation instructions](#installation-instructions)
 - [Side information](#side-information)
   - [Meeting summaries](#meeting-summaries)
-  - [Promosing software](#promosing-software)
+  - [Promosing software and datasets](#promosing-software-and-datasets)
 
 <hr>
 
@@ -56,14 +56,15 @@ Multiple formal and informal meetings were held during the development of this p
 
 
 
-### Promosing software
+### Promosing software and datasets
 
-Some promising software was found along the way when researching the topic. They might be helpful for the project.
+Some promising software and datasets were found along the way when researching the topic. They might be helpful for the project.
 
 | Title                      | Link                                                         |
 | -------------------------- | ------------------------------------------------------------ |
 | Promising Python Libraries | Available [here](side-information/software/python_libraries.md) |
 | Literature tools           | Available [here](side-information/software/literature_tools.md) |
+| Interesting datasets       | Available [here](side-information/datasets/interesting_datasets.md) |
 
 
 

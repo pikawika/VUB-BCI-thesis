@@ -6,6 +6,8 @@ This file contains the literature tools used for this project.
 
 - [Author](#author)
 - [Tools](#tools)
+  * [Zotero](#zotero)
+  * [Connected Papers](#connected-papers)
 
 <hr>
 
