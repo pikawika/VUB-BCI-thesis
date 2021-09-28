@@ -12,6 +12,7 @@ This repository includes installation instructions, source code, extra documents
   - [Installation instructions](#installation-instructions)
 - [Side information](#side-information)
   - [Meeting summaries](#meeting-summaries)
+  - [Promosing software](#promosing-software)
 
 <hr>
 
@@ -52,6 +53,17 @@ Multiple formal and informal meetings were held during the development of this p
 | Date       | Title         | Link                                                         |
 | ---------- | ------------- | ------------------------------------------------------------ |
 | 28/09/2021 | First meeting | Available [here](side-information/meetings/2021-09-28_First_meeting.md) |
+
+
+
+### Promosing software
+
+Some promising software was found along the way when researching the topic. They might be helpful for the project.
+
+| Title                      | Link                                                         |
+| -------------------------- | ------------------------------------------------------------ |
+| Promising Python Libraries | Available [here](side-information/software/python_libraries.md) |
+| Literature tools           | Available [here](side-information/software/literature_tools.md) |
 
 
 

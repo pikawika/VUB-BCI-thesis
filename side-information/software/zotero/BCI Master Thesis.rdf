@@ -1,0 +1,800 @@
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:z="http://www.zotero.org/namespaces/export#"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:vcard="http://nwalsh.com/rdf/vCard#"
+ xmlns:foaf="http://xmlns.com/foaf/0.1/"
+ xmlns:bib="http://purl.org/net/biblio#"
+ xmlns:dcterms="http://purl.org/dc/terms/"
+ xmlns:link="http://purl.org/rss/1.0/modules/link/"
+ xmlns:prism="http://prismstandard.org/namespaces/1.2/basic/">
+    <bib:Thesis rdf:about="https://researchportal.vub.be/en/studentTheses/eegplus-making-a-hybrid-brain-computer-interface-using-eeg-and-em">
+        <z:itemType>thesis</z:itemType>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Brussels</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>VUB</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Dillen</foaf:surname>
+                        <foaf:givenName>Arnau</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dcterms:isReferencedBy rdf:resource="#item_33"/>
+        <dcterms:isReferencedBy rdf:resource="#item_6"/>
+        <link:link rdf:resource="#item_8"/>
+        <dc:title>EEGPLUS: Making a Hybrid Brain Computer Interface Using EEG and EMG Signals</dc:title>
+        <dc:date>2018</dc:date>
+        <z:language>English</z:language>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://researchportal.vub.be/en/studentTheses/eegplus-making-a-hybrid-brain-computer-interface-using-eeg-and-em</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2021-09-28</dcterms:dateSubmitted>
+        <z:numPages>96</z:numPages>
+    </bib:Thesis>
+    <bib:Memo rdf:about="#item_33">
+       <rdf:value>&lt;p&gt;Not yet read&lt;/p&gt;</rdf:value>
+    </bib:Memo>
+    <bib:Memo rdf:about="#item_6">
+        <rdf:value>&lt;p&gt;Stored on OneDrive: dillen_2018_master_thesis.pdf&lt;/p&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_8">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Dillen - 2018 - EEGPLUS Making a Hybrid Brain Computer Interface .pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://www.frontiersin.org/article/10.3389/fnbot.2020.00025/full">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1662-5218"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Rashid</foaf:surname>
+                        <foaf:givenName>Mamunur</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sulaiman</foaf:surname>
+                        <foaf:givenName>Norizam</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>P. P. Abdul Majeed</foaf:surname>
+                        <foaf:givenName>Anwar</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Musa</foaf:surname>
+                        <foaf:givenName>Rabiu Muazu</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ab. Nasir</foaf:surname>
+                        <foaf:givenName>Ahmad Fakhri</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bari</foaf:surname>
+                        <foaf:givenName>Bifta Sama</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Khatun</foaf:surname>
+                        <foaf:givenName>Sabira</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dcterms:isReferencedBy rdf:resource="#item_31"/>
+        <link:link rdf:resource="#item_11"/>
+        <dc:title>Current Status, Challenges, and Possible Solutions of EEG-Based Brain-Computer Interface: A Comprehensive Review</dc:title>
+        <dc:date>2020-6-3</dc:date>
+        <z:shortTitle>Current Status, Challenges, and Possible Solutions of EEG-Based Brain-Computer Interface</z:shortTitle>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.frontiersin.org/article/10.3389/fnbot.2020.00025/full</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2021-09-28 13:28:46</dcterms:dateSubmitted>
+        <bib:pages>25</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1662-5218">
+        <prism:volume>14</prism:volume>
+        <dc:title>Frontiers in Neurorobotics</dc:title>
+        <dc:identifier>DOI 10.3389/fnbot.2020.00025</dc:identifier>
+        <dcterms:alternative>Front. Neurorobot.</dcterms:alternative>
+        <dc:identifier>ISSN 1662-5218</dc:identifier>
+    </bib:Journal>
+    <bib:Memo rdf:about="#item_31">
+       <rdf:value>&lt;p&gt;Not yet read&lt;/p&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_11">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Full Text</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.frontiersin.org/articles/10.3389/fnbot.2020.00025/pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2021-09-28 13:28:49</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://iopscience.iop.org/article/10.1088/1741-2552/ab260c">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1741-2552"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Roy</foaf:surname>
+                        <foaf:givenName>Yannick</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Banville</foaf:surname>
+                        <foaf:givenName>Hubert</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Albuquerque</foaf:surname>
+                        <foaf:givenName>Isabela</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gramfort</foaf:surname>
+                        <foaf:givenName>Alexandre</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Falk</foaf:surname>
+                        <foaf:givenName>Tiago H</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Faubert</foaf:surname>
+                        <foaf:givenName>Jocelyn</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dcterms:isReferencedBy rdf:resource="#item_32"/>
+        <link:link rdf:resource="#item_13"/>
+        <dc:title>Deep learning-based electroencephalography analysis: a systematic review</dc:title>
+        <dc:date>2019-08-14</dc:date>
+        <z:shortTitle>Deep learning-based electroencephalography analysis</z:shortTitle>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://iopscience.iop.org/article/10.1088/1741-2552/ab260c</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2021-09-28 13:30:07</dcterms:dateSubmitted>
+        <bib:pages>051001</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1741-2552">
+        <prism:volume>16</prism:volume>
+        <dc:title>Journal of Neural Engineering</dc:title>
+        <dc:identifier>DOI 10.1088/1741-2552/ab260c</dc:identifier>
+        <prism:number>5</prism:number>
+        <dcterms:alternative>J. Neural Eng.</dcterms:alternative>
+        <dc:identifier>ISSN 1741-2552</dc:identifier>
+    </bib:Journal>
+    <bib:Memo rdf:about="#item_32">
+       <rdf:value>&lt;p&gt;Not yet read&lt;/p&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_13">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Full Text</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://iopscience.iop.org/article/10.1088/1741-2552/ab260c/pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2021-09-28 13:30:21</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="http://arxiv.org/abs/2011.03395">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+               <dc:title>arXiv:2011.03395 [cs, stat]</dc:title>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>D'Amour</foaf:surname>
+                        <foaf:givenName>Alexander</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Heller</foaf:surname>
+                        <foaf:givenName>Katherine</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Moldovan</foaf:surname>
+                        <foaf:givenName>Dan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Adlam</foaf:surname>
+                        <foaf:givenName>Ben</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Alipanahi</foaf:surname>
+                        <foaf:givenName>Babak</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Beutel</foaf:surname>
+                        <foaf:givenName>Alex</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Chen</foaf:surname>
+                        <foaf:givenName>Christina</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Deaton</foaf:surname>
+                        <foaf:givenName>Jonathan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Eisenstein</foaf:surname>
+                        <foaf:givenName>Jacob</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hoffman</foaf:surname>
+                        <foaf:givenName>Matthew D.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hormozdiari</foaf:surname>
+                        <foaf:givenName>Farhad</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Houlsby</foaf:surname>
+                        <foaf:givenName>Neil</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hou</foaf:surname>
+                        <foaf:givenName>Shaobo</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jerfel</foaf:surname>
+                        <foaf:givenName>Ghassen</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Karthikesalingam</foaf:surname>
+                        <foaf:givenName>Alan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lucic</foaf:surname>
+                        <foaf:givenName>Mario</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ma</foaf:surname>
+                        <foaf:givenName>Yian</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>McLean</foaf:surname>
+                        <foaf:givenName>Cory</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Mincu</foaf:surname>
+                        <foaf:givenName>Diana</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Mitani</foaf:surname>
+                        <foaf:givenName>Akinori</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Montanari</foaf:surname>
+                        <foaf:givenName>Andrea</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Nado</foaf:surname>
+                        <foaf:givenName>Zachary</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Natarajan</foaf:surname>
+                        <foaf:givenName>Vivek</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Nielson</foaf:surname>
+                        <foaf:givenName>Christopher</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Osborne</foaf:surname>
+                        <foaf:givenName>Thomas F.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Raman</foaf:surname>
+                        <foaf:givenName>Rajiv</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ramasamy</foaf:surname>
+                        <foaf:givenName>Kim</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sayres</foaf:surname>
+                        <foaf:givenName>Rory</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Schrouff</foaf:surname>
+                        <foaf:givenName>Jessica</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Seneviratne</foaf:surname>
+                        <foaf:givenName>Martin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sequeira</foaf:surname>
+                        <foaf:givenName>Shannon</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Suresh</foaf:surname>
+                        <foaf:givenName>Harini</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Veitch</foaf:surname>
+                        <foaf:givenName>Victor</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Vladymyrov</foaf:surname>
+                        <foaf:givenName>Max</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wang</foaf:surname>
+                        <foaf:givenName>Xuezhi</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Webster</foaf:surname>
+                        <foaf:givenName>Kellie</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Yadlowsky</foaf:surname>
+                        <foaf:givenName>Steve</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Yun</foaf:surname>
+                        <foaf:givenName>Taedong</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zhai</foaf:surname>
+                        <foaf:givenName>Xiaohua</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sculley</foaf:surname>
+                        <foaf:givenName>D.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dcterms:isReferencedBy rdf:resource="#item_36"/>
+        <link:link rdf:resource="#item_18"/>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Computer Science - Machine Learning</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Statistics - Machine Learning</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:title>Underspecification Presents Challenges for Credibility in Modern Machine Learning</dc:title>
+        <dcterms:abstract>ML models often exhibit unexpectedly poor behavior when they are deployed in real-world domains. We identify underspecification as a key reason for these failures. An ML pipeline is underspecified when it can return many predictors with equivalently strong held-out performance in the training domain. Underspecification is common in modern ML pipelines, such as those based on deep learning. Predictors returned by underspecified pipelines are often treated as equivalent based on their training domain performance, but we show here that such predictors can behave very differently in deployment domains. This ambiguity can lead to instability and poor model behavior in practice, and is a distinct failure mode from previously identified issues arising from structural mismatch between training and deployment domains. We show that this problem appears in a wide variety of practical ML pipelines, using examples from computer vision, medical imaging, natural language processing, clinical risk prediction based on electronic health records, and medical genomics. Our results show the need to explicitly account for underspecification in modeling pipelines that are intended for real-world deployment in any domain.</dcterms:abstract>
+        <dc:date>2020-11-24</dc:date>
+        <z:libraryCatalog>arXiv.org</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://arxiv.org/abs/2011.03395</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2021-09-28 13:55:15</dcterms:dateSubmitted>
+        <dc:description>arXiv: 2011.03395</dc:description>
+    </bib:Article>
+    <bib:Memo rdf:about="#item_36">
+       <rdf:value>&lt;p&gt;Not yet read&lt;/p&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_18">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>arXiv Fulltext PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://arxiv.org/pdf/2011.03395.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2021-09-28 13:55:23</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="http://arxiv.org/abs/2103.05247">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal><dc:title>arXiv:2103.05247 [cs]</dc:title></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lu</foaf:surname>
+                        <foaf:givenName>Kevin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Grover</foaf:surname>
+                        <foaf:givenName>Aditya</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Abbeel</foaf:surname>
+                        <foaf:givenName>Pieter</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Mordatch</foaf:surname>
+                        <foaf:givenName>Igor</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dcterms:isReferencedBy rdf:resource="#item_35"/>
+        <link:link rdf:resource="#item_21"/>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Computer Science - Artificial Intelligence</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Computer Science - Machine Learning</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:title>Pretrained Transformers as Universal Computation Engines</dc:title>
+        <dcterms:abstract>We investigate the capability of a transformer pretrained on natural language to generalize to other modalities with minimal finetuning -- in particular, without finetuning of the self-attention and feedforward layers of the residual blocks. We consider such a model, which we call a Frozen Pretrained Transformer (FPT), and study finetuning it on a variety of sequence classification tasks spanning numerical computation, vision, and protein fold prediction. In contrast to prior works which investigate finetuning on the same modality as the pretraining dataset, we show that pretraining on natural language can improve performance and compute efficiency on non-language downstream tasks. Additionally, we perform an analysis of the architecture, comparing the performance of a random initialized transformer to a random LSTM. Combining the two insights, we find language-pretrained transformers can obtain strong performance on a variety of non-language tasks.</dcterms:abstract>
+        <dc:date>2021-06-30</dc:date>
+        <z:libraryCatalog>arXiv.org</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://arxiv.org/abs/2103.05247</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2021-09-28 13:55:34</dcterms:dateSubmitted>
+        <dc:description>arXiv: 2103.05247</dc:description>
+    </bib:Article>
+    <bib:Memo rdf:about="#item_35">
+       <rdf:value>&lt;p&gt;Not yet read&lt;/p&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_21">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>arXiv Fulltext PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://arxiv.org/pdf/2103.05247.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2021-09-28 13:55:36</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="http://arxiv.org/abs/2104.01233">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+               <dc:title>arXiv:2104.01233 [cs, eess]</dc:title>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Mane</foaf:surname>
+                        <foaf:givenName>Ravikiran</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Chew</foaf:surname>
+                        <foaf:givenName>Effie</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Chua</foaf:surname>
+                        <foaf:givenName>Karen</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ang</foaf:surname>
+                        <foaf:givenName>Kai Keng</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Robinson</foaf:surname>
+                        <foaf:givenName>Neethu</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Vinod</foaf:surname>
+                        <foaf:givenName>A. P.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lee</foaf:surname>
+                        <foaf:givenName>Seong-Whan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Guan</foaf:surname>
+                        <foaf:givenName>Cuntai</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dcterms:isReferencedBy rdf:resource="#item_34"/>
+        <link:link rdf:resource="#item_25"/>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Computer Science - Artificial Intelligence</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Computer Science - Machine Learning</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Computer Science - Other Computer Science</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Electrical Engineering and Systems Science - Signal Processing</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:title>FBCNet: A Multi-view Convolutional Neural Network for Brain-Computer Interface</dc:title>
+        <dcterms:abstract>Lack of adequate training samples and noisy high-dimensional features are key challenges faced by Motor Imagery (MI) decoding algorithms for electroencephalogram (EEG) based Brain-Computer Interface (BCI). To address these challenges, inspired from neuro-physiological signatures of MI, this paper proposes a novel Filter-Bank Convolutional Network (FBCNet) for MI classification. FBCNet employs a multi-view data representation followed by spatial filtering to extract spectro-spatially discriminative features. This multistage approach enables efficient training of the network even when limited training data is available. More significantly, in FBCNet, we propose a novel Variance layer that effectively aggregates the EEG time-domain information. With this design, we compare FBCNet with state-of-the-art (SOTA) BCI algorithm on four MI datasets: The BCI competition IV dataset 2a (BCIC-IV-2a), the OpenBMI dataset, and two large datasets from chronic stroke patients. The results show that, by achieving 76.20% 4-class classification accuracy, FBCNet sets a new SOTA for BCIC-IV-2a dataset. On the other three datasets, FBCNet yields up to 8% higher binary classification accuracies. Additionally, using explainable AI techniques we present one of the first reports about the differences in discriminative EEG features between healthy subjects and stroke patients. Also, the FBCNet source code is available at https://github.com/ravikiran-mane/FBCNet.</dcterms:abstract>
+        <dc:date>2021-03-17</dc:date>
+        <z:shortTitle>FBCNet</z:shortTitle>
+        <z:libraryCatalog>arXiv.org</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://arxiv.org/abs/2104.01233</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2021-09-28 13:55:46</dcterms:dateSubmitted>
+        <dc:description>arXiv: 2104.01233</dc:description>
+    </bib:Article>
+    <bib:Memo rdf:about="#item_34">
+       <rdf:value>&lt;p&gt;Not yet read&lt;/p&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_25">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>arXiv Fulltext PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://arxiv.org/pdf/2104.01233.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2021-09-28 13:55:49</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://linkinghub.elsevier.com/retrieve/pii/S0921889018302227">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:09218890"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kuhner</foaf:surname>
+                        <foaf:givenName>D.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Fiederer</foaf:surname>
+                        <foaf:givenName>L.D.J.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Aldinger</foaf:surname>
+                        <foaf:givenName>J.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Burget</foaf:surname>
+                        <foaf:givenName>F.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Völker</foaf:surname>
+                        <foaf:givenName>M.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Schirrmeister</foaf:surname>
+                        <foaf:givenName>R.T.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Do</foaf:surname>
+                        <foaf:givenName>C.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Boedecker</foaf:surname>
+                        <foaf:givenName>J.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Nebel</foaf:surname>
+                        <foaf:givenName>B.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ball</foaf:surname>
+                        <foaf:givenName>T.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Burgard</foaf:surname>
+                        <foaf:givenName>W.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dcterms:isReferencedBy rdf:resource="#item_30"/>
+        <dcterms:isReferencedBy rdf:resource="#item_28"/>
+        <link:link rdf:resource="#item_29"/>
+        <dc:title>A service assistant combining autonomous robotics, flexible goal formulation, and deep-learning-based brain–computer interfacing</dc:title>
+        <dc:date>06/2019</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://linkinghub.elsevier.com/retrieve/pii/S0921889018302227</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2021-09-28 13:56:02</dcterms:dateSubmitted>
+        <bib:pages>98-113</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:09218890">
+        <prism:volume>116</prism:volume>
+        <dc:title>Robotics and Autonomous Systems</dc:title>
+        <dc:identifier>DOI 10.1016/j.robot.2019.02.015</dc:identifier>
+        <dcterms:alternative>Robotics and Autonomous Systems</dcterms:alternative>
+        <dc:identifier>ISSN 09218890</dc:identifier>
+    </bib:Journal>
+    <bib:Memo rdf:about="#item_30">
+       <rdf:value>&lt;p&gt;Not yet read&lt;/p&gt;</rdf:value>
+    </bib:Memo>
+    <bib:Memo rdf:about="#item_28">
+        <rdf:value>&lt;p&gt;Stored on OneDrive: kuhner_2019.pdf&lt;/p&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_29">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Kuhner et al. - 2019 - A service assistant combining autonomous robotics,.pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+</rdf:RDF>
