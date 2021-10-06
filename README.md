@@ -38,7 +38,12 @@ To make reproducing the project easier, the following documentation is provided.
 
 OpenBCI hardware and software works best on Windows. Some software, such as OpenViBE, doesn't even support macOS. The use of a Windows machine or VM is thus recommended. The software for this master thesis was mainly developed on a Windows 10 machine. Reproducibility on other operating systems can't be guaranteed.
 
-- Install instructions for macOS can be found [here](documentation/installation/macos.md) (NOT RECOMMENDED).
+| Title                                            | Documentation                                           |
+| ------------------------------------------------ | ------------------------------------------------------- |
+| Install instructions for Windows (RECOMMENDED)   | Available [here](documentation/installation/windows.md) |
+| Install instructions for macOS (NOT RECOMMENDED) | Available [here](documentation/installation/macos.md)   |
+
+
 
 <hr>
 
