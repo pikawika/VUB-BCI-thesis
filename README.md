@@ -13,6 +13,7 @@ This repository includes installation instructions, source code, extra documents
 - [Side information](#side-information)
   - [Meeting summaries](#meeting-summaries)
   - [Promosing software and datasets](#promosing-software-and-datasets)
+  - [Interesting YouTube videos](#interesting-youtube-videos)
 
 <hr>
 
@@ -50,7 +51,7 @@ To ensure full transparency and reproducibility, all of the other documents made
 
 Multiple formal and informal meetings were held during the development of this project. Small summaries for each of those meetings can be found in their markdown files.
 
-| Date       | Title         | Link                                                         |
+| Date       | Title         | Documentation                                                |
 | ---------- | ------------- | ------------------------------------------------------------ |
 | 28/09/2021 | First meeting | Available [here](side-information/meetings/2021-09-28_First_meeting.md) |
 
@@ -60,13 +61,21 @@ Multiple formal and informal meetings were held during the development of this p
 
 Some promising software and datasets were found along the way when researching the topic. They might be helpful for the project.
 
-| Title                      | Link                                                         |
+| Title                      | Documentation                                                |
 | -------------------------- | ------------------------------------------------------------ |
 | Promising Python Libraries | Available [here](side-information/software/python_libraries.md) |
 | Literature tools           | Available [here](side-information/software/literature_tools.md) |
 | Interesting datasets       | Available [here](side-information/datasets/interesting_datasets.md) |
 
 
+
+### Interesting YouTube videos
+
+There are a lot of interesting YouTube videos about the thesis topic, especially about OpenBCI. Whilst these are often not of scientific value, they are insightfull to get an idea on how the differing aspects work in real life.
+
+| Title                             | YouTube channel                                              | Documentation                                                |
+| --------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Testing Brain-Computer Interfaces | [James Bruton - 1M subs](https://www.youtube.com/channel/UCUbDcUPed50Y_7KmfCXKohA) | Available [here](side-information/youtube/james_bruton-testing_BCIs.md) |
 
 
 * * *
