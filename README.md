@@ -10,6 +10,9 @@ This repository includes installation instructions, source code, extra documents
 - [Contact information](#contact-information)
 - [Documentation](#documentation)
   - [Installation instructions](#installation-instructions)
+- [Literature review](#literature-review)
+  - [Scientific sources](#scientific-sources)
+  - [Informal sources](#informal-sources)
 - [Side information](#side-information)
   - [Meeting summaries](#meeting-summaries)
   - [Promosing software and datasets](#promosing-software-and-datasets)
@@ -47,6 +50,29 @@ OpenBCI hardware and software works best on Windows. Some software, such as Open
 
 <hr>
 
+## Literature review
+
+The literature review is one of the most important aspects of any scientific paper. To better understand the complex topic of BCIs, both scientific papers and more informal sources were consulted. In the table below some of these sources and their synthesis are given. A list of all sources used for the master thesis is available through the literature tools, more on this [here](side-information/software/literature_tools.md).
+
+
+### Scientific sources
+
+As this master thesis should be scientific grade, the sources should also be scientific. Finding good sources isn't an easy task since there are so many to choose from. Luckily Arnau Dillen and Geraint Wiggins gave some great pointers on where to begin and how to proceed. Per the recommendation of Geraint Wiggins, an overview sheet of all these sources was made. The table below gives an overview of the most interesting scientific sources and the synthesis made for them.
+
+| Title                                                        | Type                                                         | Synthesis      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | -------------- |
+| Overview sheet for all scientific sources                    | Simple overview sheet                                        | Available soon |
+| EEGPLUS: Making a Hybrid Brain Computer Interface Using EEG and EMG Signals | Master thesis by [Arnau Dillen](https://researchportal.vub.be/en/studentTheses/eegplus-making-a-hybrid-brain-computer-interface-using-eeg-and-em) | Available soon |
+
+### Informal sources
+
+There are a lot of interesting YouTube videos, blog posts and more about the thesis topic, especially about OpenBCI. They are insightful to understand how the different aspects work in real life. However, these sources are not peer-reviewed and thus don't have much scientific value. The table below gives an overview of the most interesting ones and the synthesis made for them.
+
+| Title                             | Type                                                         | Synthesis                                                    |
+| --------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Testing Brain-Computer Interfaces | Youtube video by [James Bruton - 1M subs](https://www.youtube.com/channel/UCUbDcUPed50Y_7KmfCXKohA) | Available [here](literature-review/informal/youtube/james_bruton-testing_BCIs.md) |
+
+<hr>
 
 ## Side information
 
@@ -73,14 +99,6 @@ Some promising software and datasets were found along the way when researching t
 | Interesting datasets       | Available [here](side-information/datasets/interesting_datasets.md) |
 
 
-
-### Interesting YouTube videos
-
-There are a lot of interesting YouTube videos about the thesis topic, especially about OpenBCI. Whilst these are often not of scientific value, they are insightfull to get an idea on how the differing aspects work in real life.
-
-| Title                             | YouTube channel                                              | Documentation                                                |
-| --------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Testing Brain-Computer Interfaces | [James Bruton - 1M subs](https://www.youtube.com/channel/UCUbDcUPed50Y_7KmfCXKohA) | Available [here](side-information/youtube/james_bruton-testing_BCIs.md) |
 
 
 * * *
