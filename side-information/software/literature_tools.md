@@ -25,7 +25,7 @@ This file contains the literature tools used for this project.
 
 ### Zotero
 
-[Zotero](https://www.zotero.org/) is a free, easy-to-use tool to help you collect, organize, cite, and share research. It is used to collect correct citation details for the used literature. The exported bib file is used in LaTeX for citing. The exported Zotero environment is available [here](zotero/BCI Master Thesis.rdf). This `BCI Master Thesis.rdf` file can be imported into Zotero. 
+[Zotero](https://www.zotero.org/) is a free, easy-to-use tool to help you collect, organize, cite, and share research. It is used to collect correct citation details for the used literature. The exported bib file is used in LaTeX for citing. The exported Zotero environment is available [here](zotero/BCI Master Thesis.rdf). This `BCI Master Thesis.rdf` file can be imported into Zotero. It is noted that a shared Zotero group was also used between me, Wolf De Wulf and Arnau Dillen. This group contains multiple interesting BCI related papers and can be joined via [this link](https://www.zotero.org/groups/4442956/bci?token=94vg6jpryq9xd92mp58wwticuucfi0dw4nl19tpi).
 
 
 

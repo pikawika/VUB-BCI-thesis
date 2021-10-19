@@ -22,7 +22,7 @@ On the 28th of September, *a first formal meeting* took place between Lennert an
 | ---------------- | -------------------- | --------------------------------------------------------- | ----------------------------------------------------------- |
 | Lennert Bontinck | Master Thesis writer | [lennert.bontinck@vub.be](mailto:lennert.bontinck@vub.be) | [info@lennertbontinck.com](mailto:info@lennertbontinck.com) |
 | Arnau Dillen     | Supervisor           | [arnau.dillen@vub.be](mailto:arnau.dillen@vub.be)         | /                                                           |
-| Geraint Wiggins  | Co-Supervisor        | [geraint.wiggins@vub.be](mailto:geraint.wiggins@vub.be)   | /                                                           |
+| Geraint Wiggins  | Promotor             | [geraint.wiggins@vub.be](mailto:geraint.wiggins@vub.be)   | /                                                           |
 | Kevin De Pauw    | Co-Supervisor        | [kevin.de.pauw@vub.be](mailto:kevin.de.pauw@vub.be)       | /                                                           |
 
 <hr>

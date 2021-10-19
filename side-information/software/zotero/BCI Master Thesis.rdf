@@ -5,8 +5,8 @@
  xmlns:vcard="http://nwalsh.com/rdf/vCard#"
  xmlns:foaf="http://xmlns.com/foaf/0.1/"
  xmlns:bib="http://purl.org/net/biblio#"
- xmlns:dcterms="http://purl.org/dc/terms/"
  xmlns:link="http://purl.org/rss/1.0/modules/link/"
+ xmlns:dcterms="http://purl.org/dc/terms/"
  xmlns:prism="http://prismstandard.org/namespaces/1.2/basic/">
     <bib:Thesis rdf:about="https://researchportal.vub.be/en/studentTheses/eegplus-making-a-hybrid-brain-computer-interface-using-eeg-and-em">
         <z:itemType>thesis</z:itemType>
@@ -30,9 +30,8 @@
                 </rdf:li>
             </rdf:Seq>
         </bib:authors>
-        <dcterms:isReferencedBy rdf:resource="#item_33"/>
-        <dcterms:isReferencedBy rdf:resource="#item_6"/>
         <link:link rdf:resource="#item_8"/>
+        <link:link rdf:resource="#item_135"/>
         <dc:title>EEGPLUS: Making a Hybrid Brain Computer Interface Using EEG and EMG Signals</dc:title>
         <dc:date>2018</dc:date>
         <z:language>English</z:language>
@@ -44,15 +43,14 @@
         <dcterms:dateSubmitted>2021-09-28</dcterms:dateSubmitted>
         <z:numPages>96</z:numPages>
     </bib:Thesis>
-    <bib:Memo rdf:about="#item_33">
-       <rdf:value>&lt;p&gt;Not yet read&lt;/p&gt;</rdf:value>
-    </bib:Memo>
-    <bib:Memo rdf:about="#item_6">
-        <rdf:value>&lt;p&gt;Stored on OneDrive: dillen_2018_master_thesis.pdf&lt;/p&gt;</rdf:value>
-    </bib:Memo>
     <z:Attachment rdf:about="#item_8">
         <z:itemType>attachment</z:itemType>
-        <dc:title>Dillen - 2018 - EEGPLUS Making a Hybrid Brain Computer Interface .pdf</dc:title>
+        <dc:title>Full Text</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_135">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Annotated Text</dc:title>
         <link:type>application/pdf</link:type>
     </z:Attachment>
     <bib:Article rdf:about="https://www.frontiersin.org/article/10.3389/fnbot.2020.00025/full">
@@ -104,7 +102,6 @@
                 </rdf:li>
             </rdf:Seq>
         </bib:authors>
-        <dcterms:isReferencedBy rdf:resource="#item_31"/>
         <link:link rdf:resource="#item_11"/>
         <dc:title>Current Status, Challenges, and Possible Solutions of EEG-Based Brain-Computer Interface: A Comprehensive Review</dc:title>
         <dc:date>2020-6-3</dc:date>
@@ -125,9 +122,6 @@
         <dcterms:alternative>Front. Neurorobot.</dcterms:alternative>
         <dc:identifier>ISSN 1662-5218</dc:identifier>
     </bib:Journal>
-    <bib:Memo rdf:about="#item_31">
-       <rdf:value>&lt;p&gt;Not yet read&lt;/p&gt;</rdf:value>
-    </bib:Memo>
     <z:Attachment rdf:about="#item_11">
         <z:itemType>attachment</z:itemType>
         <dc:title>Full Text</dc:title>
@@ -183,7 +177,6 @@
                 </rdf:li>
             </rdf:Seq>
         </bib:authors>
-        <dcterms:isReferencedBy rdf:resource="#item_32"/>
         <link:link rdf:resource="#item_13"/>
         <dc:title>Deep learning-based electroencephalography analysis: a systematic review</dc:title>
         <dc:date>2019-08-14</dc:date>
@@ -205,9 +198,6 @@
         <dcterms:alternative>J. Neural Eng.</dcterms:alternative>
         <dc:identifier>ISSN 1741-2552</dc:identifier>
     </bib:Journal>
-    <bib:Memo rdf:about="#item_32">
-       <rdf:value>&lt;p&gt;Not yet read&lt;/p&gt;</rdf:value>
-    </bib:Memo>
     <z:Attachment rdf:about="#item_13">
         <z:itemType>attachment</z:itemType>
         <dc:title>Full Text</dc:title>
@@ -471,7 +461,6 @@
                 </rdf:li>
             </rdf:Seq>
         </bib:authors>
-        <dcterms:isReferencedBy rdf:resource="#item_36"/>
         <link:link rdf:resource="#item_18"/>
         <dc:subject>
             <z:AutomaticTag>
@@ -495,9 +484,6 @@
         <dcterms:dateSubmitted>2021-09-28 13:55:15</dcterms:dateSubmitted>
         <dc:description>arXiv: 2011.03395</dc:description>
     </bib:Article>
-    <bib:Memo rdf:about="#item_36">
-       <rdf:value>&lt;p&gt;Not yet read&lt;/p&gt;</rdf:value>
-    </bib:Memo>
     <z:Attachment rdf:about="#item_18">
         <z:itemType>attachment</z:itemType>
         <dc:title>arXiv Fulltext PDF</dc:title>
@@ -543,7 +529,6 @@
                 </rdf:li>
             </rdf:Seq>
         </bib:authors>
-        <dcterms:isReferencedBy rdf:resource="#item_35"/>
         <link:link rdf:resource="#item_21"/>
         <dc:subject>
             <z:AutomaticTag>
@@ -567,9 +552,6 @@
         <dcterms:dateSubmitted>2021-09-28 13:55:34</dcterms:dateSubmitted>
         <dc:description>arXiv: 2103.05247</dc:description>
     </bib:Article>
-    <bib:Memo rdf:about="#item_35">
-       <rdf:value>&lt;p&gt;Not yet read&lt;/p&gt;</rdf:value>
-    </bib:Memo>
     <z:Attachment rdf:about="#item_21">
         <z:itemType>attachment</z:itemType>
         <dc:title>arXiv Fulltext PDF</dc:title>
@@ -641,7 +623,6 @@
                 </rdf:li>
             </rdf:Seq>
         </bib:authors>
-        <dcterms:isReferencedBy rdf:resource="#item_34"/>
         <link:link rdf:resource="#item_25"/>
         <dc:subject>
             <z:AutomaticTag>
@@ -676,9 +657,6 @@
         <dcterms:dateSubmitted>2021-09-28 13:55:46</dcterms:dateSubmitted>
         <dc:description>arXiv: 2104.01233</dc:description>
     </bib:Article>
-    <bib:Memo rdf:about="#item_34">
-       <rdf:value>&lt;p&gt;Not yet read&lt;/p&gt;</rdf:value>
-    </bib:Memo>
     <z:Attachment rdf:about="#item_25">
         <z:itemType>attachment</z:itemType>
         <dc:title>arXiv Fulltext PDF</dc:title>
@@ -764,8 +742,6 @@
                 </rdf:li>
             </rdf:Seq>
         </bib:authors>
-        <dcterms:isReferencedBy rdf:resource="#item_30"/>
-        <dcterms:isReferencedBy rdf:resource="#item_28"/>
         <link:link rdf:resource="#item_29"/>
         <dc:title>A service assistant combining autonomous robotics, flexible goal formulation, and deep-learning-based brain–computer interfacing</dc:title>
         <dc:date>06/2019</dc:date>
@@ -786,15 +762,236 @@
         <dcterms:alternative>Robotics and Autonomous Systems</dcterms:alternative>
         <dc:identifier>ISSN 09218890</dc:identifier>
     </bib:Journal>
-    <bib:Memo rdf:about="#item_30">
-       <rdf:value>&lt;p&gt;Not yet read&lt;/p&gt;</rdf:value>
-    </bib:Memo>
-    <bib:Memo rdf:about="#item_28">
-        <rdf:value>&lt;p&gt;Stored on OneDrive: kuhner_2019.pdf&lt;/p&gt;</rdf:value>
-    </bib:Memo>
     <z:Attachment rdf:about="#item_29">
         <z:itemType>attachment</z:itemType>
         <dc:title>Kuhner et al. - 2019 - A service assistant combining autonomous robotics,.pdf</dc:title>
         <link:type>application/pdf</link:type>
     </z:Attachment>
+   <bib:Book rdf:about="#item_121"><z:itemType>book</z:itemType></bib:Book>
+    <bib:Book rdf:about="urn:isbn:978-0-262-03561-3">
+        <z:itemType>book</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Series>
+               <dc:title>Adaptive computation and machine learning</dc:title>
+            </bib:Series>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Cambridge, Massachusetts</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>The MIT Press</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Goodfellow</foaf:surname>
+                        <foaf:givenName>Ian</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bengio</foaf:surname>
+                        <foaf:givenName>Yoshua</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Courville</foaf:surname>
+                        <foaf:givenName>Aaron</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Machine learning</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:title>Deep learning</dc:title>
+        <dc:date>2016</dc:date>
+        <z:libraryCatalog>Library of Congress ISBN</z:libraryCatalog>
+        <dc:subject>
+           <dcterms:LCC><rdf:value>Q325.5 .G66 2016</rdf:value></dcterms:LCC>
+        </dc:subject>
+        <dc:identifier>ISBN 978-0-262-03561-3</dc:identifier>
+        <z:numPages>775</z:numPages>
+    </bib:Book>
+    <bib:Article rdf:about="https://onlinelibrary.wiley.com/doi/10.1002/hbm.23730">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:10659471"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Schirrmeister</foaf:surname>
+                        <foaf:givenName>Robin Tibor</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Springenberg</foaf:surname>
+                        <foaf:givenName>Jost Tobias</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Fiederer</foaf:surname>
+                        <foaf:givenName>Lukas Dominique Josef</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Glasstetter</foaf:surname>
+                        <foaf:givenName>Martin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Eggensperger</foaf:surname>
+                        <foaf:givenName>Katharina</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Tangermann</foaf:surname>
+                        <foaf:givenName>Michael</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hutter</foaf:surname>
+                        <foaf:givenName>Frank</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Burgard</foaf:surname>
+                        <foaf:givenName>Wolfram</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ball</foaf:surname>
+                        <foaf:givenName>Tonio</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_126"/>
+        <dc:title>Deep learning with convolutional neural networks for EEG decoding and visualization: Convolutional Neural Networks in EEG Analysis</dc:title>
+        <dc:date>11/2017</dc:date>
+        <z:language>en</z:language>
+        <z:shortTitle>Deep learning with convolutional neural networks for EEG decoding and visualization</z:shortTitle>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://onlinelibrary.wiley.com/doi/10.1002/hbm.23730</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2021-10-19 13:07:52</dcterms:dateSubmitted>
+        <bib:pages>5391-5420</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:10659471">
+        <prism:volume>38</prism:volume>
+        <dc:title>Human Brain Mapping</dc:title>
+        <dc:identifier>DOI 10.1002/hbm.23730</dc:identifier>
+        <prism:number>11</prism:number>
+        <dcterms:alternative>Hum. Brain Mapp.</dcterms:alternative>
+        <dc:identifier>ISSN 10659471</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_126">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Full Text</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/hbm.23730</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2021-10-19 13:07:54</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Book rdf:about="urn:isbn:978-1-57735-770-4">
+        <z:itemType>book</z:itemType>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Palo Alto, California</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>AAAI Press/International Joint Conferences on Artificial Intelligence</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:editors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kambhampati</foaf:surname>
+                        <foaf:givenName>Subbarao</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Association for the Advancement of Artificial Intelligence</foaf:surname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:editors>
+        <link:link rdf:resource="#item_132"/>
+        <dc:title>Proceedings of the Twenty-Fifth International Joint Conference on Artificial Intelligence: New York, NY, USA, 9-15 July 2016. Volume 1</dc:title>
+        <dc:date>2016</dc:date>
+        <z:language>eng</z:language>
+        <z:shortTitle>Proceedings of the Twenty-Fifth International Joint Conference on Artificial Intelligence</z:shortTitle>
+        <z:libraryCatalog>K10plus ISBN</z:libraryCatalog>
+        <dc:description>Meeting Name: IJCAI</dc:description>
+        <dc:identifier>ISBN 978-1-57735-770-4</dc:identifier>
+        <z:numPages>875</z:numPages>
+    </bib:Book>
+    <z:Attachment rdf:about="#item_132">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Table of Contents PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://www.gbv.de/dms/tib-ub-hannover/890107718.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2021-10-19 13:15:51</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Collection rdf:about="#collection_1">
+        <dc:title>BCI Master Thesis</dc:title>
+        <dcterms:hasPart rdf:resource="#collection_10"/>
+        <dcterms:hasPart rdf:resource="#collection_12"/>
+        <dcterms:hasPart rdf:resource="#collection_11"/>
+        <dcterms:hasPart rdf:resource="#collection_13"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_10">
+        <dc:title>Books</dc:title>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-0-262-03561-3"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_12">
+        <dc:title>EEG modelling</dc:title>
+        <dcterms:hasPart rdf:resource="https://onlinelibrary.wiley.com/doi/10.1002/hbm.23730"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-57735-770-4"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_11">
+        <dc:title>Master thesis</dc:title>
+        <dcterms:hasPart rdf:resource="https://researchportal.vub.be/en/studentTheses/eegplus-making-a-hybrid-brain-computer-interface-using-eeg-and-em"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_13">
+        <dc:title>Unlabeled</dc:title>
+        <dcterms:hasPart rdf:resource="https://www.frontiersin.org/article/10.3389/fnbot.2020.00025/full"/>
+        <dcterms:hasPart rdf:resource="https://iopscience.iop.org/article/10.1088/1741-2552/ab260c"/>
+        <dcterms:hasPart rdf:resource="http://arxiv.org/abs/2011.03395"/>
+        <dcterms:hasPart rdf:resource="http://arxiv.org/abs/2103.05247"/>
+        <dcterms:hasPart rdf:resource="http://arxiv.org/abs/2104.01233"/>
+        <dcterms:hasPart rdf:resource="https://linkinghub.elsevier.com/retrieve/pii/S0921889018302227"/>
+    </z:Collection>
 </rdf:RDF>

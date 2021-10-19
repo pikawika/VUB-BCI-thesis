@@ -16,7 +16,7 @@ This repository includes installation instructions, source code, extra documents
 - [Side information](#side-information)
   - [Meeting summaries](#meeting-summaries)
   - [Promosing software and datasets](#promosing-software-and-datasets)
-  - [Interesting YouTube videos](#interesting-youtube-videos)
+  - [Drafts](#drafts)
 
 <hr>
 
@@ -27,7 +27,7 @@ This repository includes installation instructions, source code, extra documents
 | ---------------- | -------------------- | --------------------------------------------------------- | ----------------------------------------------------------- |
 | Lennert Bontinck | Master Thesis writer | [lennert.bontinck@vub.be](mailto:lennert.bontinck@vub.be) | [info@lennertbontinck.com](mailto:info@lennertbontinck.com) |
 | Arnau Dillen     | Supervisor           | [arnau.dillen@vub.be](mailto:arnau.dillen@vub.be)         | /                                                           |
-| Geraint Wiggins  | Co-Supervisor        | [geraint.wiggins@vub.be](mailto:geraint.wiggins@vub.be)   | /                                                           |
+| Geraint Wiggins  | Promotor             | [geraint.wiggins@vub.be](mailto:geraint.wiggins@vub.be)   | /                                                           |
 | Kevin De Pauw    | Co-Supervisor        | [kevin.de.pauw@vub.be](mailto:kevin.de.pauw@vub.be)       | /                                                           |
 
 <hr>
@@ -57,20 +57,20 @@ The literature review is one of the most important aspects of any scientific pap
 
 ### Scientific sources
 
-As this master thesis should be scientific grade, the sources should also be scientific. Finding good sources isn't an easy task since there are so many to choose from. Luckily Arnau Dillen and Geraint Wiggins gave some great pointers on where to begin and how to proceed. Per the recommendation of Geraint Wiggins, an overview sheet of all these sources was made. The table below gives an overview of the most interesting scientific sources and the synthesis made for them.
+As this master thesis should be scientific grade, the sources should also be scientific. Finding good sources isn't an easy task since there are so many to choose from. Luckily Arnau Dillen and Geraint Wiggins gave some great pointers on where to begin and how to proceed. Per the recommendation of Geraint Wiggins, an overview sheet of all these sources was made. The table below gives an overview of the most interesting scientific sources and the notes made for them.
 
-| Title                                                        | Type                                                         | Synthesis      |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | -------------- |
-| Overview sheet for all scientific sources                    | Simple overview sheet                                        | Available soon |
-| EEGPLUS: Making a Hybrid Brain Computer Interface Using EEG and EMG Signals | Master thesis by [Arnau Dillen](https://researchportal.vub.be/en/studentTheses/eegplus-making-a-hybrid-brain-computer-interface-using-eeg-and-em) | Available soon |
+| Title                                                        | Type                                                         | Notes                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Overview sheet for all scientific sources                    | Simple overview sheet                                        | Excel available [here](literature-review/scientific/overview/overview_sheet.xlsx) |
+| EEGPLUS: Making a Hybrid Brain Computer Interface Using EEG and EMG Signals | Master thesis by [Arnau Dillen](https://researchportal.vub.be/en/studentTheses/eegplus-making-a-hybrid-brain-computer-interface-using-eeg-and-em) | Annotated pdf available on [Zotero](side-information/software/literature_tools.md#zotero) |
 
 ### Informal sources
 
-There are a lot of interesting YouTube videos, blog posts and more about the thesis topic, especially about OpenBCI. They are insightful to understand how the different aspects work in real life. However, these sources are not peer-reviewed and thus don't have much scientific value. The table below gives an overview of the most interesting ones and the synthesis made for them.
+There are a lot of interesting YouTube videos, blog posts and more about the thesis topic, especially about OpenBCI. They are insightful to understand how the different aspects work in real life. However, these sources are not peer-reviewed and thus don't have much scientific value. The table below gives an overview of the most interesting ones and the notes made for them.
 
-| Title                             | Type                                                         | Synthesis                                                    |
+| Title                             | Type                                                         | Notes                                                        |
 | --------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Testing Brain-Computer Interfaces | Youtube video by [James Bruton - 1M subs](https://www.youtube.com/channel/UCUbDcUPed50Y_7KmfCXKohA) | Available [here](literature-review/informal/youtube/james_bruton-testing_BCIs.md) |
+| Testing Brain-Computer Interfaces | Youtube video by [James Bruton - 1M subs](https://www.youtube.com/channel/UCUbDcUPed50Y_7KmfCXKohA) | Notes available [here](literature-review/informal/youtube/james_bruton-testing_BCIs.md) |
 
 <hr>
 
@@ -80,11 +80,12 @@ To ensure full transparency and reproducibility, all of the other documents made
 
 ### Meeting summaries
 
-Multiple formal and informal meetings were held during the development of this project. Small summaries for each of those meetings can be found in their markdown files.
+Multiple formal and informal meetings were held during the development of this project. Notes made during and after the meeting are also provided.
 
-| Date       | Title         | Documentation                                                |
-| ---------- | ------------- | ------------------------------------------------------------ |
-| 28/09/2021 | First meeting | Available [here](side-information/meetings/2021-09-28_First_meeting.md) |
+| Date       | Title          | Notes                                                        |
+| ---------- | -------------- | ------------------------------------------------------------ |
+| 28/09/2021 | First meeting  | Available [here](side-information/meetings/2021-09-28_First_meeting.md) |
+| 12/10/2021 | Second meeting | Available [here](side-information/meetings/2021-10-12_Second_meeting.md) |
 
 
 
@@ -99,6 +100,13 @@ Some promising software and datasets were found along the way when researching t
 | Interesting datasets       | Available [here](side-information/datasets/interesting_datasets.md) |
 
 
+
+### Drafts
+
+| Title                  | Document                                                  |
+| ---------------------- | --------------------------------------------------------- |
+| Draft for ideas        | Available [here](side-information/brainstorming/ideas.md) |
+| Draft for things to do | Available [here](side-information/brainstorming/todo.md)  |
 
 
 * * *
