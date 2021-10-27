@@ -9,6 +9,7 @@ According to [NeuroTechX's website](https://neurotechx.com/), NeuroTechX (NTX) i
 - [Contact information](#contact-information)
 - [NeuroTechX Webinar #1: EEG Notebooks](#neurotechx-webinar-1-eeg-notebooks)
 - [NeuroTechX Webinar #2: BCI and EEG in VR and AR](#neurotechx-webinar-2-bci-and-eeg-in-vr-and-ar)
+- [NeuroTechX Webinar #3: BCI UX - User Focused Paradigms for Enhancing BCIs](#neurotechx-webinar-3-bci-ux---user-focused-paradigms-for-enhancing-bcis)
 
 <hr>
 
@@ -87,6 +88,13 @@ This webinar is available [here](https://youtu.be/Rggx_YVc6CM). The host of the 
   - Some signals are more or less sensitive to placement. ERPs are especially *lax* in this aspect. Thus same placement is not completely needed as change is still measurable. Training needs however to take into account these variations in location.
   - Often the variation from session to session is not that big either as there is only *one way* to comfortably put on most headsets and it wouldn't differ much between sessions *for the same person*. Different persons will have different preferences and thus often retraining will be needed per person for this reason but also likely only once.
   - Electrode positioning is often not an issue according to Neurable if the headset has been designed smartly.  
+
+<hr>
+
+
+## NeuroTechX Webinar #3: BCI UX - User Focused Paradigms for Enhancing BCIs
+
+This webinar is available [here](https://youtu.be/92Fn9jBJXBA).
 
 
 * * *
