@@ -33,6 +33,7 @@ This document is a draft where things to do can be quickly noted down so they ca
 - Make component diagram
 - Watch [NeuroTechx BCI 101 event](https://neurotechx.com/events/bci-101/)
 - Watch [NeuroTechX Webinar](https://www.youtube.com/watch?v=AFKNbNBCtXs)
+- Read Krigoison et al 2017 for muse VS other headsets and see how far you can get with cheaper systems
 
 * * *
 * * *

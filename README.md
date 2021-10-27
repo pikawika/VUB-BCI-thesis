@@ -63,7 +63,7 @@ As this master thesis should be scientific grade, the sources should also be sci
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Overview sheet for all scientific sources                    | Simple overview sheet                                        | Excel available [here](literature-review/scientific/overview/overview_sheet.xlsx) |
 | EEGPLUS: Making a Hybrid Brain Computer Interface Using EEG and EMG Signals | Master thesis by [Arnau Dillen](https://researchportal.vub.be/en/studentTheses/eegplus-making-a-hybrid-brain-computer-interface-using-eeg-and-em) | Annotated pdf available on [Zotero](side-information/software/literature_tools.md#zotero) |
-| NeuroTechX Webinar 2018                                      | Professional webinar by [NeuroTechX](https://neurotechx.com/) | Notes available [here](literature-review\scientific/NeuroTechX-webinar/notes.md) |
+| NeuroTechX Webinars (1-9)                                    | Professional webinar by [NeuroTechX](https://neurotechx.com/) | Notes available [here](literature-review\scientific/NeuroTechX-webinar/notes.md) |
 
 ### Informal sources
 
