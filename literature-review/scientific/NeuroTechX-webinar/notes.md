@@ -10,6 +10,7 @@ According to [NeuroTechX's website](https://neurotechx.com/), NeuroTechX (NTX) i
 - [NeuroTechX Webinar #1: EEG Notebooks](#neurotechx-webinar-1-eeg-notebooks)
 - [NeuroTechX Webinar #2: BCI and EEG in VR and AR](#neurotechx-webinar-2-bci-and-eeg-in-vr-and-ar)
 - [NeuroTechX Webinar #3: BCI UX - User Focused Paradigms for Enhancing BCIs](#neurotechx-webinar-3-bci-ux---user-focused-paradigms-for-enhancing-bcis)
+- [NeuroTechX Webinar #4: NeuroEthics with the International NeuroEthics Society](#neurotechx-webinar-4-neuroethics-with-the-international-neuroEthics-society)
 
 <hr>
 
@@ -52,7 +53,7 @@ This webinar is available [here](https://youtu.be/AFKNbNBCtXs). The host of the 
 
 ## NeuroTechX Webinar #2: BCI and EEG in VR and AR
 
-This webinar is available [here](https://youtu.be/Rggx_YVc6CM). The host of the webinar was Yannick Roy. 
+This webinar is available [here](https://youtu.be/Rggx_YVc6CM). The host of the webinar was Yannick Roy and Micah Blumberg. 
 
 - Repeated that NeuroTechX is some sort of international community that organizes differing things surrounding neurotechnology. It grew from people in the BCI field that didn't have places to formally discuss other than highly academic channels. It's somewhat in between the academic and hobby scene.
 - One of the guests was from **Interaxon**. Both Graeme Moffat, chief scientist & VP Regulatory as well as Ben Shapiro, EEG Scientist were present. Interaxon is best known for the **Muse headband**. But they also have different **commercial EEG products**.
@@ -94,7 +95,48 @@ This webinar is available [here](https://youtu.be/Rggx_YVc6CM). The host of the 
 
 ## NeuroTechX Webinar #3: BCI UX - User Focused Paradigms for Enhancing BCIs
 
-This webinar is available [here](https://youtu.be/92Fn9jBJXBA).
+This webinar is available [here](https://youtu.be/92Fn9jBJXBA). The webinar was hosted by Sydney Swaine-Simon. The guest speaker was Irina Emilia Nicolae. Phd in the field of signal processing and Brain-Computer Interfaces (BCI). Her research focuses on cognitive processes and motor imagery, targeting user focused paradigms and user state monitoring.
+
+- She mentioned that previous tests focused on getting best classification results not on best user experience. She was against strict tedious tasks.
+   - Causes more efficient interaction.
+- Tried to make an experiment that was most enjoyable for the user yet still useable (classification) results.
+- 3 motor imaginary investigated
+   - Button press
+   - Arm lifting
+   - Trigger pull (e.g. for gaming)
+- experiment setup
+   - 2 seconds 'relaxation'
+   - 0.5 seconds 'preparing for signal'
+   - 3 seconds performing test
+      - Triggered by differing stimuli: visual, voice, combined
+      - Was done for P300
+- Used BIOPAC for EEG and EMG
+   - EEG: C3, C4 (2/32 IS 10-20)
+- Steps taken for analysis 
+   - ![](images/3-analysis.png)
+- They then made a **temporal and spectral plot** of all channels over time. The differing stimuli where noticed. **Strength of arm lifting signal differed for left/right handed people**!
+- User found performing these understandable but not too common interactions most enjoyable. It was easy to do but not *too boring*.
+- some of the challanges to go online (real time) given where
+   - Portable hardware: dry/water-based electrodes
+   - Continues paradigms
+   - Out of lab scenario (more noise)
+
+### Related documents
+
+- Publications on efficient motor imagery tasks
+   - DOI: [10.1109/EMBC.2016.7592061](https://doi.org/10.1109/EMBC.2016.7592061)
+   - DOI: [10.1109/ECAI.2014.7090216](https://doi.org/10.1109/ECAI.2014.7090216)
+- Publications on cognitive processing levels
+   - https://doi.org/10.3389/fnins.2017.00548
+   - DOI: [10.3217/978-3-85125-467-9-186](https://openlib.tugraz.at/download.php?id=5e6a26bb560da&location=medra)
+- Dataset
+   - http://dx.doi.org/10.14279/depositonce-6173
+
+
+## NeuroTechX Webinar #4: NeuroEthics with the International NeuroEthics Society
+
+This webinar is available [here](https://youtu.be/GlJk871GyTQ).
+
 
 
 * * *
