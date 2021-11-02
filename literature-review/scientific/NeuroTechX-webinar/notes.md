@@ -55,7 +55,7 @@ This webinar is available [here](https://youtu.be/AFKNbNBCtXs). The host of the 
 This webinar is available [here](https://youtu.be/Rggx_YVc6CM). The host of the webinar was Yannick Roy. 
 
 - Repeated that NeuroTechX is some sort of international community that organizes differing things surrounding neurotechnology. It grew from people in the BCI field that didn't have places to formally discuss other than highly academic channels. It's somewhat in between the academic and hobby scene.
-- One of the guests was from **Interaxom**. Both Graeme Moffat, chief scientist & VP Regulatory as well as Ben Shapiro, EEG Scientist were present. Interaxom is best known for the **Muse headband**. But they also have different **commercial EEG products**.
+- One of the guests was from **Interaxon**. Both Graeme Moffat, chief scientist & VP Regulatory as well as Ben Shapiro, EEG Scientist were present. Interaxon is best known for the **Muse headband**. But they also have different **commercial EEG products**.
   - Their origins are from wanting to use **EEG in VR/AR**.
   - However, quickly became obvious how hard it is.
 - **Muse headband backstory**
@@ -70,7 +70,7 @@ This webinar is available [here](https://youtu.be/Rggx_YVc6CM). The host of the 
 - Many labs **compare the Muse to ActiCap and other systems**. E.g. Krigoison et al 2017. Results say Muse is an okay performance at a much lower cost and better portability.
 - **VR is in healthcare**, it has many positive effects already. People in the field are Brennan Spiegel, Skip Rizzo and Walter Greenleaf.
 - The **age of patients** seem to play a role in the **Alpha peak frequency (AF7)** as was demonstrated by McMaster University. Thus **EEG** can be used for *brain health purposes*.
-- **Training ERPs is fast**, in many cases, not more than 20 trials suffice to classify data in a trustworthy manner as found by Muse technology (Interaxom).
+- **Training ERPs is fast**, in many cases, not more than 20 trials suffice to classify data in a trustworthy manner as found by Muse technology (Interaxon).
 - Some of the **classification methods** often tested with
   - ![](images/classification_algorithms.png)
 - **ERP components**
@@ -79,7 +79,7 @@ This webinar is available [here](https://youtu.be/Rggx_YVc6CM). The host of the 
 - The talk then switched to Neurable, **Neurable is a software company focused on processing neurological data**.
 - Neurable is convinced hardware and machines are going to evolve even further becoming even more complex. Because of this the typical mouse and keyboard interaction simply won't be enough to control this hardware. BCI aims to offer a faster, better interface, such as **Neuralink** also aims to offer.
 - Neurable focuses on delivering software to interpret and use EEG and ERP signals. Most of their focus seems to be on AR/VR applications and often games. They have EEG sensors connected to the **HTC Vive** headset. They often use P300. They create **live online classification** technology.
-- Problem is that **current research** uses 256 gell cap which is **not portable**. Muse and others provide headsets with only 6 dry electrodes for more commercial use. There is a push to limit this even further with **EEG glasses** (interaxom) or **Dry headphone EEG** (Japanese lab) and other *less obvious standalone* BCI hardware.
+- Problem is that **current research** uses 256 gell cap which is **not portable**. Muse and others provide headsets with only 6 dry electrodes for more commercial use. There is a push to limit this even further with **EEG glasses** (Interaxon) or **Dry headphone EEG** (Japanese lab) and other *less obvious standalone* BCI hardware.
 - **Neurable** is vague on *how they do it*, with the spokesman stating *how we do it is our secret sauce*. This is not ideal as *open source projects* are more helpful for the field.
 - One of the challenges for **few electrode BCIs** is the location of the electrodes. Some focus on the motor cortex, others the visual, ...
 - **OpenVibe** is a great starting platform.
