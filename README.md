@@ -10,6 +10,7 @@ This repository includes installation instructions, source code, extra documents
 - [Contact information](#contact-information)
 - [Documentation](#documentation)
   - [Installation instructions](#installation-instructions)
+  - [Initialisation instructions](#initialisation-instructions)
 - [Literature review](#literature-review)
   - [Scientific sources](#scientific-sources)
   - [Informal sources](#informal-sources)
@@ -45,6 +46,14 @@ OpenBCI hardware and software works best on Windows. Some software, such as Open
 | ------------------------------------------------ | ------------------------------------------------------- |
 | Install instructions for Windows (RECOMMENDED)   | Available [here](documentation/installation/windows.md) |
 | Install instructions for macOS (NOT RECOMMENDED) | Available [here](documentation/installation/macos.md)   |
+
+
+
+### Initialisation instructions
+
+| Title                                      | Documentation                                                |
+| ------------------------------------------ | ------------------------------------------------------------ |
+| Initialisation of the Anaconda environment | Available [here](documentation/initialisation/initialisation-instructions.md) |
 
 
 

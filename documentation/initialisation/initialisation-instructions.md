@@ -1,0 +1,46 @@
+# Initialisation of the Anaconda environment
+
+OpenBCI hardware and software works best on Windows. Some software, such as OpenViBE, doesn't even support macOS. The use of a Windows machine or VM is thus recommended. The software for this master thesis was mainly developed on a Windows 10 machine. The macOS instructions may thus not be complete enough to run the master thesis project as macOS was not used for the development.
+
+## Table of contents
+
+- [Author](#author)
+- [MacOS](#macos)
+   - [Initialisation script](#initialisation-script)
+
+<hr>
+
+
+## Author
+
+| Name             | Role                 | VUB mail                                                  | Personal mail                                               |
+| ---------------- | -------------------- | --------------------------------------------------------- | ----------------------------------------------------------- |
+| Lennert Bontinck | Master Thesis writer | [lennert.bontinck@vub.be](mailto:lennert.bontinck@vub.be) | [info@lennertbontinck.com](mailto:info@lennertbontinck.com) |
+
+<hr>
+
+
+## MacOS
+
+### Initialisation script
+
+The below script can be used to start the anaconda environment in the GitHub project folder and launch a Jupyter Notebook server.
+
+```shell
+# Replace <path-of-conda> with your source of the conda.sh file.
+#   e.g. /Users/lennertbontinck/opt/anaconda3/etc/profile.d/conda.sh
+source <path-of-conda>
+# Launches the correct environment from the install instructions
+conda activate bci-master-thesis
+# Replace <path-of-github> with your source of the GitHub repository.
+#   e.g. /Users/lennertbontinck/Documents/GitHub/bci-master-thesis
+cd <path-of-github>
+# Launches Jupyter Notebook server
+jupyter notebook
+```
+
+
+
+* * *
+* * *
+© [Lennert Bontinck](https://www.lennertbontinck.com/) VUB 2021-2022
