@@ -34,6 +34,16 @@ This document is a draft where things to do can be quickly noted down so they ca
 - Watch [NeuroTechx BCI 101 event](https://neurotechx.com/events/bci-101/)
 - Watch [NeuroTechX Webinar](https://www.youtube.com/watch?v=AFKNbNBCtXs)
 - Read Krigoison et al 2017 for muse VS other headsets and see how far you can get with cheaper systems
+- Find more info on: The RIKEN BSI-TOYOTA Collaboration Center has presented an EEG BCI technology for real-time control of motorized wheelchairs.
+- Check out (for data)
+  - http://www.bbci.de/competition/iv/desc_2b.pdf
+  - https://github.com/robintibor/high-gamma-dataset
+  - http://www.brainsignals.de/
+  - http://www.bnci-horizon-2020.eu/
+  - http://www.bbci.de/competition/iv/
+  - https://academic.oup.com/gigascience/article/6/7/gix034/3796323
+- Projects using first database
+  - https://github.sre.pub/sauriii98/Motor-Imagery-Classification
 
 * * *
 * * *

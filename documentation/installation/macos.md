@@ -74,6 +74,8 @@ The instructions below highlight the steps needed to recreate the used anaconda 
     # V0.23.4 was used.
     pip install mne
     ```
+  
+
 
 
 
@@ -95,6 +97,38 @@ Whilst [OpenBCI LSL for Python connection](https://docs.openbci.com/Software/Com
     # BrainFlow is a library intended to obtain, parse and analyze EEG, EMG, ECG and other kinds of data from biosensors such as the ones on OpenBCI.
     # V4.6.1 was used.
     pip install brainflow
+    ```
+    
+
+
+
+### Installing EEG-Notebooks
+
+- Using your terminal, activate the previously created environment
+
+  - ```shell
+    # Activates the previously created bci-master-thesis Anaconda environment
+    conda activate bci-master-thesis
+    ```
+
+- Install some GitHub available packages on the environment. You might want to change your working directory first.
+
+  - ```shell
+    # EEG-Notebooks is a Python library for collecting and analysing EEG data.
+    # Commit 85d286c4ab5d1b9b9b27fbd73d920e2736e2d03b was used
+    git clone https://github.com/NeuroTechX/eeg-notebooks
+    
+    # Go to directory of download GitHub repository and go to version used
+    cd eeg-notebooks
+    git checkout 85d286c4ab5d1b9b9b27fbd73d920e2736e2d03b
+    
+    # Install downloaded library
+    pip install -e .
+    
+    # If you run into installation issues with dukpy, executing the following commands might help
+    export CC=/usr/bin/clang
+    export CXX=/usr/bin/clang++
+    pip install -e .
     ```
 
 
