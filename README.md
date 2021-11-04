@@ -1,4 +1,3 @@
-
 # BCI Master Thesis @ VUB 2021 - 2022
 
 This repository includes installation instructions, source code, extra documents and more from Lennert Bontinck's Master Thesis @ VUB 2021 - 2022.
@@ -11,6 +10,8 @@ This repository includes installation instructions, source code, extra documents
 - [Documentation](#documentation)
   - [Installation instructions](#installation-instructions)
   - [Initialisation instructions](#initialisation-instructions)
+- [Code](#code)
+  - [Experimental notebooks](#experimental-notebooks)
 - [Literature review](#literature-review)
   - [Scientific sources](#scientific-sources)
   - [Informal sources](#informal-sources)
@@ -55,9 +56,24 @@ OpenBCI hardware and software works best on Windows. Some software, such as Open
 | ------------------------------------------ | ------------------------------------------------------------ |
 | Initialisation of the Anaconda environment | Available [here](documentation/initialisation/initialisation-instructions.md) |
 
+<hr>
+
+
+## Code
+
+To make reproducing the project easier, all of the code used is provided.
+
+### Experimental notebooks
+
+Some of the code written is not used explicitly in the paper but was used to gain information. We call these experimental notebooks. The following experimental notebooks are available:
+
+| Title                            | Location                                                     |
+| -------------------------------- | ------------------------------------------------------------ |
+| CLA dataset exploration notebook | Available [here](code/experimental-notebooks/CLA-dataset-exploration-notebook.ipynb) |
 
 
 <hr>
+
 
 ## Literature review
 
@@ -83,6 +99,7 @@ There are a lot of interesting YouTube videos, blog posts and more about the the
 | Testing Brain-Computer Interfaces | Youtube video by [James Bruton - 1M subs](https://www.youtube.com/channel/UCUbDcUPed50Y_7KmfCXKohA) | Notes available [here](literature-review/informal/youtube/james_bruton-testing_BCIs.md) |
 
 <hr>
+
 
 ## Side information
 
