@@ -11,6 +11,7 @@ This repository includes installation instructions, source code, extra documents
   - [Installation instructions](#installation-instructions)
   - [Initialisation instructions](#initialisation-instructions)
 - [Code](#code)
+  - [Utils](#utils)
   - [Experimental notebooks](#experimental-notebooks)
 - [Literature review](#literature-review)
   - [Scientific sources](#scientific-sources)
@@ -63,6 +64,16 @@ OpenBCI hardware and software works best on Windows. Some software, such as Open
 
 To make reproducing the project easier, all of the code used is provided.
 
+### Utils
+
+Some util files are provided to extract certain aspects from the main notebooks such as data retrieval.
+
+| Title            | Location                                    |
+| ---------------- | ------------------------------------------- |
+| CLA dataset util | Available [here](code/utils/CLA_dataset.py) |
+
+
+
 ### Experimental notebooks
 
 Some of the code written is not used explicitly in the paper but was used to gain information. We call these experimental notebooks. The following experimental notebooks are available:
@@ -89,6 +100,8 @@ As this master thesis should be scientific grade, the sources should also be sci
 | Overview sheet for all scientific sources                    | Simple overview sheet                                        | Excel available [here](literature-review/scientific/overview/overview_sheet.xlsx) |
 | EEGPLUS: Making a Hybrid Brain Computer Interface Using EEG and EMG Signals | Master thesis by [Arnau Dillen](https://researchportal.vub.be/en/studentTheses/eegplus-making-a-hybrid-brain-computer-interface-using-eeg-and-em) | Annotated pdf available on [Zotero](side-information/software/literature_tools.md#zotero) |
 | NeuroTechX Webinars (1-9)                                    | Professional webinars by [NeuroTechX](https://neurotechx.com/) | Notes available [here](literature-review/scientific/NeuroTechX-webinar/notes.md) |
+
+
 
 ### Informal sources
 
