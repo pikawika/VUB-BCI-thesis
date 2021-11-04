@@ -1,4 +1,4 @@
 .DS_Store
 literature-review/scientific/overview/~$overview_sheet.xlsx
 .ipynb_checkpoints
-code/experimental-notebooks/data/*.mat
+code/data/*/*.mat
