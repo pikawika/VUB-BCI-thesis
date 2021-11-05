@@ -5,8 +5,10 @@ OpenBCI hardware and software works best on Windows. Some software, such as Open
 ## Table of contents
 
 - [Author](#author)
+- [Windows](#windows)
+   - [Windows initialisation script](#windows-initialisation-script)
 - [MacOS](#macos)
-   - [Initialisation script](#initialisation-script)
+   - [MacOS initialisation script](#macos-initialisation-script)
 
 <hr>
 
@@ -20,9 +22,28 @@ OpenBCI hardware and software works best on Windows. Some software, such as Open
 <hr>
 
 
+## Windows
+
+### Windows Initialisation script
+
+The below script can be used to start the anaconda environment in the GitHub project folder and launch a Jupyter Notebook server.
+
+```shell
+# Launches the correct environment from the install instructions
+CALL conda activate bci-master-thesis
+
+# Launches Jupyter Notebook server on correct folder.
+# Replace <path-of-github> with your source of the GitHub repository.
+#   e.g. D:\Libraries\Documenten\GitHub\bci-master-thesis
+CALL jupyter notebook --notebook-dir="<path-of-github>"
+```
+
+<hr>
+
+
 ## MacOS
 
-### Initialisation script
+### MacOS Initialisation script
 
 The below script can be used to start the anaconda environment in the GitHub project folder and launch a Jupyter Notebook server.
 

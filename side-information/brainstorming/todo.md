@@ -44,6 +44,7 @@ This document is a draft where things to do can be quickly noted down so they ca
   - https://academic.oup.com/gigascience/article/6/7/gix034/3796323
 - Projects using first database
   - https://github.sre.pub/sauriii98/Motor-Imagery-Classification
+- EEG notebooks install instructions windows not available, if going to use provide them!
 
 * * *
 * * *

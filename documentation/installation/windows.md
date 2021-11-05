@@ -64,6 +64,7 @@ The instructions below highlight the steps needed to recreate the used anaconda 
     # Pandas is a famous Python Data Analysis Library and is used by a lot of other packages.
     # The following command installs Pandas and its dependencies. V1.3.3 was used.
     conda install pandas
+    
     # We install pip to install packages not available from conda install. V21.0.1 was used.
     conda install pip
     ```
@@ -74,6 +75,14 @@ The instructions below highlight the steps needed to recreate the used anaconda 
     # MNE is a famous Python package for visualising and working with neurophysiological data.
     # V0.23.4 was used.
     pip install mne
+    
+    # Install Matplotlib for plotting purposes.
+    # V3.4.3 was used.
+    pip install matplotlib
+    
+    # Install backend for matplotlib visualisations.
+    # V5.15.6 was used.
+    pip install PyQt5
     ```
 
 
