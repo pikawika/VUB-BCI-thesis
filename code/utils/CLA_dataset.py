@@ -21,6 +21,16 @@ import numpy as np
 import datetime
 import pytz
 
+# --------------- CLASSES ---------------
+
+
+class MetaData:
+    def __init__(self, record_date, sex, age):
+        self.record_date = record_date
+        self.sex = sex
+        self.age = age
+
+
 # --------------- GLOBALS ---------------
 data_directory = r'../data/CLA/'
 filenames = ["CLA-SubjectJ-170504-3St-LRHand-Inter.mat",
@@ -39,6 +49,57 @@ filenames = ["CLA-SubjectJ-170504-3St-LRHand-Inter.mat",
              "CLASubjectF1509163StLRHand.mat",
              "CLASubjectF1509173StLRHand.mat",
              "CLASubjectF1509283StLRHand.mat"]
+
+
+meta_data = [
+    # CLA-SubjectJ-170504-3St-LRHand-Inter.mat
+    MetaData(datetime.datetime(2017, 5, 4, 0, 0,
+             0, 0, pytz.UTC).timestamp(), 2, 25),
+    # CLA-SubjectJ-170508-3St-LRHand-Inter.mat
+    MetaData(datetime.datetime(2017, 5, 8, 0, 0,
+             0, 0, pytz.UTC).timestamp(), 2, 25),
+    # CLA-SubjectJ-170510-3St-LRHand-Inter.mat
+    MetaData(datetime.datetime(2017, 5, 10, 0, 0,
+             0, 0, pytz.UTC).timestamp(), 2, 25),
+    # CLASubjectA1601083StLRHand.mat
+    MetaData(datetime.datetime(2016, 1, 8, 0, 0,
+             0, 0, pytz.UTC).timestamp(), 1, 25),
+    # CLASubjectB1510193StLRHand.mat
+    MetaData(datetime.datetime(2015, 10, 19, 0, 0,
+             0, 0, pytz.UTC).timestamp(), 1, 25),
+    # CLASubjectB1512153StLRHand.mat
+    MetaData(datetime.datetime(2015, 12, 15, 0, 0,
+             0, 0, pytz.UTC).timestamp(), 1, 25),
+    # CLASubjectC1511263StLRHand.mat
+    MetaData(datetime.datetime(2015, 11, 26, 0, 0,
+             0, 0, pytz.UTC).timestamp(), 1, 30),
+    # CLASubjectC1512163StLRHand.mat
+    MetaData(datetime.datetime(2015, 12, 16, 0, 0,
+             0, 0, pytz.UTC).timestamp(), 1, 30),
+    # CLASubjectC1512233StLRHand.mat
+    MetaData(datetime.datetime(2015, 12, 23, 0, 0,
+             0, 0, pytz.UTC).timestamp(), 1, 30),
+    # CLASubjectD1511253StLRHand.mat
+    MetaData(datetime.datetime(2015, 11, 25, 0, 0,
+             0, 0, pytz.UTC).timestamp(), 1, 30),
+    # CLASubjectE1512253StLRHand.mat
+    MetaData(datetime.datetime(2015, 12, 25, 0, 0,
+             0, 0, pytz.UTC).timestamp(), 2, 25),
+    # CLASubjectE1601193StLRHand.mat
+    MetaData(datetime.datetime(2016, 1, 19, 0, 0,
+             0, 0, pytz.UTC).timestamp(), 2, 25),
+    # CLASubjectE1601223StLRHand.mat
+    MetaData(datetime.datetime(2016, 1, 23, 0, 0,
+             0, 0, pytz.UTC).timestamp(), 2, 25),
+    # CLASubjectF1509163StLRHand.mat
+    MetaData(datetime.datetime(2015, 9, 16, 0, 0,
+             0, 0, pytz.UTC).timestamp(), 1, 35),
+    # CLASubjectF1509173StLRHand.mat
+    MetaData(datetime.datetime(2015, 9, 17, 0, 0,
+             0, 0, pytz.UTC).timestamp(), 1, 35),
+    # CLASubjectF1509283StLRHand.mat
+    MetaData(datetime.datetime(2015, 9, 28, 0, 0, 0, 0, pytz.UTC).timestamp(), 1, 35)]
+
 
 # --------------- FUNCTIONS ---------------
 
@@ -78,15 +139,18 @@ def get_raw_matlab_data(filename):
     return data_raw
 
 
-def get_raw_mne_data(filename, recording_date, participant_gender):
+def get_raw_mne_data(filename):
     """Gets raw mne data structure for given filename."""
     # Example call: CLA_dataset.get_raw_mne_data("CLASubjectC1511263StLRHand.mat", datetime.datetime(2016, 1, 8, 0, 0, 0, 0, pytz.UTC).timestamp(), 1)
     if (not is_correct_filename(filename)):
         raise ValueError("File does not exist")
+    
+    # Index of file
+    index = filenames.index(filename)
 
     # Correct date format
     recording_date = datetime.datetime.fromtimestamp(
-        recording_date, tz=datetime.timezone.utc)
+        meta_data[index].record_date, tz=datetime.timezone.utc)
 
     # Get raw matlab file
     data_raw = get_raw_matlab_data(filename)
@@ -107,7 +171,7 @@ def get_raw_mne_data(filename, recording_date, participant_gender):
     mne_info['meas_date'] = recording_date
     mne_info['subject_info'] = {
         "his_id": data_raw.id,
-        "sex": participant_gender
+        "sex": meta_data[index].sex
     }
 
     # Make MNE data

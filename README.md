@@ -78,9 +78,10 @@ Some util files are provided to extract certain aspects from the main notebooks 
 
 Some of the code written is not used explicitly in the paper but was used to gain information. We call these experimental notebooks. The following experimental notebooks are available:
 
-| Title                            | Location                                                     |
-| -------------------------------- | ------------------------------------------------------------ |
-| CLA dataset exploration notebook | Available [here](code/experimental-notebooks/CLA-dataset-exploration-notebook.ipynb) |
+| Title                                   | Location                                                     |
+| --------------------------------------- | ------------------------------------------------------------ |
+| CLA dataset exploration notebook        | Available [here](code/experimental-notebooks/CLA-dataset-exploration-notebook.ipynb) |
+| MNE data structure exploration notebook | Available [here](code/experimental-notebooks/MNE-datastructure-exploration-notebook.ipynb) |
 
 
 <hr>
