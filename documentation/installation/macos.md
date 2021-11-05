@@ -6,6 +6,7 @@ OpenBCI hardware and software works best on Windows. Some software, such as Open
 
 - [Author](#author)
 - [OpenBCI GUI](#openbci-gui)
+- [Required Homebrew installs](#required-homebrew-installs)
 - [Setting up Anaconda environment](#setting-up-anaconda-environment)
   * [Configuring the base environment](#configuring-the-base-environment)
   * [Installing BrainFlow for Python connection](#installing-brainflow-for-python-connection)
@@ -34,6 +35,15 @@ Installing OpenBCI GUI should be straightforward and the steps can be followed f
 
 <hr>
 
+## Required Homebrew installs
+
+To use the  `PyQt5`  backend for Matplotlib, which is recommended for MNE plotting, `pyqt` needs to be installed via Homebrew.
+
+```shell
+brew install pyqt
+```
+
+<hr>
 
 ## Setting up Anaconda environment
 
@@ -73,6 +83,10 @@ The instructions below highlight the steps needed to recreate the used anaconda 
     # MNE is a famous Python package for visualising and working with neurophysiological data.
     # V0.23.4 was used.
     pip install mne
+    
+    # Install backend for matplotlib visualisations.
+    # V5.15.6 was used.
+    pip install PyQt5
     ```
   
 
