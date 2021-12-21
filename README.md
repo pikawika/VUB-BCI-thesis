@@ -2,7 +2,7 @@
 
 This repository includes installation instructions, source code, extra documents and more from Lennert Bontinck's Master Thesis @ VUB 2021 - 2022.
 
-
+The current draft version of the thesis can be found [here](paper/bci_master_thesis.pdf), the source code of this LaTeX document is [also available](paper/source).
 
 ## Table of contents
 

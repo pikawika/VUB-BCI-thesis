@@ -1,0 +1,80 @@
+\documentclass[a4paper]{book}
+
+% Load the VUB theme from https://gitlab.com/rubdos/texlive-vub
+\usepackage{vub}
+
+% hyperref package makes links clickable (e.g. references)
+% The color is set to black for each link type
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+% Used for abbrivations etc
+\usepackage{glossaries}
+
+% We use cleveref for better referencing control
+\usepackage{cleveref}
+\usepackage[natbib,style=apa]{biblatex}
+\addbibresource{../bibliography.bib}
+
+% Init glossary
+\makenoidxglossaries
+
+% Add glossary entries
+\input{parts/G_abbreviations_definition}
+
+% English title
+\input{parts/1_title_en}
+\begin{document}
+\frontmatter
+\maketitle
+
+% Dutch title
+\input{parts/1_title_nl}
+\maketitle
+
+% Abstract
+\input{parts/2_abstract}
+\input{parts/3_acknowledgements}
+
+% ToC
+\tableofcontents
+\mainmatter
+
+% Main content
+\input{parts/4_introduction}
+\input{parts/5_biomedical_background}
+\input{parts/6_interpreting_signals}
+\input{parts/7_general_bci_pipeline}
+\input{parts/8_final_system}
+\input{parts/9_proof_of_concept_results}
+\input{parts/10_analysis_conclussion}
+
+
+\backmatter%
+
+% Glossary
+\input{parts/F_abbreviations}
+
+% References list (show even non cited)
+\nocite{*}
+\printbibliography[heading=bibintoc, title={References}]
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,116 @@
+% TODO:
+%   - References in section helping people with disabilities for examples
+%   - More complete and referenced 1.1
+%   - Longer more descriptive titles
+% ----------  
+% Questions:
+%   - Should we also use parts or not?
+
+% Uncomment this if use of parts is desired
+%\part{First part}
+
+\chapter{Introduction}
+\label{ch:introduction}
+
+\Glspl{bci} and \glspl{bmi} are starting to gather more interest from the general public.
+These systems, consisting of hardware and software, aim to read and stimulate a user's biomedical signals for a wide range of purposes.
+Neuralink, an Elon Musk company, helped to popularize them outside of the research field.
+Neuralink's initial white paper discusses its aim to create a scalable high-bandwidth \acrshort{bmi} system, focusing on its mechanical achievements \citep{neuralink_whitepaper}.
+Only a mere year later, the company held a conference with a live demo of their \acrshort{bmi} implanted into the skulls of pigs.
+
+Whilst such novel interaction application have yet to see wide spread market adoption, \acrshortpl{bci} have been studied for decennia by researchers such as \citet{early_bci}.
+An in-depth history from \acrshortpl{bci} can be found from Andrea \citet{bci_history}.
+\citet{bci_review} gives an overview of the different kinds of \acrshortpl{bci} and corresponding techniques to be used.
+These sources give a great high-level insight into the technology and terminology used in this field.
+A good introductory book on \acrshortpl{bci} from this same period is one from the well-known Professor in this field: Jonathan Wolpaw \citep{bci_book}.
+
+Whilst techniques used today remain relatively similar to those discussed in these older sources, the hardware complexity has been evolving drastically.
+An important issue researchers keep getting confronted with is the fact that there's still a lot of mysteries about the brain's inner working, leaving many of the finer intercepted brain signals unexplained.
+\citet{brainmapping} states that the progress of mapping the brain and it's billions of sensors and connections is accelerating yet still far from finished.
+This mapping would be a huge step in understanding the brain.
+
+Luckily, novel \gls{ml} techniques can help with processing and reasoning on the data these systems collect.
+Especially due to recent developments in \gls{dl} and \gls{nn}, \acrshortpl{bci} are being used more in treating neurological diseases \citep{bci_diseases} but also more commercial applications, like a brain-controlled "virtual keyboard" as discussed by \citet{bci_keyboard}.
+
+A challenge with \acrshort{dl} applications in general, and certainly with \acrshortpl{bci}, is the fact that training a deep learner in an unsupervised manner can take a lot of data and time and be unpredictable due to it's black box principle.
+These things are unwished-for in \acrshort{bci} systems, especially when not only reading but also stimulating brain signals.
+In general, full supervised learning isn't possible either due to the lack of understanding the brain signals.
+Therefore, low-confidence labeled data is often used in a semi-supervised fashion as explained by \citet{deep_learn_low_label}.
+
+\section{Gaining popularity}
+\label{sec:introduction_gaining_popularity}
+
+As was already discussed, Neuralink, a company by Elon Musk aiming to provide an invasive \acrshort{bci} to be used by the masses as a mean for fast communication between human and machine, has put the research field in new daylight.
+However, the reason \acrshortpl{bci} applications are gaining more and more interest follows from a wide variety of reasons.
+The following section will discuss the most important ones.
+
+\subsection{Commercialisation by big tech}
+\label{subsec:introduction_gaining_popularity_big_tech}
+TODO
+
+\subsection{Improved machine learning}
+\label{subsec:introduction_gaining_popularity_improved_ml}
+TODO
+
+\subsection{More affordable hardware}
+\label{subsec:introduction_gaining_popularity_affordability}
+TODO
+
+\subsection{Boost in efficiency}
+\label{subsec:introduction_gaining_popularity_efficiency}
+TODO
+
+\section{Helping people with disabilities}
+\label{sec:introduction_helping_disabled}
+
+Whilst the commercial interest of \acrshortpl{bci} is apparent, it is not the only reason these systems are gaining popularity.
+As technology evolves, it has often been the case that people with certain disabilities benefit from the evolution as well.
+Recently, image and speech to text technology has found its way directly into smartphone operating systems.
+Whilst it is handy for most to have the capability of generating subtitles for an audio track playing on your phone, people with limited hearing now have a direct way to enjoy more content too.
+Those people who have difficulties with vision can benefit greatly from a camera app with scene detection and text detection.
+But even simple application such as a color picker on the camera can aid people who have color blindness in determining whether if a banana is ripe and more.
+This section will highlight some of the benefits \acrshortpl{bci} can offer to people with disabilities.
+
+\subsection{Parkinson's disease}
+\label{subsec:introduction_helping_disabled_parkinson}
+TODO
+
+\subsection{Audiovisual aid}
+\label{subsec:introduction_helping_disabled_audiovisual}
+TODO
+
+\subsection{Wheelchair users}
+\label{subsec:introduction_helping_disabled_wheelchair}
+TODO
+
+\section{Small projects with big impact}
+\label{sec:introduction_small_projects}
+TODO
+
+\subsection{TODO: example small project}
+\label{subsec:introduction_small_projects_XXX}
+TODO
+
+\subsection{TODO: example small project}
+\label{subsec:introduction_small_projects_YYY}
+TODO
+
+\subsection{Using a 3 signal system for basic controls}
+\label{subsec:introduction_small_projects_ours}
+TODO
+
+\section{Ethical questions}
+\label{sec:introduction_ethical}
+TODO
+
+\subsection{Risk of data mining for advertising}
+\label{subsec:introduction_ethical_ads}
+TODO
+
+\subsection{Making the rich even richer}
+\label{subsec:introduction_ethical_expensive}
+TODO
+
+\subsection{Confronting users with their brain}
+\label{subsec:introduction_ethical_medical_users}
+TODO

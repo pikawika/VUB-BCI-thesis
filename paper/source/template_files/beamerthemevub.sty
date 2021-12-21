@@ -1,0 +1,39 @@
+\mode<presentation>
+
+\newif\if@coloredTitles
+\@coloredTitlesfalse
+\DeclareOptionBeamer{coloredtitles}{\@coloredTitlestrue}
+
+\newif\if@coloredBlocks
+\@coloredBlocksfalse
+\DeclareOptionBeamer{coloredblocks}{\@coloredBlockstrue}
+
+\newif\if@sectionOnAllSlides
+\@sectionOnAllSlidesfalse
+\DeclareOptionBeamer{showsection}{\@sectionOnAllSlidestrue}
+
+% department options
+\DeclareOptionBeamer{dept}{\PassOptionsToPackage{dept=#1}{beamerinnerthemevub}}
+
+% copyright option
+\DeclareOptionBeamer{copyright}{\PassOptionsToPackage{copyright=\text{#1}}{beamerinnerthemevub}}
+\ProcessOptionsBeamer
+
+% Requirement
+\RequirePackage{tikz}
+\RequirePackage{varwidth}
+
+\RequirePackage{vubprivate}
+
+% Settings
+\def\@merkbeeld{1cm}
+
+\usecolortheme{vub}
+\useinnertheme{vub}
+\useoutertheme{vub}
+\usefonttheme{vub}
+
+%\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{blocks}[rounded][shadow=true]
+
+\mode<all>
