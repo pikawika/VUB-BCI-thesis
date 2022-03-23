@@ -17,7 +17,6 @@ The current draft version of the thesis can be found [here](paper/bci_master_the
   - [Scientific sources](#scientific-sources)
   - [Informal sources](#informal-sources)
 - [Side information](#side-information)
-  - [Meeting summaries](#meeting-summaries)
   - [Promosing software and datasets](#promosing-software-and-datasets)
   - [Drafts](#drafts)
 
@@ -118,17 +117,6 @@ There are a lot of interesting YouTube videos, blog posts and more about the the
 ## Side information
 
 To ensure full transparency and reproducibility, all of the other documents made for the project are provided here. These include meeting summaries, brainstorm sheets and more. 
-
-### Meeting summaries
-
-Multiple formal and informal meetings were held during the development of this project. Notes made during and after the meeting are also provided.
-
-| Date       | Title          | Notes                                                        |
-| ---------- | -------------- | ------------------------------------------------------------ |
-| 28/09/2021 | First meeting  | Available [here](side-information/meetings/2021-09-28_First_meeting.md) |
-| 12/10/2021 | Second meeting | Available [here](side-information/meetings/2021-10-12_Second_meeting.md) |
-
-
 
 ### Promosing software and datasets
 
