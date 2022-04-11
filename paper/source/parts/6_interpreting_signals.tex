@@ -4,50 +4,109 @@
 % Questions:
 %   - XXX
 
-\chapter{Processing signals}
+% In a new chapter, reset the GLS to once again use full version in first occurence
+\glsresetall
+
+\chapter{Working with brain-signals}
 \label{ch:processing_signals}
+
+% ---------------------------------------------- 
+
+\section{Role of computer scientists in developing BCI systems}
+\label{sec:processing_signals_why_cs}
 TODO
 
-\section{Making useful data}
+% ---------------------------------------------- 
+
+\section{Converting raw EEG data to information rich features}
 \label{sec:processing_signals_useful_data}
 TODO
 
 
-\subsection{Pre-processing}
+% - - - - - - - - - -
+
+\subsection{Hardware and software pre-processing}
 \label{subsec:processing_signals_useful_data_preproc}
 TODO
 
-\subsection{Feature extraction}
+
+% - - - - - - - - - -
+
+\subsection{Common EEG based BCI feature extraction methods}
 \label{subsec:processing_signals_useful_data_feature}
 TODO
 
+% ---------------------------------------------- 
 
-
-\section{Interpreting signals}
+\section{Different ways of working with the data}
 \label{sec:processing_signals_interpreting}
 TODO
 
+% - - - - - - - - - -
+
+\subsection{Manually interpreting the signals}
+\label{subsec:processing_signals_interpreting_manual}
+TODO
+
+
+% - - - - - - - - - -
 
 \subsection{Computer aided interpretations}
 \label{subsec:processing_signals_interpreting_pc_aided}
 TODO
 
-\subsection{Automated interpretation}
+% - - - - - - - - - -
+
+\subsection{Fully automated BCI systems}
 \label{subsec:processing_signals_interpreting_automated}
 TODO
 
-\subsection{Offline and online systems}
+% - - - - - - - - - -
+
+\subsection{Offline and online BCI systems}
 \label{subsec:processing_signals_interpreting_offline_online}
 TODO
+
+% ---------------------------------------------- 
 
 \section{The role of machine learning}
 \label{sec:processing_signals_interpreting_ml}
 TODO
 
-\subsection{Artificial neural networks}
-\label{subsec:processing_signals_interpreting_ml_ann}
+% - - - - - - - - - -
+
+\subsection{Classical machine learning approaches}
+\label{subsec:processing_signals_interpreting_ml_classic}
 TODO
 
-\subsection{Deep learning}
-\label{subsec:processing_signals_interpreting_ml_deep_learning}
+% - - - - - - - - - -
+
+\subsection{Artificial neural networks and deep learning}
+\label{subsec:processing_signals_interpreting_ml_ann_dl}
 TODO
+
+
+% ---------------------------------------------- 
+
+\section{Common issues with BCI development}
+\label{sec:processing_signals_common_issues}
+TODO
+
+% - - - - - - - - - -
+
+\subsection{Explainability and interpretability of models}
+\label{subsec:processing_signals_common_issues_exaplainable}
+
+% TOODO
+\Gls{dl} often requires significant processing power and time to train, impacting the affordability of \gls{bci} research.
+This is especially true when working with many \gls{eeg} sensors and features, and thus a high dimensional setting. 
+\Gls{dl} is often also used in a black-box principle.
+This means that the trained system lacks explainability and interpretability.
+% TODO explain both terms
+Recent governmental reports have suggested that laws will be coming in place to require these properties \citep{eu_ai_blackbox_report, explainable_ai_policy}.
+
+% - - - - - - - - - -
+
+\subsection{Lack of data for exhaustive training and testing}
+\label{subsec:processing_signals_common_issues_generalisation}
+% e.g. only look at a person we also used in training etc

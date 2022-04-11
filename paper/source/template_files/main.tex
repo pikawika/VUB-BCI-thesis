@@ -17,10 +17,23 @@
 % Used for abbrivations etc
 \usepackage{glossaries}
 
+% Correct footnote
+\renewcommand{\thempfootnote}{\arabic{mpfootnote}}
+
 % We use cleveref for better referencing control
 \usepackage{cleveref}
 \usepackage[natbib,style=apa]{biblatex}
 \addbibresource{../bibliography.bib}
+
+% Figures libraries
+\usepackage{float}
+\usepackage{wrapfig}
+
+% Subfigures
+\usepackage{subcaption}
+
+% Lorem ipsum text
+\usepackage{lipsum}  
 
 % Init glossary
 \makenoidxglossaries
