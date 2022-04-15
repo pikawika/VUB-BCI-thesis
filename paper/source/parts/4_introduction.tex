@@ -4,12 +4,16 @@
 %   - Cleanup of text
 %   - Longer more descriptive titles
 %   - Invasive is ECoG instead of EEG?
+%   - Specify better what a BCI is in the first sentences
 % ----------  
 % Questions:
 %   -
 
 %  Today, amplifiers exist that are built in the electrode cap and are so resistant to movement artefacts that data collection in the field is no longer a critical issue.
 % SOURCE: bci_history
+
+% Wolpaw defines the “perfect” BCI as a safe and affordable system which works all the time, does not require the permanent assistance of a technician or a scientist, restores communication at “normal” speed, is aesthetically acceptable, is reliable and, for the same function, does not require more concentration for a patient user than what it does for an able-bodied person [1]. Despite recent development aimed at improving the current state of BCI systems, there are still several challenges that must be overcome before building an usable and effective BCI, like for example, the high cost associated with the required EEG recording system
+% SOURCE: cheap_bci_feasibility
 
 % Uncomment this if the use of parts is desired
 %\part{First part}
@@ -359,8 +363,10 @@ As \citet{bci_rehabilitation} discuss, \glspl{bci} can also be used to guide pat
 Brain plasticity, or neuroplasticity, is the brain's ability to adapt itself based on experience.
 \Glspl{bci} could show patients which regions of the brain are used and which types of brain signals are present.
 This information could then be relayed to the patient through various means so that it induces neuroplasticity.
-Such systems are still in development and require sophisticated neurological expertise that falls outside the scope of this research.
+Such systems are still in development and require sophisticated neurological expertise that falls outside the scope of this master thesis.
 The overview provided by \citet{bci_rehabilitation} provides a great starting point for further literature on this manner.
+In a similar manner, pedaling \glsfirst{mi} tasks have been studied recently as they seem to have a great potential for lower-limb recovery.
+The works by \citet{pedal_mi_rehabilitation1} and \citet{pedal_mi_rehabilitation2} discuss such systems in greater detail and are also an example of how \glspl{bci} can be used for rehabilitation.
 
 It is noted that many more \gls{bci} applications exist for preventing, monitoring and controlling diseases than those discussed.
 The work by \citet{parkinson_stroke_reduction} is another great example of how \gls{bci} can be used for rehabilitation.
@@ -461,6 +467,7 @@ In essence, it's a regular P300 speller with the first screen(s) representing po
 When text input is required, a regular P300 speller user interface is presented.
 This allows a user to operate almost all of Facebook's functionalities with only a P300-based \gls{bci}.
 The application by \citet{facebrain} is one of many that shows the same strategy and classification algorithms as P300 spellers can be used for a wide variety of applications by changing the meaning and functionalities of the shown matrix elements.
+The matrix elements could even be overlapped on top of an image to have intuitive motion control, a methodology used by \citet{p300_drone} for their P300 controlled quad-copter.
 
 \glspl{erp} and the measurable signals they produce, such as the P300 signal, are only one of many sources for detectable brain signals.
 In general, \gls{erp} related signals are easier to detect reliably, as the stimulus can be controlled, giving a hint when and where to look for signals and what to look for.
@@ -516,12 +523,6 @@ For example, \citet{bci_monkey_arms} demonstrated monkeys taking control over tw
 \subsection{Using BCIs with and as prostheses}
 \label{subsec:bci_helping_disabled_prostheses}
 
-%##################
-%#  START HERE    #
-%##################
-
-% TODO: nalezen en correcten
-
 
 It was argued in section \ref{subsec:bci_helping_disabled_extending_medical_system} that the risk involved when working with exoskeletons and robotic prostheses is too high for current \gls{bci} systems to be reliably used.
 The \gls{bci} controlled car from \citet{bci_mi_four_wheel_drive} discussed in section \ref{subsec:bci_helping_disabled_extending_medical_system} demonstrated how risk of a \gls{bci} system can be greatly reduced by using an additional system responsible for only allowing safe actions.
@@ -546,35 +547,158 @@ The issues and ethical questions this brings to the table are discussed further 
 
 % ---------------------------------------------- 
 
-\section{Small projects with large quality-of-life improvement potential}
+\section{Small projects with large potential}
 \label{sec:bci_small_projects}
-% "Motivating examples"
-% prev required inter disciplinary bcs doctor stuff
-% Mss voorbeeld uit https://docs.google.com/spreadsheets/d/1WvolD2-QJ5aUJy5o0Dq5wdFQtLMkMtppZT8s_ihYyA4/edit#gid=0
-
-% TODO
 
 As technology evolves, it has often been the case that people with certain disabilities benefit from the evolution as well.
 Take the evolution of live captions as a recent example, it has found its way directly into the Android smartphone operating system.
-Whilst initially implemented for users to enjoy video content in situations where they can't listen to the audio or it needs translation, people with a limited hearing now have a direct way to enjoy more content too.
-Whilst research in \glspl{bci} has its roots in medical applications, many of the commercial breakthroughs are bound to give indirect added benefits to medical users as well.
+Whilst initially implemented for users to enjoy video content in situations where they can't listen to the audio, people with hearing difficulties now have a direct way to enjoy more content too.
+The push for autonomous cars will allow those that are traditionally unable to drive a car to finally enjoy the freedom a car can offer as well without being dependent on others to do so.
+Object and scene recognition algorithms made for optimizing smartphone cameras can also be used as a way of describing what is on a photograph for those who have limited vision.
 
-But even simple applications such as a colour picker on the camera can aid people who have colour blindness in determining whether a banana is ripe and more.
+Whilst it is clear from the previous sections that research in \glspl{bci} has its roots in medical applications, more commercial applications are currently being explored as discussed in section \ref{subsec:bci_gaining_popularity_big_tech}.
+These commercial applications have a larger potential audience, which will probably result in more sales.
+In general, hardware and software that is produced and used on a larger scale cause market competition which in term often lowers prices whilst increasing quality.
+This is bound to also make medical-oriented applications of \glspl{bci} more accessible and of better quality.
+It would also allow for smaller creators with a limited budget to create meaningful, quality-of-life improving applications.
+This has been the case with smartphone applications for a long time.
+Simple applications such as a colour picker in the camera app can aid people who have colour blindness in determining whether a banana is ripe or not.
+Small applications by individual developers relying on location changes can remind those with short-term memory loss if they have not forgotten essential things such as locking the door.
+
+
+More and more open-source \glsfirst{dl} libraries tailored towards \gls{eeg} such as the ones by \citet{eeg_model_hbm} and \citet{eeg_model_eegnet} have been introduced.
+These \gls{dl} libraries can often work on raw \gls{eeg} data directly, which allows developers who don't have much domain experience to make interesting and good performing classification pipelines or even make new discoveries in the field.
+Publicly available \gls{eeg} dataset such as the one by \citet{eeg_data} makes it possible for developers to work on a pipeline without needing the monetary investment in \gls{eeg} measuring equipment.
+If desired, the affordable headsets by OpenBCI and others, further compared in section \ref{subsec:biomedical_signals_measuring_equipment}, make it possible to have \gls{eeg} measuring equipment with good open-source libraries for well under 1000 euros.
+These smaller projects do not only have the potential to be of big impact for very specific users, they often reveal common issues and interesting alternative approaches in the \gls{bci} field.
 
 % - - - - - - - - - -
 
-\subsection{Motivating examples for this research}
+\subsection{Motivating examples using consumer-grade BCIs}
 \label{subsec:bci_small_projects_motivating_examples}
 
-% TODO
-\lipsum[1-4]
+As discussed above, good open-source libraries, datasets and even measuring hardware have made the entry to the \gls{bci} field easier then ever before.
+Some of the open-source \gls{dl} libraries tailored towards \gls{eeg} classification work well on raw \gls{eeg} data, which allows for meaningful classification accuracy without the need of understanding all domain-specific properties of \gls{eeg} data required for classical preprocessing.
+The question remains whether which, or even if, real-life applications are possible on consumer-grade \gls{bci} systems.
+In an ideal world such applications should be fully configurable and usable by the end-user without the help of a domain-expert and the system should be maintainable without exhaustive preliminary knowledge. 
+Many works have demonstrated the potential of these \gls{bci} systems but the lack of widespread adoption suggest there are still hurdles to overcome for them to become a reality.
+For this reason, this thesis focuses on providing a solid foundation to the \gls{bci} field, a \gls{poc} application to demonstrate how a working system can be implemented and a thorough viability discussion of these systems in their current state.
+
+Multiple studies comparing different aspects of these cheaper consumer-grade systems to the more traditional medical-grade \gls{bci} systems have already been done, as is further discussed in section \ref{sec:biomedical_signals_measuring}.
+In general, cheaper systems work with a lower electrode count which also have a lower signal quality.
+Whilst this means the hardware is objectively of lower quality, cheaper consumer-grade systems can reach usable levels of accuracy as shown by \citet{openbci_vs_medical} and \citet{openbci_eeg_sensor_evaluation} for the Texas Instrument ADS1299 chip, commonly found in consumer-grade hardware such as the offerings from OpenBCI.
+Similarly, studies have been done on different types of electrodes as already touched upon in section \ref{subsec:bci_gaining_popularity_better_measuring} and further discussed in section \ref{subsec:biomedical_signals_measuring_equipment}.
+These electrode comparison studies have shown that the gap between easy-to-use and affordable dry electrodes and the more superior but harder to use and often more expensive wet electrodes is shrinking \citep{wet_vs_dry, dry_electrode_status, wet_dry_comparison_experiment}.
+However, these findings often follow from very controlled experiments in lab-like environments.
+This to be expected, as a most comparisons aims to eliminate as much random factors as possible.
+However, this means that these experiments don't give a great insight on the real-life usability and applicability of these cheaper \gls{bci} systems.
+This section will focus on some work that demonstrates which real-life applications are possible on consumer-grade \gls{bci} hardware and how they are possible.
+These works were motivational examples for this master thesis.
+They give a more thorough vision of what types of applications could be possible with consumer-grade systems in their current form, often highlighting the issues that are still present with them.
+Most of these works are centered around OpenBCI hardware, the manufacturer of some the more successful low-cost \gls{biosignal} measuring devices as further discussed in section \ref{sec:biomedical_signals_measuring}.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Step-by-step implementation of a binary MI classification model by Peterson et al}
+\label{subsubsec:bci_small_projects_motivating_examples_binary}
+
+\Citet{cheap_bci_feasibility} aimed to show the feasibility of a complete low-cost consumer-grade \gls{bci} system.
+\Citet{cheap_bci_feasibility} did this by discussing the steps required to make an offline binary \gls{mi} classification system using common low-cost consumer-grade hardware.
+The classification distinguished the \gls{mi} task of a grasping movement with the participants dominant hand and a rest condition.
+They compare three different approaches in growing complexity: \gls{csp}, \gls{pfbcsp} and \gls{ptfbcsp}.
+The work by \citet{cheap_bci_feasibility} has five interesting aspects worth highlighting here.
+
+First, whilst they did use the OpenBCI Cyton and Daisy board they did not use the 3D printable Ultracortex Mark IV headset from OpenBCI.
+They argued that this is due to Ultracortex Mark IV headset becoming uncomfortable quickly due to the use of dry electrodes combined with limited adjustability.
+This complaint on user comfort for the Ultracortex Mark IV headset is a recurring with other authors including the one from this master thesis.
+Because of this, they opted for wet EEG electrodes attached to a very flexible and far more comfortable Electro-Cap.
+Their chose for wet electrodes is slightly odd, considering the user experience of having to apply a conductive gel before each use is not great and therefore not favourable for general real-life \gls{bci} applications.
+
+Secondly, for the data gathering of their system \citet{cheap_bci_feasibility} used a \textit{common office room}, rather then a lab-like environment.
+Except for a 3D printed holder for the OpenBCI board, there was no specialized shielding in place to protect the electrodes or OpenBCI boards from unwanted interference.
+They argue this make the data more realistic, and whilst true, it is important to note their is still far less stochasticity then their would be in real life.
+The office room and hardware was identical for each of the participants in the data collection stage.
+The room was free of external stimulus as it was separated from the experiment organisers and the participant was \textit{left alone} for the entire trial.
+All participants were right-handed and thus the dominant hand used for the \gls{mi} task was always the right hand.
+Adding to all of this, the dominant hand of the participant was placed inside a box as to not allow them to see their hand.
+It could be argued these factors still make the data more lab-like then home-like.
+Still, \citet{cheap_bci_feasibility} found that the non-shielded regular office caused significant noise.
+In one trial the electromagnetic noise amplitude (50 Hz or 60 Hz depending on location) was four times higher than the meaningful EEG data.
+Other noise was also present, proving their environment was indeed far less ideal then a lab environment, which indeed makes it more realistic.
+
+Third, during the data collection, a \gls{emg} system was also in place.
+This \gls{emg} system was used to filter out samples of the collected \gls{mi} data where the movement was also physically performed, meaning it wasn't true \gls{mi} data.
+Whilst this forms an interesting approach to data filtering when collecting training samples, the extra needed hardware that is only used during training is probably a though sell in a commercial application.
+However, it does automate the data filtering process used, which is more realistic for widespread use then the expert-based data filtering in most literature. 
+
+Fourth, they used the the KVIQ-10 questionnaire by \citet{kviq} to determine how \textit{good} a participant would be in \gls{mi}, a task that has been shown to be harder for some individuals.
+Interestingly, \citet{cheap_bci_feasibility} found no statistically significant correlation between the KVIQ-10 score of participants and the found classification accuracy.
+Thus, whilst they did find significant inter-participant differences in accuracy, determining beforehand if a participant will have pleasant accuracy results beforehand through the KVIQ-10 questionnaire by \citet{kviq} wasn't reliable for \citet{cheap_bci_feasibility}.
+This is an issue, as knowing this information beforehand can give a potential buyer a better indication if the system would be fit for them or not.
+
+Finally, even though the data acquisition happened under guidance in the work of \citet{cheap_bci_feasibility}, there were still issues with the recordings.
+Out of the 12 participants, there were multiple moments were connection loss with the OpenBCI main board occurred, one participant where a mechanical defect rendered the data useless and one where there was \gls{emg} detected movement of the hand for more then halve of the \gls{mi} tasks rendering the trial of that patient useless as well.
+Whilst the latter is an issue independent of the hardware used, the other two are probably bigger issues on the cheaper hardware then the more reliable medical-grade hardware.
+Part of the reason medical-grade hardware is about 5 to 10 times as expensive for a similar experiment is due to the medical-grade hardware requiring certifications, which in term guarantee some form of quality and reliability. 
+
+To conclude, the work by \Citet{cheap_bci_feasibility} discusses the creation of a complete low-cost consumer-grade \gls{bci} system.
+This system consists of the OpenBCI measuring equipment where the dry electrodes on the 3D printed Ultracortex Mark IV are replaced with with electrodes in a more comfortable Electro-Cap.
+The effective classification of the system is a binary \glsfirst{mi} classification on whether or not the participant imagines a grasping movement of the hand or not.
+\Citet{cheap_bci_feasibility} achieved an average accuracy between 70\% and 85\%, being higher as the approach used becomes more complex.
+Whilst the binary nature of the system makes it hard to find viable real-life applications, the performance reached is almost identical to those of medical-grade systems and follows from a less lab-like environment then is typically the case.
+The system proposed by \Citet{cheap_bci_feasibility} is of less importance in their work, rather the steps and pitfalls highlighted is of value.
+
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Multiclass classification methods for motor imagery EEG data}
+\label{subsubsec:bci_small_projects_motivating_examples_mi_classification}
+
+The above discussed paper by \citet{cheap_bci_feasibility} provides great insight on how a \gls{eeg}-based \gls{bci} can be developed using \gls{mi} invoked signals.
+Since \citet{cheap_bci_feasibility} uses a binary classification model, there are only two possible outputs of the classifier, which is too limited for most applications.
+However, since the \gls{eeg} measuring equipment used by \citet{cheap_bci_feasibility} was a cheaper consumer-grade alternative, the \gls{eeg} data was more noisy then typical medical-grade system, making multi-class classification more difficult.
+Nonetheless, many multi-class classification algorithms have been proposed and it has been proven that multi-class classification for \gls{mi} tasks using \gls{eeg} data is possible, even with consumer-grade sensors.
+
+%##################
+%#  START HERE    #
+%##################
+% Discuss who, how many, what model etc
+% https://www.hindawi.com/journals/complexity/2022/5308885/
+% https://www.researchgate.net/profile/Matheus-Mussi/publication/357780881_Classification_of_EEG_Motor_Imagery_signal_processed_in_time-frequency_with_Convolutional_Neural_Network/links/61df43395c0a257a6fe35ea2/Classification-of-EEG-Motor-Imagery-signal-processed-in-time-frequency-with-Convolutional-Neural-Network.pdf
+% https://ieeexplore.ieee.org/abstract/document/9265364
+% https://www.sciencedirect.com/science/article/abs/pii/S156849461830663X
+
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Connecting the classification model to physical devices}
+\label{subsubsec:bci_small_projects_motivating_examples_physical_devices}
+
+A complete \gls{bci} system could be thought of as three different processes: data collection, data processing and performing actions.
+The previously discussed motivating works focus mainly on how to collect \gls{eeg} data, especially fom \gls{mi} tasks, and how to build a classifier from this data.
+Whilst these two steps can already be very challenging, a process to go from the classification labels to effective actions should also be in place to form a complete \gls{bci} system.
+For this process, the labels provided by the classifier can be seen as an incoming input stream.
+The meaning of the labels and the actions taken upon them can be mostly decided by this final process.
+Whilst less intuitive, it is perfectly possible to link a left hand imaginary motion to a right cursor movement.
+This realisation becomes important when trying to design very complex action taking systems with often very limited potential inputs.
+Due to these limited inputs, the way of interacting with the system that performs actions should often be reconsidered in order to perform al required actions whilst having only a very limited amount of input capabilities.
+
+% TODO discuss further
+% http://www.ieomsociety.org/imeom/167.pdf
+% https://www.hindawi.com/journals/ahci/2021/5515759/
+% https://github.com/NTX-McGill/NeuroTechX-McGill-2019
+% https://www.ijcai.org/proceedings/2018/0677.pdf
+% https://ieeexplore.ieee.org/abstract/document/9734823
+
 
 % - - - - - - - - - -
 
-\subsection{An issue of poor generalisation}
+\subsection{The issue of a generalised testing strategy}
 \label{subsec:bci_small_projects_lack_of_testing}
 
-% TODO
+% TODO: beschrijven hoe vaak getrained op patient en dan getest wat moeilijk is voor grotere applicaties die je snel snel wilt doen bv ons 
 \lipsum[1-2]
 
 % ---------------------------------------------- 
@@ -582,7 +706,11 @@ But even simple applications such as a colour picker on the camera can aid peopl
 \section{Ethical challenges for BCIs}
 \label{sec:bci_ethical}
 
-% TODO
+% TODO: do after first 3 chapters finished and some code made
+% Interesting points: https://www.frontiersin.org/articles/10.3389/fcomp.2021.661300/full
+
+SECTION TO BE COMPLETED IN A LATER STAGE, LOREM IPSUM PLACED FOR APPROXIMATED LENGTH.
+
 \lipsum[1-2]
 
 % - - - - - - - - - -
@@ -590,18 +718,25 @@ But even simple applications such as a colour picker on the camera can aid peopl
 \subsection{The return of the Luddites}
 \label{subsec:bci_ethical_luddites}
 
-% let op, luddites zijn niet tegen "new-tech", vermelden dat deze def vaak misbruikt
+% note: ludites are not against tech, they are against it taking their profession that is hard to learn, look this up and perhaps link with "egoism" of doctors
 % making the rich even richer
-% doctors tegen
 % https://www.history.com/news/who-were-the-luddites
 \lipsum[1-3]
 
 % - - - - - - - - - -
 
-\subsection{Malicious data mining of the brain}
+\subsection{Advertisements based on your thoughts}
 \label{subsec:bci_ethical_data_mining}
 
-% TODO
+% TODO: Meta and other commercial companies that showed interest link
+\lipsum[1-2]
+
+% - - - - - - - - - -
+
+\subsection{Hacking BCI systems}
+\label{subsec:bci_ethical_hacking}
+
+% TODO: https://link.springer.com/article/10.1007/s10586-021-03326-z
 \lipsum[1-2]
 
 % - - - - - - - - - -
@@ -609,7 +744,7 @@ But even simple applications such as a colour picker on the camera can aid peopl
 \subsection{Changing peoples personal identities}
 \label{subsec:bci_ethical_identity}
 
-% "blinden" en "doven" culture afpakken
+% TODO: Discuss how the "blind" and "deaf" culture is a thing and how people that regain these capabilities feel as if they have lost their own culture
 \lipsum[1-3]
 
 % - - - - - - - - - -
@@ -617,26 +752,35 @@ But even simple applications such as a colour picker on the camera can aid peopl
 \subsection{Painfully confronting users with their brain}
 \label{subsec:bci_ethical_confronting}
 
-% TODO
+% TODO: Link to nature article findings and how user experience is really important
 \lipsum[1-4]
 
 % - - - - - - - - - -
 
 \subsection{E-waste inside your skull}
 \label{subsec:bci_ethical_e_waste}
-% Nerdland reference
+
+% TODO: nerdland reference
 
 % second_sight_broken_ethics: https://spectrum.ieee.org/bionic-eye-obsolete
 % bci_blind_assist_review: https://www.frontiersin.org/articles/10.3389/fnhum.2021.638887/full
 % bci_vision_assist_review: https://link.springer.com/content/pdf/10.1007/s13311-018-0660-1.pdf
-
-% TODO
 \lipsum[1-4]
+
+% - - - - - - - - - -
+
+\subsection{Making users look like a freak}
+\label{subsec:bci_ethical_freaky}
+
+% TODO: 
+\lipsum[1-2]
 
 % ---------------------------------------------- 
 
 \section{Proposing a three-signal system for basic controls}
 \label{sec:bci_small_projects_ours}
 
-% TODO
+% TODO: discuss what system will be made in this paper
+% Also discuss order of things in paper
+% MI instead of P300 due to user comfort and fatigue over time which decreases performance; e.g. https://www.scitepress.org/Papers/2020/88709/88709.pdf
 \lipsum[1-3]
