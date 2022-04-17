@@ -31,7 +31,7 @@
 \label{sec:bci_introduction}
 
 \Glspl{bci} and \glspl{bmi} are starting to gather more interest from the general public.
-These systems, consisting of hardware and software, aim to read and stimulate a user's biomedical signals for a wide range of purposes.
+These systems, consisting of hardware and software, aim to read and stimulate a user's brain signals for a wide range of applications.
 Neuralink, an Elon Musk company, helped to popularize them outside of the research field.
 Neuralink's initial white paper discusses its aim to create a scalable high-bandwidth \gls{bmi} system, focusing on its mechanical achievements \citep{neuralink_whitepaper}.
 Only a mere year later, the company held a conference with a live demo of their \gls{bmi} implanted into the skulls of pigs.
@@ -42,7 +42,7 @@ An in-depth history from \glspl{bci} can be found from Andrea \citet{bci_history
 These sources give a great high-level insight into the technology and terminology used in this field.
 A good introductory book on \glspl{bci} from this same period is one from the well-known Professor in this field: Jonathan Wolpaw \citep{bci_book}.
 
-Whilst techniques used today remain relatively similar to those discussed in these older sources, the hardware complexity has been evolving drastically.
+Whilst the main components used today remain relatively similar to those discussed in these older sources, the hardware complexity and model capabilities has been evolving drastically.
 An important issue researchers keep getting confronted with is the fact that there are still a lot of mysteries about the brain's inner workings, leaving many of the finer intercepted brain signals unexplained.
 \citet{brainmapping} states that the progress of mapping the brain and its billions of sensors and connections is accelerating yet still far from finished.
 This mapping would be a huge step in understanding the brain.
@@ -577,25 +577,25 @@ These smaller projects do not only have the potential to be of big impact for ve
 \subsection{Motivating examples using consumer-grade BCIs}
 \label{subsec:bci_small_projects_motivating_examples}
 
-As discussed above, good open-source libraries, datasets and even measuring hardware have made the entry to the \gls{bci} field easier then ever before.
+As discussed above, good open-source libraries, datasets and even measuring hardware have made the entry to the \gls{bci} field easier than ever before.
 Some of the open-source \gls{dl} libraries tailored towards \gls{eeg} classification work well on raw \gls{eeg} data, which allows for meaningful classification accuracy without the need of understanding all domain-specific properties of \gls{eeg} data required for classical preprocessing.
-The question remains whether which, or even if, real-life applications are possible on consumer-grade \gls{bci} systems.
-In an ideal world such applications should be fully configurable and usable by the end-user without the help of a domain-expert and the system should be maintainable without exhaustive preliminary knowledge. 
-Many works have demonstrated the potential of these \gls{bci} systems but the lack of widespread adoption suggest there are still hurdles to overcome for them to become a reality.
+The question remains whether which or even if, real-life applications are possible on consumer-grade \gls{bci} systems.
+In an ideal world, such applications should be fully configurable and usable by the end-user without the help of a domain expert and the system should be maintainable without exhaustive preliminary knowledge. 
+Many works have demonstrated the potential of these \gls{bci} systems but the lack of widespread adoption suggests there are still hurdles to overcome for them to become a reality.
 For this reason, this thesis focuses on providing a solid foundation to the \gls{bci} field, a \gls{poc} application to demonstrate how a working system can be implemented and a thorough viability discussion of these systems in their current state.
 
 Multiple studies comparing different aspects of these cheaper consumer-grade systems to the more traditional medical-grade \gls{bci} systems have already been done, as is further discussed in section \ref{sec:biomedical_signals_measuring}.
-In general, cheaper systems work with a lower electrode count which also have a lower signal quality.
-Whilst this means the hardware is objectively of lower quality, cheaper consumer-grade systems can reach usable levels of accuracy as shown by \citet{openbci_vs_medical} and \citet{openbci_eeg_sensor_evaluation} for the Texas Instrument ADS1299 chip, commonly found in consumer-grade hardware such as the offerings from OpenBCI.
+In general, cheaper systems work with a lower electrode count and those electrodes also have a lower signal quality.
+Whilst this means the hardware is of lower quality, cheaper consumer-grade systems can reach usable levels of accuracy as shown by \citet{openbci_vs_medical} and \citet{openbci_eeg_sensor_evaluation} for the Texas Instrument ADS1299 chip, commonly found in consumer-grade hardware such as the offerings from OpenBCI.
 Similarly, studies have been done on different types of electrodes as already touched upon in section \ref{subsec:bci_gaining_popularity_better_measuring} and further discussed in section \ref{subsec:biomedical_signals_measuring_equipment}.
 These electrode comparison studies have shown that the gap between easy-to-use and affordable dry electrodes and the more superior but harder to use and often more expensive wet electrodes is shrinking \citep{wet_vs_dry, dry_electrode_status, wet_dry_comparison_experiment}.
 However, these findings often follow from very controlled experiments in lab-like environments.
-This to be expected, as a most comparisons aims to eliminate as much random factors as possible.
-However, this means that these experiments don't give a great insight on the real-life usability and applicability of these cheaper \gls{bci} systems.
+This is to be expected, as most comparisons aim to eliminate as many random factors as possible.
+However, this means that these experiments don't give great insight into the real-life usability and applicability of these cheaper \gls{bci} systems.
 This section will focus on some work that demonstrates which real-life applications are possible on consumer-grade \gls{bci} hardware and how they are possible.
 These works were motivational examples for this master thesis.
 They give a more thorough vision of what types of applications could be possible with consumer-grade systems in their current form, often highlighting the issues that are still present with them.
-Most of these works are centered around OpenBCI hardware, the manufacturer of some the more successful low-cost \gls{biosignal} measuring devices as further discussed in section \ref{sec:biomedical_signals_measuring}.
+Most of these works are centred around OpenBCI hardware, the manufacturer of some of the more successful low-cost \gls{biosignal} measuring devices as further discussed in section \ref{sec:biomedical_signals_measuring}.
 
 % | | | | | | | | | | | | |
 
@@ -604,49 +604,51 @@ Most of these works are centered around OpenBCI hardware, the manufacturer of so
 
 \Citet{cheap_bci_feasibility} aimed to show the feasibility of a complete low-cost consumer-grade \gls{bci} system.
 \Citet{cheap_bci_feasibility} did this by discussing the steps required to make an offline binary \gls{mi} classification system using common low-cost consumer-grade hardware.
-The classification distinguished the \gls{mi} task of a grasping movement with the participants dominant hand and a rest condition.
+The classification distinguished the \gls{mi} task of a grasping movement with the participants' dominant hand and a rest condition.
 They compare three different approaches in growing complexity: \gls{csp}, \gls{pfbcsp} and \gls{ptfbcsp}.
 The work by \citet{cheap_bci_feasibility} has five interesting aspects worth highlighting here.
 
 First, whilst they did use the OpenBCI Cyton and Daisy board they did not use the 3D printable Ultracortex Mark IV headset from OpenBCI.
-They argued that this is due to Ultracortex Mark IV headset becoming uncomfortable quickly due to the use of dry electrodes combined with limited adjustability.
-This complaint on user comfort for the Ultracortex Mark IV headset is a recurring with other authors including the one from this master thesis.
+They argued that this is due to the Ultracortex Mark IV headset becoming uncomfortable quickly due to the use of dry electrodes combined with limited adjustability.
+This complaint on user comfort for the Ultracortex Mark IV headset is recurring with other authors including the one from this master thesis.
 Because of this, they opted for wet EEG electrodes attached to a very flexible and far more comfortable Electro-Cap.
-Their chose for wet electrodes is slightly odd, considering the user experience of having to apply a conductive gel before each use is not great and therefore not favourable for general real-life \gls{bci} applications.
+\Citet{cheap_bci_feasibility}  opting for wet electrodes is slightly odd, considering the user experience of having to apply a conductive gel before each use is not great and therefore not favourable for general real-life \gls{bci} applications.
 
-Secondly, for the data gathering of their system \citet{cheap_bci_feasibility} used a \textit{common office room}, rather then a lab-like environment.
+Secondly, for the data gathering of their system \citet{cheap_bci_feasibility} used a \textit{common office room}, rather than a lab-like environment.
 Except for a 3D printed holder for the OpenBCI board, there was no specialized shielding in place to protect the electrodes or OpenBCI boards from unwanted interference.
-They argue this make the data more realistic, and whilst true, it is important to note their is still far less stochasticity then their would be in real life.
-The office room and hardware was identical for each of the participants in the data collection stage.
+They argue this makes the data more realistic, and whilst true, it is important to note there is still far less stochasticity than there would be in real life.
+The office room and hardware were identical for each of the participants in the data collection stage.
 The room was free of external stimulus as it was separated from the experiment organisers and the participant was \textit{left alone} for the entire trial.
 All participants were right-handed and thus the dominant hand used for the \gls{mi} task was always the right hand.
-Adding to all of this, the dominant hand of the participant was placed inside a box as to not allow them to see their hand.
-It could be argued these factors still make the data more lab-like then home-like.
+Adding to all of this, the dominant hand of the participant was placed inside a box to not allow them to see their hand.
+It could be argued these factors still make the data more lab-like than home-like.
 Still, \citet{cheap_bci_feasibility} found that the non-shielded regular office caused significant noise.
 In one trial the electromagnetic noise amplitude (50 Hz or 60 Hz depending on location) was four times higher than the meaningful EEG data.
-Other noise was also present, proving their environment was indeed far less ideal then a lab environment, which indeed makes it more realistic.
+Other types of noise were also present, proving their environment was indeed far less ideal than a lab environment, which indeed makes it more realistic.
 
 Third, during the data collection, a \gls{emg} system was also in place.
 This \gls{emg} system was used to filter out samples of the collected \gls{mi} data where the movement was also physically performed, meaning it wasn't true \gls{mi} data.
-Whilst this forms an interesting approach to data filtering when collecting training samples, the extra needed hardware that is only used during training is probably a though sell in a commercial application.
-However, it does automate the data filtering process used, which is more realistic for widespread use then the expert-based data filtering in most literature. 
+Whilst this forms an interesting approach to data filtering when collecting training samples, the extra needed hardware that is only used during training is probably a tough sell in a commercial application.
+However, it does automate the data filtering process used, which is more realistic for widespread use than the expert-based data filtering in most literature. 
 
-Fourth, they used the the KVIQ-10 questionnaire by \citet{kviq} to determine how \textit{good} a participant would be in \gls{mi}, a task that has been shown to be harder for some individuals.
+Fourth, they used the KVIQ-10 questionnaire by \citet{kviq} to determine how \textit{good} a participant would be in \gls{mi}, a task that is proven to be harder for some individuals.
 Interestingly, \citet{cheap_bci_feasibility} found no statistically significant correlation between the KVIQ-10 score of participants and the found classification accuracy.
 Thus, whilst they did find significant inter-participant differences in accuracy, determining beforehand if a participant will have pleasant accuracy results beforehand through the KVIQ-10 questionnaire by \citet{kviq} wasn't reliable for \citet{cheap_bci_feasibility}.
 This is an issue, as knowing this information beforehand can give a potential buyer a better indication if the system would be fit for them or not.
 
 Finally, even though the data acquisition happened under guidance in the work of \citet{cheap_bci_feasibility}, there were still issues with the recordings.
-Out of the 12 participants, there were multiple moments were connection loss with the OpenBCI main board occurred, one participant where a mechanical defect rendered the data useless and one where there was \gls{emg} detected movement of the hand for more then halve of the \gls{mi} tasks rendering the trial of that patient useless as well.
-Whilst the latter is an issue independent of the hardware used, the other two are probably bigger issues on the cheaper hardware then the more reliable medical-grade hardware.
-Part of the reason medical-grade hardware is about 5 to 10 times as expensive for a similar experiment is due to the medical-grade hardware requiring certifications, which in term guarantee some form of quality and reliability. 
+Out of the 12 participants, there were multiple moments where connection loss with the OpenBCI main board occurred, one participant where a mechanical defect rendered the data useless and one where there were \gls{emg} detected movements of the hand for more than half of the \gls{mi} tasks rendering the trial of that patient useless as well.
+Whilst the latter is an issue independent of the hardware used, the other two are probably bigger issues on the cheaper hardware than the more reliable medical-grade hardware.
+Part of the reason medical-grade hardware is about 5 to 10 times as expensive for a similar experiment is due to the medical-grade hardware requiring certifications, which also guarantee some form of quality and reliability. 
 
 To conclude, the work by \Citet{cheap_bci_feasibility} discusses the creation of a complete low-cost consumer-grade \gls{bci} system.
-This system consists of the OpenBCI measuring equipment where the dry electrodes on the 3D printed Ultracortex Mark IV are replaced with with electrodes in a more comfortable Electro-Cap.
+This system consists of the OpenBCI measuring equipment where the dry electrodes on the 3D printed Ultracortex Mark IV are replaced with electrodes in a more comfortable Electro-Cap.
 The effective classification of the system is a binary \glsfirst{mi} classification on whether or not the participant imagines a grasping movement of the hand or not.
 \Citet{cheap_bci_feasibility} achieved an average accuracy between 70\% and 85\%, being higher as the approach used becomes more complex.
-Whilst the binary nature of the system makes it hard to find viable real-life applications, the performance reached is almost identical to those of medical-grade systems and follows from a less lab-like environment then is typically the case.
-The system proposed by \Citet{cheap_bci_feasibility} is of less importance in their work, rather the steps and pitfalls highlighted is of value.
+It is important to note that the evaluated models are on a patient-per-patient basis.
+This means that each patient has their own uniquely trained model and that data from the same patient is used in the evaluation process.
+Whilst the binary nature of the system makes it hard to find viable real-life applications, the performance reached is almost identical to those of medical-grade systems and follows from a less lab-like environment than is typically the case.
+The system proposed by \Citet{cheap_bci_feasibility} is of less importance in their work, rather the steps and pitfalls highlighted are of value.
 
 
 
@@ -655,19 +657,45 @@ The system proposed by \Citet{cheap_bci_feasibility} is of less importance in th
 \subsubsection{Multiclass classification methods for motor imagery EEG data}
 \label{subsubsec:bci_small_projects_motivating_examples_mi_classification}
 
-The above discussed paper by \citet{cheap_bci_feasibility} provides great insight on how a \gls{eeg}-based \gls{bci} can be developed using \gls{mi} invoked signals.
+The above discussed paper by \citet{cheap_bci_feasibility} provides great insight on the steps required to develop an \gls{eeg}-based consumer-grade \gls{bci} which uses \gls{mi} related signals.
 Since \citet{cheap_bci_feasibility} uses a binary classification model, there are only two possible outputs of the classifier, which is too limited for most applications.
-However, since the \gls{eeg} measuring equipment used by \citet{cheap_bci_feasibility} was a cheaper consumer-grade alternative, the \gls{eeg} data was more noisy then typical medical-grade system, making multi-class classification more difficult.
-Nonetheless, many multi-class classification algorithms have been proposed and it has been proven that multi-class classification for \gls{mi} tasks using \gls{eeg} data is possible, even with consumer-grade sensors.
+However, the lack of training samples combined with noisy and often high-dimensional data of \gls{eeg} makes multi-class classification considerably harder than binary using any \gls{bci} system.
+Adding to this, the consumer-grade hardware suffers even more from noise and \gls{mi} data is notorious for being noise-prone in \gls{eeg} data.
+This makes the choice for a binary classifier by \Citet{cheap_bci_feasibility} understandable.
+\Citet{cheap_bci_feasibility} also opted for an approach where a model is trained per user.
+This is often done in the field as it makes for far higher accuracy for that specific user.
+This does however mean that each new user should also undergo a training data collection procedure to have a custom-trained model as well before being able to use the system.
+This is less than ideal for commercial \gls{bci} systems and can have a physiological burden in medical applications.
 
-%##################
-%#  START HERE    #
-%##################
-% Discuss who, how many, what model etc
-% https://www.hindawi.com/journals/complexity/2022/5308885/
-% https://www.researchgate.net/profile/Matheus-Mussi/publication/357780881_Classification_of_EEG_Motor_Imagery_signal_processed_in_time-frequency_with_Convolutional_Neural_Network/links/61df43395c0a257a6fe35ea2/Classification-of-EEG-Motor-Imagery-signal-processed-in-time-frequency-with-Convolutional-Neural-Network.pdf
-% https://ieeexplore.ieee.org/abstract/document/9265364
-% https://www.sciencedirect.com/science/article/abs/pii/S156849461830663X
+To combat these points, many multi-class classification pipelines have been proposed in literature that work well with \gls{mi} related \gls{eeg} data \citep{fbcnet, eeg_mi_model_mussi, eeg_mi_model_lda_csp, eeg_mi_model_deep_cnn_spatial_filters, eeg_mi_model_image_based, eeg_model_fbcsp, eeg_model_hbm, eeg_model_esi, eeg_model_eegnet}.
+These pipelines generally work on both consumer-grade and medical-grade systems, although consumer-grade systems can often benefit more from specific noise-reduction steps in the pipeline.
+Some of the proposed pipelines also focus on generalisation to allow a general model which has usable performance for completely new users.
+Whilst such models have poorer performance overall, they can be used as an initial model to allow the user to explore the possibilities of the \gls{bci} model without having to undergo the often tedious training data collection process. 
+
+A complete in-depth review of all of the different approaches that can be taken to classify \gls{eeg} data falls outside the scope of this research paper.
+\citet{eeg_analysis_methods_epilepsy_review} compared \glsfirst{lr}, \glsfirst{ann}, \glsfirst{svm} and \glsfirst{cnn} for a binary classification task of either being epileptic \gls{eeg} data or not.
+Whilst this is again a binary classification that is more tailored towards \glsfirst{cad}, the techniques used in the experiments are also often used in the multi-class classification of \gls{eeg} data for other \gls{bci} purposes.
+\Citet{eeg_analysis_methods_epilepsy_review} found that \glspl{ann} performed best for their classification task.
+In general, \glspl{ann} and other \gls{dl} models such as \glspl{cnn} have proven to be successful at \gls{eeg} data related tasks.
+
+Because of this, many of the current state-of-the-art models for \gls{eeg} classification rely on \gls{dl} models.
+Especially classification pipelines that include \glspl{cnn} have proven to be successful for \gls{eeg} classification.
+From the previously referenced pipelines, \citet{fbcnet, eeg_mi_model_mussi, eeg_mi_model_deep_cnn_spatial_filters, eeg_model_hbm, eeg_model_esi, eeg_model_eegnet} make use of \glspl{cnn}.
+Although \glspl{cnn} are only part of a good \gls{eeg} classification pipelines.
+\Citet{fbcnet, eeg_model_fbcsp} used \glspl{cnn} after a Filter-Bank approached, which has satisfactory accuracy for \gls{eeg} classification and \gls{mi}-related \gls{eeg} data in specific.
+Some complex pipelines that rely on \gls{cnn} can be too demanding for real-time classification, something that is needed for an online \gls{bci} system.
+Pipelines such as the one by \citet{eeg_model_eegnet} have been developed to use \glspl{cnn} in such a way that real-time classification is possible.
+
+\glsreset{csp}
+Other types of pipelines incorporate techniques based on spatial patterns, with \glspl{csp} being a very popular method used for \gls{eeg} data.
+The pipelines by \citet{eeg_mi_model_lda_csp, eeg_mi_model_deep_cnn_spatial_filters} use such spatial pattern techniques, as well as the previously discussed work by \citet{cheap_bci_feasibility}.
+a \gls{csp} approach is often combined with a \gls{cnn} for classification but can also be combined with more classical \gls{ml} techniques such as a \gls{svm} model or a \gls{lda} \citep{eeg_mi_model_lda_csp}.
+
+As discussed, many approaches to \gls{eeg} data classification exist and not all of them can be listed here.
+Some more noteworthy pipelines include the one by \citet{eeg_mi_model_image_based}.
+Their approach is interesting in the fact that it visualizes \gls{eeg} data so that an image processing method can be used for classification.
+Whilst this yields okay results, it doesn't improve upon the state-of-the-art.
+However, other novel approaches such as the one by \citet{eeg_model_esi} which incorporates the technique of \gls{esi} have shown to be as good as or even better than state-of-the-art in specific experiments.
 
 
 
@@ -676,30 +704,107 @@ Nonetheless, many multi-class classification algorithms have been proposed and i
 \subsubsection{Connecting the classification model to physical devices}
 \label{subsubsec:bci_small_projects_motivating_examples_physical_devices}
 
-A complete \gls{bci} system could be thought of as three different processes: data collection, data processing and performing actions.
-The previously discussed motivating works focus mainly on how to collect \gls{eeg} data, especially fom \gls{mi} tasks, and how to build a classifier from this data.
-Whilst these two steps can already be very challenging, a process to go from the classification labels to effective actions should also be in place to form a complete \gls{bci} system.
-For this process, the labels provided by the classifier can be seen as an incoming input stream.
-The meaning of the labels and the actions taken upon them can be mostly decided by this final process.
-Whilst less intuitive, it is perfectly possible to link a left hand imaginary motion to a right cursor movement.
-This realisation becomes important when trying to design very complex action taking systems with often very limited potential inputs.
-Due to these limited inputs, the way of interacting with the system that performs actions should often be reconsidered in order to perform al required actions whilst having only a very limited amount of input capabilities.
+A complete \gls{bci} system could be thought of as a combination of three different components: a data collection process, the data processing step and the effective performing of actions by the system.
+The previously discussed motivating works focus mainly on how to collect \gls{eeg} data, especially for \gls{mi} tasks, and how to process this data to classify it.
+Whilst these two steps are already very challenging, a component to go from the classification labels to effective actions should also be in place to form a complete \gls{bci} system.
+For this last component, the labels provided by the classifier can be seen as an incoming input stream.
+Whilst it is intuitive to link certain labels with specific actions, for example, a left movement is linked to an imagined left-hand squeeze and a right movement is linked to an imaged right-hand squeeze, this isn't strictly required.
 
-% TODO discuss further
-% http://www.ieomsociety.org/imeom/167.pdf
-% https://www.hindawi.com/journals/ahci/2021/5515759/
-% https://github.com/NTX-McGill/NeuroTechX-McGill-2019
-% https://www.ijcai.org/proceedings/2018/0677.pdf
-% https://ieeexplore.ieee.org/abstract/document/9734823
+One of the challenges with \gls{bci} systems is the limited classification labels that can reliably be extracted.
+It is also the case that it is easier to distinguish between imagined left-hand movement and imagined right-hand movement than it is to differentiate between imagined left-hand thumb movement and imagined left-hand index finger movement.
+Because of this, less intuitive controls that are easier to classify and offer higher efficiency should often be considered.
+To illustrate this, imagine the movement of a robotic arm to pick up objects using \gls{mi} related \gls{eeg} data through a classifier that can distinguish left-hand squeeze, right-hand squeeze and an idle state.
+Intuitively, one might want to obtain complete control over the robotic arm but the limited inputs render a direct mapping between the classification label and all possible movements of the arm impossible.
+A menu for movement options could be made such as shown in Figure \ref{fig:example_arm_control_bad}.
+The imagined right-hand squeeze could be used to scroll through the menu options whilst the left-hand squeeze could be used to select that option.
+Stepping away from the idea of wanting to control every movement of the robotic arm can improve the efficiency of the system.
+With grasp detection algorithms such as the one proposed by \citet{graspnet}, the detection of objects of interest for the robot arm to interact with can be detected through computer-vision algorithms.
+Using such algorithms, another way of controlling the robotic arm could be using the imagined right-hand squeeze to switch between detected objects and using the imagined left-hand squeeze to pick them up, as depicted in Figure \ref{fig:example_arm_control_good}.
+Highlighting the item detected by the arm could for example be done by the arm hovering over that specific item.
+Since the task of the robotic arm was picking up items, both systems would succeed, but the latter would be more efficient.
+Whilst this is a very naive example, it should illustrate that special thought should be put into this last component of the \gls{bci} system to maximize accuracy and efficiency.
+
+% TODO: make experimental design image
+\begin{figure}[ht]
+  \begin{minipage}{\textwidth}
+    \centering
+    \begin{subfigure}{.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{example-image-a}
+        \captionsetup{width=0.9\linewidth}
+        \captionsetup{justification=centering}
+        \caption{\gls{bci} system offering complete control but poor efficiency.}
+        \label{fig:example_arm_control_bad}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{example-image-b}
+        \captionsetup{width=0.9\linewidth}
+        \captionsetup{justification=centering}
+        \caption{\gls{bci} system offering limited control but great efficiency.}
+        \label{fig:example_arm_control_good}
+    \end{subfigure}
+    \captionsetup{width=0.9\linewidth}
+    \captionsetup{justification=centering}
+    \caption{Contrast between a complete control design of a robotic grasping arm that is less efficient to operate and one that is more efficient to operate but has less control. Considering the task of grasping items, both systems would succeed but the more efficient one would likely be more pleasant to use.}
+    \label{fig:example_arm_control}
+  \end{minipage}  
+\end{figure}
+
+As discussed, the field of \gls{bci} is highly interdisciplinary.
+The \gls{eeg} data collection part relies heavily on neuroscience for the working of the brain to know what signals can be extracted and where they originate from.
+To extract those signals, engineers should develop hardware capable of measuring the tiny electrical current that is \gls{eeg}.
+Whilst those engineers also focus on noise reduction, computer scientists are also needed for preprocessing to further reduce this noise.
+The data processing is mainly a computer scientist task, although knowledge from neuroscience can be very helpful in this step as well as insight on the flaws of the hardware.
+The final component, where effective actions are performed, can relate to a wide variety of sciences once again.
+For example, the robotic arm proposed before requires computer vision knowledge for grasp detection, engineering knowledge to make the arm and general computer science knowledge to create an intuitive link between classification labels and action controls.
+Because of this, it is often the case that research focuses mainly on improving one of these three components rather than the whole system.
+Take for example the \gls{bci} system proposed by \citet{complex_hand_few_classes}.
+It has a significantly sophisticated robotic hand that functions almost completely as a human hand does.
+The effective hardware used for the complete \gls{bci} system, including the processing unit, are also well detailed and shows thorough knowledge as it proposes a very affordable custom system.
+However, the classification algorithms used and the user interface proposed could benefit from future extensions to make the complete \gls{bci} system even better.
+
+This is by no means a criticism to \citet{complex_hand_few_classes} but demonstrates the interdisciplinary nature of \gls{bci} systems and how researchers that are specialized in one of these disciplines will outperform certain aspects of a \gls{bci} system will leaving room for improvement in other aspects.
+Likewise, many papers on the data processing and classification algorithms for \gls{eeg} data are from computer scientists.
+Those papers often don't even include the final component where effective actions are taken, or the proposed system is limited to simulations because the development of robotics falls outside the scope of their discipline.
+This interdisciplinary of the \gls{bci} field is part of what makes it so fascinating yet also sophisticated.
+Commercial institutions that can hire many of the required professions will likely accelerate the creation of true complete \gls{bci} systems with state-of-the-art in each component of the system.
 
 
 % - - - - - - - - - -
 
-\subsection{The issue of a generalised testing strategy}
+\subsection{An issue of standardized testing}
 \label{subsec:bci_small_projects_lack_of_testing}
 
-% TODO: beschrijven hoe vaak getrained op patient en dan getest wat moeilijk is voor grotere applicaties die je snel snel wilt doen bv ons 
-\lipsum[1-2]
+Evaluating and comparing different \gls{bci} systems is not easy.
+This is in part due to a \gls{bci} system consisting of different components.
+Thus, evaluating a \gls{bci} system purely on the tasks it can achieve and with which accuracy doesn't tell all that much.
+Evaluating the system for the above discussed three different components can improve on this, but a lack of standardized testing also makes this rather challenging.
+
+Take for example the comparison and evaluation of the performance of the measuring equipment of a \gls{bci} system.
+Many \gls{bci} systems use the noisy \gls{eeg} modality, but others make use of \gls{emg} and other modalities which can be more or less prone to noise. 
+Some make use of easy to use dry electrodes, whilst others make use of wet electrodes that require considerable preparation.
+One could use the \gls{snr} to compare and evaluate the \gls{eeg} measuring device.
+However, this doesn't take into account affordability and user experience.
+A higher \gls{snr} but with more predictable noise is also preferred over a lower \gls{snr} with completely stochastic noise.
+Comparing the classification accuracy for specific tasks might seem like a better option then, but how do you make a fair classification pipeline for all different headsets.
+It should become visible that there is no easy solution to evaluate the (e.g. \gls{eeg}) measuring equipment of a \gls{bci} system.
+
+Similar issues arise for the data processing component.
+For starters, whilst relatively complete datasets such as the one by \citet{eeg_data} exist, there is no real \textit{reference dataset} for \gls{bci} systems.
+In computer vision, for example, popular datasets such as MNIST \citep{mnist} and ImageNet \citep{imagenet} are often used to train and evaluate image classification algorithms.
+But \gls{eeg} classification algorithms are optimised to the input data.
+For example, some work better with noisy data whilst others are optimized for \gls{mi} specific classification tasks and so on.
+Do you train the models on a single patient and test them on the same patient, or do you test for generalisability?
+Do you allow it to run on very capable hardware or limited but very affordable hardware?
+Again, it should be apparent that there is no straightforward way of evaluating the data processing step. 
+
+This thesis only aims to highlight the issue that arises when trying to evaluate and compare different \gls{bci} systems.
+These problems such as a standardized testing suite are open problems in the field and one that could greatly improve the field's work once a solution is proposed and accepted by the community.
+For now, focusing on reproducibility and specifying the data used and potential ways it makes tasks easier or harder is the best most researchers can do.
+It becomes apparent that a 90\% accuracy for a model that can be used on any user without re-training is far more impressive than one custom made for a specific user.
+Likewise, 80\% accuracy on non-lab environment data with high stochasticity is far more impressive than the same accuracy on the best measuring hardware in the most controlled environment. 
 
 % ---------------------------------------------- 
 
@@ -781,6 +886,20 @@ SECTION TO BE COMPLETED IN A LATER STAGE, LOREM IPSUM PLACED FOR APPROXIMATED LE
 \label{sec:bci_small_projects_ours}
 
 % TODO: discuss what system will be made in this paper
-% Also discuss order of things in paper
+% Also discuss the order of things on paper
 % MI instead of P300 due to user comfort and fatigue over time which decreases performance; e.g. https://www.scitepress.org/Papers/2020/88709/88709.pdf
-\lipsum[1-3]
+% Robot example https://github.com/NTX-McGill/NeuroTechX-McGill-2019
+
+\textbf{NOTE: this will be edited once the thesis is "finished"}
+
+As discussed, this master thesis focuses on providing a great foundation for the knowledge required for working in the \gls{bci} field as a computer scientist.
+The exhaustive literature review from this chapter should provide a great general introduction to the field and current state-of-the-art as well as challenges and promises of the field.
+As touched upon in section \ref{subsec:bci_small_projects_motivating_examples} and further discussed in section \ref{sec:processing_signals_interpreting_ml} many different pipelines and approaches exists for the data processing component of a \gls{bci} system.
+Whilst some of the libraries available which make use of \glsfirst{dl} allow for raw \gls{eeg} input, the author of this paper believes it to be of importance to know the nature of this \gls{eeg} data to some extend.
+For this, an introduction to \glspl{biosignal} and how they can be measured is given in the next chapter.
+This deeper understanding of the data source ultimately leads to better design decisions in the data processing component.
+
+Next, this thesis aims to give better insight into how a \gls{bci} system can be developed.
+To accomplish this, a general \gls{bci} pipeline is discussed in chapter \ref{ch:bci_pipeline} to provide insight on the different components a \gls{eeg}-driven \gls{bci} needs.
+Chapter \ref{ch:final_system} extends on this general \gls{bci} pipeline by proposing a three-signal system for live control.
+Chapter \ref{ch:using_system} and \ref{ch:conclusion} aim to evaluate this three-signal system, taking into account the lack of generalized evaluation strategies as discussed earlier in section \ref{subsec:bci_small_projects_lack_of_testing}
