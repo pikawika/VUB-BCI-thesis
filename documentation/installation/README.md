@@ -6,6 +6,7 @@ Most of the libraries related to the OpenBCI hardware works best on Windows mach
 
 - [Author](#author)
 - [OpenBCI GUI](#openbci-gui)
+- [MacOS specific preruiqisite](#macos-specific-preruiqisite)
 - [Setting up Anaconda environment](#setting-up-anaconda-environment)
   * [Configuring the base environment](#configuring-the-base-environment)
   * [Configuring the environment from the YML file](#configuring-the-environment-from-the-yml-file)
@@ -116,4 +117,4 @@ conda env create -f bci-master-thesis-environment-windows.yml
 
 * * *
 * * *
-© [Lennert Bontinck](https://www.lennertbontinck.com/) VUB 2021-2022x
+© [Lennert Bontinck](https://www.lennertbontinck.com/) VUB 2021-2022
