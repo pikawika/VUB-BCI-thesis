@@ -1,6 +1,6 @@
 # Initialisation of the Anaconda environment
 
-OpenBCI hardware and software works best on Windows. Some software, such as OpenViBE, doesn't even support macOS. The use of a Windows machine or VM is thus recommended. The software for this master thesis was mainly developed on a Windows 10 machine. The macOS instructions may thus not be complete enough to run the master thesis project as macOS was not used for the development.
+When the Anaconda environment was setup using [the provided install instructions](../installation/README.md), the environment can easily be initialised. These instruction discuss how that can be done.
 
 ## Table of contents
 

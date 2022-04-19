@@ -41,20 +41,19 @@ To make reproducing the project easier, the following documentation is provided.
 
 ### Installation instructions
 
-OpenBCI hardware and software works best on Windows. Some software, such as OpenViBE, doesn't even support macOS. The use of a Windows machine or VM is thus recommended. The software for this master thesis was mainly developed on a Windows 10 machine. Reproducibility on other operating systems can't be guaranteed.
+Most of the libraries related to the OpenBCI hardware works best on Windows machines. Some of the required dependencies aren't even available on macOS, for this reason these install instructions focus mainly on Windows 10 machines. However, a conda environment for macOS is also made available as well as some notes for macOS specific installs.
 
-| Title                                            | Documentation                                           |
-| ------------------------------------------------ | ------------------------------------------------------- |
-| Install instructions for Windows (RECOMMENDED)   | Available [here](documentation/installation/windows.md) |
-| Install instructions for macOS (NOT RECOMMENDED) | Available [here](documentation/installation/macos.md)   |
+| Title                                        | Documentation                                          |
+| -------------------------------------------- | ------------------------------------------------------ |
+| Install instructions of anaconda environment | Available [here](documentation/installation/README.md) |
 
 
 
 ### Initialisation instructions
 
-| Title                                      | Documentation                                                |
-| ------------------------------------------ | ------------------------------------------------------------ |
-| Initialisation of the Anaconda environment | Available [here](documentation/initialisation/initialisation-instructions.md) |
+| Title                                      | Documentation                                            |
+| ------------------------------------------ | -------------------------------------------------------- |
+| Initialisation of the Anaconda environment | Available [here](documentation/initialisation/README.md) |
 
 <hr>
 
@@ -77,10 +76,10 @@ Some util files are provided to extract certain aspects from the main notebooks 
 
 Some of the code written is not used explicitly in the paper but was used to gain information. We call these experimental notebooks. The following experimental notebooks are available:
 
-| Title                                   | Location                                                     |
-| --------------------------------------- | ------------------------------------------------------------ |
-| CLA dataset exploration notebook        | Available [here](code/experimental-notebooks/CLA-dataset-exploration-notebook.ipynb) |
-| MNE data structure exploration notebook | Available [here](code/experimental-notebooks/MNE-datastructure-exploration-notebook.ipynb) |
+| Title                                     | Location                                                     |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| 1: CLA dataset exploration notebook       | Available [here](code/experimental-notebooks/1-CLA-dataset-exploration-notebook.ipynb) |
+| 2: MNE datastructure exploration notebook | Available [here](code/experimental-notebooks/2-MNE-datastructure-exploration-notebook.ipynb) |
 
 
 <hr>
