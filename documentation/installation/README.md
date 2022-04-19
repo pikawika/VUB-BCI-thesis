@@ -109,6 +109,7 @@ The anaconda Windows environment is also exported to the `bci-master-thesis-envi
 # Navigate to the folder where the YML file is located
 cd bci-master-thesis/documentation/installation/environments
 # Configure a new environment from the YML file
+# These were exported using conda env export > file.yml --no-builds
 ## Note: macOS variant of file available
 conda env create -f bci-master-thesis-environment-windows.yml
 ```
