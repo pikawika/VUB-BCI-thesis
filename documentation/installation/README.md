@@ -1,6 +1,6 @@
 # Install instructions of anaconda environment
 
-OpenBCI hardware and software works best on Windows. The use of a Windows machine or VM is thus recommended. The software for this master thesis was mainly developed on a Windows 10 machine. These install instructions are for windows 10 machines but some notes are made that should enable installation on macOS as well.
+Most of the libraries related to the OpenBCI hardware works best on Windows machines. Some of the required dependencies aren't even available on macOS, for this reason these install instructions focus mainly on Windows 10 machines. However, a conda environment for macOS is also made available as well as some notes for macOS specific installs.
 
 ## Table of contents
 
@@ -45,7 +45,9 @@ brew install pyqt
 ```
 
 <hr>
+
 ## Setting up Anaconda environment
+
 
 The instructions below highlight the steps needed to recreate the used anaconda environment.
 
