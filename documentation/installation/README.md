@@ -53,7 +53,7 @@ The instructions below highlight the steps needed to recreate the used anaconda 
 
 ### Configuring the base environment
 
-- Install [the free version of Anaconda Navigator](https://www.anaconda.com/products/individual).
+- Install [the free version of Anaconda Navigator](https://www.anaconda.com/products/individual). V2.1.4 was used.
 
 - From the Anaconda Navigator GUI, create a new environment named `bci-master-thesis`.
 
@@ -75,10 +75,10 @@ The instructions below highlight the steps needed to recreate the used anaconda 
 
   - ```shell
     # Pandas is a famous Python Data Analysis Library and is used by a lot of other packages.
-    # The following command installs Pandas and its dependencies. V1.3.3 was used.
+    # The following command installs Pandas and its dependencies. V1.4.1 was used.
     conda install pandas
     
-    # We install pip to install packages not available from conda install. V21.0.1 was used.
+    # We install pip to install packages not available from conda install. V21.2.2 was used.
     conda install pip
     ```
   
@@ -86,11 +86,11 @@ The instructions below highlight the steps needed to recreate the used anaconda 
 
   - ```shell
     # MNE is a famous Python package for visualising and working with neurophysiological data.
-    # V0.23.4 was used.
+    # V1.0.2 was used.
     pip install mne
     
     # Install Matplotlib for plotting purposes.
-    # V3.4.3 was used.
+    # V3.5.1 was used.
     pip install matplotlib
     
     # Install backend for matplotlib visualisations.
@@ -109,7 +109,7 @@ The anaconda Windows environment is also exported to the `bci-master-thesis-envi
 # Navigate to the folder where the YML file is located
 cd bci-master-thesis/documentation/installation/environments
 # Configure a new environment from the YML file
-# These were exported using conda env export > file.yml --no-builds
+# These were exported using: conda env export > file.yml --no-builds
 ## Note: macOS variant of file available
 conda env create -f bci-master-thesis-environment-windows.yml
 ```
