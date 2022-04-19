@@ -33,11 +33,9 @@ class MetaData:
 
 # --------------- GLOBALS ---------------
 data_directory = r'../data/CLA/'
-filenames = ["CLA-SubjectJ-170504-3St-LRHand-Inter.mat",
-             "CLA-SubjectJ-170508-3St-LRHand-Inter.mat",
-             "CLA-SubjectJ-170510-3St-LRHand-Inter.mat",
-             "CLASubjectA1601083StLRHand.mat",
+filenames = ["CLASubjectA1601083StLRHand.mat",
              "CLASubjectB1510193StLRHand.mat",
+             "CLASubjectB1510203StLRHand.mat",
              "CLASubjectB1512153StLRHand.mat",
              "CLASubjectC1511263StLRHand.mat",
              "CLASubjectC1512163StLRHand.mat",
@@ -52,53 +50,49 @@ filenames = ["CLA-SubjectJ-170504-3St-LRHand-Inter.mat",
 
 
 meta_data = [
-    # CLA-SubjectJ-170504-3St-LRHand-Inter.mat
-    MetaData(datetime.datetime(2017, 5, 4, 0, 0,
-             0, 0, pytz.UTC).timestamp(), 2, 25),
-    # CLA-SubjectJ-170508-3St-LRHand-Inter.mat
-    MetaData(datetime.datetime(2017, 5, 8, 0, 0,
-             0, 0, pytz.UTC).timestamp(), 2, 25),
-    # CLA-SubjectJ-170510-3St-LRHand-Inter.mat
-    MetaData(datetime.datetime(2017, 5, 10, 0, 0,
-             0, 0, pytz.UTC).timestamp(), 2, 25),
     # CLASubjectA1601083StLRHand.mat
-    MetaData(datetime.datetime(2016, 1, 8, 0, 0,
-             0, 0, pytz.UTC).timestamp(), 1, 25),
+    MetaData(datetime.datetime(2016, 1, 8, 0, 0, 0, 0, pytz.UTC).timestamp(),
+             1, 25),
     # CLASubjectB1510193StLRHand.mat
-    MetaData(datetime.datetime(2015, 10, 19, 0, 0,
-             0, 0, pytz.UTC).timestamp(), 1, 25),
+    MetaData(datetime.datetime(2015, 10, 19, 0, 0, 0, 0, pytz.UTC).timestamp(),
+             1, 25),
+    # CLASubjectB1510203StLRHand.mat
+    MetaData(datetime.datetime(2015, 10, 15, 0, 0, 0, 0, pytz.UTC).timestamp(),
+             1, 25),
     # CLASubjectB1512153StLRHand.mat
-    MetaData(datetime.datetime(2015, 12, 15, 0, 0,
-             0, 0, pytz.UTC).timestamp(), 1, 25),
+    MetaData(datetime.datetime(2015, 12, 15, 0, 0, 0, 0, pytz.UTC).timestamp(),
+             1, 25),
     # CLASubjectC1511263StLRHand.mat
-    MetaData(datetime.datetime(2015, 11, 26, 0, 0,
-             0, 0, pytz.UTC).timestamp(), 1, 30),
+    MetaData(datetime.datetime(2015, 11, 26, 0, 0, 0, 0, pytz.UTC).timestamp(),
+             1, 30),
     # CLASubjectC1512163StLRHand.mat
-    MetaData(datetime.datetime(2015, 12, 16, 0, 0,
-             0, 0, pytz.UTC).timestamp(), 1, 30),
+    MetaData(datetime.datetime(2015, 12, 16, 0, 0, 0, 0, pytz.UTC).timestamp(),
+             1, 30),
     # CLASubjectC1512233StLRHand.mat
-    MetaData(datetime.datetime(2015, 12, 23, 0, 0,
-             0, 0, pytz.UTC).timestamp(), 1, 30),
+    MetaData(datetime.datetime(2015, 12, 23, 0, 0, 0, 0, pytz.UTC).timestamp(),
+             1, 30),
     # CLASubjectD1511253StLRHand.mat
-    MetaData(datetime.datetime(2015, 11, 25, 0, 0,
-             0, 0, pytz.UTC).timestamp(), 1, 30),
+    MetaData(datetime.datetime(2015, 11, 25, 0, 0, 0, 0, pytz.UTC).timestamp(),
+             1, 30),
     # CLASubjectE1512253StLRHand.mat
-    MetaData(datetime.datetime(2015, 12, 25, 0, 0,
-             0, 0, pytz.UTC).timestamp(), 2, 25),
+    MetaData(datetime.datetime(2015, 12, 25, 0, 0, 0, 0, pytz.UTC).timestamp(),
+             2, 25),
     # CLASubjectE1601193StLRHand.mat
-    MetaData(datetime.datetime(2016, 1, 19, 0, 0,
-             0, 0, pytz.UTC).timestamp(), 2, 25),
+    MetaData(datetime.datetime(2016, 1, 19, 0, 0, 0, 0, pytz.UTC).timestamp(),
+             2, 25),
     # CLASubjectE1601223StLRHand.mat
-    MetaData(datetime.datetime(2016, 1, 23, 0, 0,
-             0, 0, pytz.UTC).timestamp(), 2, 25),
+    MetaData(datetime.datetime(2016, 1, 23, 0, 0, 0, 0, pytz.UTC).timestamp(),
+             2, 25),
     # CLASubjectF1509163StLRHand.mat
-    MetaData(datetime.datetime(2015, 9, 16, 0, 0,
-             0, 0, pytz.UTC).timestamp(), 1, 35),
+    MetaData(datetime.datetime(2015, 9, 16, 0, 0, 0, 0, pytz.UTC).timestamp(),
+             1, 35),
     # CLASubjectF1509173StLRHand.mat
-    MetaData(datetime.datetime(2015, 9, 17, 0, 0,
-             0, 0, pytz.UTC).timestamp(), 1, 35),
+    MetaData(datetime.datetime(2015, 9, 17, 0, 0, 0, 0, pytz.UTC).timestamp(),
+             1, 35),
     # CLASubjectF1509283StLRHand.mat
-    MetaData(datetime.datetime(2015, 9, 28, 0, 0, 0, 0, pytz.UTC).timestamp(), 1, 35)]
+    MetaData(datetime.datetime(2015, 9, 28, 0, 0, 0, 0, pytz.UTC).timestamp(),
+             1, 35)
+]
 
 
 # --------------- FUNCTIONS ---------------

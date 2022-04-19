@@ -22,13 +22,11 @@ This folder should contain the CLA variant of the dataset provided by [Kaya et a
 
 ## Files to download
 
-In total 16 CLA files should be placed here, of which 3 are of type `inter`. These files can be downloaded from [here](https://doi.org/10.6084/m9.figshare.c.3917698.v1). All files that should be downloaded are:
+In total 14 CLA files should be placed in the directory of this readme file. Note that the `inter` variants of the CLA dataset are not considered. These files can be downloaded from [here](https://doi.org/10.6084/m9.figshare.c.3917698.v1). All files that should be downloaded are:
 
-- CLA-SubjectJ-170504-3St-LRHand-Inter.mat
-- CLA-SubjectJ-170508-3St-LRHand-Inter.mat
-- CLA-SubjectJ-170510-3St-LRHand-Inter.mat
 - CLASubjectA1601083StLRHand.mat
 - CLASubjectB1510193StLRHand.mat
+- CLASubjectB1510203StLRHand.mat
 - CLASubjectB1512153StLRHand.mat
 - CLASubjectC1511263StLRHand.mat
 - CLASubjectC1512163StLRHand.mat
