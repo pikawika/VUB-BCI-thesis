@@ -56,7 +56,7 @@ The instructions below highlight the steps needed to recreate the used anaconda 
 - From the Anaconda Navigator GUI, create a new environment named `bci-master-thesis`.
 
   - Include both Python and R. The following versions were used:
-    - `Python 3.8.11`
+    - `Python 3.8.10`
     -  `R 3.6.1`
   - Doing so should install a whole suite of packages by default 
 

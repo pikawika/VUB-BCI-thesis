@@ -1,6 +1,6 @@
-# Install instructions for Windows (RECOMMENDED)
+# Install instructions of anaconda environment
 
-OpenBCI hardware and software works best on Windows. The use of a Windows machine or VM is thus recommended. The software for this master thesis was mainly developed on a Windows 10 machine. 
+OpenBCI hardware and software works best on Windows. The use of a Windows machine or VM is thus recommended. The software for this master thesis was mainly developed on a Windows 10 machine. These install instructions are for windows 10 machines but some notes are made that should enable installation on macOS as well.
 
 ## Table of contents
 
@@ -28,12 +28,23 @@ Installing OpenBCI GUI should be straightforward and the steps can be followed f
 
 - Install `CYTON DONGLE DRIVERS`from the OpenBCI website or from [the FTDI Chip website](https://ftdichip.com/drivers/vcp-drivers/). The FTDI chip website has an easy  `setup executable`.
   - Version 2.12.36.4 was used.
+  - MacOS note: place the installer in the `/application` folder before opening it. The macOS installer is in Beta as of September 2021 and requires this hack to work correctly.
 - Instal `OpenBCI GUI`.
   - Version 5.0.8 was used.
+  - MacOS note: V5.0.6, which was the latest version as of September 2021, has a bug on macOS where only a white screen is shown. Using the older V5.0.5 should work. This older version can be found under [the GitHub releases](https://github.com/OpenBCI/OpenBCI_GUI/releases).
 
 <hr>
 
 
+## MacOS specific preruiqisite
+
+To use the  `PyQt5`  backend for Matplotlib, which is recommended for MNE plotting, `pyqt` needs to be installed via Homebrew.
+
+```shell
+brew install pyqt
+```
+
+<hr>
 ## Setting up Anaconda environment
 
 The instructions below highlight the steps needed to recreate the used anaconda environment.
@@ -45,7 +56,7 @@ The instructions below highlight the steps needed to recreate the used anaconda 
 - From the Anaconda Navigator GUI, create a new environment named `bci-master-thesis`.
 
   - Include both Python and R. The following versions were used:
-    - `Python 3.8.11`
+    - `Python 3.8.10`
     -  `R 3.6.1`
   - Doing so should install a whole suite of packages by default 
 
@@ -96,9 +107,10 @@ The anaconda Windows environment is also exported to the `bci-master-thesis-envi
 # Navigate to the folder where the YML file is located
 cd bci-master-thesis/documentation/installation/environments
 # Configure a new environment from the YML file
+## Note: macOS variant of file available
 conda env create -f bci-master-thesis-environment-windows.yml
 ```
 
 * * *
 * * *
-© [Lennert Bontinck](https://www.lennertbontinck.com/) VUB 2021-2022
+© [Lennert Bontinck](https://www.lennertbontinck.com/) VUB 2021-2022x
