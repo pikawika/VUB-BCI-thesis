@@ -9,13 +9,13 @@
 # --------------- IMPORTS ---------------
 # Performs IO operations
 import os
-import scipy.io
+import scipy.io # 1.8.0 recommended
 
 # Modules tailored for EEG data
-import mne
+import mne # 1.0.2 recommended
 
 # Data manipulation modules
-import numpy as np
+import numpy as np # 1.21.5 recommended
 
 # Datetime object
 import datetime
