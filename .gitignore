@@ -3,3 +3,4 @@ literature-review/scientific/overview/~$overview_sheet.xlsx
 .ipynb_checkpoints
 code/data/*/*.mat
 code/utils/__pycache__/
+**/.vscode/**

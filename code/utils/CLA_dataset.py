@@ -6,7 +6,10 @@
 # | sys.path.append('../utils')
 # | import CLA_dataset
 
-# --------------- IMPORTS ---------------
+##################################
+# IMPORTS
+##################################
+
 # Performs IO operations
 import os
 import scipy.io # 1.8.0 recommended
@@ -21,111 +24,255 @@ import numpy as np # 1.21.5 recommended
 import datetime
 import pytz
 
-# --------------- CLASSES ---------------
+##################################
+# CLASSES
+##################################
 
 
-class MetaData:
-    def __init__(self, record_date, sex, age):
-        self.record_date = record_date
+class MneDataInfo:
+    def __init__(self, file_location, subject, date_of_recording, sex, age, health_condition, prior_bci_experience, bci_literacy):
+        self.file_location = file_location
+        self.subject = subject
+        self.date_of_recording = date_of_recording
         self.sex = sex
         self.age = age
+        self.health_condition = health_condition
+        self.prior_bci_experience= prior_bci_experience
+        self.bci_literacy = bci_literacy
 
+##################################
+# GLOBALS 
+##################################
 
-# --------------- GLOBALS ---------------
-data_directory = r'../data/CLA/'
-filenames = ["CLASubjectA1601083StLRHand.mat",
-             "CLASubjectB1510193StLRHand.mat",
-             "CLASubjectB1510203StLRHand.mat",
-             "CLASubjectB1512153StLRHand.mat",
-             "CLASubjectC1511263StLRHand.mat",
-             "CLASubjectC1512163StLRHand.mat",
-             "CLASubjectC1512233StLRHand.mat",
-             "CLASubjectD1511253StLRHand.mat",
-             "CLASubjectE1512253StLRHand.mat",
-             "CLASubjectE1601193StLRHand.mat",
-             "CLASubjectE1601223StLRHand.mat",
-             "CLASubjectF1509163StLRHand.mat",
-             "CLASubjectF1509173StLRHand.mat",
-             "CLASubjectF1509283StLRHand.mat"]
+# Prefix to data directory
+data_dir = "../data/CLA/"
 
-
-meta_data = [
+# Create data information for each usefull record
+meta_data_list = [
     # CLASubjectA1601083StLRHand.mat
-    MetaData(datetime.datetime(2016, 1, 8, 0, 0, 0, 0, pytz.UTC).timestamp(),
-             1, 25),
+    MneDataInfo(file_location= data_dir + "CLASubjectA1601083StLRHand.mat",
+                subject= "A",
+                date_of_recording= datetime.datetime(2016, 1, 8, 0, 0, 0, 0, pytz.UTC),
+                sex= "M",
+                age= 25,
+                health_condition= "Healthy",
+                prior_bci_experience = False,
+                bci_literacy= "Intermediate - High"),
+    
     # CLASubjectB1510193StLRHand.mat
-    MetaData(datetime.datetime(2015, 10, 19, 0, 0, 0, 0, pytz.UTC).timestamp(),
-             1, 25),
+    MneDataInfo(file_location= data_dir + "CLASubjectB1510193StLRHand.mat",
+                subject= "B",
+                date_of_recording= datetime.datetime(2015, 10, 19, 0, 0, 0, 0, pytz.UTC),
+                sex= "M",
+                age= 25,
+                health_condition= "Healthy",
+                prior_bci_experience = False,
+                bci_literacy= "Intermediate - Low"),
+    
     # CLASubjectB1510203StLRHand.mat
-    MetaData(datetime.datetime(2015, 10, 15, 0, 0, 0, 0, pytz.UTC).timestamp(),
-             1, 25),
+    MneDataInfo(file_location= data_dir + "CLASubjectB1510203StLRHand.mat",
+                subject= "B",
+                date_of_recording= datetime.datetime(2015, 10, 20, 0, 0, 0, 0, pytz.UTC),
+                sex= "M",
+                age= 25,
+                health_condition= "Healthy",
+                prior_bci_experience = False,
+                bci_literacy= "Intermediate - Low"),
+    
     # CLASubjectB1512153StLRHand.mat
-    MetaData(datetime.datetime(2015, 12, 15, 0, 0, 0, 0, pytz.UTC).timestamp(),
-             1, 25),
+    MneDataInfo(file_location= data_dir + "CLASubjectB1512153StLRHand.mat",
+                subject= "B",
+                date_of_recording= datetime.datetime(2015, 12, 15, 0, 0, 0, 0, pytz.UTC),
+                sex= "M",
+                age= 25,
+                health_condition= "Healthy",
+                prior_bci_experience = False,
+                bci_literacy= "Intermediate - Low"),
+    
     # CLASubjectC1511263StLRHand.mat
-    MetaData(datetime.datetime(2015, 11, 26, 0, 0, 0, 0, pytz.UTC).timestamp(),
-             1, 30),
+    MneDataInfo(file_location= data_dir + "CLASubjectC1511263StLRHand.mat",
+                subject= "C",
+                date_of_recording= datetime.datetime(2015, 11, 26, 0, 0, 0, 0, pytz.UTC),
+                sex= "M",
+                age= 30,
+                health_condition= "Healthy",
+                prior_bci_experience = False,
+                bci_literacy= "Intermediate - High"),
+    
     # CLASubjectC1512163StLRHand.mat
-    MetaData(datetime.datetime(2015, 12, 16, 0, 0, 0, 0, pytz.UTC).timestamp(),
-             1, 30),
+    MneDataInfo(file_location= data_dir + "CLASubjectC1512163StLRHand.mat",
+                subject= "C",
+                date_of_recording= datetime.datetime(2015, 12, 16, 0, 0, 0, 0, pytz.UTC),
+                sex= "M",
+                age= 30,
+                health_condition= "Healthy",
+                prior_bci_experience = False,
+                bci_literacy= "Intermediate - High"),
+    
     # CLASubjectC1512233StLRHand.mat
-    MetaData(datetime.datetime(2015, 12, 23, 0, 0, 0, 0, pytz.UTC).timestamp(),
-             1, 30),
+    MneDataInfo(file_location= data_dir + "CLASubjectC1512233StLRHand.mat",
+                subject= "C",
+                date_of_recording= datetime.datetime(2015, 12, 23, 0, 0, 0, 0, pytz.UTC),
+                sex= "M",
+                age= 30,
+                health_condition= "Healthy",
+                prior_bci_experience = False,
+                bci_literacy= "Intermediate - High"),
+    
     # CLASubjectD1511253StLRHand.mat
-    MetaData(datetime.datetime(2015, 11, 25, 0, 0, 0, 0, pytz.UTC).timestamp(),
-             1, 30),
+    MneDataInfo(file_location= data_dir + "CLASubjectD1511253StLRHand.mat",
+                subject= "D",
+                date_of_recording= datetime.datetime(2015, 11, 25, 0, 0, 0, 0, pytz.UTC),
+                sex= "M",
+                age= 30,
+                health_condition= "Healthy",
+                prior_bci_experience = False,
+                bci_literacy= "Intermediate - Low"),
+    
     # CLASubjectE1512253StLRHand.mat
-    MetaData(datetime.datetime(2015, 12, 25, 0, 0, 0, 0, pytz.UTC).timestamp(),
-             2, 25),
+    MneDataInfo(file_location= data_dir + "CLASubjectE1512253StLRHand.mat",
+                subject= "E",
+                date_of_recording= datetime.datetime(2015, 12, 25, 0, 0, 0, 0, pytz.UTC),
+                sex= "F",
+                age= 25,
+                health_condition= "Healthy",
+                prior_bci_experience = False,
+                bci_literacy= "Intermediate - Low"),
+    
     # CLASubjectE1601193StLRHand.mat
-    MetaData(datetime.datetime(2016, 1, 19, 0, 0, 0, 0, pytz.UTC).timestamp(),
-             2, 25),
+    MneDataInfo(file_location= data_dir + "CLASubjectE1601193StLRHand.mat",
+                subject= "E",
+                date_of_recording= datetime.datetime(2016, 1, 19, 0, 0, 0, 0, pytz.UTC),
+                sex= "F",
+                age= 25,
+                health_condition= "Healthy",
+                prior_bci_experience = False,
+                bci_literacy= "Intermediate - Low"),
+    
     # CLASubjectE1601223StLRHand.mat
-    MetaData(datetime.datetime(2016, 1, 23, 0, 0, 0, 0, pytz.UTC).timestamp(),
-             2, 25),
-    # CLASubjectF1509163StLRHand.mat
-    MetaData(datetime.datetime(2015, 9, 16, 0, 0, 0, 0, pytz.UTC).timestamp(),
-             1, 35),
+    MneDataInfo(file_location= data_dir + "CLASubjectE1601223StLRHand.mat",
+                subject= "E",
+                date_of_recording= datetime.datetime(2016, 1, 22, 0, 0, 0, 0, pytz.UTC),
+                sex= "F",
+                age= 25,
+                health_condition= "Healthy",
+                prior_bci_experience = False,
+                bci_literacy= "Intermediate - Low"),
+    
+    # CLASubjectF1509163StLRHand.mat - removed due to only 2 recorded signals
+    
     # CLASubjectF1509173StLRHand.mat
-    MetaData(datetime.datetime(2015, 9, 17, 0, 0, 0, 0, pytz.UTC).timestamp(),
-             1, 35),
+    MneDataInfo(file_location= data_dir + "CLASubjectF1509173StLRHand.mat",
+                subject= "F",
+                date_of_recording= datetime.datetime(2015, 9, 17, 0, 0, 0, 0, pytz.UTC),
+                sex= "M",
+                age= 35,
+                health_condition= "Healthy",
+                prior_bci_experience = False,
+                bci_literacy= "Intermediate - Low"),
+    
     # CLASubjectF1509283StLRHand.mat
-    MetaData(datetime.datetime(2015, 9, 28, 0, 0, 0, 0, pytz.UTC).timestamp(),
-             1, 35)
+    MneDataInfo(file_location= data_dir + "CLASubjectF1509283StLRHand.mat",
+                subject= "F",
+                date_of_recording= datetime.datetime(2015, 9, 28, 0, 0, 0, 0, pytz.UTC),
+                sex= "M",
+                age= 35,
+                health_condition= "Healthy",
+                prior_bci_experience = False,
+                bci_literacy= "Intermediate - Low"),
 ]
 
+# Matlab filenames of CLA
+matlab_filenames = [data_dir + "CLASubjectA1601083StLRHand.mat",
+                    data_dir + "CLASubjectB1510193StLRHand.mat",
+                    data_dir + "CLASubjectB1510203StLRHand.mat",
+                    data_dir + "CLASubjectB1512153StLRHand.mat",
+                    data_dir + "CLASubjectC1511263StLRHand.mat",
+                    data_dir + "CLASubjectC1512163StLRHand.mat",
+                    data_dir + "CLASubjectC1512233StLRHand.mat",
+                    data_dir + "CLASubjectD1511253StLRHand.mat",
+                    data_dir + "CLASubjectE1512253StLRHand.mat",
+                    data_dir + "CLASubjectE1601193StLRHand.mat",
+                    data_dir + "CLASubjectE1601223StLRHand.mat",
+                    data_dir + "CLASubjectF1509163StLRHand.mat",
+                    data_dir + "CLASubjectF1509173StLRHand.mat",
+                    data_dir + "CLASubjectF1509283StLRHand.mat"]
 
-# --------------- FUNCTIONS ---------------
+# MNE stored file names
+mne_filenames = [data_dir + "CLASubjectA1601083StLRHand_raw.fif",
+                 data_dir + "CLASubjectB1510193StLRHand_raw.fif",
+                 data_dir + "CLASubjectB1510203StLRHand_raw.fif",
+                 data_dir + "CLASubjectB1512153StLRHand_raw.fif",
+                 data_dir + "CLASubjectC1511263StLRHand_raw.fif",
+                 data_dir + "CLASubjectC1512163StLRHand_raw.fif",
+                 data_dir + "CLASubjectC1512233StLRHand_raw.fif",
+                 data_dir + "CLASubjectD1511253StLRHand_raw.fif",
+                 data_dir + "CLASubjectE1512253StLRHand_raw.fif",
+                 data_dir + "CLASubjectE1601193StLRHand_raw.fif",
+                 data_dir + "CLASubjectE1601223StLRHand_raw.fif",
+                 data_dir + "CLASubjectF1509173StLRHand_raw.fif",
+                 data_dir + "CLASubjectF1509283StLRHand_raw.fif"]
+
+##################################
+# FUNCTIONS
+##################################
 
 
-def check_file_availability():
-    """Checks if all CLA files are available."""
-    # Example call: CLA_dataset.check_file_availability()
+def check_matlab_files_availability():
+    """Checks if all matlab CLA files are available."""
+    # Example call: CLA_dataset.check_matlab_files_availability()
     all_files_available = True
 
-    for filename in filenames:
-        if (not os.path.isfile(data_directory + filename)):
-            print(data_directory + filename + "not available!")
+    for filename in matlab_filenames:
+        if (not os.path.isfile(filename)):
+            print("Matlab file not available: " + filename)
+            all_files_available = False
+
+    return all_files_available
+
+def check_mne_files_availability():
+    """Checks if all MNE fif CLA files are available."""
+    # Example call: CLA_dataset.check_mne_files_availability()
+    all_files_available = True
+
+    for filename in mne_filenames:
+        if (not os.path.isfile(filename)):
+            print("MNE file not available: " + filename)
             all_files_available = False
 
     return all_files_available
 
 
-def is_correct_filename(filename):
-    """Checks if provided filename is valid CLA filename."""
-    # Example call: CLA_dataset.is_correct_filename("CLASubjectC1511263StLRHand.mat")
-    return filename in filenames
+def is_correct_matlab_filename(filename):
+    """Checks if provided filename is valid matlab CLA filename."""
+    # Example call: CLA_dataset.is_correct_matlab_filename("../data/CLA/CLASubjectC1511263StLRHand.mat")
+    return filename in matlab_filenames
+
+
+def is_correct_mne_filename(filename):
+    """Checks if provided filename is valid MNE fif CLA filename."""
+    # Example call: CLA_dataset.is_correct_mne_filename("../data/CLA/CLASubjectA1601083StLRHand_raw.fif")
+    return filename in mne_filenames
 
 
 def get_raw_matlab_data(filename):
     """Gets raw matlab data for given filename."""
-    # Example call: CLA_dataset.get_raw_mne_data("CLASubjectC1511263StLRHand.mat")
-    if (not is_correct_filename(filename)):
-        raise ValueError("File does not exist")
+    # Example call: CLA_dataset.get_raw_matlab_data("CLASubjectC1511263StLRHand")
+    
+    # Make filename a matlab filename
+    filename = data_dir + filename + ".mat"
+    
+    # Check file availability
+    if (not check_matlab_files_availability()):
+        raise ValueError("Some matlab files are not available in data directory")
+        
+    # Check filename correct
+    if (not is_correct_matlab_filename(filename)):
+        raise ValueError("Filename not a valid matlab CLA filename")
 
     # Get full matlab file
     data_raw_full = scipy.io.loadmat(
-        data_directory + filename, struct_as_record=False, squeeze_me=True)
+        filename, struct_as_record=False, squeeze_me=True)
 
     # The data is stored inside the matlab structure named "o"
     data_raw = data_raw_full['o']
@@ -135,44 +282,20 @@ def get_raw_matlab_data(filename):
 
 def get_raw_mne_data(filename):
     """Gets raw mne data structure for given filename."""
-    # Example call: CLA_dataset.get_raw_mne_data("CLASubjectC1511263StLRHand.mat", datetime.datetime(2016, 1, 8, 0, 0, 0, 0, pytz.UTC).timestamp(), 1)
-    if (not is_correct_filename(filename)):
-        raise ValueError("File does not exist")
+    # Example call: CLA_dataset.get_raw_mne_data("CLASubjectC1511263StLRHand")
     
-    # Index of file
-    index = filenames.index(filename)
+    # Make filename a MNE filename
+    filename = data_dir + filename + "_raw.fif"
+    
+    # Check file availability
+    if (not check_mne_files_availability()):
+        raise ValueError("Some mne files are not available in data directory")
+        
+    # Check filename correct
+    if (not is_correct_mne_filename(filename)):
+        raise ValueError("Filename not a valid mne CLA filename")
 
-    # Correct date format
-    recording_date = datetime.datetime.fromtimestamp(
-        meta_data[index].record_date, tz=datetime.timezone.utc)
+    # Get full mne file
+    mne_file = mne.io.Raw(filename)
 
-    # Get raw matlab file
-    data_raw = get_raw_matlab_data(filename)
-
-    # Create MNE info object
-    mne_ch_names = data_raw.chnames.tolist()
-    mne_ch_names.pop(-1)
-    mne_ch_types = ['eeg'] * len(mne_ch_names)
-    mne_sfreq = data_raw.sampFreq
-
-    mne_info = mne.create_info(
-        ch_names=mne_ch_names, ch_types=mne_ch_types, sfreq=mne_sfreq)
-
-    # Set other fields of MNE info object
-    mne_info.set_montage('standard_1020')
-    mne_info['description'] = 'Data from ' + filename
-    mne_info['experimenter'] = 'Kaya et al.'
-    mne_info['meas_date'] = recording_date
-    mne_info['subject_info'] = {
-        "his_id": data_raw.id,
-        "sex": meta_data[index].sex
-    }
-
-    # Make MNE data
-    mne_raw_data = data_raw.data
-    mne_raw_data = mne_raw_data[:, :-1]
-    mne_raw_data = mne_raw_data.transpose()
-
-    # Make MNE array
-    mne_raw = mne.io.RawArray(mne_raw_data, mne_info)
-    return mne_raw
+    return mne_file
