@@ -12,6 +12,7 @@
 
 # Performs IO operations
 import os
+from tabnanny import verbose
 import scipy.io # 1.8.0 recommended
 
 # Modules tailored for EEG data
@@ -39,6 +40,13 @@ class MneDataInfo:
         self.health_condition = health_condition
         self.prior_bci_experience= prior_bci_experience
         self.bci_literacy = bci_literacy
+        
+class ImportantMarker:
+    def __init__(self, mark, old_mark, start_idx, end_idx):
+        self.mark = mark
+        self.old_mark = old_mark
+        self.start_idx = start_idx
+        self.end_idx = end_idx
 
 ##################################
 # GLOBALS 
@@ -296,6 +304,40 @@ def get_raw_mne_data(filename):
         raise ValueError("Filename not a valid mne CLA filename")
 
     # Get full mne file
-    mne_file = mne.io.Raw(filename)
+    mne_file = mne.io.Raw(filename, verbose=False)
 
     return mne_file
+
+def get_important_markers(filename):
+    """Gets important markers for given filename."""
+    data_markers = get_raw_matlab_data(filename).marker
+    
+    # Initial values
+    important_markers = []
+    new_mark = old_mark = start_idx = end_indx = -1
+
+    for idx, marker in enumerate(data_markers):
+        # Initial values
+        if (start_idx == -1):
+            start_idx = idx
+            new_mark = old_mark = marker
+            
+        # Change of marker
+        if (marker != new_mark):
+            # Save marker
+            end_indx = idx - 1
+            important_markers.append(ImportantMarker(new_mark, old_mark, start_idx, end_indx))
+            
+            # Start new marker
+            old_mark = new_mark
+            new_mark = marker
+            start_idx = idx
+            
+    # End of loop, create last record if needed
+    if (start_idx > end_indx):
+        # Save marker
+        end_indx = idx
+        important_markers.append(ImportantMarker(new_mark, old_mark, start_idx, end_indx))
+        
+    # Return important markers
+    return important_markers
