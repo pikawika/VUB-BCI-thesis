@@ -221,6 +221,19 @@ mne_filenames = [data_dir + "CLASubjectA1601083StLRHand_raw.fif",
                  data_dir + "CLASubjectF1509173StLRHand_raw.fif",
                  data_dir + "CLASubjectF1509283StLRHand_raw.fif"]
 
+
+# Link event ID (marker) with a textual description
+marker_to_textual_dict = {0: "info/blank_screen",
+                          1: "task/left",
+                          2: "task/right",
+                          3: "task/neutral",
+                          91: "info/inter_session_break",
+                          92: "info/experiment_end",
+                          99: "info/initial_relaxation"}
+
+# Make a dictionary linking description with a marker (inverse of marker_to_textual_dict)
+textual_to_marker_dict = {value: key for key, value in marker_to_textual_dict.items()}
+
 ##################################
 # FUNCTIONS
 ##################################
@@ -310,6 +323,8 @@ def get_raw_mne_data(filename):
 
 def get_important_markers(filename):
     """Gets important markers for given filename."""
+    # Example call: get_important_markers("CLASubjectC1511263StLRHand")
+    
     data_markers = get_raw_matlab_data(filename).marker
     
     # Initial values
@@ -341,3 +356,9 @@ def get_important_markers(filename):
         
     # Return important markers
     return important_markers
+
+def get_events_and_dict_from_annotated_raw(raw_mne):
+    """Gets events from annotations in a RAW MNE object. Returns events followed by the used dict."""
+    # Example call: mne_events, mne_event_conversion_used_dict = get_important_markers("CLASubjectC1511263StLRHand")
+    
+    return mne.events_from_annotations(raw_mne, event_id=textual_to_marker_dict, verbose=False)
