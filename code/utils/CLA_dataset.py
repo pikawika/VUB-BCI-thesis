@@ -231,6 +231,8 @@ marker_to_textual_dict = {0: "info/blank_screen",
                           92: "info/experiment_end",
                           99: "info/initial_relaxation"}
 
+motor_cortex_electrodes = ["T3", "C3", "Cz", "C4", "T4"]
+
 # Make a dictionary linking description with a marker (inverse of marker_to_textual_dict)
 textual_to_marker_dict = {value: key for key, value in marker_to_textual_dict.items()}
 
