@@ -1,6 +1,6 @@
-# NeuroTechX Webinars (1-9)
+# NeuroTechX Webinars (1-3)
 
-According to [NeuroTechX's website](https://neurotechx.com/), NeuroTechX (NTX) is a non-profit organization whose mission is to facilitate the advancement of neurotechnology by providing key resources and learning opportunities, and by being leaders in local and worldwide technological initiatives. On their [YouTube channel](https://www.youtube.com/c/NeuroTechX) many BCI related videos are available. This document gives some notes that were taken whilst watching their webinars from 2018 to 2019, webinars 1 to 9. This playlist is available [here](https://www.youtube.com/watch?v=AFKNbNBCtXs&list=PL7yYIG1eq9bTbK-W66TCl7t8wTXwelSNz). The notebooks from the video are available [here](https://github.com/NeuroTechX/eeg-notebooks).
+According to [NeuroTechX's website](https://neurotechx.com/), NeuroTechX (NTX) is a non-profit organization whose mission is to facilitate the advancement of neurotechnology by providing key resources and learning opportunities, and by being leaders in local and worldwide technological initiatives. On their [YouTube channel](https://www.youtube.com/c/NeuroTechX) many BCI related videos are available. This document gives some notes that were taken whilst watching their webinars 1 to 3. This playlist is available [here](https://www.youtube.com/watch?v=AFKNbNBCtXs&list=PL7yYIG1eq9bTbK-W66TCl7t8wTXwelSNz). The notebooks from the video are available [here](https://github.com/NeuroTechX/eeg-notebooks).
 
 
 
