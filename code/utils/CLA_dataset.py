@@ -236,6 +236,11 @@ motor_cortex_electrodes = ["T3", "C3", "Cz", "C4", "T4"]
 # Make a dictionary linking description with a marker (inverse of marker_to_textual_dict)
 textual_to_marker_dict = {value: key for key, value in marker_to_textual_dict.items()}
 
+# Usefull MI event IDs
+usefull_mi_marker_to_textual_dict = {"task/left": 1,
+                                     "task/right": 2,
+                                     "task/neutral": 3}
+
 ##################################
 # FUNCTIONS
 ##################################
@@ -364,3 +369,13 @@ def get_events_and_dict_from_annotated_raw(raw_mne):
     # Example call: mne_events, mne_event_conversion_used_dict = get_important_markers("CLASubjectC1511263StLRHand")
     
     return mne.events_from_annotations(raw_mne, event_id=textual_to_marker_dict, verbose=False)
+
+def get_usefull_epochs_from_raw(raw_mne):
+    # Get events
+    mne_events, _ = get_events_and_dict_from_annotated_raw(raw_mne)
+    
+    # Return the epochs
+    return mne.Epochs(raw= raw_mne, events= mne_events,
+                      event_id= usefull_mi_marker_to_textual_dict,
+                      tmin= -0.2, tmax= 1.2,
+                      preload= True)

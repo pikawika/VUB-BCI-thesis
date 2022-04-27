@@ -97,6 +97,10 @@ The instructions below highlight the steps needed to recreate the used anaconda 
     # Install backend for matplotlib visualisations.
     # V5.15.6 was used.
     pip install PyQt5
+    
+    # Install Sci-Kit learn for ML.
+    # V1.0.2 was used.
+    pip install -U scikit-learn
     ```
 
 
