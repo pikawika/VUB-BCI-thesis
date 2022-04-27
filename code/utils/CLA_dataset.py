@@ -328,6 +328,27 @@ def get_raw_mne_data(filename):
 
     return mne_file
 
+def get_raw_mne_data_for_subject(subject_id):
+    """Gets raw mne data structure for given filename."""
+    # Example call: CLA_dataset.get_raw_mne_data("C")
+    
+    # Find all filenames for subject
+    filenames = [filename for filename in mne_filenames if f"Subject{subject_id}" in filename]
+    if (not filenames):
+        raise ValueError("No files for provided subject ID")
+    
+    # Check file availability
+    if (not check_mne_files_availability()):
+        raise ValueError("Some mne files are not available in data directory")
+    
+    mne_files = []
+    
+    for filename in filenames:
+        # Get full mne file
+        mne_files.append(mne.io.Raw(filename, verbose=False))
+
+    return mne_files
+
 def get_important_markers(filename):
     """Gets important markers for given filename."""
     # Example call: get_important_markers("CLASubjectC1511263StLRHand")
