@@ -400,5 +400,6 @@ def get_usefull_epochs_from_raw(raw_mne, start_offset=-0.2, end_offset=0.2):
     # Return the epochs
     return mne.Epochs(raw= raw_mne, events= mne_events,
                       event_id= usefull_mi_marker_to_textual_dict,
+                      baseline=(0,1),
                       verbose= False,
                       tmin= (0 + start_offset), tmax= (1 + end_offset))
