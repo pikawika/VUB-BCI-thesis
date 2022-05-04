@@ -101,6 +101,10 @@ The instructions below highlight the steps needed to recreate the used anaconda 
     # Install Sci-Kit learn for ML.
     # V1.0.2 was used.
     pip install -U scikit-learn
+    
+    # Install LightGBM for ML.
+    # V3.3.2 was used.
+    pip install lightgbm
     ```
 
 

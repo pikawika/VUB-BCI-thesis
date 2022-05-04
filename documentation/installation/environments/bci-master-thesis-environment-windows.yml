@@ -265,6 +265,7 @@ dependencies:
     - idna==3.3
     - joblib==1.1.0
     - kiwisolver==1.4.2
+    - lightgbm==3.3.2
     - matplotlib==3.5.1
     - mne==1.0.2
     - pillow==9.1.0
