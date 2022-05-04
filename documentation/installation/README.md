@@ -104,6 +104,7 @@ The instructions below highlight the steps needed to recreate the used anaconda 
     
     # Install LightGBM for ML.
     # V3.3.2 was used.
+    # NOTE: on mac you might need to 'brew install libomp' to get lightgbm to work
     pip install lightgbm
     ```
 
