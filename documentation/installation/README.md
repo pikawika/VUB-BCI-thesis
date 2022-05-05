@@ -106,6 +106,14 @@ The instructions below highlight the steps needed to recreate the used anaconda 
     # V3.3.2 was used.
     # NOTE: on mac you might need to 'brew install libomp' to get lightgbm to work
     pip install lightgbm
+    
+    # Install Pyriemann for EEG signal processing.
+    # V0.2.7 was used.
+    pip install pyriemann
+    
+    # Install TensorFlow for Deep Learning
+    # V was used.
+    pip install tensorflow
     ```
 
 

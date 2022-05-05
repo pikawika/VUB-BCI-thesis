@@ -75,12 +75,14 @@ Some util files are provided to extract certain aspects from the main notebooks 
 
 Some of the code written is not used explicitly in the paper but was used to gain information or test code that will be used in the final project. We call these experimental notebooks. The following experimental notebooks are available:
 
-| Title                                     | Location                                                     |
-| ----------------------------------------- | ------------------------------------------------------------ |
-| 1: CLA dataset exploration notebook       | Available [here](code/experimental-notebooks/1-CLA-dataset-exploration-notebook.ipynb) |
-| 2: MNE datastructure exploration notebook | Available [here](code/experimental-notebooks/2-MNE-datastructure-exploration-notebook.ipynb) |
-| 3: MNE epoching                           | Available [here](code/experimental-notebooks/3-MNE-epoching.ipynb) |
-| 4: CSP based classification               | Available [here](code/experimental-notebooks/4-CSP-based-classification.ipynb) |
+| Title                                                        | Location                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 1: CLA dataset exploration notebook                          | Available [here](code/experimental-notebooks/1-CLA-dataset-exploration-notebook.ipynb) |
+| 2: MNE datastructure exploration notebook                    | Available [here](code/experimental-notebooks/2-MNE-datastructure-exploration-notebook.ipynb) |
+| 3: MNE epoching                                              | Available [here](code/experimental-notebooks/3-MNE-epoching.ipynb) |
+| 4: CSP based classification                                  | Available [here](code/experimental-notebooks/4-CSP-based-classification.ipynb) |
+| 5: CSP based classification using parameters from the previous subject | Available [here](code/experimental-notebooks/5-CSP-params-new-subject.ipynb) |
+| 6: Deep Learning based classification                        | Available [here](code/experimental-notebooks/6-DL-based-classification.ipynb) |
 
 
 <hr>
