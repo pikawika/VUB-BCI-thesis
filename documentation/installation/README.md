@@ -6,6 +6,7 @@ Most of the libraries related to the OpenBCI hardware works best on Windows mach
 
 - [Author](#author)
 - [OpenBCI GUI](#openbci-gui)
+- [Cuda drivers](#cuda-drivers)
 - [MacOS specific preruiqisite](#macos-specific-preruiqisite)
 - [Setting up Anaconda environment](#setting-up-anaconda-environment)
   * [Configuring the base environment](#configuring-the-base-environment)
@@ -33,6 +34,17 @@ Installing OpenBCI GUI should be straightforward and the steps can be followed f
 - Instal `OpenBCI GUI`.
   - Version 5.0.8 was used.
   - MacOS note: V5.0.6, which was the latest version as of September 2021, has a bug on macOS where only a white screen is shown. Using the older V5.0.5 should work. This older version can be found under [the GitHub releases](https://github.com/OpenBCI/OpenBCI_GUI/releases).
+
+<hr>
+
+
+## Cuda drivers
+
+Having the Nvidia Cuda drivers installed can help increase the speed of the Deel Learning (DL) models. Installing Cuda depends on the system used and thus no exact instructions are given. Check the [TensorFlow doc](https://www.tensorflow.org/install/gpu) for more information.
+
+For our Windows 10 machine with an NVidia GTX970 the installation instructions from Aladdin Persson on [YouTube](https://www.youtube.com/watch?v=hHWkvEcDBO0) were followed. The Cuda version used is 11.6, which was the latest at the moment, but the CuDNN version used was 8.2.2 (July release), as other versions seem to give errors.
+
+
 
 <hr>
 
