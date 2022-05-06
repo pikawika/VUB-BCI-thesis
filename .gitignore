@@ -4,4 +4,5 @@ literature-review/scientific/overview/~$overview_sheet.xlsx
 code/data/*/*.mat
 code/utils/__pycache__/
 **/.vscode/**
-code/experimental-notebooks/logs/
+code/experimental-notebooks/logs/**/
+!code/experimental-notebooks/logs/**.zip
