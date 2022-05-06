@@ -77,10 +77,10 @@ The instructions below highlight the steps needed to recreate the used anaconda 
   - ```shell
     # Pandas is a famous Python Data Analysis Library and is used by a lot of other packages.
     # The following command installs Pandas and its dependencies. V1.4.1 was used.
-    conda install pandas
+    conda install pandas=1.4.1
     
     # We install pip to install packages not available from conda install. V21.2.2 was used.
-    conda install pip
+    conda install pip=21.2.2
     ```
   
 - Install some pip available packages on the environment
@@ -88,32 +88,32 @@ The instructions below highlight the steps needed to recreate the used anaconda 
   - ```shell
     # MNE is a famous Python package for visualising and working with neurophysiological data.
     # V1.0.2 was used.
-    pip install mne
+    pip install mne==1.0.2
     
     # Install Matplotlib for plotting purposes.
     # V3.5.1 was used.
-    pip install matplotlib
+    pip install matplotlib==3.5.1
     
     # Install backend for matplotlib visualisations.
     # V5.15.6 was used.
-    pip install PyQt5
+    pip install PyQt5==5.15.6
     
     # Install Sci-Kit learn for ML.
     # V1.0.2 was used.
-    pip install -U scikit-learn
+    pip install scikit-learn==1.0.2
     
     # Install LightGBM for ML.
     # V3.3.2 was used.
     # NOTE: on mac you might need to 'brew install libomp' to get lightgbm to work
-    pip install lightgbm
+    pip install lightgbm==3.3.2
     
     # Install Pyriemann for EEG signal processing.
     # V0.2.7 was used.
-    pip install pyriemann
+    pip install pyriemann==0.2.7
     
     # Install TensorFlow for Deep Learning
-    # V was used.
-    pip install tensorflow
+    # V2.8.0 was used.
+    pip install tensorflow==2.8.0
     ```
 
 
