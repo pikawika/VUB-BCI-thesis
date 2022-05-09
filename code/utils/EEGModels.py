@@ -357,7 +357,6 @@ def log(x):
 
 
 # Note: modified by Lennert Bontinck to allow for setting the pool_size, strides and conv filters
-# TODO: extra params!
 def ShallowConvNet(nb_classes,
                    Chans = 64,
                    Samples = 128,
