@@ -282,8 +282,14 @@ def EEGNet_old(nb_classes, Chans = 64, Samples = 128, regRate = 0.0001,
 
 
 
-def DeepConvNet(nb_classes, Chans = 64, Samples = 256,
-                dropoutRate = 0.5):
+def DeepConvNet(nb_classes,
+                Chans = 64,
+                Samples = 256,
+                dropoutRate = 0.5,
+                conv_filters = 5,
+                strides = 2,
+                pool_size = 2
+                ):
     """ Keras implementation of the Deep Convolutional Network as described in
     Schirrmeister et. al. (2017), Human Brain Mapping.
     
@@ -309,14 +315,14 @@ def DeepConvNet(nb_classes, Chans = 64, Samples = 256,
 
     # start the model
     input_main   = Input((Chans, Samples, 1))
-    block1       = Conv2D(25, (1, 5), 
+    block1       = Conv2D(25, (1, conv_filters), 
                                  input_shape=(Chans, Samples, 1),
                                  kernel_constraint = max_norm(2., axis=(0,1,2)))(input_main)
     block1       = Conv2D(25, (Chans, 1),
                                  kernel_constraint = max_norm(2., axis=(0,1,2)))(block1)
     block1       = BatchNormalization(epsilon=1e-05, momentum=0.9)(block1)
     block1       = Activation('elu')(block1)
-    block1       = MaxPooling2D(pool_size=(1, 2), strides=(1, 2))(block1)
+    block1       = MaxPooling2D(pool_size=(1, pool_size), strides=(1, strides))(block1)
     block1       = Dropout(dropoutRate)(block1)
   
     block2       = Conv2D(50, (1, 5),
