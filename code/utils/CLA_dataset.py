@@ -329,7 +329,7 @@ def get_raw_mne_data(filename):
     return mne_file
 
 def get_raw_mne_data_for_subject(subject_id):
-    """Gets raw mne data structure for given filename."""
+    """Gets raw mne data structure for given subject."""
     # Example call: CLA_dataset.get_raw_mne_data("C")
     
     # Find all filenames for subject
@@ -348,6 +348,25 @@ def get_raw_mne_data_for_subject(subject_id):
         mne_files.append(mne.io.Raw(filename, verbose=False))
 
     return mne_files
+
+def get_all_raw_mne_data_for_subject(subject_id):
+    """
+    Gets all raw mne data structures for given subject and loads it in memory.
+    Returns a list of loaded MNE objects
+    """
+    return [raw.load_data() for raw in get_raw_mne_data_for_subject(subject_id)]
+
+def get_specific_raw_mne_data_for_subject(subject_id, index: int):
+    """
+    Gets the MNE raw of a subject at the provided index and loads it into memory.
+    Returns a loeded MNE object.
+    """
+    mne_raws = get_raw_mne_data_for_subject(subject_id)
+    if (len(mne_raws) > index and 0 <= index):
+        # Valid index
+        return mne_raws[index].load_data()
+    else:
+        raise ValueError(f"There is no MNE raw at the provided index {index} for the subject {subject_id}") 
 
 def get_important_markers(filename):
     """Gets important markers for given filename."""

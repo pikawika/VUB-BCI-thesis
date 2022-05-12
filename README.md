@@ -83,6 +83,9 @@ Some of the code written is not used explicitly in the paper but was used to gai
 | 4: CSP based classification                                  | Available [here](code/experimental-notebooks/4-CSP-based-classification.ipynb) |
 | 5: CSP based classification using parameters from the previous subject | Available [here](code/experimental-notebooks/5-CSP-params-new-subject.ipynb) |
 | 6: Deep Learning based classification                        | Available [here](code/experimental-notebooks/6-DL-based-classification.ipynb) |
+| 7: Improving inter-session EEGNet                            | Available [here](code/experimental-notebooks/7-improving-inter-session-eegnet.ipynb) |
+
+
 
 
 <hr>
