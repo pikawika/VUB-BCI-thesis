@@ -1,8 +1,8 @@
 # BCI Master Thesis @ VUB 2021 - 2022
 
-This repository includes installation instructions, source code, extra documents and more from Lennert Bontinck's Master Thesis @ VUB 2021 - 2022.
+This repository includes installation instructions, source code, extra documents and more from Lennert Bontinck's Master Thesis on processing and using EEG signals from motor imagery tasks in a BCI setting @ VUB 2021 - 2022.
 
-The current draft version of the thesis can be found [here](paper/bci_master_thesis.pdf), the source code of this LaTeX document is [also available](paper/source).
+The current draft version of the thesis can be found [here](paper/bci_master_thesis.pdf), the source code of this LaTeX document is [also available](paper/source) and the source files for the figures are available [here](figures/).
 
 ## Table of contents
 
@@ -11,8 +11,9 @@ The current draft version of the thesis can be found [here](paper/bci_master_the
   - [Installation instructions](#installation-instructions)
   - [Initialisation instructions](#initialisation-instructions)
 - [Code](#code)
-  - [Utils](#utils)
+  - [Utility files](#utility-files)
   - [Experimental notebooks](#experimental-notebooks)
+  - [Paper notebooks](#paper-notebooks)
 - [Literature review](#literature-review)
   - [Scientific sources](#scientific-sources)
   - [Informal sources](#informal-sources)
@@ -38,7 +39,7 @@ To make reproducing the project easier, the following documentation is provided.
 
 ### Installation instructions
 
-Most of the libraries related to the OpenBCI hardware works best on Windows machines. Some of the required dependencies aren't even available on macOS, for this reason these install instructions focus mainly on Windows 10 machines. However, a conda environment for macOS is also made available as well as some notes for macOS specific installs. Non OpenBCI related code works well on both macOS and Windows normally, although Windows is still adviced.
+Most of the libraries related to the OpenBCI hardware work best on Windows machines. Some of the required dependencies aren't even available on macOS, for this reason, these install instructions focus mainly on Windows 10 machines. However, a conda environment for macOS is also made available as well as some notes for macOS-specific installs. Non-OpenBCI-related code works well on both macOS and Windows normally, although Windows is still advised.
 
 | Title                                        | Documentation                                          |
 | -------------------------------------------- | ------------------------------------------------------ |
@@ -48,7 +49,7 @@ Most of the libraries related to the OpenBCI hardware works best on Windows mach
 
 ### Initialisation instructions
 
-Running the anaconda environment to open the Jupyter Notebooks is straightforward when the environment is installed as discussed above. For completeness some instructions on running the environment are given as well.
+Running the anaconda environment to open the Jupyter Notebooks is straightforward when the environment is installed as discussed above. For completeness, some instructions on running the environment are given as well.
 
 | Title                                      | Documentation                                            |
 | ------------------------------------------ | -------------------------------------------------------- |
@@ -59,21 +60,23 @@ Running the anaconda environment to open the Jupyter Notebooks is straightforwar
 
 ## Code
 
-To make reproducing the project easier, all of the code used is provided.
+All of the code used for creating the paper associated with this thesis and more are provided to ensure full transparency.
 
-### Utils
+### Utility files
 
-Some util files are provided to extract certain aspects from the main notebooks such as data retrieval.
+Some utility files are provided to extract certain aspects from the main notebooks such as data retrieval in a simply python importable utility file. Import instructions for the utility files are given in the header of the corresponding file. 
 
 | Title            | Location                                    |
 | ---------------- | ------------------------------------------- |
 | CLA dataset util | Available [here](code/utils/CLA_dataset.py) |
+| TF tools         | Available [here](code/utils/TF_tools.py)    |
+| EEG models       | Available [here](code/utils/EEGModels.py)   |
 
 
 
 ### Experimental notebooks
 
-Some of the code written is not used explicitly in the paper but was used to gain information or test code that will be used in the final project. We call these experimental notebooks. The following experimental notebooks are available:
+Some of the code written is not used explicitly in the paper but was used to gain information or test code that will be used in the final project. We call these experimental notebooks and they contain a lot of annotations as well. The following experimental notebooks are available:
 
 | Title                                                        | Location                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -87,13 +90,24 @@ Some of the code written is not used explicitly in the paper but was used to gai
 
 
 
+### Paper notebooks
+
+What we refer to as paper notebooks are notebooks which include code for experiments and plotting results that are directly used in the paper or directly referenced in the paper. Special attention to reproduction and well-documented code is given in these notebooks to improve their scientific value.
+
+| Title   | Location                                            |
+| ------- | --------------------------------------------------- |
+| 1: TODO | Available [here](code/paper-notebooks/1-TODO.ipynb) |
+
+
+****
+
 
 <hr>
 
 
 ## Literature review
 
-The literature review is one of the most important aspects of any scientific paper. All scientific sources that were consulted are available in a Zotero maintained list.
+The literature review is one of the most important aspects of any scientific paper. All scientific sources that were considered are available in a Zotero maintained list, the reference list of the paper lists all of these sources that are effectively used in the paper, both directly as indirectly.
 
 
 ### Scientific sources
@@ -102,7 +116,7 @@ As this master thesis should be scientific grade, the sources should also be sci
 
 ### Informal sources
 
-There are a lot of interesting YouTube videos, blog posts and more about the thesis topic that were also consulted. They are insightful to understand how the different aspects work in real life. However, these sources are not peer-reviewed and thus don't have much scientific value. The table below gives an overview of the most interesting ones.
+For more intuitive insight into certain aspects of both code and theory, some informal sources were also used. The most important ones are listed below and are summarized to inform what was intuitively gained from them.
 
 | Title                                   | Type                                                         | Notes                                                        |
 | --------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |

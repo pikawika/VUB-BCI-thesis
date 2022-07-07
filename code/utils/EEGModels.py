@@ -1,3 +1,19 @@
+# This util provides some EEG related TF models from literature.
+# These models are in larged based on work provided by
+#   ARL_EEGModels - A collection of Convolutional Neural Network models for EEG
+#   https://github.com/vlawhern/arl-eegmodels
+# Some edits were made from their code and these edits are annotated.
+
+# Import it as follows:
+# | import sys
+# | sys.path.append('../utils')
+# | import EEGModels
+
+##################################
+# CODE FROM ARL_EEGMODELS
+##################################
+# This code is in large from the discussed ARL_EEGModels collection.
+
 """
  ARL_EEGModels - A collection of Convolutional Neural Network models for EEG
  Signal Processing and Classification, using Keras and Tensorflow
@@ -361,8 +377,11 @@ def square(x):
 def log(x):
     return K.log(K.clip(x, min_value = 1e-7, max_value = 10000))   
 
+##################################
+# EDITED CODE FROM ARL_EEGMODELS
+##################################
+# This code is in large from the discussed ARL_EEGModels collection but some edits were made.
 
-# Note: modified by Lennert Bontinck to allow for setting the pool_size, strides and conv filters
 def ShallowConvNet(nb_classes,
                    Chans = 64,
                    Samples = 128,
