@@ -94,9 +94,9 @@ Some of the code written is not used explicitly in the paper but was used to gai
 
 What we refer to as paper notebooks are notebooks which include code for experiments and plotting results that are directly used in the paper or directly referenced in the paper. Special attention to reproduction and well-documented code is given in these notebooks to improve their scientific value.
 
-| Title   | Location                                            |
-| ------- | --------------------------------------------------- |
-| 1: TODO | Available [here](code/paper-notebooks/1-TODO.ipynb) |
+| Title      | Location                                               |
+| ---------- | ------------------------------------------------------ |
+| A: Figures | Available [here](code/paper-notebooks/A-figures.ipynb) |
 
 
 ****

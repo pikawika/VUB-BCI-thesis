@@ -6,3 +6,4 @@ code/utils/__pycache__/
 **/.vscode/**
 code/experimental-notebooks/logs/**/
 !code/experimental-notebooks/logs/**.zip
+code/data/figures/funding_data.csv
