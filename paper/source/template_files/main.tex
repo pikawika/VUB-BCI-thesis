@@ -20,6 +20,9 @@
 % Correct footnote
 \renewcommand{\thempfootnote}{\arabic{mpfootnote}}
 
+% Quotes
+\usepackage{epigraph} 
+
 % We use cleveref for better referencing control
 \usepackage{cleveref}
 \usepackage[natbib,style=apa]{biblatex}
@@ -47,7 +50,7 @@
 \frontmatter
 \maketitle
 
-% Dutch title
+% Dutch title 
 \input{parts/1_title_nl}
 \maketitle
 
@@ -57,6 +60,8 @@
 
 % ToC
 \tableofcontents
+\listoffigures 
+\listoftables 
 \mainmatter
 
 % Main content

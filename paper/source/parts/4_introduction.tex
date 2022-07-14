@@ -4,7 +4,6 @@
 %   - Cleanup of text
 %   - Longer more descriptive titles
 %   - Invasive is ECoG instead of EEG?
-%   - Specify better what a BCI is in the first sentences
 % ----------  
 % Questions:
 %   -
@@ -12,8 +11,7 @@
 %  Today, amplifiers exist that are built in the electrode cap and are so resistant to movement artefacts that data collection in the field is no longer a critical issue.
 % SOURCE: bci_history
 
-% Wolpaw defines the “perfect” BCI as a safe and affordable system which works all the time, does not require the permanent assistance of a technician or a scientist, restores communication at “normal” speed, is aesthetically acceptable, is reliable and, for the same function, does not require more concentration for a patient user than what it does for an able-bodied person [1]. Despite recent development aimed at improving the current state of BCI systems, there are still several challenges that must be overcome before building an usable and effective BCI, like for example, the high cost associated with the required EEG recording system
-% SOURCE: cheap_bci_feasibility
+% 
 
 % Uncomment this if the use of parts is desired
 %\part{First part}
@@ -26,253 +24,480 @@
 \label{ch:bci}
 
 % ---------------------------------------------- 
-
-\section{Introduction to BCIs}
+% INTRODUCTION
+% ---------------------------------------------- 
+\section{Introduction}
 \label{sec:bci_introduction}
+% "Introduction" exists in each chapter and gives short intro to chapter + what can be expected in chapter
 
-\Glspl{bci} and \glspl{bmi} are starting to gather more interest from the general public.
-These systems, consisting of hardware and software, aim to read and stimulate a user's brain signals for a wide range of applications.
-Neuralink, an Elon Musk company, helped to popularize them outside of the research field.
-Neuralink's initial white paper discusses its aim to create a scalable high-bandwidth \gls{bmi} system, focusing on its mechanical achievements \citep{neuralink_whitepaper}.
-Only a mere year later, the company held a conference with a live demo of their \gls{bmi} implanted into the skulls of pigs.
+% OLD INTRO: https://docs.google.com/document/d/1oJssCGQf0aSDCa4xxY4UMJMsaGYdrbOSlzk6mLIS4no/edit?usp=sharing
 
-Whilst such novel interaction applications have yet to see widespread market adoption, \glspl{bci} have been studied for decennia by researchers such as \citet{early_bci}.
-An in-depth history from \glspl{bci} can be found from Andrea \citet{bci_history}.
-\citet{bci_review} gives an overview of the different kinds of \glspl{bci} and corresponding techniques to be used.
-These sources give a great high-level insight into the technology and terminology used in this field.
-A good introductory book on \glspl{bci} from this same period is one from the well-known Professor in this field: Jonathan Wolpaw \citep{bci_book}.
+\Glspl{bci} are systems, consisting of hardware and software, that aim to read or even stimulate a user's brain signals for a wide variety of applications.
+Whilst many of these applications for \glspl{bci} revolve around providing novel interaction methods for computer applications, they are capable of fulfilling more general tasks as well.
+Because of this, \glspl{bci} are also referred to as \glspl{bmi} and can be seen as a special type of \glspl{hmi}.
+A well-known Professor in this field is Jonathan R. Wolpaw who was also the guest editor for the first international meeting devoted to \gls{bci} research and development as part of the IEEE conference on Rehabilitation Engineering.
+During that meeting, a first formal definition for \glspl{bci} was given:
 
-Whilst the main components used today remain relatively similar to those discussed in these older sources, the hardware complexity and model capabilities has been evolving drastically.
-An important issue researchers keep getting confronted with is the fact that there are still a lot of mysteries about the brain's inner workings, leaving many of the finer intercepted brain signals unexplained.
-\citet{brainmapping} states that the progress of mapping the brain and its billions of sensors and connections is accelerating yet still far from finished.
-This mapping would be a huge step in understanding the brain.
+\setlength{\epigraphwidth}{0.9\textwidth}
+\epigraph{A brain-computer interface is a communication system that does not depend on the brain’s normal output pathways of peripheral nerves and muscles.}{\textit{\citet{first_bci_meeting}}}
 
-Luckily, novel \gls{ml} techniques can help with processing and reasoning on the data these systems collect.
-Especially due to recent developments in \gls{dl} and \gls{nn}, \glspl{bci} are being used more in treating neurological diseases \citep{bci_diseases} but also more commercial applications, like a brain-monitoring meditation aids as discussed by \citet{interaxon_tests}.
+Since then, Jonathan R. Wolpaw has (co-)authored a lot of influential papers in the field of \glspl{bci} \citep{bci_rehabilitation, bci_in_medicine, first_bci_meeting} and created a great introductory textbook to the field \citep{bci_book}.
+As a board-certified neurologist, Wolpaw's work is often centred around applications in a more medical setting rather than a commercial one. In this medical setting, his opinion on what defines a \textit{perfect} \gls{bci} is often strived for and can be summarized as follows:
 
-A challenge with \gls{dl} applications in general, and certainly with \glspl{bci}, is the fact that training a deep learner in both a supervised and unsupervised manner can take a lot of data and time and be unpredictable due to its black-box principle.
-These things are unwished-for in \gls{bci} systems, especially when not only reading but also stimulating brain signals.
-In general, full supervised learning isn't possible either due to the lack of understanding of the brain signals.
-Therefore, low-confidence labelled data is often used in a semi-supervised fashion as explained by \citet{deep_learn_low_label}.
+\setlength{\epigraphwidth}{0.9\textwidth}
+\epigraph{The perfect [medical] \gls{bci} is a safe and affordable system which works all the time, does not require the permanent assistance of a technician or a scientist, restores communication at “normal” speed, is aesthetically acceptable, is reliable and, for the same function, does not require more concentration for a patient user than what it does for an able-bodied person}{\textit{\citet{bci_book, cheap_bci_feasibility}}}
+
+
+One of the things this thesis aims to study is how far \glspl{bci} have come concerning this definition of a perfect \gls{bci}.
+It is noted that the term communication in these definitions simply depicts the exchange of information rather than specific human communication such as speech. For example, a computer mouse could be seen as a communication device that exchanges information about the user's intent to the computer.
+Many of these properties for a perfect medical \gls{bci} system would also be beneficial for commercial \gls{bci} systems.
+
+Especially the commercial interest in \glspl{bci} has seen a recent spike, through multiple big-tech companies such as Meta (formerly known as Facebook), Valve (a major gaming company) and Neuralink (an Elon Musk company) showing interest in the field \citep{facebook_bci_blog, bci_valve, neuralink_whitepaper}.
+This has given rise to the public interest for potential life-improving \gls{bci} applications as well as some public outrage on more ethical aspects that challenges these systems. 
+
+This first chapter further introduces the main rationale behind \glspl{bci} research by discussing the rise in popularity of both medical and commercial \glspl{bci}, some practical examples of \gls{bci} systems that have been developed and some of the opportunities and obstacles in the field. The chapter ends with a note on some of the ethical challenges for \gls{bci} systems and a discussion of the proposed system for this thesis.
+Chapter \ref{ch:biomedical_signals} and \ref{ch:processing_signals} focus on more technical aspects of the \gls{bci} field.
+
+As research on \glspl{bci} is highly multidisciplinary, entering the field as a computer scientist can be rather intimidating due to the steep learning curve of the ideas, technologies, challenges and terminology used in such research.
+These first chapters aim to introduce these concepts in an easy-to-understand manner for a typical computer scientist student with some \gls{ai} background.
+The interested reader is also referred to the great introductory book on \glspl{bci} by \citet{bci_book} and the review article by \citet{bci_review} when more introductory insight is desired.
+Whilst these resources have dated a little and state-of-the-art has changed since then, the main ideas discussed in them remain unchanged.
+
 
 % ---------------------------------------------- 
+% GAINING POPULARITY
+% ---------------------------------------------- 
+% discussing the rise in popularity of both medical and commercial BCI
 
 \section{Growing scientific and commercial interest in BCIs}
 \label{sec:bci_gaining_popularity}
 
-As was already discussed, Neuralink, a company by Elon Musk aiming to provide an invasive \gls{bci} to be used by the masses as a means for fast communication between humans and machines, has put the research field in a new daylight.
-However, the reason \gls{bci} applications are gaining more and more interest follows from a wide variety of reasons.
-The following section will discuss the most important ones.
+With brain signal measuring modalities such as \gls{eeg} being over 100 years old, the idea of using those brain signals for a wide variety of use cases has been explored for many decades \citep{human_eeg_discovery, first_eeg, bci_history}.
+With feasibility studies of using \glspl{bci} already existing in the 1970s \citep[for example by][]{early_bci} showing that most of the ideas explored today are not new, a clear spike in both scientific and commercial interest can be seen after the 2000s.
+It is no coincidence that the first international meeting devoted to \gls{bci} research and development as part of the IEEE conference on Rehabilitation Engineering discussed in section \ref{sec:bci_introduction} was also from this period.
+
+This rise in popularity can be explained by several events.
+Perhaps most importantly is the improvement of both brain signal measuring equipment and computational processing equipment in both efficiency, accuracy and portability.
+Recent improvements in \gls{ml} and \gls{dl} after some \gls{ai} winters between the 1970s and the 1990s are bound to also have played an important role.
+The interest of big tech companies such as Neuralink, Meta and Valve have also introduced unseen amounts of funds further accelerating \gls{bci} research.
+
+This section focuses on discussing these most important contributing factors to the new rise of interest in \gls{bci} research.
+These factors are discussed in an arbitrary order, as most of them have influenced each other and it is hard to name a singular reason that explains this recent rise in interest.
+For a more in-depth overview of the rich history that \gls{bci} research has, the reader is referred to the work by \citet{bci_history}.
 
 % - - - - - - - - - -
 
-\subsection{New funding sources for BCI related research}
+\subsection{BCIs have gained big-tech interest and funds}
 \label{subsec:bci_gaining_popularity_big_tech}
-Big tech has been catching on with the possibilities \glspl{bci} bring, and the amount of money they can earn from it.
-Their goals lie far from the long medical history of the field, although profitability is an important factor in most medical applications as well.
-Besides Neuralink, companies like Meta, Valve, Neurable, InteraXon and many more are exploring the commercial possibilities of \glspl{bci} as well, both through funding or internal research \citep{facebook_bci_keyboard, valve_bci_interest, neurable_white_paper, interaxon_tests}.
-There seem to be two main focuses of the technology in the commercial space.
-Using the new interaction method to perform work more efficiently and using it for recreational purposes.
 
-Meta, formerly known as Facebook, has publicly announced it had provided funds for research on the use of a \gls{bci}-system to restore speech functionalities for people suffering from anarthria \citep{facebook_bci_keyboard, facebook_bci_blog}.
-\Citet{facebook_bci_keyboard} achieved an average of 15 words per minute through a highly specialized and non-mobile system, decoded with a median error of 25\%.
-The setup is shown in Figure \ref{fig:intro_medical_vs_commercial_1}.
-\Citet{facebook_bci_keyboard} described it as way of giving a voice to people with speech impairment.
-However, it is not hard to imagine the commercial interest of Meta in developing a more general \textit{virtual keyboard} to enable fast \textit{thought to speech} applications usable by the masses.
+Big tech has been catching on with the possibilities \glspl{bci} bring, and the amount of money they can earn from it.
+Although profitability is an important factor in most medical applications as well, the focus of medical applications lies on improving the life of a patient, whilst the focus of commercial applications can differ greatly.
+Since commercial \glspl{bci} are still in their early stages and the idea of constantly wearing a brain-signal recording headset has not been accepted by the wide public yet, many commercially oriented companies start with products that are a cross between medical and commercial applications.
+
+Most noteworthy of these more commercially oriented companies is Neuralink, an Elon Musk company.
+Neuralink's initial white paper discusses its aim to create a scalable high-bandwidth \gls{bci} system, focusing on its mechanical achievements \citep{neuralink_whitepaper}.
+These mechanical achievements are rather impressive, with state-of-the-art robot surgery inserting ultra-thin sensors directly into the skull allowing for a sleek and visually pleasing package that is mostly hidden from the human eye.
+Comparing this to non-invasive methods of recording brain signals, which are methods that don't require inserting machinery into the human body, the signal quality is also expected to be far greater.
+However, an invasive approach introduces added health risks and even more ethical challenges \citep{neuralink_ethics, neuralink_ethics2}.
+Since the publication of the Neuralink white paper, the company has held live demos of their \gls{bci} implanted directly into the skulls of animals such as pigs and monkeys.
+A video by Neuralink of a monkey playing pong using brain signals as input\footnote{\url{https://youtu.be/rsCul1sp4hQ}} has gathered over 6 million views on YouTube already.
+Combined with many news articles, the kind of exposure that Neuralink has gotten is unseen compared to the regular exposure of literature in the field.
+This can be questioned, as earlier work by \citet{bci_monkey_arms} demonstrated monkeys taking control over two avatar arms simultaneously, a task that is arguably even harder to accomplish than simply playing pong.
+Adding to this, the experiment by \citet{bci_monkey_arms} has an appropriate peer-reviewed paper backing it whilst Neuralink among other commercially oriented companies in the field often lack scientific backing for the claims they make.
+Thus, the scientific value of these more commercial demos and applications can be argued for, but the funds for research introduced by these companies and the exposure to the field have accelerated research in the field and helped popularize the field.
+Adding to this, the proposed system by Neuralink is one of the most aesthetically pleasing compared to alternative invasive or non-invasive systems on the market, which is one of the properties of Wolpaw's perfect \gls{bci} system given in section \ref{sec:bci_introduction}.
+
+Besides Neuralink, companies like Meta, Valve, Neurable, InteraXon and many more are exploring the commercial possibilities of \glspl{bci} as well.
+Some of the companies do this through direct internal research whilst others might provide funds for external projects \citep{facebook_bci_keyboard, valve_bci_interest, neurable_white_paper, interaxon_tests}.
+There seem to be two main focuses of the technology in the commercial space.
+Either using the new interaction method to perform work more efficiently or using it for recreational purposes.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Using BCIs to boost work efficiency}
+\label{subsubsec:bci_gaining_popularity_big_tech_efficiency}
+
+Meta, formerly known as Facebook, has been playing with the idea of \glspl{bci} for quite a while but has been relatively quiet about it publicly.
+In 2021, Meta publicly announced it had provided funds for research on the use of a \gls{bci}-system to restore speech functionalities for people suffering from anarthria \citep{facebook_bci_keyboard, facebook_bci_blog}.
+The system by \citet{facebook_bci_keyboard} achieved an average of 15 words per minute, decoded with a median error of 25\%.
+Whilst this might not sound impressive, anarthria is a disease which causes patients to not be able to articulate speech at all due to lost control of the muscles required for making sounds.
+Adding to this, people suffering from anarthria often suffer from other lost muscle control as well, making alternatives such as keyboard typing or writing impossible.
+Taking this into account, these results should be seen as very impressive and such a system can be life-changing for certain patients.
+Whilst the system by \citet{facebook_bci_keyboard} was invasive just like Neuralink's system, it was far from visually pleasing.
+The patient was fixed in a chair and physically connected to a bulky processing unit in the form of a small server rack, which makes the system non-mobile and makes the user stand out if it were to be used in the real world where discreteness is often desired.
+
+The system by \citet{facebook_bci_keyboard} is an example of one that is backed by the funds that big-tech companies have and which is mainly focused on medical applications whilst the final intention of the funding company is most likely of commercial nature.
+Indeed, it is not hard to imagine the commercial interest of Meta in developing a more general \textit{virtual keyboard} to enable fast \textit{thought to speech} or \textit{thought to text} applications usable by the masses.
+In fact, during the F8 conference \citep{fb_building8} a couple of years before the paper by \citet{facebook_bci_keyboard}, Meta stated the following:
+
+
+\setlength{\epigraphwidth}{0.9\textwidth}
+\epigraph{Specifically, we have a goal of creating a silent speech system capable of typing 100 words per minute straight from your brain – that’s five times faster than you can type on a smartphone today.}{\textit{\citet{fb_building8}}}
+
+
 Such a virtual keyboard could replace certain speech-to-text applications already broadly used for commercial purposes.
-With this broader application in mind, the work by \citet{facebook_bci_keyboard} becomes even more interesting as it doesn't rely on \glspl{erp} that requires explicit stimulation.
-The latter is required by most other virtual keyboard attempts as discussed by \citet{bci_keyboard}.
-In the same blog post by \citet{facebook_bci_blog}, it is also mentioned that Meta has interest in using \glspl{bci} for high-bandwidth interactions in AR/VR.
+In the same blog post by \citet{facebook_bci_blog} discussing the funding for the project by \citet{facebook_bci_keyboard}, it is also mentioned that Meta has interest in using \glspl{bci} for high-bandwidth interactions in AR/VR.
 However, Meta has been subject to multiple privacy concerns lately \citep{facebook_drama1, facebook_drama2}.
 The company's reputation has been damaged from this which doesn't help in selling the concept of them having a \gls{bci} which allows them to read the brain activity of the users.
 This could explain why they have recently started to shift their focus from \glspl{bci} towards muscle-based interfaces using \gls{emg} \citep{facebook_bci_blog}.
 
-For recreational use, \glspl{bci} have been found in commercial products already.
-The headsets by InteraXon, produced under the Muse brand, are one of the earliest examples, with their first version being released in 2014.
+A recent example of a \gls{bci} being used to boost work efficiency is covered by \citet{bci_nude_detection}.
+He discusses how Chinese researchers have been working on a non-invasive and portable system that aims to detect if a user is watching pornographic content through brain signals.
+When presenting fifteen male participants aged between 20 and 25 with erotic content and regular content, an accuracy of over 80\% was obtained for determining whether the user was watching erotic content or not.
+Such a system should aid in China's content regularisation which often bans such erotic content on their domestic social-media platforms.
+Current systems rely on manual evaluation by a reviewer for removing or keeping content that is flagged as inappropriate by either the community or an algorithm. 
+Further automating this task through a brain-controlled system could boost the efficiency of this process significantly.
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Using BCIs for recreational use}
+\label{subsubsec:bci_gaining_popularity_big_tech_recreational}
+
+Whilst some promising results have been obtained when using \glspl{bci} in commercial settings to boost work efficiency, many of the systems still lack the desired performance to become truly viable. 
+And thus, the most prominent type of commercial \glspl{bci} are those focusing on recreational use.
+In this regard, the headsets by InteraXon, produced under the Muse brand, are one of the earliest examples, with their first version being released in 2014.
 The first iteration of this product was advertised as a meditation aid.
-This headset relies on measuring Theta waves in the brain, which are lower frequency waves that suggest a user is meditating.
-The actual accuracy and usefulness of the system are debated, as discussed by \citet{interaxon_tests}.
-However, InteraXon, the company behind the Muse headset, plays an important role in the commercialisation of \glspl{bci} as they have made cheaper and more visually attractive systems available in the open market.
-Section \ref{subsec:bci_gaining_popularity_better_processing} will go into further detail on this.
-A more recent version of the headband, named Muse 2, also aids in sleep monitoring.
-Muse 2 is shown in Figure \ref{fig:intro_medical_vs_commercial_2}.
+This headset relies on measuring Theta waves in the brain, which are lower frequency waves that suggest a user is meditating. % TODO: link to a table of freqs
+Section \ref{subsec:biomedical_signals_type_of_signals_brain_wave} talks about these brain wave frequencies in more detail.
+The actual accuracy and usefulness of these types of systems are debated, as discussed by \citet{interaxon_tests}.
+More recently, a newer version of the InteraXon headset came to market, named Muse 2, which also aids in sleep monitoring.
+This relies on detecting Delta waves among other patterns to determine the sleep quality of a user.
+Like before, this accuracy and usefulness can be argued for.
+A similar commercial product for sleep tracking is available from the company Dreem, under the name Dreem 2.
+Dreem has received more funding, as can be seen in figure \ref{fig:bci_money}, but InteraXon, the company behind the Muse headset, has arguably contributed more to the field.
+Not only was it one of the first commercial \glspl{bci} that gained media attention, but the company also plays an important role in the commercialisation of \glspl{bci} as their headsets are cheap, non-invasive and visually pleasing whilst also being widely available. 
+Adding to this, these headsets have pretty good supporting libraries in Python among other programming languages that allow developers to use these headsets for other purposes as well.
+Besides InteraXon, some other companies that specialize in providing commercially usable brain-signal recording headsets exist, as will be further discussed in section \ref{subsec:biomedical_signals_measuring_equipment}.
 
-% TODO: citing for sources of img?
-\begin{figure}[ht]
-  \begin{minipage}{\textwidth}
-    \centering
-    \begin{subfigure}{.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/introduction/fb_bci_keyboard.jpg}
-        \captionsetup{width=0.9\linewidth}
-        \captionsetup{justification=centering}
-        \caption{\gls{bci}-system to restore speech functionalities for people suffering from anarthria. Setup and illustration by \citet{facebook_bci_keyboard}.}
-        \label{fig:intro_medical_vs_commercial_1}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/introduction/muse.png}
-        \captionsetup{width=0.9\linewidth}
-        \captionsetup{justification=centering}
-        \caption{Commercial \gls{bci}-system sold as meditation and sleep tracking aid. Product and illustration by Muse\footnotemark[1].}
-        \label{fig:intro_medical_vs_commercial_2}
-    \end{subfigure}
-    \captionsetup{width=0.9\linewidth}
-    \captionsetup{justification=centering}
-    \caption{Contrast between a complex and bulky medical-grade \gls{bci}-system and a simpler and portable commercial \gls{bci} application.}
-    \footnotetext[1]{\url{https://choosemuse.com/muse-2/}}
-    \label{fig:intro_medical_vs_commercial}
-  \end{minipage}  
-\end{figure}
+Perhaps the most promising short-term commercial use of \glspl{bci} is in combination with \gls{vr} and \gls{ar}.
+Besides Meta's interest in this region, as discussed earlier in this section, Valve has also said it is actively researching how to use \glspl{bci} as a novel interaction system in \gls{vr} games \citep{valve_bci_interest}.
+Valve is the company behind Steam, one of the world's largest game marketplaces and they are specialized in creating games and gaming hardware as well.
+To achieve the goals of this project code-named \textit{Galea}, Valve is working together with OpenBCI, a well-respected company in the \gls{bci} research field that has provided open-source hardware and software for use in \gls{bci} systems.
+Tobii, a company that specializes in eye-tracking software, is also working on project Galea.
+With a final goal of creating an open-source \gls{bci} that can be used in gaming, the anticipation for the headset has been high.
+However, just as with deadlines from other companies such as Meta and Neuralink, the project has been postponed multiple times.
+This is not surprising as the promises of what a \gls{bci} can do are near endless and initial trials often offer promising results but going to a final product has been proven to be incredibly hard for these commercial companies.
 
-Perhaps the most prominent short term coming commercial use of \glspl{bci} is in combination with \gls{vr} and \gls{ar}.
-Besides \citet{facebook_bci_blog}, Valve, has also said it is actively researching how to use \glspl{bci} as input in \gls{vr} games \citep{valve_bci_interest}.
-Valve is the company behind Steam, one of the world's largest game marketplaces.
-To achieve this, Valve (specialized in gaming), OpenBCI (specialized in \gls{bci} hardware and software) and Tobii (specialized in eye-tracking) are working together to develop both open-source hardware and software \citep{bci_valve}.
+A final stream of money that is important to mention, is coming from militaries around the globe.
+The U.S. military among others is known to invest a lot of money in any form of innovation, especially related to devices that can give them a strategic edge when fighting in a war \citep{military_ai_money, military_ai_money_eu}.
+Whilst most of this information is classified, it is known that the U.S. Department of Defense and others have shown interest in a wide variety of applications using \glspl{bci} \citep{bci_military}.
+Whilst one can only guess what these government organisations are developing, it is likely that over time these applications might become public knowledge and aid the research field of \glspl{bci} in creating even better systems.
 
-Another stream of money is coming from the military, as the U.S. Department of Defense and others have shown interest in a wide variety of applications using \glspl{bci} \citep{bci_military}.
-All of these big companies and organisations with a lot of financial support are bound to accelerate the development of more general use \gls{bci}-systems.
+% | | | | | | | | | | | | |
+
+\subsubsection{Summary of big-tech using BCIs for commercial applications}
+\label{subsubsec:bci_gaining_popularity_big_tech_summary}
+
+To summarize, there have been a lot of big companies showing interest in commercial \gls{bci} applications in the past few years.
+Some might contribute directly to the field by funding scientific research, which is often still focused on medical applications but whose results can show potential for certain commercial applications \citep{facebook_bci_blog, facebook_bci_keyboard, neuralink_whitepaper}.
+On the other hand, some companies are working on commercial products internally, mostly for improving work efficiency \citep{fb_building8, bci_nude_detection} or for recreational use \citep[Muse and InteraXon headband,][]{valve_bci_interest}.
+These commercial products have yet to see truly successful examples, as they are either questionable in delivering what they promise \citep{interaxon_tests}, experience delayed deadlines or are even cancelled in their entirety.
+Nonetheless, these companies focusing on commercial applications often have high amounts of funding and a focus on the \gls{ux} of \glspl{bci} which could help accelerate research in the field and make \gls{bci} systems more visually pleasing and accepted by the broader public.
+In this way, they also contribute to Wolpaw's vision of a perfect \gls{bci} system as discussed in section \ref{sec:bci_introduction}.
+
 Figure \ref{fig:bci_money} shows the funding of \gls{bci}-related companies founded after 2010 as a rough indication of how much money is spent on start-up companies in the field.
+Interestingly, from the companies Neurable, Muse and Neuralink mentioned in this thesis, the funding amount is in proportion to the overall popularity of that company to the wider public, although this is by no means a proven relation.
+It also shows that whilst academic research on \glspl{bci} doesn't require huge funding, with open-source datasets and relatively cheap hardware available as is further discussed in section \ref{subsec:biomedical_signals_measuring_equipment} and \ref{subsec:bci_pipeline_training_data_gathering_windowing}, creating an effective commercial product can become an expensive affaire rather quickly.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\linewidth]{images/introduction/bci_money.png}
+    \includegraphics[width=\linewidth]{images/introduction/funding.png}
     \captionsetup{width=0.9\linewidth}
     \captionsetup{justification=centering}
-    \caption{Funding of newer \gls{bci} related companies depicted in millions (USD).\\Figure by \citet{bci_money} based on data by Meta from 2019. It is noted that only a selected portion of companies is shown that were created after 2010. Older companies with exponentially higher funding exist.}
+    \caption{Funding of newer \gls{bci} related companies depicted in millions (USD).\\Figure based on data by \citet{bci_money} from 2019. It is noted this data is limited to companies that were created after 2010 where funding information is made available.}
     \label{fig:bci_money}
 \end{figure}
 
 % - - - - - - - - - -
 
+
 \subsection{Improved brain-signal measuring facilities}
 \label{subsec:bci_gaining_popularity_better_measuring}
 
-Most \glspl{bci} rely on \gls{eeg} as source of data and this paper will focus mainly on \gls{eeg} driven \gls{bci}.
-Chapter \ref{ch:biomedical_signals} goes into depth on what \gls{eeg} is, the equipment used and more.
-For this introduction, it suffices to know that \gls{eeg} measures the electrical potential difference, in \gls{mv}, between electrodes placed inside or on the skull.
+\glsreset{bci}
+\glsreset{hmi}
+\glsreset{ux}
 
-As discussed further in section \ref{subsec:biomedical_signals_measuring_equipment}, wet electrodes are widely considered to produce better data quality then dry electrodes in their current form \citep{wet_vs_dry, dry_electrode_status, wet_dry_comparison_experiment}.
-However, wet electrodes make use of a gel that is not only time consuming to apply but also cosmetically inconvenient, both of which are bad properties for a (commercial) \gls{bci}.
-The gel could also cause allergic effects for the user and artefacts in measurements due to a change in viscosity of the gel over time.
-Luckily, the advancements in both active-electrode amplification and dry electrodes are making the gap with wet electrodes smaller and smaller \citep{wet_vs_dry, dry_electrode_status, wet_dry_comparison_experiment}.
-Dry electrodes don't require the application of a gel and due to the active-electrode amplification, they can be used in more challenging environments outside of the lab \citep{wet_vs_dry}.
-These benefits of dry electrodes with usable data quality make real-world applications and commercialisation of \glspl{bci} more viable.
+As \glspl{bci} are a type of \gls{hmi} relying solely on brain signals to operate, the measuring facilities for acquiring data of those brain signals have a direct impact on the capability of those systems.
 
-However, an issue that remains, even with the best active wet electrodes, is the contrast between spatial and temporal resolution.
-\gls{eeg} is known to have a good temporal resolution but rather poor spatial resolution.
-A good spatial resolution would mean that the measurement from electrodes corresponds only to a small, known region of the brain, typically underneath that electrode.
-Such a correlation is helpful as it reduces noise and increases interpretability.
-It also allows for fewer electrodes to be used if only the activity of certain areas of the brain is of interest.
-However, improving spatial resolution has been proven challenging \citep{spatial_resolution}.
-Besides poor signal-to-noise ratios of the measurements, this is also caused by the anatomy of the brain.
-Different structures, such as the skull and \gls{csf}, \textit{blur} and \textit{disperse} the perceived signal, making it hard to track where the measured signal came from.
-Whilst increasing the number of electrodes placed on the skull already physically limits the region under a signal electrode, it makes electrodes more prone to overlap from signals also measured by other electrodes.
-Because of this, simply adding electrodes only improves the spatial resolution to a certain point.
-Besides this, there is also the issue that decreasing the distance between electrodes introduces the need for placing more electrodes to cover the entire region of the brain, but the space for placing electrodes on the skull is limited.
-Another issue is that increasing the number of electrodes to be placed and a smaller spatial resolution region means that the alignment of the electrodes on the skull is now even more prone to errors and change over time (e.g. due to movement of the user).
-\Citet{spatial_resolution} has found 19-electrode EEG systems to have a highly varying spatial resolution in the 20 to 40 $cm^3$ range.
-Systems with 129 electrodes were found to have a spatial resolution of around 6 to 8 $cm^3$ \citep{spatial_resolution}.
-According to \citet{neurons_book}, around $10^7$ parallel pyramidal neurons reside in each $cm^3$ of the brain cortex.
-This means the acquired data is still obtained from a large number of neurons even in the best spatial resolutions.
-Whilst improvements in electrodes hardware and placement guiding might improve the spatial resolution further, these improvements have been plateauing.
-Successful attempts at improving the spatial resolution of \gls{eeg} using filtering and other processing techniques have been made.
-These often rely on using Laplacians \citep{improve_eeg_spatial_laplacian1, improve_eeg_spatial_laplacian2, improve_eeg_spatial_laplacian3}, although other approaches using for example \glspl{cnn} have been proposed \citep{improve_eeg_spatial_cnn}.
-These techniques also have the added benefit of cleaning the time-varying signal as described by \citet{improve_eeg_spatial_comparison} and illustrated by the \glspl{topomap} in Figure \ref{fig:improve_eeg_spatial_comparison}.
+Most \glspl{bci} rely on non-invasive measuring equipment that uses \gls{eeg} as a source of data and this paper will focus mainly on such measuring equipment as well.
+Chapter \ref{ch:biomedical_signals} explains in greater detail what \gls{eeg} and some of its alternatives are, the equipment used for acquiring brain-signal data and more.
+For this introduction, it suffices to know that non-invasive \gls{eeg} measuring equipment measures the electrical potential difference, often in \gls{mv}, between electrodes placed on the scalp.
+
+Following Wolpaw's definition for a perfect \gls{bci} given in section \ref{sec:bci_introduction}, the recording hardware should ideally be aesthetically acceptable and shouldn't require the assistance of a professional to install.
+In recent years, new developments in this hardware have made meeting these criteria more plausible, which are adressed in this section.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Hardware improvements in non-invasive EEG measuring equipment}
+\label{subsubsec:bci_gaining_popularity_better_measuring_hardware}
+
+% TODO add figure met kleurtjes van components zodat naar kleurtjes kan reffen en die refs naar kleurtjes in tekst steken
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.6\linewidth]{images/introduction/improve_eeg_spatial_comparison.png}
+    \includegraphics[width=\linewidth]{example-image-a}
     \captionsetup{width=0.9\linewidth}
     \captionsetup{justification=centering}
-    \caption{Figure by \citet{improve_eeg_spatial_comparison} showing the \glspl{topomap} of the same signal at the same time but one with the use of a scalp laplacian.}
-    \label{fig:improve_eeg_spatial_comparison}
+    \caption{General components of non-invasive EEG measuring equipment.}
+    \label{fig:general_eeg_measuring_components}
 \end{figure}
 
+Three major hardware distinction made between the electrodes used in non-invasive \gls{eeg} measuring equipment is whether they are wet or dry electrodes, whether they are active or passive electrodes and whether communication to the processing unit happens wirelessly or not.
+When considering Wolpaw's definition of a perfect \gls{bci} described in section \ref{sec:bci_introduction}, dry-electrodes with passive amplification that connect wirelessly to the processing unit would be ideal.
+However, when looking at data quality, a wired wet-electrode with active amplification is best.
+Luckily, recent advancements have made these differences in data quality more acceptable, as will shortly be discussed in what follows.
 
-However, this issue is most apparent in non-invasive \glspl{bci} where electrodes are placed on the skull.
-Flexible electrodes placed inside the skull to form an invasive \gls{bci}-system allow for a far larger amount of electrodes to be installed with far less obstruction from other structures.
-Such an invasive system can also have far higher placement precision and requires less active-electrode amplification as the electrode is closer to the source.
-This improves signal quality, spatial resolution and allows to obtain measurements from more regions of the brain that were previously blocked or too far away from the skull to be accurately measured.
-State-of-the art in invasive \gls{bci} include the previous mentioned work by \citet{neuralink_whitepaper}.
-Whilst theoretically such invasive systems are superior to non-invasive alternatives, they require operations to be applied and are far more expensive.
-The robots build by \citet{neuralink_whitepaper} aim to automate this placement procedure making it more affordable, quicker and less dangerous.
-However, the ease of use appeal and far cheaper price for non-invasive alternatives still outweigh the benefits offered by invasive methods for almost all but highly medical applications.
+Wet \gls{eeg} electrodes are electrodes which require an electrolytic gel to be applied between the electrode and the scalp.
+This gel functions as a conductor and, as discussed further in section \ref{subsec:biomedical_signals_measuring_equipment}, currently allows wet electrodes to have better data quality compared to dry electrodes \citep{wet_vs_dry, dry_electrode_status, wet_dry_comparison_experiment}.
+However, wet electrodes require the assistance of a professional to correctly apply the gel and are far less aesthetically acceptable than dry electrodes.
+Adding to this, the electrolytic gel could also cause allergic effects for the user. Due to the viscosity of the electrolytic gel changing over time, artefacts in measurements may also appear \citep{dry_electrode_status}.
+These are unwanted properties and conflict with Wolpaw's vision of a perfect \gls{bci}.
+
+Advancements in dry electrodes are making the gap with wet electrodes smaller and smaller \citep{wet_vs_dry, dry_electrode_status, wet_dry_comparison_experiment}.
+These dry electrodes don't require the use of an electrolytic gel and given the use of an appropriate headset can be installed on the scalp without the assistance of a professional. 
+Both of these properties are in favour of Wolpaw's properties for a perfect \gls{bci}.
+The main reason dry-electrodes are becoming more viable to be used in real-life environments is due to improvements in active electrode technology \citep{wet_vs_dry}.
+
+Active electrodes are electrodes which do more than just forwarding their measured voltage fluctuation to the main controller board whilst passive electrodes do just that.
+This is often necessary since the measured signal is of such low strength that even a short distance cable from the electrode to the main board can cause a lot of noise due to electromagnetic interference \citep{active_electrode_explained}.
+To reduce this noise, a preamplifier is used which additionally amplifies the signal before transmission over the wire as opposed to only being amplified in the main controller board.
+This makes the final system less compact and more expensive but is often required in anything but lab environments, especially for wireless dry electrodes, as further discussed by \citet{wet_vs_dry}.
+
+When talking about wireless electrodes, it is not the effective electrode itself that is wireless but rather the communication between the main controller board, a board to which all electrodes are connected by wire, and the processing unit such as a computer.
+Whilst a wireless approach allows for the creation of an aesthetically more pleasing system where the measuring hardware and processing hardware are physically separated, a wired connection will always remain more efficient and reliable. 
+However, as discussed by \citet{bluetooth_evaluation}, Bluetooth, an open standard for wireless communication, has seen extensions that are more reliable, power efficient and capable of higher transmission speeds.
+This has made wireless solutions more appealing in \gls{bci} systems but overall issues with wireless solutions, in general, will prevail.
+Most important is the risk of connection loss and a higher latency resulting in a longer time between the point a signal is measured and it is received by the computational unit.
+
+All of these advancements have enabled companies such as Muse, Dreem and OpenBCI to develop non-invasive,  dry-electrode based \gls{eeg} measuring equipment with active amplification in an affordable and often aesthetically acceptable manner.
+An example of such an aesthetically pleasing system is given in Figure \ref{fig:example_eeg_measuring_devices_commercial_clean}.
+As \glspl{bci} become even more popular, a heavier focus on affordability and visuals with \gls{eeg} measuring equipment is to be expected.
+As these two properties were less important in previous medical settings where a patient would wear such equipment only when undergoing a test in the hospital.
+Figure \ref{fig:example_eeg_measuring_devices} shows the contrast between a high-end medical-grade \gls{eeg} recording system and one that focuses on \glsfirst{ux}.
+
+% TODO: find appropriate figures
+\begin{figure}[ht]
+  \begin{minipage}{\textwidth}
+    \centering
+    \begin{subfigure}{.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{example-image-a}
+        \captionsetup{width=0.9\linewidth}
+        \captionsetup{justification=centering}
+        \caption{Medical \gls{eeg} measuring devices that uses wet electrodes with active amplification over a wired connection.}
+        \label{fig:example_eeg_measuring_devices_medical_bulky}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{example-image-b}
+        \captionsetup{width=0.9\linewidth}
+        \captionsetup{justification=centering}
+        \caption{Commercial \gls{eeg} measuring devices that uses dry electrodes with active amplification over a wireless connection.}
+        \label{fig:example_eeg_measuring_devices_commercial_clean}
+    \end{subfigure}
+    \captionsetup{width=0.9\linewidth}
+    \captionsetup{justification=centering}
+    \caption{The contrast between \gls{eeg} measuring equipment focused on the best possible data quality and one that favours user comfort.}
+    \label{fig:example_eeg_measuring_devices}
+  \end{minipage}  
+\end{figure}
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Algorithmic improvements for non-invasive EEG measuring equipment}
+\label{subsubsec:bci_gaining_popularity_better_measuring_software}
+
+Whilst hardware improvements has made the collection \gls{eeg} data more affordable, reliable and accurate, one important issue still remains.
+Even with the best active wet electrodes, The contrast between spatial and temporal resolution is enormous.
+\Gls{eeg} is known to have a good temporal resolution but rather poor spatial resolution.
+A good spatial resolution would mean that the measurement from electrodes corresponds only to a small, known region of the brain, typically underneath that electrode.
+Such a correlation is helpful as it reduces noise and increases interpretability of the signal.
+It also allows for fewer electrodes to be used if only the activity of certain areas of the brain is of interest.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\linewidth]{images/introduction/brain_anatomy.png}
+    \captionsetup{width=0.7\linewidth}
+    \captionsetup{justification=centering}
+    \caption{The anatomy of the human head, specifically of the cerebrospinal system. Non-invasive \gls{eeg} measuring equipment is placed on the scalp, causing signals from the brain to be blocked by the skull and \glsfirst{csf} among other structures. Free to use Figure by Blausen.com staff \citep{figure_blausen}.}
+    \label{fig:brain_anatomy}
+\end{figure}
+
+Thus, many attempts have been made at improving spatial resolution of \gls{eeg} but it has been proven to be a challenging task \citep{spatial_resolution}.
+Besides potential noise of the measurements, this is also caused by the anatomy of the human head.
+Remember that the electrodes used for non-invasive \gls{eeg} measuring are placed on the scalp, the skin of the human head.
+As shown in Figure \ref{fig:brain_anatomy}, besides the scalp, different structures such as the skull and \glsfirst{csf} are in between the electrodes and the actual brain.
+These components \textit{blur} and \textit{disperse} the perceived brain-signal, making it hard to track where the measured signal came from when looking at the electrical activity on the scalp.
+
+Whilst increasing the number of electrodes placed on the skull physically limits the region under one single electrode, it doesn't guarantee an improve in spatial resolution.
+Indeed, clever processing algorithms are required to correct for overlapping signals between electrodes so that the overlapped signal is correct for and the effective spatial resolution is improved.
+Besides this, there is also the issue that decreasing the distance between electrodes introduces the need for placing more electrodes to cover the entire region of the brain.
+This increases cost, lowers user comfort and decreases the visual acceptance of the system.
+Another issue with increasing the number of electrodes and decreasing the spatial resolution means that the alignment of the electrodes on the skull is now even more prone to errors and change over time, e.g. due to movement of the user.
+This makes the need for a professional higher, which is also detrimental with respect to Wolpaw's criteria for a perfect \gls{bci}.
+
+\Citet{spatial_resolution} has found 19-electrode EEG systems to have a highly varying spatial resolution in the 20 to 40 $cm^3$ range.
+Systems with 129 electrodes were found to have a spatial resolution of around 6 to 8 $cm^3$ \citep{spatial_resolution} when also using algorithmic tricks to further improve spatial resolution.
+However, according to \citet{neurons_book}, around $10^7$ parallel pyramidal neurons reside in each $cm^3$ of the brain cortex.
+This means the acquired data is still obtained from a incredibly large number of neurons even in the best spatial resolutions.
+
+Whilst hardware improvements in both electrodes and headsets for better placement might improve the spatial resolution further, the spatial resolution improvements possible through hardware have been plateauing.
+As was the case for the comparison between few and many electrode systems by \citet{spatial_resolution}, appropriate algorithms have to be used to effectively increase the spatial resolution.
+Recently, these techniques often rely on using Laplacians \citep{improve_eeg_spatial_laplacian1, improve_eeg_spatial_laplacian2, improve_eeg_spatial_laplacian3}, although other approaches using for example \glspl{cnn} have been proposed \citep{improve_eeg_spatial_cnn}.
+These techniques also have the added benefit of cleaning the time-varying signal as described by \citet{improve_eeg_spatial_comparison}.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Invasive BCIs try to combat the issues of EEG}
+\label{subsubsec:bci_gaining_popularity_better_measuring_invasive}
+
+The previous parts discussed how non-invasive \gls{eeg} measurements have been improved.
+However, alternatives to \gls{eeg} exist for measuring brain signals, some of which are further discussed in section \ref{subsec:biomedical_signals_measuring_modalities}.
+Most notable in recent years is measuring modalities that rely on capturing brain signals by equipment directly inserted into the human body, making it an invasive approach.
+One such example of an invasive measuring modality is \gls{ecog} and the most popular invasive \gls{bci} at the moment is the one proposed by \citet{neuralink_whitepaper}.
+The white paper by \citet{neuralink_whitepaper} has shown that invasive \glspl{bci} could greatly exceed the data quality and visual aesthetics of even the best non-invasive alternatives.
+As further discussed in \ref{subsec:biomedical_signals_measuring_invasive}, this invasive method places flexible electrodes directly inside the skull.
+These electrodes are invisible to the human eye with the only visual component being a rechargeable wireless transmitter that is magnetically attached to the skull.
+Neuralink's final aim is to make the brain-signal measuring equipment completely invisible to the human eye.
+
+\citet{neuralink_whitepaper} has built robots to insert the electrodes inside the skull in a very precise location without the need for an open-skull operation or even anaesthesia.
+This allows for a magnitude more electrodes to be installed and is expected to suffer far less from noise resulting in a far greater temporal and spatial resolution compared to \gls{eeg}.
+This suggests that invasive systems are superior to non-invasive alternatives, but the fact that they are more permanent, far more expensive and invasive gives rise to technical and ethical questions.
+These ethical questions are further discussed in section \ref{sec:bci_ethical}.
+From a technical standpoint, maintaining and upgrading a non-invasive \glspl{bci} is far simpler and cheaper.
+The fact that you are inserting foreign objects into the brain also introduces far more health risks than non-invasive systems do.
+Convincing the user to put on a headset that can be removed will also be far easier than convincing the user to get a \gls{bci} permanently implemented in their skull.
+
 It has also been shown that the theoretical more precise temporal and spatial resolution doesn't linearly correlate with improved \gls{bci} accuracy/control, rather it seems to plateau relatively quickly with current state-of-the-art signal processing and classification techniques \citep{dropping_curve_eeg_lectrodes, more_electrodes_not_better}.
-Some critics point to the dropping curve found by \citet{dropping_curve_eeg_lectrodes} to conclude that the increased electrodes amount and reachable neurons achieved by \citet{neuralink_whitepaper} don't have a direct impact on the usability of \glspl{bci} in real-world applications.
+Some critics point to the dropping curve found by \citet{dropping_curve_eeg_lectrodes} to conclude that the increased electrode amount and reachable neurons achieved by \citet{neuralink_whitepaper} don't have a direct impact on the usability of \glspl{bci} in real-world applications.
+Because of these aspects, the ease-of-use appeal and far cheaper price for non-invasive alternatives still outweigh the benefits offered by invasive methods for almost all but highly medical applications, at least in the opinion of the writer of this thesis.
 Nevertheless, future improvements in signal processing and classification techniques could prove invasive methods to be far superior for \gls{bci} applications and the mechanical achievements so far are not to be underestimated.
+An invasive system is also promising concerning Wolpaw's definition of a perfect \gls{bci} discussed in section \ref{sec:bci_introduction}.
+Once installed, it would ideally require no more assistance from a professional, is aesthetically acceptable as it can be invisible to the human eye, has signs of being far more reliable than \gls{eeg} and more.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Summarizing the improvement of measuring facilities}
+\label{subsubsec:bci_gaining_popularity_better_measuring_summary}
+
+Since \glspl{bci} rely solely on brain signals to operate, the measuring facilities for acquiring data of those brain signals have a direct impact on the capability of those systems.
+As was discussed in this section, the most commonly used modality for non-invasive data acquisition, \gls{eeg}, has benefited from both hardware and software improvements.
+From a hardware point of view, the switch to dry electrodes using active amplification and wireless connection to a computational unit has made \glspl{bci} more favourable concerning Wolpaw's criteria for a perfect \gls{bci} \citep{bluetooth_evaluation, wet_vs_dry, active_electrode_explained}.
+From a software perspective, clever algorithms have enabled preprocessing of the signal to improve spatial resolution \citep{improve_eeg_spatial_laplacian1, improve_eeg_spatial_laplacian2, improve_eeg_spatial_laplacian3, improve_eeg_spatial_cnn}.
+Improving the spatial resolution can also positively affect the temporal resolution due to inherent noise reduction as discussed by \citet{improve_eeg_spatial_comparison}. 
+As is further discussed in section \ref{subsec:processing_signals_useful_data_preproc}, other prepossessing techniques have also been introduced and refined further aiding in improving the data quality. 
 
 % - - - - - - - - - -
 
 \subsection{More powerful, affordable and portable equipment}
 \label{subsec:bci_gaining_popularity_better_processing}
 
-The improvements in \gls{eeg} measuring equipment have likely been influential in the gaining popularity of \gls{bci} systems.
-However, state-of-the-art \gls{bci} equipment with the highest possible resolution and accuracy remains expensive and bulky.
-Complementary, as chapter \ref{ch:processing_signals} will discuss in greater detail,  working with \gls{eeg} can require some computationally heavy computations to achieve desirable classification results.
-Luckily, together with the improvements in state-of-the-art equipment, there is also an emerging supply of less accurate but far more affordable and portable \gls{eeg} measuring equipment.
-Due to Moore's law, \glspl{cpu} and other computational hardware have seen massive improvements in computational power as well.
-This has made algorithms previously requiring expensive specialized computational hardware possible on the average personal computer.
-These factors have made \gls{bci} applications, which were previously limited to lab environments with a high financial cost, accessible to a far broader public.
+The improvements in brain signal measuring equipment have likely been influential in the gaining popularity of \glspl{bci} as it provides more precise data more affordably.
+However, having the possibility of obtaining clean data is only part of the way to a perfect \gls{bci} system.
+Other improvements concerning computational power, affordability and portability have also played an important role in \gls{bci} research, contributing to the rise of popularity in the process.
 
-Early attempts at making the technology more portable and affordable include those by \citet{early_bci_drowsiness} and \citet{early_bci_multimedia}.
-In essence, these applications rely on separating the \gls{eeg} measuring and data processing in two standalone systems connected over Bluetooth.
-This allows for a lightweight measuring device to be placed on the user's head, with a heavier and bulkier computational unit to process the signals which ideally is still pocket-able.
+% | | | | | | | | | | | | |
+
+\subsubsection{The emergence of faster and cheaper hardware}
+\label{subsubsec:bci_gaining_popularity_better_processing_cheaper}
+
+As chapter \ref{ch:processing_signals} will discuss in greater detail, working with \gls{eeg} data, or other forms of brain signal data can require computationally very heavy operations to achieve desired processing results of that data.
+Luckily, together with the improvements in state-of-the-art measuring equipment, there is also an emerging supply of less accurate but far more affordable and portable \gls{eeg} measuring equipment.
+Due to Moore's law, \glspl{cpu} and other computational hardware have also seen massive improvements in computational power.
+This has made algorithms previously requiring expensive specialized computational hardware possible on the average personal computer.
+All of these factors have made \gls{bci} applications, which were previously limited to lab environments with a high financial cost, accessible to a far broader public.
+The availability of open-source datasets for common tasks related to brain signals has also allowed computer scientists to experiment in the field without additional hardware cost \citep{eeg_data}.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Splitting BCIs into multiple major components for portability and reusability}
+\label{subsubsec:bci_gaining_popularity_better_processing_split_into_components}
+
+Early attempts at making \glspl{bci} more portable and affordable include those by \citet{early_bci_drowsiness} and \citet{early_bci_multimedia}.
+In essence, these applications rely on separating the data acquisition process and data processing into two standalone systems connected over Bluetooth.
+Remember from section \ref{subsec:bci_gaining_popularity_better_measuring} that Bluetooth is an open standard for wireless communication that has seen improvement in the last couple of years.
+Dividing a \gls{bci} system in a data acquisition and data processing system allows for creating a lightweight measuring device to be placed on the user's head, with a heavier and bulkier computational unit to process the signals which ideally is still pocket-able.
 The latter was not a trivial task and introduced the need for custom hardware at the time.
 \citet{early_bci_drowsiness} used a custom-made \gls{dsp} for the task whilst \citet{early_bci_multimedia} opted for a more general \gls{fpga} based \gls{dsp}.
-Whilst these were great demonstrations of how the technology could be used outside the lab, the actual usage for a bci detecting driver's drowsiness \citep{early_bci_drowsiness} and allowing multimedia control \citep{early_bci_multimedia} was rather limited.
+Whilst these were great demonstrations of how the technology could be used outside the lab, the actual usage for a bci detecting driver's drowsiness \citep[as proposed in the paper by][]{early_bci_drowsiness} and allowing multimedia control \citep[as proposed in the paper by][]{early_bci_multimedia} was rather limited.
 The idea of custom-made and possibly proprietary processing hardware which focuses on a single task is also very limiting, although it does have commercial benefits.
 
 What did stick, was the idea of splitting the hardware into two standalone parts, a wireless \gls{eeg} measuring device and a processing unit.
-It made it possible for smaller research teams or even individuals to take part in this highly interdisciplinary field.
+As discussed in section \ref{subsec:bci_gaining_popularity_better_measuring}, a wireless connection between these two components is also favoured when taking into account Wolpaw's criteria on a perfect \gls{bci}.
+It also makes it possible for smaller research teams or even individuals with a certain specialisation to take part in the highly interdisciplinary field by not requiring knowledge of all components but just the one that is of interest.
 As an example, it enables computer scientists to purchase off-the-shelve affordable \gls{eeg} measuring hardware and communicate with it through provided libraries for their favourite programming language.
 In most cases, the personal computer they already own is powerful enough for the experiments, especially for offline systems.
+This allows for reusing existing hardware which is great from a financial perspective.
 Section \ref{subsec:biomedical_signals_measuring_equipment} discusses some of the \gls{eeg} measuring equipment available on the market.
-It is noted that \gls{eeg} measuring hardware is not strictly needed for a computer scientist as researchers such as \citet{eeg_data} have made excellent free to use \gls{eeg} datasets available.
+It is noted that \gls{eeg} measuring hardware is not strictly needed for a computer scientist as researchers such as \citet{eeg_data} have made excellent free-to-use \gls{eeg} datasets available.
 
 With the introduction of the iPhone in 2007, it didn't take long for researchers to explore the idea of using a mobile phone as a processing unit for a \glspl{bci}.
 \citet{early_bci_phone} were one of the first to explore this idea, with a \gls{ssvep}-based \gls{bci}.
 Session \ref{sec:biomedical_signals_type_of_signals} will go into further detail on these type of signals.
-In essence, such a system relies on \gls{erp}, a category of brain signals that are often easy to detect but require a specific stimulation.
+In essence, such a system relies on a category of brain signals that are often easy to detect but require a specific stimulation.
 This type of system can be used for a wide variety of applications.
 Imagine an audio-guided tour in a museum where visitors only need to stare at a screen next to an item of interest to start hearing the explanation of that item.
 This could be achieved with only a couple of dry electrodes placed on the skull in a headset that also provides the audio to the visitor.
 This headset could then be connected over Bluetooth to the visitor's phone running an app for the museum tour.
 The technology needed for such a system would lean close to that of so-called \textit{P300 spellers}, which have already been heavily studied \citep{p300_spellers_review, p300_keyboard_flashing, p300_spellers}.
+Such a system would also fit perfectly with Wolpaw's definition of a perfect \gls{bci}, albeit oriented to a commercial setting rather than a medical one.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Making BCIs a one-in-all device again for profitability}
+\label{subsubsec:bci_gaining_popularity_better_processing_profitibility}
 
 Whilst the advantages of using the computational power of devices a customer already owns are clear, it also imposes some disadvantages.
 For one, the varying type of computational devices is bound to give varying performance results and compatibility issues.
-Adding to this is the added complexity for the customer of setting up the system to work with its devices himself.
+Adding to this, the measuring equipment and processing equipment can't be connected from the factory resulting in an experience that is not plug-and-play.
 From a commercial perspective, it would be easier if the system was all-inclusive and possibly patentable. 
-Recent trends in computing hardware where manufacturers are shifting away from general all-purpose \glspl{cpu} and developing their custom \gls{cpu} architectures have shown that custom chips can outperform their general counterparts.
+
+Recent trends in computing hardware where manufacturers are shifting away from general all-purpose \glspl{cpu} and them developing their own custom \gls{cpu} architectures have shown that custom chips can outperform their general counterparts.
+Patenting the architecture of those chips is possible making it commercially interesting.
 Apple's mac M series processors announced in 2020 are one such recent example.
-These M series processors have a neural engine that is stated to accelerate the time needed for \gls{ml} tasks.
-\glspl{gpu} used for autonomous driving systems also differ from general-purpose \glspl{gpu}.
-Because of this, the author of this paper believes custom made chips could create a future where the headset has a directly integrated processing unit again.
+These M series processors have a neural engine that is stated to accelerate the time needed for \gls{ml} tasks\footnote{\url{https://www.apple.com/newsroom/2021/10/introducing-m1-pro-and-m1-max-the-most-powerful-chips-apple-has-ever-built/}}.
+\Glspl{gpu} used for autonomous driving systems also differ from general-purpose \glspl{gpu}.
+
+Because of this, the author of this paper believes custom-made chips could create a future where the headset has a directly integrated processing unit once again.
 Whilst this would make for a more attractive package for the customer and give commercial advantages to the manufacturer, it would be disadvantageous for research purposes.
 The manufacturer could limit the possibilities of using the \gls{bci} for different purposes, patent promising hardware and more.
 Another possible route the author of this paper sees is the use of cloud computing and fast 5G connections to also create a more simple user experience that doesn't require Bluetooth tethering to a close-by processing unit.
 This approach would still leave a separation between measuring hardware and processing hardware making changes to any of the two independently easier.
+Concerning Wolpaw's criteria of a perfect \gls{bci}, these approaches would also be acceptable.
 
-To summarize, the system by \citet{early_bci_phone} was one of the earliest examples of a true portable \gls{bci}-system that was affordable and relied on a smartphone as a processing unit.
+% | | | | | | | | | | | | |
+
+\subsubsection{Summarizing the improvements on computational power, affordability and portability}
+\label{subsubsec:bci_gaining_popularity_better_processing_summary}
+
+To summarize, early attempts at making \glspl{bci} more portable and affordable focused on splitting the brain signal measuring equipment from the data processing equipment \citep{early_bci_drowsiness, early_bci_multimedia}.
+The system by \citet{early_bci_phone} was one of the earliest examples of a true portable \gls{bci}-system that was affordable and relied on a smartphone as a processing unit.
 It showed how working with \glspl{bci} can be done using cheap and general-purpose hardware.
 The research was published at a turning point for \glspl{bci} where publication numbers on \gls{bci}-related papers started rising.
 This hints that the increased affordability and portability combined with more computational power played an important factor in the rise of interest in \gls{bci}. 
 The rise of \gls{bci}-related papers is illustrated in figure \ref{fig:bci_publications}.
 
-% Todo; change figure to include BCI work, P300 bci work and MI BCI work and ...
+In the future, as \glspl{bci} see more commercial applications, this separation of a \gls{bci} in a measuring component and processing component might reverse to an all-inclusive device.
+This has potential downsides for scientific research but makes commercial sense.
+The replacement of physical computational units in close proximity to cloud solutions is another possible evolution.
+
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.6\linewidth]{images/introduction/papers_on_bci.jpg}
-    \captionsetup{width=0.9\linewidth}
+    \includegraphics[width=0.7\linewidth]{images/introduction/papers_on_bci.png}
+    \captionsetup{width=0.6\linewidth}
     \captionsetup{justification=centering}
-    \caption{Number of \gls{bci}-related papers over time. Figure by \citet{bci_progress_overview} based n found papers through PubMed using the keyword: "brain computer interface".}
+    \caption{Number of \gls{bci}-related papers over time. Based on data by \citet{bci_progress_overview} obtained by searching PubMed using the keyword: "brain computer interface".}
     \label{fig:bci_publications}
 \end{figure}
 
 
 % - - - - - - - - - -
+
+% START HERE; HERSCHRIJVEN NAAR DIE DIVISIONS UIT PPT EN UIT INTRO
+% NOTE OOK DELETED INTRO
 
 \subsection{Specialized machine learning techniques}
 \label{subsec:bci_gaining_popularity_improved_ml}
@@ -306,9 +531,12 @@ These available resources are a massive bonus for the \gls{bci} field when used 
 The latter is easier said then done, as section \ref{sec:processing_signals_interpreting_ml} will address further when talking about \gls{ml} in \gls{bci} applications and the issues it has.
 
 % ---------------------------------------------- 
+% USE CASES
+% ---------------------------------------------- 
 
-\section{BCIs for people with disabilities and diseases}
-\label{sec:bci_helping_disabled}
+\section{Medical use cases for BCIs}
+\label{sec:bci_common_use_cases}
+% some practical examples of \gls{bci} systems that have been developed
 
 Previous sections addressed some of the recent commercial applications from \glspl{bci}.
 Whilst these are great examples of how the technology can be used by the general population, the medical applications of \glspl{bci} remain very important to the field, if not of most importance.
@@ -318,7 +546,7 @@ This section will highlight some of the major areas where \glspl{bci} can improv
 % - - - - - - - - - -
 
 \subsection{Preventing, monitoring and controlling diseases with BCIs}
-\label{subsec:bci_helping_disabled_diseases}
+\label{subsec:bci_common_use_casesdiseases}
 
 \Gls{eeg} trials are often used to diagnose brain disorders.
 Especially seizure-related disorders such as epilepsy are often diagnosed through \gls{eeg} readouts.
@@ -358,7 +586,7 @@ However, all of these systems make use of similar methodologies compared to more
 Restoration of lost mobility and environmental control is where \glspl{bci} shine.
 As most prostheses rely on \gls{emg}, a muscle-based \gls{biosignal}, for controlling them, they do not apply to patients who don't have muscle control anymore.
 Luckily, \gls{bci} are often used as novel interaction methods using brain signals, which enables such patients to regain previous levels of mobility and control.
-Section \ref{subsec:bci_helping_disabled_extending_medical_system}, \ref{subsec:bci_helping_disabled_prostheses} and \ref{subsec:bci_helping_disabled_novel_interaction} give some more insight on how \glspl{bci} are used regain lost mobility and environmental control.
+Section \ref{subsec:bci_common_use_casesextending_medical_system}, \ref{subsec:bci_common_use_casesprostheses} and \ref{subsec:bci_common_use_casesnovel_interaction} give some more insight on how \glspl{bci} are used regain lost mobility and environmental control.
 As \citet{bci_rehabilitation} discuss, \glspl{bci} can also be used to guide patients in rehabilitation through brain plasticity.
 Brain plasticity, or neuroplasticity, is the brain's ability to adapt itself based on experience.
 \Glspl{bci} could show patients which regions of the brain are used and which types of brain signals are present.
@@ -375,7 +603,7 @@ The work by \citet{bci_in_medicine} also highlights some related \gls{bci} work 
 % - - - - - - - - - -
 
 \subsection{Using BCIs to extend existing medical systems}
-\label{subsec:bci_helping_disabled_extending_medical_system}
+\label{subsec:bci_common_use_casesextending_medical_system}
 
 \Glspl{bci} can be used in a wide variety of applications.
 Even in non-trivial domains, they can find their usages as a standalone system or as an extension to existing systems.
@@ -410,7 +638,7 @@ Alternatively, when the limb is still intact but the control over (part of) the 
 Just like robotic prostheses, most exoskeletons rely on \gls{emg}.
 A thesis by the German \citet{emg_exoskeleton} highlights the fundamentals of \gls{emg} based exoskeletons.
 
-As was already touched upon in section \ref{subsec:bci_helping_disabled_diseases}, \gls{emg} measurements are not applicable for all patients.
+As was already touched upon in section \ref{subsec:bci_common_use_casesdiseases}, \gls{emg} measurements are not applicable for all patients.
 In particular, people who have neurological diseases limiting the production of the required muscular based \glspl{biosignal} fall outside the scope for these solutions.
 However, due to the developments in \glspl{bci}, the viability of robotic prostheses and exoskeletons for these patients has been steadily on the rise.
 \Citet{bci_prostheses} give an in-depth systematic review of upper and lower limb exoskeletons and robotic prostheses controlled by \gls{eeg}-based \gls{bci}.
@@ -424,7 +652,7 @@ Because of this, widespread adoption of \gls{eeg}-based exoskeletons and robotic
 % - - - - - - - - - -
 
 \subsection{Novel interaction methods using brain-signals}
-\label{subsec:bci_helping_disabled_novel_interaction}
+\label{subsec:bci_common_use_casesnovel_interaction}
 
 The previous section highlighted how \glspl{bci} can be used to extend existing medical systems.
 When working with exoskeletons and robotic prostheses, the \gls{bci} systems provide a novel interaction method for these devices that normally rely on \gls{emg} or other sources for input.
@@ -521,11 +749,11 @@ For example, \citet{bci_monkey_arms} demonstrated monkeys taking control over tw
 % - - - - - - - - - -
 
 \subsection{Using BCIs with and as prostheses}
-\label{subsec:bci_helping_disabled_prostheses}
+\label{subsec:bci_common_use_casesprostheses}
 
 
-It was argued in section \ref{subsec:bci_helping_disabled_extending_medical_system} that the risk involved when working with exoskeletons and robotic prostheses is too high for current \gls{bci} systems to be reliably used.
-The \gls{bci} controlled car from \citet{bci_mi_four_wheel_drive} discussed in section \ref{subsec:bci_helping_disabled_extending_medical_system} demonstrated how risk of a \gls{bci} system can be greatly reduced by using an additional system responsible for only allowing safe actions.
+It was argued in section \ref{subsec:bci_common_use_casesextending_medical_system} that the risk involved when working with exoskeletons and robotic prostheses is too high for current \gls{bci} systems to be reliably used.
+The \gls{bci} controlled car from \citet{bci_mi_four_wheel_drive} discussed in section \ref{subsec:bci_common_use_casesextending_medical_system} demonstrated how risk of a \gls{bci} system can be greatly reduced by using an additional system responsible for only allowing safe actions.
 Similar ideas could be used for robotic prostheses to reduce the risk involved.
 \Citet{bci_mi_robotic_arm_collision_avoidance} proposed such a hybrid system to control a robotic arm not only through a \gls{mi}-based \gls{bci} but also by using obstacle avoidance algorithms to reduce the risk of harmful contact, computer vision for object detection to get a better idea on the wanted interaction and eye-tracking to gather extra information surrounding user's intention.
 Hybrid systems like the one by \citet{bci_mi_robotic_arm_collision_avoidance} are very promising as they can greatly reduce the risk involved in many \gls{bci} systems, such as prostheses related applications, whilst also increasing the overall accuracy of the system.
@@ -545,10 +773,21 @@ Due to the discontinuation of some of the Second Sight products, hundreds of use
 Besides this, the now non-functioning product is still present inside their body.
 The issues and ethical questions this brings to the table are discussed further in section \ref{subsec:bci_ethical_e_waste}.
 
+% - - - - - - - - - -
+
+\subsection{Commercial and other use cases}
+\label{subsec:bci_common_use_commrcial_and_other}
+% Mss die porn detection dinges uit nerdland podcast?
+TODO
+
+% ---------------------------------------------- 
+% SMALL PROJECTS
 % ---------------------------------------------- 
 
-\section{Small projects with large potential}
-\label{sec:bci_small_projects}
+\section{Opportunities and obstacles for BCI research}
+\label{sec:bci_opportunities_obstacles}
+% Hoe verschilt dit met use cases? Wss doordat hier focus op hoe live improvement en challanges etc
+% Mss iets a la ups and downs of BCI research noemen? Of attractivenes en ... van BCI met dan hier link naar multidisciplanary ook
 
 As technology evolves, it has often been the case that people with certain disabilities benefit from the evolution as well.
 Take the evolution of live captions as a recent example, it has found its way directly into the Android smartphone operating system.
@@ -575,7 +814,7 @@ These smaller projects do not only have the potential to be of big impact for ve
 % - - - - - - - - - -
 
 \subsection{Motivating examples using consumer-grade BCIs}
-\label{subsec:bci_small_projects_motivating_examples}
+\label{subsec:bci_opportunities_obstacles_motivating_examples}
 
 As discussed above, good open-source libraries, datasets and even measuring hardware have made the entry to the \gls{bci} field easier than ever before.
 Some of the open-source \gls{dl} libraries tailored towards \gls{eeg} classification work well on raw \gls{eeg} data, which allows for meaningful classification accuracy without the need of understanding all domain-specific properties of \gls{eeg} data required for classical preprocessing.
@@ -600,7 +839,7 @@ Most of these works are centred around OpenBCI hardware, the manufacturer of som
 % | | | | | | | | | | | | |
 
 \subsubsection{Step-by-step implementation of a binary MI classification model by Peterson et al}
-\label{subsubsec:bci_small_projects_motivating_examples_binary}
+\label{subsubsec:bci_opportunities_obstacles_motivating_examples_binary}
 
 \Citet{cheap_bci_feasibility} aimed to show the feasibility of a complete low-cost consumer-grade \gls{bci} system.
 \Citet{cheap_bci_feasibility} did this by discussing the steps required to make an offline binary \gls{mi} classification system using common low-cost consumer-grade hardware.
@@ -655,7 +894,7 @@ The system proposed by \Citet{cheap_bci_feasibility} is of less importance in th
 % | | | | | | | | | | | | |
 
 \subsubsection{Multiclass classification methods for motor imagery EEG data}
-\label{subsubsec:bci_small_projects_motivating_examples_mi_classification}
+\label{subsubsec:bci_opportunities_obstacles_motivating_examples_mi_classification}
 
 The above discussed paper by \citet{cheap_bci_feasibility} provides great insight on the steps required to develop an \gls{eeg}-based consumer-grade \gls{bci} which uses \gls{mi} related signals.
 Since \citet{cheap_bci_feasibility} uses a binary classification model, there are only two possible outputs of the classifier, which is too limited for most applications.
@@ -702,7 +941,7 @@ However, other novel approaches such as the one by \citet{eeg_model_esi} which i
 % | | | | | | | | | | | | |
 
 \subsubsection{Connecting the classification model to physical devices}
-\label{subsubsec:bci_small_projects_motivating_examples_physical_devices}
+\label{subsubsec:bci_opportunities_obstacles_motivating_examples_physical_devices}
 
 A complete \gls{bci} system could be thought of as a combination of three different components: a data collection process, the data processing step and the effective performing of actions by the system.
 The previously discussed motivating works focus mainly on how to collect \gls{eeg} data, especially for \gls{mi} tasks, and how to process this data to classify it.
@@ -774,8 +1013,8 @@ Commercial institutions that can hire many of the required professions will like
 
 % - - - - - - - - - -
 
-\subsection{An issue of standardized testing}
-\label{subsec:bci_small_projects_lack_of_testing}
+\subsection{An issue of standardized testing and optimistic results}
+\label{subsec:bci_opportunities_obstacles_lack_of_testing}
 
 Evaluating and comparing different \gls{bci} systems is not easy.
 This is in part due to a \gls{bci} system consisting of different components.
@@ -806,11 +1045,20 @@ For now, focusing on reproducibility and specifying the data used and potential 
 It becomes apparent that a 90\% accuracy for a model that can be used on any user without re-training is far more impressive than one custom made for a specific user.
 Likewise, 80\% accuracy on non-lab environment data with high stochasticity is far more impressive than the same accuracy on the best measuring hardware in the most controlled environment. 
 
+% - - - - - - - - - -
+
+\subsection{BCI research is highly interdisciplinary}
+\label{subsec:bci_opportunities_obstacles_interdisciplinary}
+
+TODO
+
+% ---------------------------------------------- 
+% ETHICAL CHALLENGES
 % ---------------------------------------------- 
 
 \section{Ethical challenges for BCIs}
 \label{sec:bci_ethical}
-
+% Duidelijk vermelden dat je geen expert bent
 % TODO: do after first 3 chapters finished and some code made
 % Interesting points: https://www.frontiersin.org/articles/10.3389/fcomp.2021.661300/full
 
@@ -883,7 +1131,7 @@ SECTION TO BE COMPLETED IN A LATER STAGE, LOREM IPSUM PLACED FOR APPROXIMATED LE
 % ---------------------------------------------- 
 
 \section{Proposing a three-signal system for basic controls}
-\label{sec:bci_small_projects_ours}
+\label{sec:bci_opportunities_obstacles_ours}
 
 % TODO: discuss what system will be made in this paper
 % Also discuss the order of things on paper
@@ -894,7 +1142,7 @@ SECTION TO BE COMPLETED IN A LATER STAGE, LOREM IPSUM PLACED FOR APPROXIMATED LE
 
 As discussed, this master thesis focuses on providing a great foundation for the knowledge required for working in the \gls{bci} field as a computer scientist.
 The exhaustive literature review from this chapter should provide a great general introduction to the field and current state-of-the-art as well as challenges and promises of the field.
-As touched upon in section \ref{subsec:bci_small_projects_motivating_examples} and further discussed in section \ref{sec:processing_signals_interpreting_ml} many different pipelines and approaches exists for the data processing component of a \gls{bci} system.
+As touched upon in section \ref{subsec:bci_opportunities_obstacles_motivating_examples} and further discussed in section \ref{sec:processing_signals_interpreting_ml} many different pipelines and approaches exists for the data processing component of a \gls{bci} system.
 Whilst some of the libraries available which make use of \glsfirst{dl} allow for raw \gls{eeg} input, the author of this paper believes it to be of importance to know the nature of this \gls{eeg} data to some extend.
 For this, an introduction to \glspl{biosignal} and how they can be measured is given in the next chapter.
 This deeper understanding of the data source ultimately leads to better design decisions in the data processing component.
@@ -902,4 +1150,4 @@ This deeper understanding of the data source ultimately leads to better design d
 Next, this thesis aims to give better insight into how a \gls{bci} system can be developed.
 To accomplish this, a general \gls{bci} pipeline is discussed in chapter \ref{ch:bci_pipeline} to provide insight on the different components a \gls{eeg}-driven \gls{bci} needs.
 Chapter \ref{ch:final_system} extends on this general \gls{bci} pipeline by proposing a three-signal system for live control.
-Chapter \ref{ch:using_system} and \ref{ch:conclusion} aim to evaluate this three-signal system, taking into account the lack of generalized evaluation strategies as discussed earlier in section \ref{subsec:bci_small_projects_lack_of_testing}
+Chapter \ref{ch:using_system} and \ref{ch:conclusion} aim to evaluate this three-signal system, taking into account the lack of generalized evaluation strategies as discussed earlier in section \ref{subsec:bci_opportunities_obstacles_lack_of_testing}

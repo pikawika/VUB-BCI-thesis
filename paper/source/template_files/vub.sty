@@ -42,6 +42,16 @@
   \makeatother%
 }
 
+\newcommand\advisors[1]{%
+  \makeatletter%
+  \@ifundefined{@advisors}{%
+  \newcommand\@advisors{#1}%
+  }{%
+  \renewcommand\@advisors{#1}%
+  }%
+  \makeatother%
+}
+
 \@ifundefined{faculty}{%
     \newcommand{\faculty}[1]{%
         \makeatletter%
@@ -95,6 +105,11 @@
     \hspace{25mm}\begin{minipage}{\dimexpr\textwidth-58mm}
         \ifdefined\@promotors%
             \vubfont{\color{vuboranje}\@promotors}
+
+            \vspace{2mm}
+        \fi
+        \ifdefined\@advisors%
+            \vubfont{\color{vuboranje}\@advisors}
 
             \vspace{2mm}
         \fi
