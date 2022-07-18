@@ -1,0 +1,273 @@
+% TODO:
+%   - XXX
+% ----------  
+% Questions:
+%   - XXX
+
+% beter onderscheid maken tussen wat dit is en volgend chapter, note wel de refs naar chapters/sections nog kloppen
+% mss Herstructureren naar pipeline based op figure uit bci_review_arnau en dan per blokje bespreken en dan ander chapter echt een implementatie?
+
+% preprocessing: After acquiring the signal, it typically needs to be cleaned because biosignals have a low signal-tonoise ratio (SNR). This means that there will be more noise present in the acquired data, making it harder to extract useful information. Therefore, a preprocessing step is necessary to improve SNR and yield a ‘clean’ signal that eliminates artifacts, such as those resulting from power supplies or unrelated muscle
+
+% classification vs regression: This can either be classification into a discrete set of classes or regression into a value that is relevant to the control application. regression vooral in exoskeleton en prosthesis by data from bci_review_arnau
+
+% The most common form of ML is supervised learning, in which we assume that the data is presented as a set of input-output pairs, a dataset, which we call labeled data, as each input is labeled with its corresponding output.
+
+% Semi-supervised learning methods use both labeled and unlabeled data. Their objective is to learn a supervised learning task, even in cases where only a small amount of training data is available. Usually, semi-supervised approaches learn the structure of the training data to become able to generate more (artificial) training points (Aznan et al 2019), that are used for conventional supervised learning in a second learning phase. Self-supervised learning (Jing and Tian 2019) is a similar approach which is currently gaining traction in the larger ML community. This technique was previously used to learn the relevant structure in EEG data by first learning an unsupervised pretext task, after which the model is further trained on the target task with labeled data (Banville et al 2020, Kostaset al 2021). The remainder of this review will focus on supervised learning methods.
+ 
+% Methods and algorithms that allow to concretely perform this learning operation are extensively reviewed by Caruana and Niculescu-Mizil (2006).
+ 
+% generalization bespreken: With neural networks, the main avenue to increase generalization is to decrease over-fitting. Over-fitting happens when a neural network remembers exactly what training input should learn which training output, without having actually made sense of the data. The network achieves a training loss close to 0, but produces garbage output on the testing set. It is like a small child that learns how to read words, and remembers that card number 7 is pronounced ‘cat’, without actually looking at the word written on the card, or being able to read at all. Batch normalization (Ioffe and Szegedy 2015) considers the input of every layer in a neural network, and normalizes it so that, in expectation, the inputs of every layer has a zero mean and a unit variance. Intuitively, this normalization prevents ludicrously large or small values from appearing inside the network, which makes it ‘behave better’ or ‘be smoother’ (so, easier to train, and better at generalization). The actual mathematical way in which batch normalization works is however still unknown, with recent papers providing the first insights (Santurkar et al 2018). Dropout (Srivastava et al 2014) does not modify the values that flow through a neural network, but instead randomly disables neurons every time the network is evaluated during training. The main motivation behind Dropout is to avoid one particular neuron in the network to learn how to compensate (and thus cancel out) another particular neuron in the network. When neurons are constantly randomly disabled and re-enabled, they all have to learn independently from each other. More mathematically, Dropout leads to a neural network that is made of a different set of neurons every time it is evaluated. This leads to a large ensemble of ‘sub-networks’, all trained on different datapoints. Ensembles of function approximators such as this are known to help with generalization (Dietterich 2000). Both batch normalization (Tayeb et al 2019, Tam et al 2020) and Dropout (Gautam et al 2020, Tortora et al 2020a) are often used in biosignal decoding papers, sometimes both at the same time. Other normalization techniques are possible, such as L1- normalization or clipping the gradients (Zhang et al 2019a), but they have been superseded by Batch Normalization and Dropout.
+
+% In a new chapter, reset the GLS to once again use full version in first occurence
+\glsresetall
+
+\chapter{Processing brain-signals and taking actions from their interpretation}
+\label{ch:processing_signals}
+
+
+
+% ---------------------------------------------- 
+% INTRODUCTION
+% ---------------------------------------------- 
+\section{Introduction to this chapter}
+\label{sec:processing_signals_introduction}
+% NOTE: "Introduction" exists in each chapter and gives short intro to chapter + what can be expected in chapter
+
+TODO
+
+
+
+% ---------------------------------------------- 
+% GENERAL EEG BCI PIPELINE
+% ---------------------------------------------- 
+\section{A general EEG-based BCI pipeline}
+\label{sec:processing_signals_general_pipeline}
+
+% duidelijk bespreken welk ding echt CS en welk ding eigenlijk derden
+
+% - - - - - - - - - -
+% Data acquisition
+% - - - - - - - - - -
+
+\subsection{Data acquisition}
+\label{subsec:processing_signals_general_pipeline_data_acquisition}
+
+% duidelijk bespreken welk ding echt CS en welk ding eigenlijk derden
+
+TODO
+
+% - - - - - - - - - -
+% Preprocessing
+% - - - - - - - - - -
+
+\subsection{Preprocessing}
+\label{subsec:processing_signals_general_pipeline_preprocessing}
+
+% Hardware & software
+% Volgens review arnau niet perse nodig want DL kan van "elk signaal" leren
+
+TODO
+
+% - - - - - - - - - -
+% Windowing
+% - - - - - - - - - -
+
+\subsection{Windowing}
+\label{subsec:processing_signals_general_pipeline_windowing}
+
+TODO
+
+% - - - - - - - - - -
+% Feature
+% - - - - - - - - - -
+
+\subsection{Feature engineering}
+\label{subsec:processing_signals_general_pipeline_features}
+
+% The CSP method performs feature extraction based on learned spatial filters.
+% https://www.youtube.com/watch?v=zsOULC16USU
+
+TODO
+
+% - - - - - - - - - -
+% Classification
+% - - - - - - - - - -
+
+\subsection{Classification model}
+\label{subsec:processing_signals_general_pipeline_classification}
+
+TODO
+
+% - - - - - - - - - -
+% Performing an action
+% - - - - - - - - - -
+
+\subsection{Performing an action}
+\label{subsec:processing_signals_general_pipeline_perform_action}
+
+TODO
+
+
+
+% ---------------------------------------------- 
+% ALTERNATIVE PIPELINES
+% ---------------------------------------------- 
+\section{Alternative BCI pipelines}
+\label{sec:processing_signals_alternative_pipelines}
+
+% - - - - - - - - - -
+% No preprocessing & feature engineering
+% - - - - - - - - - -
+
+\subsection{Neglecting preprocessing and feature engineering}
+\label{subsec:processing_signals_alternative_pipelines_no_preprocessing_and_features}
+
+TODO
+
+% - - - - - - - - - -
+% No action performing
+% - - - - - - - - - -
+
+\subsection{No action performing step}
+\label{subsec:processing_signals_alternative_pipelines_no_actions}
+
+% niet strict conform met wolpaw's def want communication device
+
+TODO
+
+% - - - - - - - - - -
+% Offline vs online
+% - - - - - - - - - -
+
+\subsection{Offline vs online BCI systems}
+\label{subsec:processing_signals_alternative_pipelines_offline_vs_online}
+
+TODO
+
+
+
+% ---------------------------------------------- 
+% ML AND DL TECHNIQUES
+% ---------------------------------------------- 
+
+\section{The role of machine learning and deep learning}
+\label{sec:processing_signals_ml_and_dl}
+
+% learning and prediction phase
+
+% The most common form of ML is supervised learning, in which we assume that the data is presented as a set of input-output pairs, a dataset, which we call labeled data, as each input is labeled with its corresponding output (Caruana and NiculescuMizil 2006). Alternatively, unsupervised learning techniques do not use outputs for learning, but rather learn the (unknown) structure of the data. Semi-supervised learning methods use both labeled and unlabeled data, usually to learn the structure of the training data to become able to generate more (artificial) training points (Aznan et al 2019), that are used for conventional supervised learning in a second learning phase. Self-supervised learning (Jing and Tian 2019) is a similar approach that is used to learn the relevant structure in EEG data by first learning an unsupervised pretext task, after which the model is further trained on the target task with labeled data (Banville et al 2020, Kostas et al 2021). The remainder of this review will focus on supervised learning methods.
+
+% The dominance of CNN with regard to model choice can be attributed to the relative ease of use and the popularity of this architecture in other research fields that use DL. While RNN architectures have been successful in closely related fields such as speech recognition and natural language processing, they have only seen limited deployment in a biosignal decoding context. Typically, CNNs also have less trainable parameters which makes them less sensitive to small datasets and lower their computational requirements. Other architectures were investigated for biosignal decoding, but state-of-the-art research mostly focuses on CNN architectures (Buongiorno et al 2019, Roy et al 2019).
+
+% nog een pro CNN en waarom wij focussen op CNN: The choice of DL model is highly dependent on the application requirements and how the data is preprocessed. CNNs can often work with raw data that is only cleaned in the preprocessing step, while other models will typically necessitate feature extraction before passing the input to the ANN (Schirrmeister et al 2017). Alternatively, RNNs are also used for biosignal decoding, but these architectures typically need more technical knowledge to deploy and evaluate. The literature review clearly shows that CNN is the most deployed model and that biosignal decoding models are typically rather shallow, which can be attributed to the limited availability of data.
+
+% Neural networks e.v. lezen van review arnau
+
+% dus wel RNN vermelden en uitleggen ma eigenlijk enkel zien naarr CNN based zoals de EEGnet en ShallowConvNet
+
+% Designing a neural network requires experience, as there is no systematic approach. More information on neural networks and their architectures is presented in the appendix, section ‘Neural networks’.
+
+% We refer readers interested in knowing more than what we present to books such as Goodfellow et al (2016) and Aggarwal (2018).
+
+% - - - - - - - - - -
+% Difference ML & DL
+% - - - - - - - - - -
+
+\subsection{Difference between machine learning and deep learning}
+\label{subsec:processing_signals_ml_and_dl_difference}
+TODO
+
+% - - - - - - - - - -
+% Common regular ML classifiers
+% - - - - - - - - - -
+
+\subsection{Common regular machine learning classifiers}
+\label{subsec:processing_signals_ml_and_dl_ml_classifiers}
+
+% KNN
+% RF
+% SVM
+% Single-layer Perceptron
+
+TODO
+
+% - - - - - - - - - -
+% Common regular DL classifiers
+% - - - - - - - - - -
+
+\subsection{Common deep learning classifiers}
+\label{subsec:processing_signals_ml_and_dl_dl_classifiers}
+
+% ANN (MLP fully connected -> wanneer DL en wanneer regular ML, uitleggen soms gezienals regular ML)
+% CNN (conv layer, pooling layer)
+% RNN (e.g. long term short term memory)
+
+TODO
+
+
+% ---------------------------------------------- 
+% COMMON ISSUES
+% ---------------------------------------------- 
+
+\section{Common issues when processing brain-signals and how to avoid them}
+\label{sec:processing_signals_common_issues}
+TODO
+
+% - - - - - - - - - -
+% biased data
+% - - - - - - - - - -
+
+\subsection{Biased data}
+\label{subsec:processing_signals_common_issues_bias}
+
+TODO
+
+% - - - - - - - - - -
+% evaluation
+% - - - - - - - - - -
+
+\subsection{Incorrect or ambiguous evaluation}
+\label{subsec:processing_signals_common_issues_generalisation}
+% e.g. only look at a person we also used in training etc
+
+TODO
+
+% - - - - - - - - - -
+% explainability and interpretability
+% - - - - - - - - - -
+
+\subsection{No explainability or interpretability}
+\label{subsec:processing_signals_common_issues_exaplainable}
+
+TODO
+
+% TOODO
+\Gls{dl} often requires significant processing power and time to train, impacting the affordability of \gls{bci} research.
+This is especially true when working with many \gls{eeg} sensors and features, and thus a high dimensional setting. 
+\Gls{dl} is often also used in a black-box principle.
+This means that the trained system lacks explainability and interpretability.
+% TODO explain both terms
+Recent governmental reports have suggested that laws will be coming in place to require these properties \citep{eu_ai_blackbox_report, explainable_ai_policy}.
+
+% - - - - - - - - - -
+% overfitting
+% - - - - - - - - - -
+
+\subsection{Overfitting}
+\label{subsec:processing_signals_common_issues_overfitting}
+
+% To avoid over-fitting, Batch Normalization (Ioffe and Szegedy 2015) considers the input of every layer in a neural network, and normalizes it so that, in expectation, the inputs of every layer has a zero mean and a unit variance. Dropout (Srivastava et al 2014) does not modify the values that flow through a neural network, but instead randomly disables neurons every time the network is evaluated during training. Both these methods contribute to improving training speed and generalization of the network, and ensure that the model converges to an optimal loss. Both batch normalization (Tayeb et al 2019, Tam et al 2020) and dropout (Gautam et al 2020, Tortora et al 2020a) are often used in biosignal decoding papers, sometimes both at the same time. Other normalization techniques are possible, such as L1- normalization or clipping the gradients (Zhang et al 2019a), but they have been superseded by Batch Normalization and Dropout.
+
+% uit bci_review_arnau
+
+TODO
+
+% ---------------------------------------------- 
+% CONCLUSIONS OF CHAPTER
+% ---------------------------------------------- 
+\section{Chapter conclusions}
+\label{sec:processing_signals_summary}
+% TODO: summary of this chapter
+
+TODO

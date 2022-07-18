@@ -1,23 +1,15 @@
 % TODO:
-%   - References in section helping people with disabilities for examples
 %   - Refs to sections check if truly explained there
 %   - Cleanup of text
-%   - Longer more descriptive titles
-%   - Invasive is ECoG instead of EEG?
 % ----------  
 % Questions:
 %   -
 
-%  Today, amplifiers exist that are built in the electrode cap and are so resistant to movement artefacts that data collection in the field is no longer a critical issue.
-% SOURCE: bci_history
-
-% 
-
-% Uncomment this if the use of parts is desired
-%\part{First part}
+% NOTE: Uncomment this if the use of parts is desired
+\part{Understanding Brain-computer interfaces}
 
 
-% In a new chapter, reset the GLS to once again use the full version in the first occurrence
+% NOTE: In a new chapter, reset the GLS to once again use the full version in the first occurrence
 \glsresetall
 
 \chapter{Brain-Computer interfaces}
@@ -26,15 +18,13 @@
 % ---------------------------------------------- 
 % INTRODUCTION
 % ---------------------------------------------- 
-\section{Introduction}
+\section{Introduction to this chapter}
 \label{sec:bci_introduction}
-% "Introduction" exists in each chapter and gives short intro to chapter + what can be expected in chapter
-
-% OLD INTRO: https://docs.google.com/document/d/1oJssCGQf0aSDCa4xxY4UMJMsaGYdrbOSlzk6mLIS4no/edit?usp=sharing
+% NOTE: "Introduction" exists in each chapter and gives short intro to chapter + what can be expected in chapter
 
 \Glspl{bci} are systems, consisting of hardware and software, that aim to read or even stimulate a user's brain signals for a wide variety of applications.
 Whilst many of these applications for \glspl{bci} revolve around providing novel interaction methods for computer applications, they are capable of fulfilling more general tasks as well.
-Because of this, \glspl{bci} are also referred to as \glspl{bmi} and can be seen as a special type of \glspl{hmi}.
+Because of this, \glspl{bci} are also referred to as \glspl{bmi} and can be seen as a special type of the more general \glspl{hmi} and \gls{bc} systems.
 A well-known Professor in this field is Jonathan R. Wolpaw who was also the guest editor for the first international meeting devoted to \gls{bci} research and development as part of the IEEE conference on Rehabilitation Engineering.
 During that meeting, a first formal definition for \glspl{bci} was given:
 
@@ -56,18 +46,20 @@ Especially the commercial interest in \glspl{bci} has seen a recent spike, throu
 This has given rise to the public interest for potential life-improving \gls{bci} applications as well as some public outrage on more ethical aspects that challenges these systems. 
 
 This first chapter further introduces the main rationale behind \glspl{bci} research by discussing the rise in popularity of both medical and commercial \glspl{bci}, some practical examples of \gls{bci} systems that have been developed and some of the opportunities and obstacles in the field. The chapter ends with a note on some of the ethical challenges for \gls{bci} systems and a discussion of the proposed system for this thesis.
-Chapter \ref{ch:biomedical_signals} and \ref{ch:processing_signals} focus on more technical aspects of the \gls{bci} field.
-
+Chapter \ref{ch:biomedical_signals} and \ref{ch:processing_signals} give more depth on the origins and measurability of brain signals and the technologies needed to process them. 
 As research on \glspl{bci} is highly multidisciplinary, entering the field as a computer scientist can be rather intimidating due to the steep learning curve of the ideas, technologies, challenges and terminology used in such research.
-These first chapters aim to introduce these concepts in an easy-to-understand manner for a typical computer scientist student with some \gls{ai} background.
+To lower this initial learning curve, these first three chapters aim to introduce the most important concepts in an easy-to-understand manner for a typical computer scientist student with some \gls{ai} background.
+Although no specific procedure for systematic review was followed for these first chapters, special attention was payed to favor papers from reputable sources which have been influential based on both the amount of times the work itself is cited in other papers and the performance of connected papers.
+The latter was determined by using the connected papers tool\footnote{\url{https://www.connectedpapers.com/}}.
+
 The interested reader is also referred to the great introductory book on \glspl{bci} by \citet{bci_book} and the review article by \citet{bci_review} when more introductory insight is desired.
 Whilst these resources have dated a little and state-of-the-art has changed since then, the main ideas discussed in them remain unchanged.
+A more recent, systematic review article by \citet{bci_review_arnau} focuses on current \gls{dl} techniques for use with \glspl{bci} among other \gls{bc} systems.
 
 
 % ---------------------------------------------- 
 % GAINING POPULARITY
 % ---------------------------------------------- 
-% discussing the rise in popularity of both medical and commercial BCI
 
 \section{Growing scientific and commercial interest in BCIs}
 \label{sec:bci_gaining_popularity}
@@ -86,6 +78,8 @@ These factors are discussed in an arbitrary order, as most of them have influenc
 For a more in-depth overview of the rich history that \gls{bci} research has, the reader is referred to the work by \citet{bci_history}.
 
 % - - - - - - - - - -
+% big tech
+% - - - - - - - - - -
 
 \subsection{BCIs have gained big-tech interest and funds}
 \label{subsec:bci_gaining_popularity_big_tech}
@@ -98,7 +92,7 @@ Most noteworthy of these more commercially oriented companies is Neuralink, an E
 Neuralink's initial white paper discusses its aim to create a scalable high-bandwidth \gls{bci} system, focusing on its mechanical achievements \citep{neuralink_whitepaper}.
 These mechanical achievements are rather impressive, with state-of-the-art robot surgery inserting ultra-thin sensors directly into the skull allowing for a sleek and visually pleasing package that is mostly hidden from the human eye.
 Comparing this to non-invasive methods of recording brain signals, which are methods that don't require inserting machinery into the human body, the signal quality is also expected to be far greater.
-However, an invasive approach introduces added health risks and even more ethical challenges \citep{neuralink_ethics, neuralink_ethics2}.
+However, an invasive approach currently introduces added health risks and more ethical challenges making non-invasive methods often more suited for general use \citep{neuralink_ethics, neuralink_ethics2, bci_review_arnau}.
 Since the publication of the Neuralink white paper, the company has held live demos of their \gls{bci} implanted directly into the skulls of animals such as pigs and monkeys.
 A video by Neuralink of a monkey playing pong using brain signals as input\footnote{\url{https://youtu.be/rsCul1sp4hQ}} has gathered over 6 million views on YouTube already.
 Combined with many news articles, the kind of exposure that Neuralink has gotten is unseen compared to the regular exposure of literature in the field.
@@ -158,7 +152,7 @@ Whilst some promising results have been obtained when using \glspl{bci} in comme
 And thus, the most prominent type of commercial \glspl{bci} are those focusing on recreational use.
 In this regard, the headsets by InteraXon, produced under the Muse brand, are one of the earliest examples, with their first version being released in 2014.
 The first iteration of this product was advertised as a meditation aid.
-This headset relies on measuring Theta waves in the brain, which are lower frequency waves that suggest a user is meditating. % TODO: link to a table of freqs
+This headset relies on measuring Theta waves in the brain, which are lower frequency waves that suggest a user is meditating.
 Section \ref{subsec:biomedical_signals_type_of_signals_brain_wave} talks about these brain wave frequencies in more detail.
 The actual accuracy and usefulness of these types of systems are debated, as discussed by \citet{interaxon_tests}.
 More recently, a newer version of the InteraXon headset came to market, named Muse 2, which also aids in sleep monitoring.
@@ -177,7 +171,7 @@ To achieve the goals of this project code-named \textit{Galea}, Valve is working
 Tobii, a company that specializes in eye-tracking software, is also working on project Galea.
 With a final goal of creating an open-source \gls{bci} that can be used in gaming, the anticipation for the headset has been high.
 However, just as with deadlines from other companies such as Meta and Neuralink, the project has been postponed multiple times.
-This is not surprising as the promises of what a \gls{bci} can do are near endless and initial trials often offer promising results but going to a final product has been proven to be incredibly hard for these commercial companies.
+This is not surprising as the promises of what a \gls{bci} can do are near endless and initial trials often offer promising results but going to a final product has been proven to be incredibly hard due to several open issues \citep{bci_review_arnau}.
 
 A final stream of money that is important to mention, is coming from militaries around the globe.
 The U.S. military among others is known to invest a lot of money in any form of innovation, especially related to devices that can give them a strategic edge when fighting in a war \citep{military_ai_money, military_ai_money_eu}.
@@ -210,6 +204,8 @@ It also shows that whilst academic research on \glspl{bci} doesn't require huge 
 \end{figure}
 
 % - - - - - - - - - -
+% improved hardware
+% - - - - - - - - - -
 
 
 \subsection{Improved brain-signal measuring facilities}
@@ -233,7 +229,7 @@ In recent years, new developments in this hardware have made meeting these crite
 \subsubsection{Hardware improvements in non-invasive EEG measuring equipment}
 \label{subsubsec:bci_gaining_popularity_better_measuring_hardware}
 
-% TODO add figure met kleurtjes van components zodat naar kleurtjes kan reffen en die refs naar kleurtjes in tekst steken
+% TODO: add sketch of measuring hardware with components in different colors for referencing in this paper.
 
 \begin{figure}[ht]
     \centering
@@ -391,6 +387,8 @@ Improving the spatial resolution can also positively affect the temporal resolut
 As is further discussed in section \ref{subsec:processing_signals_useful_data_preproc}, other prepossessing techniques have also been introduced and refined further aiding in improving the data quality. 
 
 % - - - - - - - - - -
+% better hardware
+% - - - - - - - - - -
 
 \subsection{More powerful, affordable and portable equipment}
 \label{subsec:bci_gaining_popularity_better_processing}
@@ -406,7 +404,7 @@ Other improvements concerning computational power, affordability and portability
 
 As chapter \ref{ch:processing_signals} will discuss in greater detail, working with \gls{eeg} data, or other forms of brain signal data can require computationally very heavy operations to achieve desired processing results of that data.
 Luckily, together with the improvements in state-of-the-art measuring equipment, there is also an emerging supply of less accurate but far more affordable and portable \gls{eeg} measuring equipment.
-Due to Moore's law, \glspl{cpu} and other computational hardware have also seen massive improvements in computational power.
+Due to Moore's law \citep{moores_law} and other advancements, \glspl{cpu} and other computational hardware have also seen massive improvements in computational power.
 This has made algorithms previously requiring expensive specialized computational hardware possible on the average personal computer.
 All of these factors have made \gls{bci} applications, which were previously limited to lab environments with a high financial cost, accessible to a far broader public.
 The availability of open-source datasets for common tasks related to brain signals has also allowed computer scientists to experiment in the field without additional hardware cost \citep{eeg_data}.
@@ -451,14 +449,14 @@ Such a system would also fit perfectly with Wolpaw's definition of a perfect \gl
 \label{subsubsec:bci_gaining_popularity_better_processing_profitibility}
 
 Whilst the advantages of using the computational power of devices a customer already owns are clear, it also imposes some disadvantages.
-For one, the varying type of computational devices is bound to give varying performance results and compatibility issues.
+For one, the varying type of computational devices is bound to give varying performance results, compatibility issues and overall limits the guarantee of a pleasing \gls{ux}.
 Adding to this, the measuring equipment and processing equipment can't be connected from the factory resulting in an experience that is not plug-and-play.
 From a commercial perspective, it would be easier if the system was all-inclusive and possibly patentable. 
 
 Recent trends in computing hardware where manufacturers are shifting away from general all-purpose \glspl{cpu} and them developing their own custom \gls{cpu} architectures have shown that custom chips can outperform their general counterparts.
 Patenting the architecture of those chips is possible making it commercially interesting.
 Apple's mac M series processors announced in 2020 are one such recent example.
-These M series processors have a neural engine that is stated to accelerate the time needed for \gls{ml} tasks\footnote{\url{https://www.apple.com/newsroom/2021/10/introducing-m1-pro-and-m1-max-the-most-powerful-chips-apple-has-ever-built/}}.
+These M series processors have a neural engine that is stated to accelerate the time needed for \gls{ml} tasks\footnote{\url{https://nr.apple.com/dH8i4U3v2w}}.
 \Glspl{gpu} used for autonomous driving systems also differ from general-purpose \glspl{gpu}.
 
 Because of this, the author of this paper believes custom-made chips could create a future where the headset has a directly integrated processing unit once again.
@@ -467,18 +465,23 @@ The manufacturer could limit the possibilities of using the \gls{bci} for differ
 Another possible route the author of this paper sees is the use of cloud computing and fast 5G connections to also create a more simple user experience that doesn't require Bluetooth tethering to a close-by processing unit.
 This approach would still leave a separation between measuring hardware and processing hardware making changes to any of the two independently easier.
 Concerning Wolpaw's criteria of a perfect \gls{bci}, these approaches would also be acceptable.
+This belief of switching back to all-in-one devices or using a cloud service for processing the data is further endorsed by the findings of \citet{bci_review_arnau}.
+In their systematic review of \gls{bc} systems, eight of the 46 studied papers used embedded hardware and one used cloud solutions.
 
 % | | | | | | | | | | | | |
 
 \subsubsection{Summarizing the improvements on computational power, affordability and portability}
 \label{subsubsec:bci_gaining_popularity_better_processing_summary}
 
-To summarize, early attempts at making \glspl{bci} more portable and affordable focused on splitting the brain signal measuring equipment from the data processing equipment \citep{early_bci_drowsiness, early_bci_multimedia}.
+To summarize, due to Moore's law \citep{moores_law} and other advancements, \glspl{cpu} among other computational hardware have seen massive improvements in computational power.
+This increase in computational power has enabled more advanced processing of the data on more affordable and portable hardware.
+Early attempts at making \glspl{bci} more portable and affordable focused on splitting the brain signal measuring equipment from the data processing equipment \citep{early_bci_drowsiness, early_bci_multimedia}.
 The system by \citet{early_bci_phone} was one of the earliest examples of a true portable \gls{bci}-system that was affordable and relied on a smartphone as a processing unit.
 It showed how working with \glspl{bci} can be done using cheap and general-purpose hardware.
 The research was published at a turning point for \glspl{bci} where publication numbers on \gls{bci}-related papers started rising.
 This hints that the increased affordability and portability combined with more computational power played an important factor in the rise of interest in \gls{bci}. 
-The rise of \gls{bci}-related papers is illustrated in figure \ref{fig:bci_publications}.
+The rise of \gls{bci}-related papers is illustrated in figure \ref{fig:bci_publications} based on data by \citet{bci_progress_overview}.
+\Citet{bci_review_arnau} found that papers on \gls{bc} systems using \gls{dl} have seen a steady increase over the last five years as well. 
 
 In the future, as \glspl{bci} see more commercial applications, this separation of a \gls{bci} in a measuring component and processing component might reverse to an all-inclusive device.
 This has potential downsides for scientific research but makes commercial sense.
@@ -487,7 +490,7 @@ The replacement of physical computational units in close proximity to cloud solu
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.7\linewidth]{images/introduction/papers_on_bci.png}
-    \captionsetup{width=0.6\linewidth}
+    \captionsetup{width=0.65\linewidth}
     \captionsetup{justification=centering}
     \caption{Number of \gls{bci}-related papers over time. Based on data by \citet{bci_progress_overview} obtained by searching PubMed using the keyword: "brain computer interface".}
     \label{fig:bci_publications}
@@ -495,32 +498,162 @@ The replacement of physical computational units in close proximity to cloud solu
 
 
 % - - - - - - - - - -
+% better software
+% - - - - - - - - - -
+
+\subsection{Specialized data processing techniques}
+\label{subsec:bci_gaining_popularity_improved_data_processing}
+
+\glsreset{dl}
+
+The previous sections \ref{subsec:bci_gaining_popularity_better_measuring} and \ref{subsec:bci_gaining_popularity_better_processing} discussed how both measuring and computational hardware have seen recent improvements.
+Another important part of the puzzle is the algorithms that convert data from the now more user friendly measuring devices to useful actions using the now more powerful, affordable and more portable computational hardware.
+Most of these algorithms are data-driven classifiers that use \gls{ml} techniques.
+In more recent years, \gls{dl} techniques and alternative approaches have been incorporated in the \gls{bci} pipeline as well, which has been proven to be very successful. 
+Chapter \ref{ch:processing_signals} discusses commonly used techniques in more detail and multiple \gls{ml} and \gls{dl} based \gls{bci} pipelines are discussed in later chapters of this thesis.
+This section gives a more high-level summary of recent developments in the \gls{ai} field that have likely contributed to the rise in popularity of \glspl{bci}.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Postponing another AI winter}
+\label{subsubsec:bci_gaining_popularity_improved_data_processing_no_ai_winter}
+
+\Glsfirst{ml} and \glsfirst{dl} are techniques that fall under the \gls{ai} umbrella.
+These techniques are being used as buzzwords in a whole suite of applications and it seems as if every week there is yet another big promise or threat related to \gls{ai} discussed in major news outlets.
+Recent examples that have shown the world what new techniques in this field are capable of include the Go champion beating computer algorithm by \citet{alphago}, the impressive text generation model GPT-3 by \citet{GPT3} and the image generation model DALL-E by \citet{dall_e}.
+This abundance of new achievements and an overall high public interest in anything that mentions buzzwords from the \gls{ai} umbrella has caused a long lasting \gls{ai} summer since the last \gls{ai} winter of the late 1980s and early 1990s.
+Such an \gls{ai} summer means that there is incredible amount of funding available for improving \gls{ml} and \gls{dl} techniques among others.
+This in term causes further advancements in the field of \gls{ml} and \gls{dl} which results in more impressive achievements.
+
+However, an \gls{ai} summer also implies that an \gls{ai} winter will inherently return.
+An \gls{ai} winter is a period of time where the interest in the field is reduced and thus funding and research is limited.
+As discussed by \citet{new_ai_winter}, such an \gls{ai} winter may be relatively close.
+This is in part due to new regulations and public backlash on the more questionable but highly profitable applications \gls{dl} is involved in.
+A recent example of this is the controversy surround Clearview AI.
+Here, state-of-the-art \gls{dl} image recognition algorithms are used on billions of images collected from all over the internet, including social-media platforms, to recognize almost anyone with a public profile linked to them.
+As further discussed by \citet{clearview_ai}, this technology conflicts with many EU laws yet was used by multiple police departments.
+Adding to this, new regulatory changes are being proposed to limit the use of algorithms which lack explainability and interpretability \citep{eu_ai_blackbox_report, explainable_ai_policy}.
+This challenges many \gls{ml} and \gls{dl} approaches currently used as explained further in section \ref{subsec:processing_signals_common_issues_exaplainable}.
+
+Nevertheless, there is still a high amount of resources being put into \gls{ml} and \gls{dl} research.
+Throughout history, these technologies have been linked with the biomedical setting a lot.
+As explained by \citet{dl_and_biomedical}, \gls{dl} and biomedical data have directly influenced each other's evolution's since the 1980s.
+Because of this, applications that process biomedical data have been an important factor at prolonging the current \gls{ai} summer.
+Since \glspl{bci} use biomedical data as well, they have been one of the applications keeping interest in \gls{ml} and \gls{dl} research high.
+This is in part due to the science-fiction properties \gls{bci} systems have creating a lot of public interest as already discussed when talking about Elon Musk's Neuralink in section \ref{subsec:bci_gaining_popularity_big_tech}.
+Thus, \gls{bci} systems, which rely heavily on \gls{ml} and \gls{dl}, are one of the research areas in these technologies that are so promising they help prolonging the current summer of \gls{ai}.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Improved and new ML and DL concepts have enabled more capable BCI systems}
+\label{subsubsec:bci_gaining_popularity_improved_data_processing_better_ml_dl}
 
 % START HERE; HERSCHRIJVEN NAAR DIE DIVISIONS UIT PPT EN UIT INTRO
-% NOTE OOK DELETED INTRO
+%   tekst al ok maar je moet er nog wat extra bijdoen naar aanleiding van lezen arnau bci review
 
-\subsection{Specialized machine learning techniques}
-\label{subsec:bci_gaining_popularity_improved_ml}
-% TODO -- very drafty
-% also EU proposal on explainable en interpretable ai 
-% https://www.frontiersin.org/research-topics/13609/deep-learning-in-brain-computer-interface#overview
+% TODO: cnn meer bespreken a la: The most common type of DL neural networks at this time are the previously described CNNs (LeCun et al 1989). The subsequent application of convolutional layers results in a high-level representation of the input as stipulated by Goodfellow et al (2016). For example, in an object classification task, the network learns to extract primitive shapes from the raw input (a matrix of pixel values) in the first layer and then learns to extract objects from these primitive features in the next layer.
+% en dus niet perse laatste layers voor classification maar vaak laatste layers terug mlps oid ipv puur convolutional layer
 
-The previous sections discussed how better, more affordable and portable hardware has contributed to the rise of popularity for \glspl{bci}.
-Another important part of the puzzle is the algorithms that convert data from these devices to useful actions.
-Most of these algorithms are data-driven classifiers and rely on \gls{ml} techniques and some even incorporate \gls{dl} techniques.
-These techniques and many other buzzwords under the \gls{ai} umbrella have been in the news almost daily as of late.
-Because of this, these techniques often appear newer than they are.
-In reality, most of these techniques evolved from decades-old ideologies.
-However, a spike in data availability and the discussed exponentially improved computational power enabled these techniques to perform far better and allowed them to be used in more applications.
-Combining existing techniques and relatively small tweaks to existing algorithms also gave rise to rather significant improvements.
-For instance, \citet{rl_activation_function_compare} discussed how changing the activation function in \gls{rl} from CReLU to ReLU6 offered a 35\% performance increase while keeping other settings fixed for certain experiments.
-This further illustrates that whilst the basic principles of such techniques are relatively old, new insights and data can make them even more powerful and applicable to more problems.
+Most of the main concepts from both \gls{ml} and \gls{dl} are already multiple decades old.
+To illustrate this, a general pipeline of a \gls{cad} system used for classification is given in Figure \ref{fig:cad_pipeline} and commonly used techniques are discussed below.
+It is noted that besides classification tasks, some regression problems for \gls{cad} systems exist as well.
+However, such regression problems are far less common in \gls{bci} systems relying on \gls{eeg} with the systematic review article of \citet{bci_review_arnau} only finding articles on classification problems for such systems.
+Because of this, this thesis which focuses primarily on \gls{eeg} based \glspl{bci} also focuses on classification problems.
+\gls{cad} systems are used extensively in hospitals for the interpretation of biomedical images and have been studied ever since computers were invented.
+The most common example of a \gls{cad} system is the classification of lung images as being either from a lung cancer patient or not, often also highlighting the nodules used for this classification.
+These pipelines are very similar to the ones used for \glspl{bci}, which are further discussed in Chapter \ref{ch:processing_signals} and \ref{ch:bci_pipeline}.
 
-\Gls{dl} is something that has only truly become viable in a broad range of applications in the last couple of years.
-Mostly due to the introduction of better libraries and faster training times due to improved hardware combined with more available data.
-\Gls{dl} is not one specific technique but rather an umbrella term for techniques such as \gls{cnn}, \gls{rnn} and \gls{gan}.
-Especially \gls{nn} have proven to be highly useful in many tasks including \gls{bci} applications.
-Section \ref{sec:processing_signals_interpreting_ml} will go into greater detail how \gls{ml} techniques are used in typical \gls{bci} applications.
+
+\begin{figure}[ht]
+  \begin{minipage}{\textwidth}
+    \centering
+    \begin{subfigure}{0.95\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/introduction/cad_pipeline_ml.png}
+        \captionsetup{width=0.9\linewidth}
+        \captionsetup{justification=centering}
+        \caption{General pipeline for \gls{ml} based \gls{cad} system.}
+        \label{fig:cad_pipeline_ml}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.95\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/introduction/cad_pipeline_dl.png}
+        \captionsetup{width=0.9\linewidth}
+        \captionsetup{justification=centering}
+        \caption{General pipeline for \gls{dl} based \gls{cad} system.}
+        \label{fig:cad_pipeline_dl}
+    \end{subfigure}
+    \captionsetup{width=0.9\linewidth}
+    \captionsetup{justification=centering}
+    \caption{General pipelines of a \gls{cad} system used for classification. A \gls{ml} approach is called a two-step approach as it exists from feature extraction and classification. A \gls{dl} approach is called a one-step approach as it combines both of these steps into a singular classification algorithm.}
+    \label{fig:cad_pipeline}
+  \end{minipage}  
+\end{figure}
+
+A \textit{two-step} approach in \gls{cad} systems denotes the use of regular \gls{ml} for classification.
+This means that there is both a feature extraction step and a regular classification step.
+Feature extraction is the process of representing the often highly dimensional and unstructured raw data using characteristic properties.
+These representations are often chosen by the designer of the system rather than learned from data and can take a significant time to efficiently develop.
+These features are then used for learning by the regular \gls{ml} classifier.
+Alternatively, a \textit{one-step} approach in \gls{cad} systems denotes the use of \gls{dl} in the pipeline.
+\gls{dl} differentiates itself from the previously discussed two-step \gls{ml} approach by working directly on the, optionally preprocessed, data rather than a feature representation of the data.
+Intuitively, many \gls{dl} models are created in a way such that earlier layers in the model represent some form of feature extraction whilst later layers are often purely there for classification. 
+This approach is interesting as it doesn't require the time-consuming feature extraction process where good features have to be found by the developer of the system.
+\gls{dl} approaches in \gls{cad} systems have also been proven to outperform state-of-the-art \gls{ml} approaches \citep{CAD_ml_dl_kbs}.
+However, \gls{dl} models are more challanging in terms of explainability and interpretability as further discussed in section \ref{subsec:processing_signals_common_issues_exaplainable}.
+
+Relating this back to \glspl{bci}, which have a very similar pipeline, a typical \gls{ml} approach often relies on a form of \gls{csp} for feature extraction.
+This technique is quite old being introduced by \citet{first_csp} around 30 years ago.
+Likewise, the regular \gls{ml} classification used is often a type of \gls{svm}.
+Once again, this technique was first introduced by \citet{first_svm} around 30 years ago.
+Over the years, \gls{csp} has evolved and many extensions such as \gls{fbcsp} by \citet{eeg_model_fbcsp} have been introduced.
+Likewise, \gls{svm} has seen many extensions and improvements \citep{svm_extension1, svm_history}.
+This has resulted in the combination of these two relatively old techniques, but with recent extensions, performing as state-of-the-art in \gls{bci} applications using \gls{ml} approaches.
+Likewise, when using a \gls{dl} approach in the \glspl{bci} pipeline, \glspl{cnn} are often used.
+This technique is again a rather old one, being first described by \citet{first_cnn} over 40 years ago.
+Just as \gls{csp}, \glspl{cnn} has seen multiple extensions and improvements over the year, just as other \gls{dl} approaches.
+For instance, \citet{rl_activation_function_compare} discussed how changing the activation function from CReLU to ReLU6 offered a 35\% performance increase while keeping other components fixed for certain experiments relying on a \gls{nn} in a \gls{rl} setting.
+Thus, these improved versions of older concepts have enabled far better performance making it possible to create more capable \gls{bci} systems.
+
+This doesn't mean that all approaches used for processing the data in \glspl{bci} rely on decades-old techniques that have improved over the years.
+One interesting and relatively new approach is the use of \gls{tl} from drastically different domains.
+Previously, \gls{tl} was mostly used in \glspl{bci} to train a model on data which may originate from different users performing similar but not necessarily identical tasks.
+This general model is then further refined on a specific patient and task, transferring the knowledge acquired from the previous data to the new data.
+When done correctly, this can provide far better performance compared to learning on the new data alone for problems where data is limited \citep{bci_review_arnau}.
+As available data specific to \glspl{bci} applications remains limited, some recent research has gone into transferring knowledge from completely different domains to \gls{bci} specific data.
+\Citet{tl_cnn_eeg} used a model pretrained on images and transferred it to \gls{eeg} data for a \gls{mi} task with promising results.
+Other attempts at transferring knowledge from other domains, such as natural language, have also been made \citep{thesis_wolf}.
+
+% todo: Semi-supervised learning methods use both labeled and unlabeled data. Their objective is to learn a supervised learning task, even in cases where only a small amount of training data is available. Usually, semi-supervised approaches learn the structure of the training data to become able to generate more (artificial) training points (Aznan et al 2019), that are used for conventional supervised learning in a second learning phase. Self-supervised learning (Jing and Tian 2019) is a similar approach which is currently gaining traction in the larger ML community. This technique was previously used to learn the relevant structure in EEG data by first learning an unsupervised pretext task, after which the model is further trained on the target task with labeled data (Banville et al 2020, Kostaset al 2021). The remainder of this review will focus on supervised learning methods.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{More open-source datasets and code}
+\label{subsubsec:bci_gaining_popularity_improved_data_processing_open_source_data_code}
+
+% well discussen dat bij arnau Unfortunately, only five papers fit the ideal profile that we defined for publications on control applications that use DL methods. From a reproducibility perspective, most publications can be reproduced from the provided descriptions. (e.g.  ideal publication profile)
+
+% The most common form of ML is supervised learning, in which we assume that the data is presented as a set of input-output pairs, a dataset, which we call labeled data, as each input is labeled with its corresponding output.
+
+% TODO HIER verder doen, note: teruglinken aan wolpaw's criteria perfect bci
+
+% Kort zeggen dat er nu veel libraries bestaan wat testen en extenden makkelijk maakt
+% mss ook link naar https://paperswithcode.com/
+
+%how to gather and share data for biosignal control research. Several publications also do not report their results properly to allow for the reproduction of performed experiments and to provide support that the developed model is suited for real-time decoding in a real-world setting. Evaluation of research prototypes is also insufficient to take the system’s technology readiness level beyond a proof-of-concept (POC).
+
+% Typically, task-specific data should be gathered, as publicly available data is often unsuited for the training of a model for a specific control system. Following the right procedures greatly facilitates the later stages of data processing and ensures better reproducibility of the research if the data used for training a model cannot be shared publicly
+
+% Training a neural network is therefore an optimization problem, for which many well-known algorithms and software libraries exist of which PyTorch7 , in Python and C++, and TensorFlow8 , in Python, are the most well-known.
+
+% Therefore, low-confidence labelled data is often used in a semi-supervised fashion as explained by \citet{deep_learn_low_label}.
+
+%UIT bci_review_arnau
+
+TODO
+
+% old text --
 
 Many great \gls{ml} and \gls{dl} libraries and frameworks exist, perhaps the most famous python \gls{ml} library is scikit-learn by \citet{sklearn}.
 MNE by \citet{mne} is a well-known library used for exploring, visualizing and analyzing \gls{eeg} data.
@@ -530,23 +663,49 @@ Combining these available resources makes it easier than ever to have satisfacto
 These available resources are a massive bonus for the \gls{bci} field when used correctly.
 The latter is easier said then done, as section \ref{sec:processing_signals_interpreting_ml} will address further when talking about \gls{ml} in \gls{bci} applications and the issues it has.
 
+
+% - - - - - - - - - -
+% summary
+% - - - - - - - - - -
+
+\subsection{Summarizing the cycle of increasing popularity}
+\label{subsec:bci_gaining_popularity_summary}
+
+% arnau zegt trend in omhaangde papers dl for bc system wss door improved software en hardware en succes of dl in andere domeinenen dus corresponds +-
+
+% korte samenvatting van section Growing scientific and commercial interest in BCIs in zijn geheel
+
+TODO
+
 % ---------------------------------------------- 
 % USE CASES
 % ---------------------------------------------- 
 
-\section{Medical use cases for BCIs}
+\section{Common use cases for BCIs}
 \label{sec:bci_common_use_cases}
 % some practical examples of \gls{bci} systems that have been developed
 
+% uitleggen er bestaat ook EMG is the most commonly used non-brain signal maar probleem met bv handicap
+% uitleggen verschil research dat invasive is en non invasive en dat full control system is met applicatie vs gewoon accuracy scores of medical apps zoals cad voor sleep apnea detection etc (dus validated met real world application)
+% van arnau: meest common robot arm control > drone control (a drone can be the well-known quadcopter (Redrovan and Kim 2018), but this can also refer to ground vehicles (Lu et al 2020) and robots (Aznan et al 2019) that can move according to the operator’s commands.) > bci spellers maar ook andere dingen zoals smart home control en virtual reality control en meer
+% One publication uses EEG for wheelchair control (Zgallai et al 2019)
+% aanpassen naar nu echt use cases bespreken vs linken
+% The application that is most common for EEG control is robot arm control
+% Figure 4 arnau heel interessant
+% reffen naar bci_review_arnau voor betere systematic approach
 Previous sections addressed some of the recent commercial applications from \glspl{bci}.
 Whilst these are great examples of how the technology can be used by the general population, the medical applications of \glspl{bci} remain very important to the field, if not of most importance.
 \gls{eeg} signals originate from the medical field and many of the successes in the field are related to helping people with certain diseases and/or disabilities.
 This section will highlight some of the major areas where \glspl{bci} can improve the quality of life for these people.
 
 % - - - - - - - - - -
+% diseases
+% - - - - - - - - - -
 
 \subsection{Preventing, monitoring and controlling diseases with BCIs}
 \label{subsec:bci_common_use_casesdiseases}
+
+% Medical applications, such as sleep staging or pathology detection, that are unrelated to control.
 
 \Gls{eeg} trials are often used to diagnose brain disorders.
 Especially seizure-related disorders such as epilepsy are often diagnosed through \gls{eeg} readouts.
@@ -601,6 +760,8 @@ The work by \citet{parkinson_stroke_reduction} is another great example of how \
 The work by \citet{bci_in_medicine} also highlights some related \gls{bci} work in medicine.
 
 % - - - - - - - - - -
+% extending medical system
+% - - - - - - - - - -
 
 \subsection{Using BCIs to extend existing medical systems}
 \label{subsec:bci_common_use_casesextending_medical_system}
@@ -650,9 +811,12 @@ Whilst improvements regarding these aspects have been made since the work of \ci
 Because of this, widespread adoption of \gls{eeg}-based exoskeletons and robotic prostheses is still very limited.
 
 % - - - - - - - - - -
+% novel interaction
+% - - - - - - - - - -
+% TODO: mergen met volgende section note dat nieuwe title dus tekst anders
 
-\subsection{Novel interaction methods using brain-signals}
-\label{subsec:bci_common_use_casesnovel_interaction}
+\subsection{Using BCIs as replacement for unusable interaction methods}
+\label{subsec:bci_common_use_cases_bcis_replace_unusable_interaction}
 
 The previous section highlighted how \glspl{bci} can be used to extend existing medical systems.
 When working with exoskeletons and robotic prostheses, the \gls{bci} systems provide a novel interaction method for these devices that normally rely on \gls{emg} or other sources for input.
@@ -746,10 +910,7 @@ However, similar setups have already been made in the past.
 For example, \citet{bci_monkey_arms} demonstrated monkeys taking control over two avatar arms simultaneously, a task that is arguably even harder to accomplish and has an appropriate peer-reviewed paper backing it.
 
 
-% - - - - - - - - - -
-
-\subsection{Using BCIs with and as prostheses}
-\label{subsec:bci_common_use_casesprostheses}
+% merge this below with previous section
 
 
 It was argued in section \ref{subsec:bci_common_use_casesextending_medical_system} that the risk involved when working with exoskeletons and robotic prostheses is too high for current \gls{bci} systems to be reliably used.
@@ -774,10 +935,12 @@ Besides this, the now non-functioning product is still present inside their body
 The issues and ethical questions this brings to the table are discussed further in section \ref{subsec:bci_ethical_e_waste}.
 
 % - - - - - - - - - -
+% other use cases
+% - - - - - - - - - -
 
 \subsection{Commercial and other use cases}
 \label{subsec:bci_common_use_commrcial_and_other}
-% Mss die porn detection dinges uit nerdland podcast?
+% al vermelde porn en vr maar ook andere
 TODO
 
 % ---------------------------------------------- 
@@ -811,6 +974,8 @@ Publicly available \gls{eeg} dataset such as the one by \citet{eeg_data} makes i
 If desired, the affordable headsets by OpenBCI and others, further compared in section \ref{subsec:biomedical_signals_measuring_equipment}, make it possible to have \gls{eeg} measuring equipment with good open-source libraries for well under 1000 euros.
 These smaller projects do not only have the potential to be of big impact for very specific users, they often reveal common issues and interesting alternative approaches in the \gls{bci} field.
 
+% - - - - - - - - - -
+% motivating examples
 % - - - - - - - - - -
 
 \subsection{Motivating examples using consumer-grade BCIs}
@@ -962,6 +1127,10 @@ Using such algorithms, another way of controlling the robotic arm could be using
 Highlighting the item detected by the arm could for example be done by the arm hovering over that specific item.
 Since the task of the robotic arm was picking up items, both systems would succeed, but the latter would be more efficient.
 Whilst this is a very naive example, it should illustrate that special thought should be put into this last component of the \gls{bci} system to maximize accuracy and efficiency.
+% Dus eigenlijk dat context aware systems met variable mapping van classification labels aan actions zorgen voor betere control dan fixed dingen, hoewel soms intuitive moeilijker kan zijn
+%  high-level controller that will map a user command to a sequence of device actions or a lowlevel controller that can directly use the output from the decoder model to perform a device action. but allows for a reduction of the number of commands that need decoding when dealing with a high number of degrees of freedom (Kuhner et al 2019). The latter only needs to send the command to the device, but requires an output for each possible degree of freedom of the device (George et al 2020).
+% For example, (Kuhner et al 2019) use depth sensing cameras to track object and robot positions, which allows users to think of which object they want to grasp, without communicating the object’s position to the robot control system.
+
 
 % TODO: make experimental design image
 \begin{figure}[ht]
@@ -1012,9 +1181,40 @@ Commercial institutions that can hire many of the required professions will like
 
 
 % - - - - - - - - - -
+% automated learning
+% - - - - - - - - - -
 
-\subsection{An issue of standardized testing and optimistic results}
+\subsection{The potential of an AutoML variant for BCI pipelines}
+\label{subsec:bci_opportunities_obstacles_automl}
+
+% Another interesting development in the research and development of ML pipelines is AutoML (He et al 2021). This new approach to the design of ML pipelines allows for automated exploration of alternative methods for the different components of the pipeline. While this has not been developed yet in the context of biosignal control, it has proven to be a valuable tool for researchers and companies that are lacking the expertise to develop the whole pipeline themselves. Companies such as Google are now providing AutoML solutions as part of their cloud infrastructure13. Having such a framework for biosignal decoding pipeline development could significantly boost the deployment of real-world applications.
+
+TODO
+
+% - - - - - - - - - -
+% testing issues
+% - - - - - - - - - -
+
+\subsection{A lack of standardized testing}
 \label{subsec:bci_opportunities_obstacles_lack_of_testing}
+
+% mss weg en  naar 6 bij "common issues" en dan hier maken "other common development issues"
+
+% ook optimistic results
+
+%DL models have many components and hyperparameters that need to be chosen by the implementer. Performance of models can sometimes greatly vary between software and hardware that are used in training and evaluation. Evaluating the performance of a model requires great care in selecting the appropriate metrics to report. Additionally, evaluating the full control system requires more investigating than only assessing the decoding performance of the DL model. Recommendations will be formulated regarding reporting standards in relevant scientific fields.
+
+% this should at least be a basic user study to validate that the control system improves the user experience of the targeted user group compared to alternative approaches. Only a small proportion of publications perform a user study, which emphasizes that there is a clear gap in current evaluation methodologies. The heterogeneity in evaluation methodologies also makes control system designs harder to compare without reimplementing the full control system. Having such guidelines should encourage researchers to adhere to a detailed user evaluation for POC prototypes and allows for the comparison of control systems for the same application types.
+
+% Since user opinions can be subjective, it is essential to have a heterogeneous group of participants, as mentioned in section 4.3.
+
+% dus vooral objective mesaures zoals accuracy nu
+
+% Reviews by Biet al(2019), Rashid et al(2020)and Al-Saegh et al (2021) among others discuss the differences between offline and online systems in more detail. Therefore, stress tests should be performed to evaluate the model under conditions that reflect reallife conditions. Unfortunately, such stress tests have not been developed yet in the context of biosignal control.
+
+% While there are no standardized guidelines regarding the evaluation of prototypes, good-practice examples can serve as a template for the recommended evaluation methods for a biosignal control system. User study is belangrijk, i.e., hoe ervaart persoon het systeem wat soms ook stom evaluated bv; s. However, we noticed that several papers do not evaluate the device on a target population. For example, both Nguyen and Chung (2018) and Kuhner et al (2019) only include able-bodied participants while their applications target paralyzed persons.
+
+%UIT bci_review_arnau
 
 Evaluating and comparing different \gls{bci} systems is not easy.
 This is in part due to a \gls{bci} system consisting of different components.
@@ -1046,11 +1246,38 @@ It becomes apparent that a 90\% accuracy for a model that can be used on any use
 Likewise, 80\% accuracy on non-lab environment data with high stochasticity is far more impressive than the same accuracy on the best measuring hardware in the most controlled environment. 
 
 % - - - - - - - - - -
+% interdesciplinary issues
+% - - - - - - - - - -
 
-\subsection{BCI research is highly interdisciplinary}
+\subsection{Challenges from the highly interdisciplinary nature of BCI systems}
 \label{subsec:bci_opportunities_obstacles_interdisciplinary}
 
+
+
 TODO
+
+% - - - - - - - - - -
+% repeatability issues
+% - - - - - - - - - -
+
+\subsection{Difficulties with repeatability and reproducibility of experiments}
+\label{subsec:bci_opportunities_obstacles_repeatability_reproducibility}
+
+% zoals discussed in section subsubsec:bci_gaining_popularity_improved_data_processing_open_source_data_code Unfortunately, only five papers fit the ideal profile that we defined for publications on control applications that use DL methods. From a reproducibility perspective, most publications can be reproduced from the provided descriptions. maar dus wel al beter maar nog niet ideal
+
+TODO
+
+% - - - - - - - - - -
+% variation issues
+% - - - - - - - - - -
+
+\subsection{Complex data variability and user-training}
+\label{subsec:bci_opportunities_obstacles_training_and_variability}
+
+% An important issue researchers keep getting confronted with is the fact that there are still a lot of mysteries about the brain's inner workings, leaving many of the finer intercepted brain signals unexplained. \citet{brainmapping} states that the progress of mapping the brain and its billions of sensors and connections is accelerating yet still far from finished. This mapping would be a huge step in understanding the brain.
+
+% User-training will also play an important role in the practical deployment of an application (Kuhner et al 2019). Users will not want to use a system that requires a long training time before being usable on a regular basis. Due to the non-stationary nature of the signals, users might have to re-train themselves and re-calibrate their device on every usage. These challenges are highlighted by the Cybathlon competition where one of the events is a race where participants have to complete a BCI task in the shortest time (McFarland and Wolpaw 2018, Perdikis et al 2018, Hehenberger et al 2021). Therefore, user training should be considered when designing the final control system, which is extensively discussed by Roc et al (2021).
+
 
 % ---------------------------------------------- 
 % ETHICAL CHALLENGES
@@ -1064,8 +1291,10 @@ TODO
 
 SECTION TO BE COMPLETED IN A LATER STAGE, LOREM IPSUM PLACED FOR APPROXIMATED LENGTH.
 
-\lipsum[1-2]
+TODO
 
+% - - - - - - - - - -
+% luddites
 % - - - - - - - - - -
 
 \subsection{The return of the Luddites}
@@ -1074,40 +1303,50 @@ SECTION TO BE COMPLETED IN A LATER STAGE, LOREM IPSUM PLACED FOR APPROXIMATED LE
 % note: ludites are not against tech, they are against it taking their profession that is hard to learn, look this up and perhaps link with "egoism" of doctors
 % making the rich even richer
 % https://www.history.com/news/who-were-the-luddites
-\lipsum[1-3]
+TODO
 
+% - - - - - - - - - -
+% ads
 % - - - - - - - - - -
 
 \subsection{Advertisements based on your thoughts}
 \label{subsec:bci_ethical_data_mining}
 
 % TODO: Meta and other commercial companies that showed interest link
-\lipsum[1-2]
+TODO
 
+% - - - - - - - - - -
+% hacking
 % - - - - - - - - - -
 
 \subsection{Hacking BCI systems}
 \label{subsec:bci_ethical_hacking}
 
 % TODO: https://link.springer.com/article/10.1007/s10586-021-03326-z
-\lipsum[1-2]
+TODO
 
+% - - - - - - - - - -
+% personal identity
 % - - - - - - - - - -
 
 \subsection{Changing peoples personal identities}
 \label{subsec:bci_ethical_identity}
 
 % TODO: Discuss how the "blind" and "deaf" culture is a thing and how people that regain these capabilities feel as if they have lost their own culture
-\lipsum[1-3]
+TODO
 
+% - - - - - - - - - -
+% confrontation
 % - - - - - - - - - -
 
 \subsection{Painfully confronting users with their brain}
 \label{subsec:bci_ethical_confronting}
 
 % TODO: Link to nature article findings and how user experience is really important
-\lipsum[1-4]
+TODO
 
+% - - - - - - - - - -
+% e-waste
 % - - - - - - - - - -
 
 \subsection{E-waste inside your skull}
@@ -1118,25 +1357,22 @@ SECTION TO BE COMPLETED IN A LATER STAGE, LOREM IPSUM PLACED FOR APPROXIMATED LE
 % second_sight_broken_ethics: https://spectrum.ieee.org/bionic-eye-obsolete
 % bci_blind_assist_review: https://www.frontiersin.org/articles/10.3389/fnhum.2021.638887/full
 % bci_vision_assist_review: https://link.springer.com/content/pdf/10.1007/s13311-018-0660-1.pdf
-\lipsum[1-4]
-
-% - - - - - - - - - -
-
-\subsection{Making users look like a freak}
-\label{subsec:bci_ethical_freaky}
-
-% TODO: 
-\lipsum[1-2]
+TODO
 
 % ---------------------------------------------- 
+% CONCLUSION AND PROPOSED SYSTEM
+% ---------------------------------------------- 
 
-\section{Proposing a three-signal system for basic controls}
-\label{sec:bci_opportunities_obstacles_ours}
+\section{Chapter conclusions and proposing a three-signal system for basic controls}
+\label{sec:bci_concolusion_and_proposing_ours}
+
+% TODO: summary of this chapter
+% Also discuss the order of things on paper
 
 % TODO: discuss what system will be made in this paper
-% Also discuss the order of things on paper
 % MI instead of P300 due to user comfort and fatigue over time which decreases performance; e.g. https://www.scitepress.org/Papers/2020/88709/88709.pdf
 % Robot example https://github.com/NTX-McGill/NeuroTechX-McGill-2019
+% die wheelchair example uit thesis arnau?
 
 \textbf{NOTE: this will be edited once the thesis is "finished"}
 

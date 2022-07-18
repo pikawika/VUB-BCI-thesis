@@ -1,0 +1,74 @@
+% TODO:
+%   - XXX
+% ----------  
+% Questions:
+%   - XXX
+
+% TODO: gans herschrijven want is nu eig 6_xxx en dan hier echt een implementatie doen
+% dit gaat met veel refs messen dus zeker nazien
+
+% Uncomment this if the use of parts is desired
+\part{Implementing an EEG-based brain-computer interface that classifies motor imagery tasks}
+
+% iets a la hiervoor gezien hoe besproken en nu effectief hoe doen
+
+% Checkout Fieldtrip toolbox voor laplacian
+
+\chapter{EEG-based offline classification system for motor imagery tasks}
+\label{ch:offline_bci_system}
+TODO
+
+\section{Training the system}
+\label{sec:bci_pipeline_training}
+TODO
+
+
+\subsection{Data gathering and windowing}
+\label{subsec:bci_pipeline_training_data_gathering_windowing}
+
+% Several windowing methods exist and are reviewed by Podder et al (2014).
+
+% Windowing: when specific events in a signal (such as a spike or pattern) matters more than the overall shape of the complete signal, windowing allows to split a signal into fixed-length, usually overlapping, sub-sequences. Having the network focus on small sub-sequences allows it to be faster (less compute intensive, as less data is being processed), and generalize better, as a small number of easily-recognizable patterns (on which the network focuses) can appear in various positions in longer signals (that the network does not have to bother with). Several windowing methods exist, and are reviewed by Podder et al (2014). Jeong et al (2020) and Nguyen and Chung (2019) use Hamming windowing.
+
+TODO
+
+
+\subsection{Pre-processing}
+\label{subsec:bci_pipeline_training_preprocessing}
+
+% as discussed by review arnau: Limit required preprocessing: extensive preprocessing will yield clean signals with a high SNR, but this usually comes at the cost of expensive computational requirements that take resources and time. It will often be necessary to balance preprocessing requirements with latency and power consumption constraints.
+
+% Conceptually, given enough layers and neurons, and the proper architecture, a neural network can learn any mapping from inputs to outputs (Sonoda and Murata 2017) (they are universal function approximators). This means that any method of acquiring a signal, and representing it as floatingpoint values will eventually allow the network to make sense of the inputs, and learn something. However, a more careful design of the inputs allows to improve two important properties of the neural network: learning speed (important when the network is used in an adaptive system that learns as it is being used) and generalization power (the ability of making high-quality predictions for unseen inputs, even if training on a small amount of input-output pairs). Designing the input, also called feature engineering, is highly domain-specific. In the signal processing literature, especially in settings that consider EEG data
+
+% Signal filtering: applied on the signals, filters remove frequencies of the signals, to only keep those of interest. This is a form of noise removal, in which the expert designer knows that some frequencies never convey information and can only be noise. There are many different types of filters, which fall outside of the scope of this publication. For more information on filters and digital signal processing, interested readers are referred to (Orfanidis 1996).
+
+TODO
+
+
+\subsection{Feature extraction and generation}
+\label{subsec:bci_pipeline_training_features}
+TODO
+
+% Feature extraction: this final step is highly variable and depends on the exact context (sleep staging, Motor Imagery detection, epilepsy seizure detection, etc) in which the signal should be decoded. In general, DL models have been shown to perform better when the input is the raw (preprocessed) signal that is still represented as timeseries of samples for each signal channel. One of the most commonly used feature extraction methods is the Fourier transform, which allows to decompose a temporal signal (a sequence of signal readings over time) to a sum of sinuses of various frequencies. The Fourier transform transforms data from the time domain to the frequency domain. This transform is loss-less and invertible, which means that it does not destroy information. It allows the neural network to more easily focus on the existence of a particular frequency in a signal, instead of having to make sense of the entire (time-domain) signal.
+
+% For a detailed review of possible feature extraction methods, we refer interested readers to Rashid et al (2020).
+
+
+\subsection{Training a ML classification model}
+\label{subsec:bci_pipeline_training_classification_model}
+TODO
+
+\section{Using the system}
+\label{sec:bci_pipeline_using}
+TODO
+
+
+\subsection{Applying the trained classifier}
+\label{subsec:bci_pipeline_using_classifier}
+TODO
+
+
+\subsection{Moving towards an online system}
+\label{subsec:bci_pipeline_using_going_online}
+TODO
+
