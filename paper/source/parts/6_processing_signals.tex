@@ -13,7 +13,7 @@
 
 % The most common form of ML is supervised learning, in which we assume that the data is presented as a set of input-output pairs, a dataset, which we call labeled data, as each input is labeled with its corresponding output.
 
-% Semi-supervised learning methods use both labeled and unlabeled data. Their objective is to learn a supervised learning task, even in cases where only a small amount of training data is available. Usually, semi-supervised approaches learn the structure of the training data to become able to generate more (artificial) training points (Aznan et al 2019), that are used for conventional supervised learning in a second learning phase. Self-supervised learning (Jing and Tian 2019) is a similar approach which is currently gaining traction in the larger ML community. This technique was previously used to learn the relevant structure in EEG data by first learning an unsupervised pretext task, after which the model is further trained on the target task with labeled data (Banville et al 2020, Kostaset al 2021). The remainder of this review will focus on supervised learning methods.
+
  
 % Methods and algorithms that allow to concretely perform this learning operation are extensively reviewed by Caruana and Niculescu-Mizil (2006).
  
@@ -44,6 +44,8 @@ TODO
 \section{A general EEG-based BCI pipeline}
 \label{sec:processing_signals_general_pipeline}
 
+% link back naar pipeline van cad
+
 % duidelijk bespreken welk ding echt CS en welk ding eigenlijk derden
 
 % - - - - - - - - - -
@@ -67,6 +69,12 @@ TODO
 % Hardware & software
 % Volgens review arnau niet perse nodig want DL kan van "elk signaal" leren
 
+% as discussed by review arnau: Limit required preprocessing: extensive preprocessing will yield clean signals with a high SNR, but this usually comes at the cost of expensive computational requirements that take resources and time. It will often be necessary to balance preprocessing requirements with latency and power consumption constraints.
+
+% Conceptually, given enough layers and neurons, and the proper architecture, a neural network can learn any mapping from inputs to outputs (Sonoda and Murata 2017) (they are universal function approximators). This means that any method of acquiring a signal, and representing it as floatingpoint values will eventually allow the network to make sense of the inputs, and learn something. However, a more careful design of the inputs allows to improve two important properties of the neural network: learning speed (important when the network is used in an adaptive system that learns as it is being used) and generalization power (the ability of making high-quality predictions for unseen inputs, even if training on a small amount of input-output pairs). Designing the input, also called feature engineering, is highly domain-specific. In the signal processing literature, especially in settings that consider EEG data
+
+% Signal filtering: applied on the signals, filters remove frequencies of the signals, to only keep those of interest. This is a form of noise removal, in which the expert designer knows that some frequencies never convey information and can only be noise. There are many different types of filters, which fall outside of the scope of this publication. For more information on filters and digital signal processing, interested readers are referred to (Orfanidis 1996).
+
 TODO
 
 % - - - - - - - - - -
@@ -75,6 +83,10 @@ TODO
 
 \subsection{Windowing}
 \label{subsec:processing_signals_general_pipeline_windowing}
+
+% Several windowing methods exist and are reviewed by Podder et al (2014).
+
+% Windowing: when specific events in a signal (such as a spike or pattern) matters more than the overall shape of the complete signal, windowing allows to split a signal into fixed-length, usually overlapping, sub-sequences. Having the network focus on small sub-sequences allows it to be faster (less compute intensive, as less data is being processed), and generalize better, as a small number of easily-recognizable patterns (on which the network focuses) can appear in various positions in longer signals (that the network does not have to bother with). Several windowing methods exist, and are reviewed by Podder et al (2014). Jeong et al (2020) and Nguyen and Chung (2019) use Hamming windowing.
 
 TODO
 
@@ -87,6 +99,10 @@ TODO
 
 % The CSP method performs feature extraction based on learned spatial filters.
 % https://www.youtube.com/watch?v=zsOULC16USU
+
+% Feature extraction: this final step is highly variable and depends on the exact context (sleep staging, Motor Imagery detection, epilepsy seizure detection, etc) in which the signal should be decoded. In general, DL models have been shown to perform better when the input is the raw (preprocessed) signal that is still represented as timeseries of samples for each signal channel. One of the most commonly used feature extraction methods is the Fourier transform, which allows to decompose a temporal signal (a sequence of signal readings over time) to a sum of sinuses of various frequencies. The Fourier transform transforms data from the time domain to the frequency domain. This transform is loss-less and invertible, which means that it does not destroy information. It allows the neural network to more easily focus on the existence of a particular frequency in a signal, instead of having to make sense of the entire (time-domain) signal.
+
+% For a detailed review of possible feature extraction methods, we refer interested readers to Rashid et al (2020).
 
 TODO
 
@@ -115,6 +131,15 @@ TODO
 % ---------------------------------------------- 
 \section{Alternative BCI pipelines}
 \label{sec:processing_signals_alternative_pipelines}
+
+% - - - - - - - - - -
+% No data acquisition
+% - - - - - - - - - -
+
+\subsection{Using existing open-source data for training and testing}
+\label{subsec:processing_signals_alternative_pipelines_using_existing_data}
+
+TODO
 
 % - - - - - - - - - -
 % No preprocessing & feature engineering
@@ -156,7 +181,6 @@ TODO
 
 % learning and prediction phase
 
-% The most common form of ML is supervised learning, in which we assume that the data is presented as a set of input-output pairs, a dataset, which we call labeled data, as each input is labeled with its corresponding output (Caruana and NiculescuMizil 2006). Alternatively, unsupervised learning techniques do not use outputs for learning, but rather learn the (unknown) structure of the data. Semi-supervised learning methods use both labeled and unlabeled data, usually to learn the structure of the training data to become able to generate more (artificial) training points (Aznan et al 2019), that are used for conventional supervised learning in a second learning phase. Self-supervised learning (Jing and Tian 2019) is a similar approach that is used to learn the relevant structure in EEG data by first learning an unsupervised pretext task, after which the model is further trained on the target task with labeled data (Banville et al 2020, Kostas et al 2021). The remainder of this review will focus on supervised learning methods.
 
 % The dominance of CNN with regard to model choice can be attributed to the relative ease of use and the popularity of this architecture in other research fields that use DL. While RNN architectures have been successful in closely related fields such as speech recognition and natural language processing, they have only seen limited deployment in a biosignal decoding context. Typically, CNNs also have less trainable parameters which makes them less sensitive to small datasets and lower their computational requirements. Other architectures were investigated for biosignal decoding, but state-of-the-art research mostly focuses on CNN architectures (Buongiorno et al 2019, Roy et al 2019).
 
@@ -174,8 +198,27 @@ TODO
 % Difference ML & DL
 % - - - - - - - - - -
 
-\subsection{Difference between machine learning and deep learning}
+\subsection{Difference between traditional machine learning and deep learning}
 \label{subsec:processing_signals_ml_and_dl_difference}
+
+% nn_can_learn_from_raw
+% % Conceptually, given enough layers and neurons, and the proper architecture, a neural network can learn any mapping from inputs to outputs (Sonoda and Murata 2017) (they are universal function approximators). This means that any method of acquiring a signal, and representing it as floatingpoint values will eventually allow the network to make sense of the inputs, and learn something. bci review arnau
+
+TODO
+
+% - - - - - - - - - -
+% Common regular ML classifiers
+% - - - - - - - - - -
+
+\subsection{Supervised, Semi-Supervised, Unsupervised, and Self-Supervised Learning}
+\label{subsec:processing_signals_ml_and_dl_tyes_of_learning_supervision}
+
+% The most common form of ML is supervised learning, in which we assume that the data is presented as a set of input-output pairs, a dataset, which we call labeled data, as each input is labeled with its corresponding output (Caruana and NiculescuMizil 2006). Alternatively, unsupervised learning techniques do not use outputs for learning, but rather learn the (unknown) structure of the data. Semi-supervised learning methods use both labeled and unlabeled data, usually to learn the structure of the training data to become able to generate more (artificial) training points (Aznan et al 2019), that are used for conventional supervised learning in a second learning phase. Self-supervised learning (Jing and Tian 2019) is a similar approach that is used to learn the relevant structure in EEG data by first learning an unsupervised pretext task, after which the model is further trained on the target task with labeled data (Banville et al 2020, Kostas et al 2021). The remainder of this review will focus on supervised learning methods.
+
+% Semi-supervised learning methods use both labeled and unlabeled data. Their objective is to learn a supervised learning task, even in cases where only a small amount of training data is available. Usually, semi-supervised approaches learn the structure of the training data to become able to generate more (artificial) training points (Aznan et al 2019), that are used for conventional supervised learning in a second learning phase. Self-supervised learning (Jing and Tian 2019) is a similar approach which is currently gaining traction in the larger ML community. This technique was previously used to learn the relevant structure in EEG data by first learning an unsupervised pretext task, after which the model is further trained on the target task with labeled data (Banville et al 2020, Kostaset al 2021). The remainder of this review will focus on supervised learning methods.
+
+% Therefore, low-confidence labelled data is often used in a semi-supervised fashion as explained by \citet{deep_learn_low_label}.
+
 TODO
 
 % - - - - - - - - - -
@@ -189,6 +232,7 @@ TODO
 % RF
 % SVM
 % Single-layer Perceptron
+% bekijk ml_strats_used_in_papers
 
 TODO
 
@@ -202,6 +246,14 @@ TODO
 % ANN (MLP fully connected -> wanneer DL en wanneer regular ML, uitleggen soms gezienals regular ML)
 % CNN (conv layer, pooling layer)
 % RNN (e.g. long term short term memory)
+
+% TODO: cnn bespreken a la: The most common type of DL neural networks at this time are the previously described CNNs (LeCun et al 1989). The subsequent application of convolutional layers results in a high-level representation of the input as stipulated by Goodfellow et al (2016). For example, in an object classification task, the network learns to extract primitive shapes from the raw input (a matrix of pixel values) in the first layer and then learns to extract objects from these primitive features in the next layer.
+% en dus niet perse laatste layers voor classification maar vaak laatste layers terug mlps oid ipv puur convolutional layer
+
+% In practice, neural networks can combine many layers of different kinds. It is not unusual to find neural networks that start with a few convolutional layers, to detect patterns independently of where they are in the input (such as edges in an image, or features in a 1D signal), then have one LSTM layer to be able to make sense of sequences of inputs, followed by a few feed-forward MLP-like layers to map what the LSTM layer learned to actual outputs. In the papers that we review in this article, great care is always given to explain and motivate the choice of neural architecture. Designing a neural network requires experience, as there is no systematic approach. We refer readers interested in knowing more than what we present here to books such as Goodfellow et al (2016) and Aggarwal (2018).
+
+
+% bekijk ml_strats_used_in_papers
 
 TODO
 
