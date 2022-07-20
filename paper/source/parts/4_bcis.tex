@@ -50,7 +50,9 @@ The remainder of this chapter further introduces the main rationale behind \glsp
 Chapter \ref{ch:biomedical_signals} gives more depth on the origins and measurability of brain signals while Chapter \ref{ch:processing_signals} addresses the techniques and technologies needed to process brain-signals and take actions based on their interpretation. 
 As research on \glspl{bci} is highly multidisciplinary, entering the field as a computer scientist can be rather intimidating due to the steep learning curve of the ideas, technologies, challenges and terminology used in such research.
 To lower this initial learning curve, these first three chapters aim to introduce the most important concepts in an easy-to-understand manner for a typical computer scientist student with some \gls{ai} background.
-Although no specific procedure for systematic review was followed for these first chapters, special attention was payed to favor papers from reputable sources which have been influential based on both the amount of times the work itself is cited in other papers and the performance of connected papers.
+These first chapters follow no specific systematic review procedure.
+However, special attention was payed to favor papers from reputable sources, such as famous authors in the field (i.e. Jonathan R. Wolpaw).
+A focus was also put on articles which have been influential based on both the amount of times the work itself is cited in other articles and the performance of these other articles citing the original article.
 The latter was determined by using the connected papers tool\footnote{\url{https://www.connectedpapers.com/}}.
 
 The interested reader is also referred to the great introductory book on \glspl{bci} by \citet{bci_book} and the review article by \citet{bci_review} when more introductory insight is desired.
@@ -722,142 +724,293 @@ The next section focuses on effective use cases for \glspl{bci} to let the reade
 % USE CASES
 % ---------------------------------------------- 
 
-
-% START HERE; HERSCHRIJVEN NAAR DIE DIVISIONS UIT PPT EN UIT INTRO
-
 \section{Common use cases for BCIs}
 \label{sec:bci_common_use_cases}
-% some practical examples of \gls{bci} systems that have been developed
 
-% uitleggen er bestaat ook EMG is the most commonly used non-brain signal maar probleem met bv handicap
-% uitleggen verschil research dat invasive is en non invasive en dat full control system is met applicatie vs gewoon accuracy scores of medical apps zoals cad voor sleep apnea detection etc (dus validated met real world application)
-% van arnau: meest common robot arm control > drone control (a drone can be the well-known quadcopter (Redrovan and Kim 2018), but this can also refer to ground vehicles (Lu et al 2020) and robots (Aznan et al 2019) that can move according to the operator’s commands.) > bci spellers maar ook andere dingen zoals smart home control en virtual reality control en meer
-% One publication uses EEG for wheelchair control (Zgallai et al 2019)
-% aanpassen naar nu echt use cases bespreken vs linken
-% The application that is most common for EEG control is robot arm control
-% Figure 4 arnau heel interessant
-% reffen naar bci_review_arnau voor betere systematic approach
-Previous sections addressed some of the recent commercial applications from \glspl{bci}.
-Whilst these are great examples of how the technology can be used by the general population, the medical applications of \glspl{bci} remain very important to the field, if not of most importance.
-\gls{eeg} signals originate from the medical field and many of the successes in the field are related to helping people with certain diseases and/or disabilities.
-This section will highlight some of the major areas where \glspl{bci} can improve the quality of life for these people.
+The previous section aimed to address potential reasons for the increase in popularity in \gls{bci} research.
+This already discussed multiple \gls{bci} applications, showing some of the use-cases for \glspl{bci}.
+When looking at Wolpaw's definition of a \gls{bci}, a \gls{bci} is nearly limitless in what it can be used for.
+Whilst it should be a \textit{communication device}, this terminology can be seen rather broadly.
+Most obvious is perhaps the use of a \gls{bci} as a control system, which then communicates with an external device so that it can be controlled.
+Already discussed examples of this type include the multimedia control system proposed by \citet{early_bci_multimedia} from Section \ref{subsec:bci_gaining_popularity_better_processing}.
+However, when using \glspl{bci} to detect common patterns of a disease, these patterns could also be communicated to a doctor and hence it could also be considered a communication device.
+It should also be noted that the given definition of both a \gls{bci} and perfect \gls{bci} from section \ref{sec:bci_introduction} are around 20 and 10 years old respectively.
+During the time that has passed since then, many new use cases for \glspl{bci} have emerged, especially in a commercial setting.
+Thus, these definitions are by no mean the only definition for what a \gls{bci} system is and it is not uncommon to find varying opinions on what can be called a \gls{bci} system and what can't be called one.
+This section aims to familiarize the reader with a broad idea of possible use cases of \glspl{bci} and to give some concrete examples whilst also addressing some of the shortcomings found in the articles describing them.
+As this thesis focuses on non-invasive \gls{eeg} based \glspl{bci}, this section will also focus on non-invasive \gls{eeg} related articles.
+
+For the interested reader, \citet{bci_review_arnau} provides more examples of \gls{bc} systems, of which \glspl{bci} are a subset, that use \gls{dl}.
+The focus of \citet{bci_review_arnau} is on articles that provide at least a completely working \glsfirst{poc}, from live data acquisition to external device control.
+\Citet{ml_strats_used_in_papers} reviews several \gls{bci} specific papers and focuses on the type of \gls{ml} task that is performed and which \gls{ml} and \gls{dl} techniques are used for this.
+Only a few articles discussed by \citet{ml_strats_used_in_papers} have a working \gls{poc} on live data with many simply looking at the evaluation metrics of the \gls{ml} and \gls{dl} strategies.
+Whilst the articles discussed by \citet{bci_review_arnau} are thus more representative of real-world performance and use-cases, finding such complete works is rather challenging.
+Because this section is only meant to demonstrate potential use cases of \glspl{bci} and common shortcomings in the papers discussing them, there is no enforcement of requiring the discussed papers to have a fully working \gls{poc}.
+This allows for offline systems and articles focusing on only certain components of the \gls{bci} pipeline to be discussed as well.
+It also allows for discussing systems which may not strictly be \glspl{bci} but which do use almost identical pipelines, further demonstrating what is possible when working with brain signals as data.
+In this regard, it is similar to the work of \citet{bci_applications} who give an overview of the most common use cases for \glspl{bci} and the challenges they are faced with.
 
 % - - - - - - - - - -
 % diseases
 % - - - - - - - - - -
 
-\subsection{Preventing, monitoring and controlling diseases with BCIs}
-\label{subsec:bci_common_use_casesdiseases}
+\subsection{Using BCIs as an automated tool in all stages of medical phenomena}
+\label{subsec:bci_common_use_cases_medical_phenomena}
 
-% Medical applications, such as sleep staging or pathology detection, that are unrelated to control.
+As \gls{eeg} is relatively affordable and portable, it is an often used modality in the hospital.
+The visualisation of the measurements can be read by a specialist to diagnose a whole suite of diseases.
+Especially seizure-related disorders such as epilepsy are often diagnosed through \gls{eeg} readouts \citep{eeg_epilepsy}.
+Other neurological disorders such as the \gls{lis} can also be correctly identified by \gls{eeg} readouts \citep{eeg_lis_detection}.
+Even the psychological field uses \gls{eeg} as a physiological measuring tool to aid in the diagnosis and psychological treatment of patients, although psychiatrists should be aware of the limitations \gls{eeg} has for them as further discussed by \citet{eeg_for_psychiatric}.
+Since \gls{eeg} is used for a wide variety of diagnoses and by far the most common source of data for non-invasive \gls{bci} \citep[as discussed by][]{bci_review_arnau}, much research has gone into how \glspl{bci} can be used as an automated aid for medical diseases throughout all stages of a medical phenomena.
+In general, three important distinctions are made for the stage of such phenomena and thus for the medical application of the \gls{bci}: prevention, diagnosis/monitoring and rehabilitation/restoration.
 
-\Gls{eeg} trials are often used to diagnose brain disorders.
-Especially seizure-related disorders such as epilepsy are often diagnosed through \gls{eeg} readouts.
-But also other neurological disorders such as the locked-in syndrome rely on \gls{eeg} amongst others to be correctly identified.
-Even the psychological field uses \gls{eeg} as a physiological measuring tool to aid in the diagnosis and treatment of patients, although psychiatrists should be aware of the limitations \gls{eeg} has for them \citep{eeg_for_psychiatric}.
+% | | | | | | | | | | | | |
 
-As \gls{eeg} is used for a wide variety of diagnoses and as input data for most \glspl{bci}, much research has gone into how \glspl{bci} can be used as an aid for medical diseases.
-\Citet{bci_applications} gives an overview of the most common use cases for \glspl{bci}.
-In general, \glspl{bci} is used for three different reasons in medical applications: prevention, detection/diagnosis and rehabilitation/restoration.
+\subsubsection{Using BCIs for the prevention of medical phenomena}
+\label{subsubsec:bci_common_use_cases_medical_phenomena_prevention}
 
-One popular example of prevention relates to traffic accidents.
+One popular example of prevention relates to the use of \gls{bci} systems for continuously monitoring signs of decreased attention \citep{bci_applications}.
+Such a decrease in attention might show an exaggerated usage of alcohol and other drugs, which allows the user to be alerted before drinking \textit{just one more}.
+Whilst it is unlikely that alcohol addicts will wear a \gls{bci} to the pub, such devices can significantly help in the reduction of traffic accidents by becoming mandatory during driving.
 According to \citet{traffic_deaths}, traffic accidents were the number 1 cause of death for children and young adults.
-Whilst many types of equipment are already in place to prevent traffic accidents from occurring, such as speed cameras and breathalyzers, it has been studied how \glspl{bci} can be used as a prevention measure as well.
-The earlier discussed research by \citet{early_bci_drowsiness} that was one of the first attempts at a truly portable \gls{bci}, measured driver's drowsiness levels.
-Such information can be used to alert or even enforce drivers to take a break from driving when drowsiness levels are too high.
-Other research includes that by \citet{eeg_dangerous_situation_car} who has discovered that emergency situations can be classified faster from \gls{eeg} data than the user's response.
-This was done through a driving simulation and was found to have an accuracy of about 70\%.
-\Citet{eeg_motion_sickness} developed a system that could estimate motion sickness levels, which in turn could again be used as an alert for drivers to take a break from driving.
-These three examples show how \glspl{bci} can be used in a variety of ways for the prevention of traffic deaths.
-Many more applications exist for the prevention of this phenomenon and others using \glspl{bci}.
+Whilst many types of equipment are already in place to prevent traffic accidents from occurring, such as speed cameras and lane assist technology, it has been studied how \glspl{bci} can be used as a prevention measure as well.
 
-\Gls{cade} and \gls{cad} using medical imagery are widely used for diagnosis and treatment monitoring in oncology and other fields.
-Comparable systems exist using \gls{eeg} data amongst others for diagnosis aids.
-Whilst these do acquire and process brain signals to output a classification, the classification itself is not directly used nor is the output directly connected to other systems.
-This makes calling diagnostic systems using \gls{eeg} data a stretch of the definition in some regards.
-Nonetheless, the previously given example of the commercial Muse headset for sleep tracking is one example of a detection and diagnostic system that can be classified as a \gls{bci}.
-It detects irregular sleep patterns, allows for diagnosing certain sleep disorders and can interact with the user to prevent or suppress the found phenomena in the future.
-\Citet{eeg_sleep_apnea} have developed a similar system to detect sleep apnea from \gls{eeg}, but don't call their system a \gls{bci}.
-\Citet{bci_sleep_apnea} also developed a system to detect sleep apnea but they do call it a \gls{bci}.
-This shows that the definition of a \gls{bci} is not strict.
-However, all of these systems make use of similar methodologies compared to more clear \gls{bci} systems.
+Section \ref{subsec:bci_gaining_popularity_better_processing} discussed research by \citet{early_bci_drowsiness} as one of the first attempts to make a fully portable \gls{bci}.
+As it measured drivers' drowsiness levels, the proposed system alerts or even enforces drivers to take a break from driving when drowsiness levels are too high.
+Research such as that by \citet{eeg_dangerous_situation_car} has discovered that emergency situations in vehicles can be classified faster from \gls{eeg} data than the user's response, which could have a significant impact on reducing the number of traffic accidents.
+\Citet{eeg_dangerous_situation_car} used a driving simulator to conduct a real-world experiment and they found that their proposed system has an accuracy of around 70\%.
+One potential issue with this paper is the fact that their focus lies on this overall accuracy metric rather than providing the \textit{sensitivity} and \textit{specificity}.
+Sensitivity could be seen as the accuracy of the model on positive cases (i.e. identifying a dangerous scenario as dangerous) whilst specificity denotes the accuracy on negative cases (i.e. identifying a non-dangerous scenario as non-dangerous).
+However, \citet{eeg_dangerous_situation_car} do provide the \gls{roc} and provide reasoning for choosing an optimal classification threshold that resulted in this 70\% accuracy.
+This threshold specifies how certain the classification prediction should be before acting on its classification.
+This shows that it is important to look at more than just accuracy, as for this application being good at taking action in case a dangerous scenario is present is ideal, but taking action when there is no dangerous scenario could create a dangerous scenario itself.
+Section \ref{subsec:processing_signals_general_pipeline_evaluating} discusses how to evaluate systems using different metrics and reasoning in more detail.
+Many other examples of using \glspl{bci} for the detection of symptoms that can lead to traffic accidents exist. 
+\Citet{eeg_motion_sickness} developed a system that could estimate motion sickness levels, which in turn could again be used to alert drivers to take a break.
 
+The three discussed examples show how \glspl{bci} can be used in a variety of ways for the prevention of traffic accidents.
+It also highlighted the importance of correct model evaluation and how a net benefit of a system is important.
+For example, if the system proposed by \citet{eeg_dangerous_situation_car} would use the emergency brake each time it detects a dangerous scenario but has a poor specificity, it would heavily break in circumstances where it is not needed.
+This in term creates risk if nearby drivers don't pay attention and cause a collision due to the abrupt emergency braking.
+Thus, the question should be asked if a net benefit would be reached by those systems if the amount of prevented accidents outweighs the added risk of new accidents.
+Likewise, it has to be considered if a \gls{bci} system is the most viable option, even if it has promising results.
+Using a \gls{bci} to monitor if a driver is drunk and prohibiting him from driving if so might be more expensive and less efficient than \gls{baiid} which already exist.
+Nonetheless, many applications exist for the prevention of traffic accidents and the prevention of other medical phenomena using \glspl{bci}, even if it is used as supplemental validation over existing devices and tests.
+\citet{bci_applications} provides some extra examples of this type.
 
-% reset emg gls
-\glsreset{emg}
+% | | | | | | | | | | | | |
 
-Restoration of lost mobility and environmental control is where \glspl{bci} shine.
-As most prostheses rely on \gls{emg}, a muscle-based \gls{biosignal}, for controlling them, they do not apply to patients who don't have muscle control anymore.
-Luckily, \gls{bci} are often used as novel interaction methods using brain signals, which enables such patients to regain previous levels of mobility and control.
-Section XXX give some more insight on how \glspl{bci} are used regain lost mobility and environmental control. % TODO: link correct section
-As \citet{bci_rehabilitation} discuss, \glspl{bci} can also be used to guide patients in rehabilitation through brain plasticity.
-Brain plasticity, or neuroplasticity, is the brain's ability to adapt itself based on experience.
-\Glspl{bci} could show patients which regions of the brain are used and which types of brain signals are present.
+\subsubsection{Using BCIs for the diagnosis and monitoring of medical phenomena}
+\label{subsubsec:bci_common_use_cases_medical_phenomena_monitoring}
+
+Section \ref{subsec:bci_gaining_popularity_improved_data_processing} already introduced the \glsfirst{cad} pipeline.
+\gls{cad} systems, and the very similar \gls{cade} systems, using medical imagery are widely used for diagnosis and treatment monitoring in oncology and other fields.
+Comparable systems exist using \gls{eeg} and other brain-signal measuring modalities for diagnosis medical phenomena and monitoring of the treatment.
+The commercial Muse headset for sleep tracking that was discussed in Section \ref{subsec:bci_gaining_popularity_big_tech} is one example of a system that can be used for monitoring and diagnosing sleep patterns.
+
+Whilst the Muse headset is a commercial product, medical \glspl{bci} exist which are made for detecting sleep patterns.
+One very popular example is using \gls{eeg} for detecting sleep apnea, a medical sleep disorder.
+\Citet{eeg_sleep_apnea} proposed an \gls{eeg} based \gls{bci} system for automating the detection of sleep apnea.
+\Citet{eeg_sleep_apnea} named their used \gls{ml} approach \textit{Artificial Bee Colony Optimize Hermite Basis Functions}.
+This paper is an example of a system that is highly specialized for a specific problem, namely detecting sleep apnea, requiring a lot of expert knowledge since it relies on a complex feature engineering step tailored towards detecting sleep apnea. 
+Whilst this makes it unlikely the same pipeline can be used for the detection of other disorders, it does provide outstanding performance with a discussed sensitivity, specificity and accuracy of over 99\%.
+The article by \citet{eeg_sleep_apnea} focuses on the \gls{ml} aspect of the proposed system, by re-using an existing dataset and describing only metrics related to the classification performance.
+Since this system doesn't take specific control over an external device, it isn't a control system.
+However, it could be argued it still communicates the detection of sleep apnea patterns and it can be deployed in a live system to alert a nurse when these patterns occur during a trial so that the nurse can pay additional attention during that period.
+In this regard, naming the system proposed by \citet{eeg_sleep_apnea} a \gls{bci} is controversial, as is the case for most \gls{eeg} based systems that diagnose and monitor medical phenomena. 
+Whilst \citet{eeg_sleep_apnea} don't mention the term \glsfirst{bci} in their article anywhere, in an article of a similar system, \citet{bci_sleep_apnea} do call their \gls{eeg} based detection of sleep apnea a \gls{bci}.
+
+Many other types of diagnosis and monitoring can be done by non-invasive \gls{eeg} based \glspl{bci}.
+The review article by \citet{bci_applications} addresses the detection of brain tumours \citep{eeg_brain_tumor1, eeg_brain_tumor2} and breast cancer \citep{eeg_breast_cancer}.
+The review article by \citep{eeg_diagnosing_dyslexia} discusses the use of \glspl{bci} for the detection of dyslexia.
+It should become apparent that many detection systems for medical phenomena can be made from non-invasive \gls{eeg} data. 
+Even if these medical phenomena seem unrelated to the brain, such as for the detection of breast cancer \citep{eeg_breast_cancer}.
+However, as these systems lack a true communication factor besides informing doctors or nurses, it can be argued if these systems are indeed \glspl{bci} w.r.t. Wolpaw's definition of a \gls{bci} given in Section \ref{sec:bci_introduction}.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Using BCIs for the rehabilitation and restoration after medical phenomena}
+\label{subsubsec:bci_common_use_cases_medical_phenomena_restoration}
+
+Restoration of lost mobility and rehabilitation is the third and final stage of most medical phenomena.
+In this stage, a \gls{bci} can be of aid to both the medical staff and patient.
+Out of the three discussed stages it is also the one that has seen the most \gls{bci} related research.
+One reason for this is that many techniques for the restoration of lost mobility and rehabilitation rely on \gls{emg}, a modality used for measuring muscle-based \glspl{biosignal}.
+Famous examples of such \gls{emg} based systems include prostheses which are connected to the remaining muscles of an amputated body part or an exoskeleton which is placed over body parts to strengthen their movement or re-enable them. 
+Whilst in general \gls{emg} based systems far outperform \gls{eeg} based systems for prosthesis and exoskeletons, the \gls{emg} modality does not apply to patients suffering from an impaired neuromuscular system.
+Thus, for these patients an \gls{eeg} based solution may offer them a possibility of regaining mobility again.
+Since \gls{eeg} based \glspl{bci} for prosthesis and exoskeleton control are very common research in the \gls{bci} field, it will be discussed further in it's own section, Section \ref{subsec:bci_common_use_cases_prosthesis_exoskeleton}.
+
+\Glspl{bci} have found their usage in other aspects of the rehabilitation and mobility restoration process as well.
+In neurological rehabilitation, \glspl{bci} can function as a tool for guiding both patients and medical staff in what abnormalities are present in the brain and how they can be circumvented.
+Intuitively, these \gls{bci} systems aim to improve the brain's ability to adapt itself based on experience.
+This self-adapting property of the brain is known as brain plasticity or neuroplasticity.
+A well-developed \gls{bci} system could show patients and medical staff which regions of the brain are currently being used and which types of brain signals and abnormalities are being detected.
 This information could then be relayed to the patient through various means so that it induces neuroplasticity.
 Such systems are still in development and require sophisticated neurological expertise that falls outside the scope of this master thesis.
-The overview provided by \citet{bci_rehabilitation} provides a great starting point for further literature on this manner.
-In a similar manner, pedaling \glsfirst{mi} tasks have been studied recently as they seem to have a great potential for lower-limb recovery.
-The works by \citet{pedal_mi_rehabilitation1} and \citet{pedal_mi_rehabilitation2} discuss such systems in greater detail and are also an example of how \glspl{bci} can be used for rehabilitation.
+However, they are very promising and the interested reader is referred to the overview provided by \citet{bci_rehabilitation}.
+It is noted once more this paper was co-authored by Professor Jonathan R. Wolpaw, which has been discussed in this paper multiple time for his definition of a \gls{bci} and a perfect \gls{bci}.
 
-It is noted that many more \gls{bci} applications exist for preventing, monitoring and controlling diseases than those discussed.
-The work by \citet{parkinson_stroke_reduction} is another great example of how \gls{bci} can be used for rehabilitation.
-The work by \citet{bci_in_medicine} also highlights some related \gls{bci} work in medicine.
+Another area that is often researched in the rehabilitation and restoration process, is using \glsfirst{mi} tasks to improve recovery of control over certain body parts.
+The main idea behind such systems is to let the patient perform a \gls{mi} task, which doesn't require effective movement of the body part with reduced control.
+This \gls{mi} task can then be classified by the \gls{bci} system based on the \gls{eeg} data and an exoskeleton is used to perform that motion as passive feedback.
+Most commonly, a pedalling \gls{mi} task is used to control a motorized pedal, which evokes \gls{erd} patterns resulting in a greater potential for lower-limb recovery.
+The works by \citet{pedal_mi_rehabilitation1} and \citet{pedal_mi_rehabilitation2} discuss such systems in greater detail.
+Likewise, stroke rehabilitation and a reduction of the effects from the Parkinson's disease can be achieved with \gls{bci} guidance as well, as further discussed by \citet{parkinson_stroke_reduction}.
+
+It is noted that many more \gls{bci} applications exist for preventing, monitoring and controlling diseases than those discussed here.
+The work by \citet{bci_in_medicine} highlights some use-cases of \gls{bci} in medicine for example.
 
 % - - - - - - - - - -
-% extending medical system
+% prosthesis exoskeleton
 % - - - - - - - - - -
 
-\subsection{Using BCIs to extend existing medical systems}
-\label{subsec:bci_common_use_casesextending_medical_system}
+\subsection{Using BCIs for prosthesis and exoskeleton control}
+\label{subsec:bci_common_use_cases_prosthesis_exoskeleton}
 
-\Glspl{bci} can be used in a wide variety of applications.
-Even in non-trivial domains, they can find their usages as a standalone system or as an extension to existing systems.
-To demonstrates the latter, this section discusses how \glspl{bci} can be used as an extension to classical hearing aids for an improved user experience.
-A more trivial extension to existing robotic prostheses and exoskeletons is also addressed.
+Arguments were given why the medical applications of \gls{eeg} processing systems discussed in Section \ref{subsec:bci_common_use_cases_medical_phenomena} can or can't be considered \gls{bci} systems.
+The main discussion revolves around the kind of communication that the system does.
+To some authors, a system that alerts or visually informs medical staff based on processed data from \gls{eeg} can be considered a \gls{bci} system whilst others specifically expect an external device to perform a specific action based on the brain signals to name a system a \gls{bci} system.
+The latter would be a type of control system, as the \gls{bci} controls an external device.
+In a review article by \citet{bci_review_arnau}, it is found that among \gls{eeg} based \gls{bci} control systems using \gls{dl}, the control of robotic arms is most popular in research.
+This section will discuss the use of \glspl{bci} as a control system for prostheses and exoskeletons.
 
+% | | | | | | | | | | | | |
 
-According to \citet{hearing_aids_noise_reduction} over 450 million people suffer from disabling hearing loss.
-Most solutions to hearing loss rely on a microphone to capture environment audio which is then amplified and played through a speaker that is placed in or near the ear.
-This microphone can be integrated inside the speakers and thus form a stereo setup located at the ears of the patient.
-This is not always ideal when there is a lot of ambient noise.
-Sometimes using an external directional microphone placed close to the audio source of interest can form a solution.
-This can be a microphone placed on the desk of a professor teaching in a filled room or the speakers connected directly to an audio source such as a television.
-However, this solution is not applicable in all situations.
-Thus, most hearing aids include some noise suppression on the microphones directly to filter out ambient noise and amplify noise coming from human speech.
-\Citet{hearing_aids_noise_reduction_mandarin} evaluated such noise suppression for Mandarin-speaking users and found the results to be good but not ideal.
-\Citet{bci_hearing_aid_direction} have shown that a \gls{bci} can be used to determine which speaker a user is listening to by analysing directional queues.
-This information is useful, as it can optimize the microphones to pick up speech from that area and algorithms could optimize for the sounds the user is focusing on.
-It is noted \citet{bci_hearing_aid_direction} discuss how a long waiting time to determine the area of interest challenges the practical usability of their system as of now.
-Nonetheless, it shows one of many non-trivial ways a \gls{bci} could be used as an extension of existing systems to improve them.
+\subsubsection{Why BCIs are used for prosthesis and exoskeleton control}
+\label{subsubsec:bci_common_use_cases_prosthesis_exoskeleton_why}
 
-% reset emg gls
-\glsreset{emg}
-
-Perhaps the most studied and promising extension \glspl{bci} can fulfil in existing medical systems lies in the interaction with robotic prostheses or exoskeletons.
 Most of the current robotic prostheses and exoskeletons rely on muscular activity in the body.
-This muscular activity can then be measured by \gls{emg}, the data of which can be used to control the robotic prosthetic.
-For example, patients who have lost (part of) their arms but have functioning muscular activity in the remaining body part, can use this remaining muscular activity to control robotic prostheses.
-\Citet{emg_prosthetics} discuss the design and development of such a system based on \gls{emg}.
-Some of the processing techniques are similar to those of \gls{eeg} driven algorithms.
-Alternatively, when the limb is still intact but the control over (part of) the limb is lost or extra support is needed, an exoskeleton may be used.
+Just like brain activity can be measured by non-invasive \glsfirst{eeg}, muscular activity can be measured by non-invasive \glsfirst{emg}.
+For example, patients who have had a partial loss of a body part often still have muscular activity in the remaining body part.
+In the case of surgical amputation, the amputation is often done such that as much muscle remains to ensure as much possible muscular activity also remains.
+These patients can then often still generate the muscular activity that would have been required for moving the missing body part.
+This muscular activity can then easily be measured with the \gls{emg} modality, which is in general of higher signal quality than \gls{eeg}.
+This \gls{emg} data can then be processed to classify the wanted movements and control robotic prostheses.
+\Citet{emg_prosthetics} discuss the design and development of such a system based on \gls{emg} in greater detail.
+Since the overall pipeline of such \gls{emg} based systems is quite comparable to the pipeline of \gls{eeg} based \glspl{bci}, many of the processing techniques are similar to those discussed in this thesis.
+Alternatively, when the body part is still fully intact but the control over that part is lost or requires extra support, an exoskeleton may be used similarly.
 Just like robotic prostheses, most exoskeletons rely on \gls{emg}.
 A thesis by the German \citet{emg_exoskeleton} highlights the fundamentals of \gls{emg} based exoskeletons.
 
-As was already touched upon in Section \ref{subsec:bci_common_use_casesdiseases}, \gls{emg} measurements are not applicable for all patients.
-In particular, people who have neurological diseases limiting the production of the required muscular based \glspl{biosignal} fall outside the scope for these solutions.
-However, due to the developments in \glspl{bci}, the viability of robotic prostheses and exoskeletons for these patients has been steadily on the rise.
+As was already touched upon in the rehabilitation and restoration part of Section \ref{subsec:bci_common_use_cases_medical_phenomena}, \gls{emg} measurements are not applicable for all patients.
+In particular, people who have neurological diseases, limiting the production of the required muscular-based \glspl{biosignal}, fall outside the scope for these solutions.
+However, the viability of robotic prostheses and exoskeletons for these patients has been steadily on the rise as \gls{eeg} based \glspl{bci} have been proposed for this purpose.
 \Citet{bci_prostheses} give an in-depth systematic review of upper and lower limb exoskeletons and robotic prostheses controlled by \gls{eeg}-based \gls{bci}.
+Just as was the case for rehabilitation and restoration discussed in Section \ref{subsec:bci_common_use_cases_medical_phenomena}, these systems often make use of brain signals measurable after imagined movement.
+This process of thinking of movement but not doing the movement is known as \glsfirst{mi} and further discussed in Section \ref{subsec:biomedical_signals_brain_signals_measurable_brain_activity}.
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{The risk of using BCIs for prosthesis and exoskeleton control}
+\label{subsubsec:bci_common_use_cases_prosthesis_exoskeleton_risk}
+
+Whilst it is clear to see why \gls{eeg} based \glspl{bci} are promising for prosthesis and exoskeleton control from the discussion above, it should be noted that there is also a great risk in doing so.
 \Citet{bci_prostheses} address the high risk associated with failed instructions for robotic prostheses and exoskeletons.
-Indeed, compared to a misclassification with P300 spellers, the risks that can follow from misinterpreted instructions of exoskeletons and robotic prostheses are of such a degree that even high accuracy systems might not be good enough.
+This means that the risks that can follow from misinterpreted instructions of exoskeletons and robotic prostheses are of such a degree that even high accuracy systems might not be good enough to guarantee a net benefit for the user.
+This could be the reason that the review article by \citet{bci_review_arnau} didn't find any \glsfirst{poc} applications for exoskeleton or prosthesis control using \gls{eeg} based \glspl{bci}.
+However, \citet{bci_review_arnau} did find many papers controlling an external robotic arm which is not connected to the body and thus not seen as a prosthesis.
+
 \Citet{bci_prostheses} also highlight that whilst multi-label classification of \gls{eeg} is possible with considerable accuracy in an offline lab setting, the number of detectable classes is limited in a real-time and real-life environment.
 Because of this, \gls{eeg}-based systems in these applications still have some challenges to overcome to match the precision and reliability of \gls{emg} counterparts.
 Whilst improvements regarding these aspects have been made since the work of \citet{bci_prostheses} was published, the main challenges remain to this day, especially when using affordable systems.
 Because of this, widespread adoption of \gls{eeg}-based exoskeletons and robotic prostheses is still very limited.
 
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Promising steps towards BCI controlled prosthesis and exoskeleton control}
+\label{subsubsec:bci_common_use_cases_prosthesis_exoskeleton_promosing_steps}
+
+Whilst the discussed risk has caused widespread adoption of \gls{eeg}-based exoskeletons and robotic prostheses to still be very limited, promising steps are being made to bring them to market.
+These systems mainly focus on robotic arms, which are not strictly a prosthesis but they pave the road to \gls{bci} controlled arm prosthesis in the future.
+These proposed systems often rely on incorporating supplementary information such that risky movements are cancelled, even if the \gls{bci} requests them. 
+\Citet{bci_mi_robotic_arm_collision_avoidance} proposed such a system to control a robotic arm not only through a \gls{eeg} based \gls{bci} working with \gls{mi} tasks but also by using obstacle avoidance algorithms to reduce the risk of harmful contact, computer vision for object detection to get a better idea on the possibly wanted interaction and eye-tracking to gather extra information surrounding the user's intention.
+Other successful research on making more reliable \gls{bci} systems for controlling robotic arms is done by \citet{eeg_robot_arm1, eeg_robot_arm2, eeg_robot_arm3, eeg_robot_arm4}, these articles are also included in the review article on \gls{dl} based \gls{bc} systems by \citet{bci_review_arnau}.
+
+Whilst limb prostheses, currently being pilot run through robotic arm research, are one of the most common and researched types of prostheses, they are only a fraction of all prostheses in existence.
+Everything from dentures to artificial breasts can also be labelled as a type of prostheses.
+For example, visual prostheses such as bionic eyes are another type of prostheses that has active research in the \gls{bci} field.
+Not only can \gls{bci} systems improve visual prostheses, many of the existing visual prostheses could be seen as a special type of \gls{bci} system as a whole.
+Both the works by \citet{bci_blind_assist_review} and \citet{bci_vision_assist_review} give an overview on the progress in visual prostheses in the \gls{bci} field.
+These \glspl{bci} are often invasive and opposed to only reading brain activity, they can also stimulate the brain and other parts of the body.
+Through this stimulation or by other means, the user can regain some form of vision from these \gls{bci} systems.
+Second Sight is one of few companies that has commercially made visual prostheses with approval from the \gls{fda}.
+Their system is discussed in the overview on \gls{bci}-related vision restoration systems by \citet{bci_vision_assist_review}.
+The international trial by \citet{second_sight_trial} on the products of Second Sight shows promising results, although it is noted the study is performed by Second Sight employees and not by an independent research team.
+The exact working of visual prostheses or, more specifically, Second Sight products is not of interest for this work, but the recent decisions of Second Sight company reveal one of the largest risks of invasive \glspl{bci} and \glspl{bci} in general.
+Due to the discontinuation of some of the Second Sight products, hundreds of users are left without product support for a system that shaped their everyday life.
+Besides this, the now non-functioning product is still present inside their body.
+The issues and ethical questions this brings to the table are discussed further in Section \ref{subsec:bci_ethical_e_waste}.
+
+
+In summary, hybrid systems like the one by \citet{bci_mi_robotic_arm_collision_avoidance} are very promising as they can greatly reduce the risk involved in many \gls{bci} systems, such as prostheses-related applications, whilst also increasing the overall accuracy of the system.
+Section \ref{subsec:bci_common_use_cases_improving_existing_system} discusses more of these hybrid systems outside the scope of prosthesis and exoskeleton control.
+
+
+% - - - - - - - - - -
+% improving system
+% - - - - - - - - - -
+
+% START HERE; TODO
+% kijk naar bci_applications voor insperatie en maak die figuur met boom voor de summary
+
+% TODO: uitleggen dat er vaak ook non brain signal alternatieven bestaan
+
+% TODO: van arnau: meest common robot arm control > drone control (a drone can be the well-known quadcopter (Redrovan and Kim 2018), but this can also refer to ground vehicles (Lu et al 2020) and robots (Aznan et al 2019) that can move according to the operator’s commands.) > bci spellers maar ook andere dingen zoals smart home control en virtual reality control en meer
+
+\subsection{Using BCIs to improve the working of existing systems}
+\label{subsec:bci_common_use_cases_improving_existing_system}
+
+The previous sections discussed use-cases of \glspl{bci} in the medical world and as control systems for prostheses and exoskeletons, where they could be seen as a standalone system.
+However, \glspl{bci} are also used as an extension to existing systems, both for medical and commercial applications.
+This can even happen in non-trivial domains.
+To demonstrates the latter, this section discusses how \glspl{bci} can be used as an extension to classical hearing aids for an improved user experience.
+Some examples of hybrid systems which combine multiple \gls{biosignal} measuring modalities is also discussed.
+Section \ref{subsec:bci_common_use_cases_commercial_and_others} will discuss some commercial applications where \glspl{bci} are used as an extension to existing systems.
+
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Extending hearing aid systems with BCIs}
+\label{subsubsec:bci_common_use_cases_improving_existing_system_hearing_aids}
+
+According to \citet{hearing_aids_noise_reduction} over 450 million people suffer from disabling hearing loss.
+Most solutions to hearing loss rely on a microphone to capture environment audio which is then amplified and played through a speaker that is placed in or near the ear.
+Most commonly, the microphones used for amplification are integrated inside the speakers that are placed in the ear to form a stereo setup that mimics regular hearing.
+This is not always ideal when there is a lot of ambient noise.
+Sometimes using an external directional microphone placed closer to the audio source of interest can form a solution.
+For example, placing a microphone on the desk of a professor teaching in a noisy room of students.
+However, this solution is not applicable in all situations.
+Thus, most hearing aids include some noise suppression on the microphones directly to filter out ambient noise and amplify noise coming from human speech.
+\Citet{hearing_aids_noise_reduction_mandarin} evaluated such noise suppression for Mandarin-speaking users and found the results to be good but not ideal, as there is a lot of variation in human speech tone making it hard to detect what is and what isn't ambient noise.
+
+Even when such a noise suppressing filter would work optimally, people with hearing aids often still have trouble understanding people when multiple speakers are close-by at once.
+Recent research by \citet{bci_hearing_aid_direction} has shown that using a non-invasive \gls{eeg} based \gls{bci} can improve traditional hearing aids in solving this problem.
+\Citet{bci_hearing_aid_direction} does this by determining which speaker a user is listening to by analysing directional queues from the measured brain-signals.
+If this information would be communicated to the hearing aids, it can allow them to optimize the microphones to pick up speech from that area only, filtering out other speakers.
+Whilst great in theory, \citet{bci_hearing_aid_direction} discuss how a long waiting time to determine the area of interest challenges the practical usability of their system as of now.
+Nonetheless, it shows one of many non-trivial ways a \gls{bci} could be used as an extension of existing systems to improve them.
+
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Hybrid BCIs which rely on brain-signals among other biosignals}
+\label{subsubsec:bci_common_use_cases_improving_existing_system_hybrid_bci}
+
+% all discussed bij exoskeleton enzo als zijnde ook ogen blabla includen
+% bci_common_use_cases_prosthesis_exoskeleton
+TODO
+
 % - - - - - - - - - -
 % novel interaction
 % - - - - - - - - - -
 % TODO: mergen met volgende section note dat nieuwe title dus tekst anders
+% soort van control systems maar als replacement van iets dat ge normaal al kon
 
 \subsection{Using BCIs as replacement for unusable interaction methods}
 \label{subsec:bci_common_use_cases_bcis_replace_unusable_interaction}
@@ -953,38 +1106,22 @@ As a result, this video without a backing paper or proper explanation of the pro
 However, similar setups have already been made in the past.
 For example, \citet{bci_monkey_arms} demonstrated monkeys taking control over two avatar arms simultaneously, a task that is arguably even harder to accomplish and has an appropriate peer-reviewed paper backing it.
 
+% - - - - - - - - - -
+% other use cases
+% - - - - - - - - - -
 
-% merge this below with previous section
-
-
-It was argued in Section \ref{subsec:bci_common_use_casesextending_medical_system} that the risk involved when working with exoskeletons and robotic prostheses is too high for current \gls{bci} systems to be reliably used.
-The \gls{bci} controlled car from \citet{bci_mi_four_wheel_drive} discussed in Section \ref{subsec:bci_common_use_casesextending_medical_system} demonstrated how risk of a \gls{bci} system can be greatly reduced by using an additional system responsible for only allowing safe actions.
-Similar ideas could be used for robotic prostheses to reduce the risk involved.
-\Citet{bci_mi_robotic_arm_collision_avoidance} proposed such a hybrid system to control a robotic arm not only through a \gls{mi}-based \gls{bci} but also by using obstacle avoidance algorithms to reduce the risk of harmful contact, computer vision for object detection to get a better idea on the wanted interaction and eye-tracking to gather extra information surrounding user's intention.
-Hybrid systems like the one by \citet{bci_mi_robotic_arm_collision_avoidance} are very promising as they can greatly reduce the risk involved in many \gls{bci} systems, such as prostheses related applications, whilst also increasing the overall accuracy of the system.
-
-Whilst limb prostheses such as robotic arms are one of the most common types of prostheses, they are only a fraction of all prostheses in existence.
-Everything from dentures and hearing aids to artificial breasts can also be labelled as a type of prostheses.
-Visual prostheses such as bionic eyes are another type of prostheses and they are being studied heavily in the \gls{bci} field.
-Not only can \gls{bci} systems improve visual prostheses, many of the existing visual prostheses could be seen as a special type of \gls{bci} system as a whole.
-Both the works by \citet{bci_blind_assist_review} and \citet{bci_vision_assist_review} give an overview on the progress in visual prostheses in the \gls{bci} field.
-These \glspl{bci} are often invasive that can stimulate the brain and other parts of the body, as opposed to only reading brain activity.
-Through the simulations or other means, the user can regain some form of vision from these \gls{bci} systems.
-Second Sight is one of few companies that has commercially made visual prostheses with \gls{fda} approval.
-It is discussed in the overview on \gls{bci}-related vision restoration systems by \citet{bci_vision_assist_review}.
-The international trial by \citet{second_sight_trial} on the products of Second Sight shows promising results, although it is noted the study is performed by Second Sight employees and not by an independent research team.
-The exact working of visual prostheses or, more specifically, Second Sight products is not of interest for this work, but the recent decisions of Second Sight company reveal one of the largest risks of invasive \glspl{bci} and \glspl{bci} in general.
-Due to the discontinuation of some of the Second Sight products, hundreds of users are left without product support for a system that shaped their everyday life.
-Besides this, the now non-functioning product is still present inside their body.
-The issues and ethical questions this brings to the table are discussed further in Section \ref{subsec:bci_ethical_e_waste}.
+\subsection{More commercial and other use cases}
+\label{subsec:bci_common_use_cases_commercial_and_others}
+% al vermelde porn en vr maar ook andere
+TODO
 
 % - - - - - - - - - -
 % other use cases
 % - - - - - - - - - -
 
-\subsection{Commercial and other use cases}
-\label{subsec:bci_common_use_commrcial_and_other}
-% al vermelde porn en vr maar ook andere
+\subsection{Summary on the use cases of BCIs}
+\label{subsec:bci_common_use_summary}
+
 TODO
 
 % ---------------------------------------------- 
@@ -1024,6 +1161,8 @@ These smaller projects do not only have the potential to be of big impact for ve
 
 \subsection{Motivating examples using consumer-grade BCIs}
 \label{subsec:bci_opportunities_obstacles_motivating_examples}
+
+% One publication uses EEG for wheelchair control (Zgallai et al 2019) 
 
 As discussed above, good open-source libraries, datasets and even measuring hardware have made the entry to the \gls{bci} field easier than ever before.
 Some of the open-source \gls{dl} libraries tailored towards \gls{eeg} classification work well on raw \gls{eeg} data, which allows for meaningful classification accuracy without the need of understanding all domain-specific properties of \gls{eeg} data required for classical preprocessing.
@@ -1397,6 +1536,8 @@ TODO
 \label{subsec:bci_ethical_e_waste}
 
 % TODO: nerdland reference
+
+% al vermeld in bci_common_use_cases_prosthesis_exoskeleton over second sight
 
 % second_sight_broken_ethics: https://spectrum.ieee.org/bionic-eye-obsolete
 % bci_blind_assist_review: https://www.frontiersin.org/articles/10.3389/fnhum.2021.638887/full
