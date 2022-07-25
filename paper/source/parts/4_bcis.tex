@@ -177,9 +177,10 @@ However, just as with deadlines from other companies such as Meta and Neuralink,
 This is not surprising as the promises of what a \gls{bci} can do are near endless and initial trials often offer promising results but going to a final product has been proven to be incredibly hard due to several open issues \citep{bci_review_arnau}.
 
 A final stream of money that is important to mention, is coming from militaries around the globe.
-The U.S. military among others is known to invest a lot of money in any form of innovation, especially related to devices that can give them a strategic edge when fighting in a war \citep{military_ai_money, military_ai_money_eu}.
+The U.S. military among others is known to invest a lot of money in any form of innovation, especially related to devices and technologies that can give them a strategic edge when fighting in a war \citep[with examples of funds for AI research in][]{military_ai_money, military_ai_money_eu}.
 Whilst most of this information is classified, it is known that the U.S. Department of Defense and others have shown interest in a wide variety of applications using \glspl{bci} \citep{bci_military}.
 Whilst one can only guess what these government organisations are developing, it is likely that over time these applications might become public knowledge and aid the research field of \glspl{bci} in creating even better systems.
+\Citet{us_military_bci} discusses the U.S. militaries interest in \glspl{bci} further.
 
 % | | | | | | | | | | | | |
 
@@ -199,7 +200,7 @@ It also shows that whilst academic research on \glspl{bci} doesn't require huge 
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\linewidth]{images/introduction/funding.png}
+    \includegraphics[width=\linewidth]{images/introduction/funding.pdf}
     \captionsetup{width=0.9\linewidth}
     \captionsetup{justification=centering}
     \caption{Funding of newer \gls{bci} related companies depicted in millions (USD).\\Figure based on data by \citet{bci_money} from 2019. It is noted this data is limited to companies that were created after 2010 where funding information is made available.}
@@ -318,7 +319,7 @@ It also allows for fewer electrodes to be used if only the activity of certain a
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.7\linewidth]{images/introduction/brain_anatomy.png}
+    \includegraphics[width=0.7\linewidth]{images/introduction/brain_anatomy.pdf}
     \captionsetup{width=0.7\linewidth}
     \captionsetup{justification=centering}
     \caption{The anatomy of the human head, specifically of the cerebrospinal system. Non-invasive \gls{eeg} measuring equipment is placed on the scalp, causing signals from the brain to be blocked by the skull and \glsfirst{csf} among other structures. Free to use Figure by Blausen.com staff \citep{figure_blausen}.}
@@ -492,7 +493,7 @@ The replacement of physical computational units in close proximity to cloud solu
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.7\linewidth]{images/introduction/papers_on_bci.png}
+    \includegraphics[width=0.7\linewidth]{images/introduction/papers_on_bci.pdf}
     \captionsetup{width=0.65\linewidth}
     \captionsetup{justification=centering}
     \caption{Number of \gls{bci}-related papers over time. Based on data by \citet{bci_progress_overview} obtained by searching PubMed using the keyword: "brain-computer interface".}
@@ -567,7 +568,7 @@ These pipelines are very similar to the ones used for \glspl{bci}, which is furt
     \centering
     \begin{subfigure}{0.95\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/introduction/cad_pipeline_ml.png}
+        \includegraphics[width=\textwidth]{images/introduction/cad_pipeline_ml.pdf}
         \captionsetup{width=0.9\linewidth}
         \captionsetup{justification=centering}
         \caption{General pipeline for \gls{ml} based \gls{cad} system.}
@@ -576,7 +577,7 @@ These pipelines are very similar to the ones used for \glspl{bci}, which is furt
     \hfill
     \begin{subfigure}{.95\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/introduction/cad_pipeline_dl.png}
+        \includegraphics[width=\textwidth]{images/introduction/cad_pipeline_dl.pdf}
         \captionsetup{width=0.9\linewidth}
         \captionsetup{justification=centering}
         \caption{General pipeline for \gls{dl} based \gls{cad} system.}
@@ -703,7 +704,7 @@ Rather, all of the discussed reasons likely influence each other as portrayed in
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.7\linewidth]{images/introduction/cyclic_interest_gain.png}
+    \includegraphics[width=0.7\linewidth]{images/introduction/cyclic_interest_gain.pdf}
     \captionsetup{width=0.7\linewidth}
     \captionsetup{justification=centering}
     \caption{Summary of some of the potential reasons \gls{bci} research has seen its gain in popularity discussed in section \ref{sec:bci_gaining_popularity}. There is no clear chronological order for these events and they likely influence each other all at the same time.} 
@@ -886,7 +887,7 @@ Just like brain activity can be measured by non-invasive \glsfirst{eeg}, muscula
 For example, patients who have had a partial loss of a body part often still have muscular activity in the remaining body part.
 In the case of surgical amputation, the amputation is often done such that as much muscle remains to ensure as much possible muscular activity also remains.
 These patients can then often still generate the muscular activity that would have been required for moving the missing body part.
-This muscular activity can then easily be measured with the \gls{emg} modality, which is in general of higher signal quality than \gls{eeg}.
+This muscular activity can then easily be measured with the \gls{emg} modality, which is in general of higher signal quality than \gls{eeg} \citep{hybrid_eeg_emg_prosthesis}.
 This \gls{emg} data can then be processed to classify the wanted movements and control robotic prostheses.
 \Citet{emg_prosthetics} discuss the design and development of such a system based on \gls{emg} in greater detail.
 Since the overall pipeline of such \gls{emg} based systems is quite comparable to the pipeline of \gls{eeg} based \glspl{bci}, many of the processing techniques are similar to those discussed in this thesis.
@@ -947,30 +948,27 @@ The issues and ethical questions this brings to the table are discussed further 
 
 
 In summary, hybrid systems like the one by \citet{bci_mi_robotic_arm_collision_avoidance} are very promising as they can greatly reduce the risk involved in many \gls{bci} systems, such as prostheses-related applications, whilst also increasing the overall accuracy of the system.
-Section \ref{subsec:bci_common_use_cases_improving_existing_system} discusses more of these hybrid systems outside the scope of prosthesis and exoskeleton control.
+Section \ref{subsec:bci_common_use_cases_improving_existing_system} discusses more of these hybrid systems but where \glspl{bci} are used as supplementary component to an existing system.
 
 
 % - - - - - - - - - -
 % improving system
 % - - - - - - - - - -
 
-% START HERE; TODO
-% kijk naar bci_applications voor insperatie en maak die figuur met boom voor de summary
-
-% TODO: uitleggen dat er vaak ook non brain signal alternatieven bestaan
-
-% TODO: van arnau: meest common robot arm control > drone control (a drone can be the well-known quadcopter (Redrovan and Kim 2018), but this can also refer to ground vehicles (Lu et al 2020) and robots (Aznan et al 2019) that can move according to the operator’s commands.) > bci spellers maar ook andere dingen zoals smart home control en virtual reality control en meer
-
 \subsection{Using BCIs to improve the working of existing systems}
 \label{subsec:bci_common_use_cases_improving_existing_system}
 
-The previous sections discussed use-cases of \glspl{bci} in the medical world and as control systems for prostheses and exoskeletons, where they could be seen as a standalone system.
-However, \glspl{bci} are also used as an extension to existing systems, both for medical and commercial applications.
-This can even happen in non-trivial domains.
-To demonstrates the latter, this section discusses how \glspl{bci} can be used as an extension to classical hearing aids for an improved user experience.
-Some examples of hybrid systems which combine multiple \gls{biosignal} measuring modalities is also discussed.
-Section \ref{subsec:bci_common_use_cases_commercial_and_others} will discuss some commercial applications where \glspl{bci} are used as an extension to existing systems.
+The previous sections discussed the use of \glspl{bci} as a control system for prostheses and exoskeletons.
+Whilst this approach was promising for certain patients, the high risk associated with such systems meant that developing reliable systems relying solely on \gls{eeg} based \glspl{bci} was not yet possible \citep{bci_prostheses}.
+One area that did see success was the use of \textit{hybrid \glspl{bci}} as a control system for robotic arms.
+Such hybrid systems combines \gls{bci} techniques with other techniques to create an overall system that is more accurate, safe and reliable and thus complies more with Wolpaw's definition of a perfect \gls{bci}.
 
+The discussed hybrid systems from Section \ref{subsec:bci_common_use_cases_prosthesis_exoskeleton} considered the \gls{bci} as the main component with the other techniques, such as computer vision, added as support and improvement to it.
+There are also multiple examples of where a \gls{bci} system is added as an \textit{extra component} to an existing system and thus not considered the main component.
+This allows for \glspl{bci} to find use cases in non-trivial domains.
+To demonstrate this, an extension to classical hearing aids using an \gls{eeg} based non-invasive \gls{bci} is discussed in this section.
+This section also addresses the use of \glspl{bci} to make \textit{smart homes} more accessible for people with a handicap and the elderly.
+It also addresses some other examples of hybrid \glspl{bci}.
 
 
 % | | | | | | | | | | | | |
@@ -999,139 +997,248 @@ Nonetheless, it shows one of many non-trivial ways a \gls{bci} could be used as 
 
 % | | | | | | | | | | | | |
 
-\subsubsection{Hybrid BCIs which rely on brain-signals among other biosignals}
-\label{subsubsec:bci_common_use_cases_improving_existing_system_hybrid_bci}
+\subsubsection{Using BCIs to improve accessibility of existing applications}
+\label{subsubsec:bci_common_use_cases_improving_existing_system_improve_accessibility}
 
-% all discussed bij exoskeleton enzo als zijnde ook ogen blabla includen
-% bci_common_use_cases_prosthesis_exoskeleton
-TODO
+There are still a lot of applications which lack support for people with disabilities or people with less technical skills.
+Take for example the growing ecosystem of smart home applications, since it aims to automate many tasks such people might find difficult or impossible to perform, it can be very beneficial to these people.
+However, conventional interaction methods are app-like through touch screens mounted all around the house.
+Such interaction methods are not fit for people with limited movement capabilities or technical knowledge.
+
+Since \gls{eeg} based \glspl{bci} are known to work well for conscious people that can learn how to effectively do \glsfirst{mi} tasks, it is often seen as a solution to provide novel interaction method with existing applications to improve accessibility.
+\Citet{bci_smart_home_app} were one of the first to explore the idea of using a \gls{bci} for smart home control as they believed it could greatly improve the quality of life for the elderly and people with a handicap.
+They used the Emotiv EPOC headset as a non-invasive source for the \gls{eeg} using dry electrodes and achieved high accuracy results through a primitive binary selection interface.
+This means that it seems to comply with most properties of Wolpaw's definition for a perfect \gls{bci} except for one of the most important ones, it is not at all as fast as the regular interaction method.
+Adding to this, their system doesn't make use of actual brain signals but rather relies on muscular activity, such as smirks and eyebrow movement.
+This movement of the facial muscles is known to provide an easily detectable artefact in the \gls{eeg} and is often used as a supplementary input for the \gls{bci} system.
+As section \ref{subsec:biomedical_signals_measuring_artefacts} will discuss in greater detail, such an approach has many negatives.
+Finally, the system of \citet{bci_smart_home_app} was tested on four subjects but the article fails to deliver exact details on this experiment and it is assumed the participants were neither elderly nor people with a handicap.
+
+Whilst this means the system by \citet{bci_smart_home_app} isn't a true \glsfirst{bci} due to the use of \gls{eeg} artefacts and the paper has questionable scientific value, it was one of the first to explore the idea of using a \gls{bci} for smart home control.
+Since then, more articles have studied this idea using effective brain signals.
+\Citet{feasibility_bci_smart_home} discuss this in their feasibility study about using \glspl{bci} for smart home control.
+The article by \citet{feasibility_bci_smart_home} does include clear details on the experiment setup which includes two people with a handicap among 12 other healthy subjects.
+It was found that the people with a handicap had an 81\% average accuracy whilst the healthy subjects only had a 77\% average accuracy.
+Due to the low sample size, this difference in results is likely not statistically significant but these accuracy numbers are usable when taking into account the small risk of failed actions in basic smart home control systems.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Other examples of hybrid BCIs}
+\label{subsubsec:bci_common_use_cases_improving_existing_system_smart_home}
+
+Section \ref{subsec:bci_common_use_cases_prosthesis_exoskeleton} already discussed the use of a hybrid \gls{bci} system where computer vision, eye tracking and other technologies were used in combination with a \gls{bci} system to create a more reliable and accurate final system for robotic arm control \citep[as proposed by][]{bci_mi_robotic_arm_collision_avoidance}.
+With existing algorithms such as the real-time grasp detection algorithm, GraspNet, by \citet{graspnet} for low-powered devices, it is very easy to envision how they can be used to improve a \gls{bci} related system.
+Articles which propose a fully working \gls{poc}, such as the ones reviewed by \citet{bci_review_arnau}, often require these additional algorithms to ensure safe working in real-world environments.
+
+One very interesting hybrid solution is the use of a non-invasive \gls{eeg} based \gls{bci} system with measurements from non-invasive \gls{emg}.
+\Citet{hybrid_eeg_emg_prosthesis} proposed such a hybrid \gls{eeg}-\gls{emg} system for upper limb prosthesis control.
+Since \gls{emg} is known to be a more accurate modality for prosthesis control, the system by \citet{hybrid_eeg_emg_prosthesis} uses \gls{emg} for movement of the prosthesis where possible and supplements it with \gls{eeg} data for determining the other wanted movements.
+In particular, the proposed prosthesis by \citet{hybrid_eeg_emg_prosthesis} uses \gls{emg} present in the remaining upper arm muscles for elbow motion and \gls{eeg} for determining the desired wrist, grip and finger
+motions.
+The \gls{emg} part, which also imposes the greatest risk, had an accuracy of over 90\% whilst the \gls{eeg} part has an accuracy of over 65\%.
+
+The combination of \gls{eeg} and \gls{emg} can also be used for other purposes.
+\citet{thesis_arnau} proposed the use of both \gls{emg} and \gls{eeg} data for training a classifier which then relies solely on \gls{eeg} input for making final classification predictions.
+Since the number of combinations to create hybrid \gls{bci} systems are nearly endless, it is left to the reader's imagination to come up with other potential use cases.
 
 % - - - - - - - - - -
-% novel interaction
+% P300 vs eye tracking
 % - - - - - - - - - -
-% TODO: mergen met volgende section note dat nieuwe title dus tekst anders
-% soort van control systems maar als replacement van iets dat ge normaal al kon
 
-\subsection{Using BCIs as replacement for unusable interaction methods}
-\label{subsec:bci_common_use_cases_bcis_replace_unusable_interaction}
+\subsection{Using BCIs as an alternative for eye tracking}
+\label{subsec:bci_common_use_cases_bcis_replace_eye_tracking}
 
-The previous section highlighted how \glspl{bci} can be used to extend existing medical systems.
-When working with exoskeletons and robotic prostheses, the \gls{bci} systems provide a novel interaction method for these devices that normally rely on \gls{emg} or other sources for input.
-Many of the successful \gls{bci} applications consist of providing novel interaction methods with existing systems.
-It could be argued that almost all of the literature proposed \gls{bci} applications boil down to making a novel interaction method of some sort.
-Opposed to the discussed \gls{eeg}-based exoskeletons and robotic prostheses, whose risk currently leads to limited real-life applications, less risk imposing \gls{bci} applications do find their use as novel interaction methods in real-life already.
+\gls{bci} systems relying on P300 signals where already briefly mentioned in Section \ref{subsec:bci_gaining_popularity_better_processing}.
+As further discussed in section \ref{subsec:biomedical_signals_brain_signals_measurable_brain_activity}, a P300 signal is a positive bio-electrical wave measurable with \gls{eeg} around 300ms after a specific stimulus occurred.
+This specific stimulus consists of a rare and contrasting stimulus when the user was focusing on what is otherwise a relatively static object with a frequent stimulus \citep{eye_tracking_vs_p300_comparable}.
+The most famous example is the use of a computer screen showing elements in a grid-like pattern as the static object with a frequent stimulus and flashing one specific element as the rare and contrasting stimulus.
+If the element the user was focused on flashes, the P300 signal will be present and relatively easily detectable in non-invasive \gls{eeg} measures.
+A clever design of the interface can enable a wide variety of \gls{bci} applications.
+This section will highlight a few of these applications.
+It is noted that other types of stimulus can be used, such as auditory ones, to evoke a P300 signal.
+However, this section focuses on the discussed, visual, grid-based methodology.
 
-The P300 spellers discussed earlier are examples of novel interaction methods that aim to replace keyboards, especially for those who don't have the required capabilities to operate them \citep{p300_spellers, p300_spellers_review}.
-Whilst wrong classifications in a speller application could result in unpleasant situations, it is clear that the risk involved is far smaller than exoskeletons for example.
-As the name suggests,  P300 spellers make use of \textit{P300 signals} which are a type of \glsfirst{erp}.
-As is further discussed in Section \ref{subsec:biomedical_signals_brain_signals_measurable_brain_activity}, a P300 signal is a positive bio-electrical wave measurable with \gls{eeg} around 300ms after a stimulus occurred.
-The stimulus used is often a flashing pattern on a monitor, of which there are multiple shown in a matrix form.
-The users have to focus on the element of the matrix that they want to select and appropriate algorithms can extract this selection from \gls{eeg} data.
-\Citet{p300_speller_real_life} performed a usability study on 20 \gls{als} patients in a real-life like environment.
+With such visual P300 based \gls{bci} relying on the before-mentioned method of focusing on a part of the screen and using flashing patterns to recognise which part the user is focused on, a viable alternative would be eye-tracking technology.
+This makes the effective use of these types of \gls{bci} systems debatable, an issue that is also further discussed in this section.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Why a low learning curve makes P300-based BCI systems attractive}
+\label{subsubsec:bci_common_use_cases_bcis_replace_eye_tracking_why_p300}
+
+In general, \glspl{bci} using the P300 signal are often used as they have a low learning curve and there is a relatively low variation in performance between users compared to other types of \glspl{bci} \citep{p300_spellers, p300_spellers_review}.
+The reason these systems have a low learning curve is due to their simple user interface and a combination of a system that generalises well and that has been studied thoroughly for the use of \glsfirst{tl}.
+Early examples of using \gls{tl} for P300 related \glspl{bci} include those by \citet{p300_speller_tl}.
+Adding to this, P300 signals can be detected with non-invasive \gls{eeg} using dry electrodes, which are available in multiple \gls{eeg} measuring headsets at affordable prices in a comfortable and visually pleasing package, as further discussed in Section \ref{subsec:biomedical_signals_measuring_equipment}.
+Whilst these factors hint that such \gls{bci} systems comply with Wolpaw's definition for a perfect \gls{bci} addressed in Section \ref{sec:bci_introduction}, it will become clear in this section that the communication rate of these systems is still a limiting factor.
+
+However, these aspects do make it possible for P300-based \glspl{bci} to be rapidly configured and used by a new user.
+All of this aids in creating a pleasant \glsfirst{ux} even if the communication rate is low, as shown by user studies such as the one by \citet{p300_speller_real_life2}.
+Other types of \gls{bci} systems, such as those relying on \Glsfirst{mi}, can have a tedious training procedure in advance.
+This can cause psychological burden and other side effects for the user.
+This gives rise to multiple ethical challenges, some of which are discussed in Section \ref{sec:bci_ethical}.
+Considering these things, P300 based \glspl{bci} are an interesting choice as a \textit{first \gls{bci}} to introduce the user to the possibilities of \gls{bci} systems.
+This might make it easier for the user to move to a more capable and sophisticated system that has a steeper learning curve, higher cost and more demanding training.
+
+Research on the \gls{ux} is often overlooked by initial \gls{bci} system proposals, where the focus is often on objective numerical measures such as speed, accuracy, sensitivity and specificity.
+However, as discussed by \citet{thesis_arnau}, user studies are essential to even consider using a proposed \gls{bci} system in the real world.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Using BCIs for P300 spellers}
+\label{subsubsec:bci_common_use_cases_bcis_replace_eye_tracking_p300_spellers}
+
+By far the most common usage of the P300 signal is to create \textit{p300 spellers}, an idea first described by \citet{first_p300_speller}.
+In its simplest form, P300 spellers simply show the alphabet as grid elements and let the user spell words letter-by-letter.
+More complex forms can use auto-correction to correct faulty classifications, reducing the effective error of the system.
+Advanced text prediction can also be used to show complete words or sentences for selection, increasing the communication rate as opposed to letter-by-letter input.
+Other techniques can also further increase the reliability and communication rate of the system.
+
+As such, P300 spellers are examples of novel interaction methods that aim to replace keyboards for those who don't have the required capabilities to operate them.
+Especially patients with severely limited motor skills and communication capabilities such as people suffering from serious cases of \gls{als} or \glsfirst{lis} can benefit from these systems by regaining basic communication skills \citep{p300_spellers, p300_spellers_review}.
+Whilst wrong classifications in a speller application could result in unpleasant situations, it is clear that the risk involved is far smaller than with \gls{bci} system used for controlling prostheses and exoskeletons such as discussed in Section \ref{subsec:bci_common_use_cases_prosthesis_exoskeleton}.
+This makes P300 spellers one of the few types of \gls{bci} systems that are actively being used in the real world.
+
+\Citet{p300_speller_real_life} performed a usability study of P300 spellers with 20 \gls{als} patients in a real-life environment.
 According to \citet{p300_speller_real_life}, most participants achieved over 70\% accuracy, which is in line with the findings of \citet{p300_spellers_review} and \citet{p300_speller_real_life2} in similar studies amongst other types of patients.
 More interestingly, even though the accuracy wasn't extremely high, all participants of the experiment by \citet{p300_speller_real_life} succeeded in the given tasks.
 This is in part due to our ability as a human to understand typo's in words and sentences relatively easily.
-Another important factor is that most of these systems make use of auto-correct software to help combat faulty classifications.
-Besides auto-correct software, state-of-the-art text prediction is also a crucial part of these systems as it can almost double the efficiency of P300 spellers.
-\citet{p300_speller_real_life} has found that the use of word predictors raised the mean number of correct symbols per minute from 3.6 to just over 5.
-Whilst 5 symbols per minute is still a lot slower compared to regular keyboard input, it enables useful communication for those who can't communicate through regular means.
-As \citet{p300_speller_real_life2} have shown, P300 spellers can be used by \gls{als} patients with satisfactory results in a pleasant manner for the user.
-\Citet{p300_speller_real_life2} have shown equal results for \gls{dmd} patients.
-In general, P300 spellers are often used as they have a low learning curve that can quickly enable a patient to regain some communication skills.
-The reason these systems have a low learning curve and can be quickly deployed is due to their simple user interface and a combination of a system that generalizes well and that has been studied thoroughly for the use of \gls{tl}.
-Early examples of using \gls{tl} for P300 related \glspl{bci} include those by \citet{p300_speller_tl}.
-It is noted that eye-tracking is a viable alternative for P300 spellers in most cases and research has been put into combining the two, such as the work by \citet{p300_eye_tracking_speller}.
+Another important factor is that the studied system makes use of the earlier discussed auto-correction and text-prediction techniques.
+Whilst far from advanced variants of these techniques were used, it almost doubled the communication rate of the P300 speller already with the mean number of correct symbols per minute going from 3.6 to just over 5.
 
-The focus on user experience by \citet{p300_speller_real_life2} is an important factor of a real-life case study.
-User experience is often overlooked by initial \gls{bci} system proposals, where the focus is often on numerical measures such as accuracy, speed and \gls{fn} or \gls{fp} rates.
-However, good working \glspl{bci} can cause psychological burden and other side-effects on the patients using them which an initial \gls{poc} might not reveal.
-This gives rise to some ethical challenges, some of which are discussed in Section \ref{sec:bci_ethical}.
-As time passes, the user might move to a more capable and sophisticated system that has a steeper learning curve, higher cost and is more demanding for the user.
+Whilst 5 symbols per minute is significantly slower compared to traditional communication skills, it enables useful communication for those who can't communicate through regular means.
+It should also be considered that these results are for people suffering from \gls{als}.
+These people can have difficulties with controlled eye movement or rapid eye movement which results in a slower operation speed compared to able-bodied persons.
+However, since it is so slow compared to the regular interaction method of able-bodied persons, it is far from a perfect \gls{bci} when taking into account Wolpaw's definition of a perfect \gls{bci}.
+A similar study by \citet{p300_speller_real_life2} focuses more on the \gls{ux} for \gls{dmd} patients using P300 spellers.
+This study has shown that P300 spellers can be used by \gls{dmd} patients with satisfactory results in a pleasant manner for the user, even if the communication rate is slow.
 
-As P300 signals are relatively easy to detect through \gls{eeg}, it is one of the most studied signals from \glspl{erp}.
-Many other \gls{bci} applications are based on P300 signals then just spellers.
+% | | | | | | | | | | | | |
+
+% TODO; hieronder verder lezen, reeds spell checked etc
+
+\subsubsection{Using the P300 signal for other BCI applications}
+\label{subsubsec:bci_common_use_cases_bcis_replace_eye_tracking_p300_other_applications}
+
+When taking a broader look at P300-based \gls{bci} systems using a visual grid system, they are just a mechanism for recognising which portion of the screen a user is looking at.
+These grids are often of a limited size, such as 6 by 6, for the best trade-off between accuracy and communication rate.
+The effective content of the grid and the actions taken upon classification can vary widely.
+This has enabled the exact technology of P300 spellers to be easily adapted for other applications.
+
 One such example is the \textit{Facebrain} application by \citet{facebrain}.
-Facebrain provides an \gls{eeg}-based novel interaction method with the social media platform Facebook.
+Facebrain provides a non-invasive \gls{eeg} based \gls{bci} for interacting with the social media platform Facebook.
 In essence, it's a regular P300 speller with the first screen(s) representing possible actions to take on the platform.
 When text input is required, a regular P300 speller user interface is presented.
 This allows a user to operate almost all of Facebook's functionalities with only a P300-based \gls{bci}.
-The application by \citet{facebrain} is one of many that shows the same strategy and classification algorithms as P300 spellers can be used for a wide variety of applications by changing the meaning and functionalities of the shown matrix elements.
-The matrix elements could even be overlapped on top of an image to have intuitive motion control, a methodology used by \citet{p300_drone} for their P300 controlled quad-copter.
+The application by \citet{facebrain} is one of many that shows the same strategy and classification algorithms as P300 spellers can be used for a wide variety of applications by changing the meaning and functionalities of the shown grid elements.
+Rather than showing symbols, a complete image could be shown and separated into grid elements as well.
+\Citet{p300_drone} used this idea by showing a live video stream from a quad-copter and moving it towards where the user is looking based on the P300 signal after flashing different portions of the image.
+However, as the video live stream is not static, the contrast between the flash and regular screen content shrinks making the P300 signal less noticeable and thus the classification task harder.
 
-\glspl{erp} and the measurable signals they produce, such as the P300 signal, are only one of many sources for detectable brain signals.
-In general, \gls{erp} related signals are easier to detect reliably, as the stimulus can be controlled, giving a hint when and where to look for signals and what to look for.
-However, P300 and \glspl{erp} in general also have their issues and limitations.
+% | | | | | | | | | | | | |
+
+\subsubsection{Why eye tracking may still be preferred}
+\label{subsubsec:bci_common_use_cases_bcis_replace_eye_tracking_eye_tracking_better}
+
+Whilst the discussed P300 applications have shown success in achieving their goals, the effective real-world use of such systems can still be debated.
+The communication rate is slow and for able-bodied users, traditional eye-tracking can far outperform these systems \citep{eye_tracking_vs_p300_comparable}.
+Adding to this, as P300 signals are a type of \gls{erp}, there are some known limitations and issues with techniques relying on them as well.
 The \gls{bci} handbook by \citet[Chapter~26]{bci_handbook} discusses the crowding effect, adjacency problem, repetition blindness and user discomfort amongst other issues \glspl{erp} have.
-Most problems arise from the often limited space for sending stimuli without overlap and the changing behaviour of both the brain and participant's experience after a prolonged session where many stimuli have been applied.
+Most of these problems arise from the often limited space for sending visual stimuli without overlap and the changing behaviour of both the brain and participant's experience after a prolonged session where many stimuli have been applied.
 
-An alternative to \glspl{erp} is using a mental phenomenon called \gls{mi} as source of signals for a \gls{bci} system.
-\Gls{mi} is the process in which a person generates brain activity in the motor cortex merely by imagining motor movements.
-Section \ref{subsec:biomedical_signals_brain_signals_measurable_brain_activity} explains in further detail how \gls{mi} is not dependent on an external stimuli nor actual motor movements.
-This makes \gls{mi}-based \glspl{bci} extra appealing as they don't require external stimuli and are applicable for people with motor disabilities.
-\Citet{first_mi} were the first to experiment with the idea of using \gls{mi} in an \gls{eeg} classification task.
-Since then, many \gls{mi}-based \glspl{bci} have been proposed.
-\Citet{bci_mi_robot_arm} proposed a \gls{mi}-based \gls{bci} to control a robot arm system.
-Their research is interesting in two ways.
-First, they use only three distinct \gls{mi} classifications: imagined right-hand movement, imagined left-hand movement and imagined foot movement.
-These three controls enable the user to select eight different possible actions through a menu where two options are always shown that can be controlled using either an imagined left-hand movement or an imagined right-hand movement.
-Scrolling through the menu to show two other possible actions is possible through the imagined foot movement.
-This shows that with the right system design few controls can still allow for many actions to be taken.
-Secondly, they found that experienced users have better overall classification performance which indicates that \gls{mi} is something that can be trained.
+Multiple articles have been written on when and why a P300-based \gls{bci} might be preferred over a regular eye-tracking system \citep{eye_tracking_vs_p300_comparable, p300_eyetracking_slower}.
+The experiments performed by \citet{eye_tracking_vs_p300_comparable} compared the accuracy and communication rate of visual P300 based \glspl{bci} against traditional eye-tracking solutions.
+\Citet{eye_tracking_vs_p300_comparable} found the accuracy of both systems to be comparable but the communication rate of eye tracking solutions was around 50\% faster.
+However, when questioning the ten participants of the study, it was found that there is a higher preference for the \gls{bci} system than the eye-tracker.
+Whilst favourable for the \gls{bci} alternative, the results of the study by \citet{eye_tracking_vs_p300_comparable} should be interpreted with caution.
+The participants of their study were all able-bodied persons and the eye-tracking experiments were always performed last.
+This and other aspects of their methodology are bound to introduce bias in the results.
 
-A more recent and more complex \gls{mi}-based \gls{bci} system is the vehicle control system by \citet{bci_mi_four_wheel_drive} which recognizes four possible actions: left, right, throttle and brake.
-There are three very interesting aspects in the work by \citet{bci_mi_four_wheel_drive}.
-First, they use two distinct classifiers for the \gls{eeg} data.
-One makes a distinction between left and right through a typical \gls{mi}-based \gls{bpnn} whilst the other classifies throttle and brake behaviour using the subject’s threshold value of the average band power.
-Secondly, an additional system is in place to reduce the risk of wrong classifications in the system.
-This additional system is a type of collision detection and avoidance system that uses four ultrasonic wave radars and a camera.
-The rationale behind this additional system is that the car would operate more like a semi-autonomous system that is responsible for a safe ride whilst the input of the \gls{bci} system is used to steer this semi-autonomous car in the right direction.
-This additional system is required as the accuracy of around 84\% for the throttle and brake classification and 89\% for the left and right classification is not enough for a reliable system.
-Finally, they use an interesting data collection method to train the classifiers on a user-per-user basis.
-They configured a driving simulator where the user has the freedom to perform any action they want through a classical steering wheel and pedal setup.
-The user should synchronously think about the action they want to perform to generate \gls{mi} data and they have to perform the effective action, as to be able to label the data.
-Whilst this is an interesting approach, it is limited in the fact that it requires the user to be able to operate a steering wheel and pedals at the same time, which is not the case for classical target users of these systems.
+A study by \citet{no_interest_in_using_p300} compared the use of eye-tracking software and auditory P300 based \glspl{bci} for a patient suffering form the \glsfirst{lis}.
+Whilst the patient was able to work with both systems autonomously, there was a strong preference for the traditional communication strategy which relied on a human to determine the wanted communication of the patient.
+This preference was purely based on the \gls{ux} rather than the communication rate.
+Whilst only being an experiment based on a singular participant, it does show how automated systems for regaining basic communication might cause a negative psychological impact on the user.
+Thus, the results found by \citet{eye_tracking_vs_p300_comparable} on \gls{ux} are in direct contrast with the results from the experiment by \citet{no_interest_in_using_p300}.
+However, \citet{no_interest_in_using_p300} lacked a study of visual P300 based \glspl{bci}, so it could be that such a system would be preferred. 
 
-Far more types of brain signals exist for use in \glspl{bci} than those discussed in this section.
-Section \ref{subsec:biomedical_signals_brain_signals_measurable_brain_activity} will go into further detail on the different types of brain-signals that can be used.
-For a more exhaustive list of all different approaches to using \glspl{bci} as novel interaction the reader is advised to consult one of many systematic reviews, books and other materials already available \citep{bci_review_book_chapter, bci_review, bci_in_medicine, bci_history, bci_review_monkey, bci_handbook}.
-From the works these materials discuss, it should become apparent that most short-term goals of \glspl{bci} still lie in improving the quality of life for people with disabilities.
-However, the rise in popularity of \glspl{bci} in the gaming industry and amongst other big tech companies as discussed in Section \ref{subsec:bci_gaining_popularity_big_tech} shows there is a potential future where \glspl{bci} find more real-life use-cases in other fields as well.
-Many of the current research also looks into combining multiple technologies to limit risk, increase the number of classification classes, create a more pleasant training experience and more.
-It is important to stress that the research field of \glspl{bci} is not as new as some of the more commercial companies and publishers would like to portray it is.
-Because of this, some of the claimed breakthroughs should be taken with a grain of salt.
-One such example is the use of \glspl{bci} with monkeys.
-Neuralink, the earlier discussed Elon Musk company, has published a YouTube video\footnote{\url{https://www.youtube.com/watch?v=rsCul1sp4hQ}} in 2021 demonstrating a monkey playing pong using the \gls{bci} by Neuralink.
-The video quickly gained millions of views, far more than most papers in the \gls{bci} field will ever reach.
-As a result, this video without a backing paper or proper explanation of the process was covered as highly innovative and groundbreaking by many news outlets.
-However, similar setups have already been made in the past.
-For example, \citet{bci_monkey_arms} demonstrated monkeys taking control over two avatar arms simultaneously, a task that is arguably even harder to accomplish and has an appropriate peer-reviewed paper backing it.
+Similar conflicting results are present on other aspects of visual P300 based \glspl{bci} as well.
+One debate that has been active for years is the dependence of P300-based \glspl{bci} on the capability of a user to look directly to a single target for a prolonged time.
+As discussed by \citet{p300_eye_gaze}, it has been argued that this dependence is low as peripheral vision allows the user to focus on the desired element even if the eyes aren't directly rotated towards the element.
+This would be favourable for P300 solutions compared to eye-tracking solutions as some users might not have the required muscle control to point their eyes to a specific point for prolonged periods, a task known as eye gazing.
+However, the study by \citet{p300_eye_gaze} does show a dependence of P300-based systems on eye gaze and they argue the effective uses of visual P300 systems should be reconsidered.
+Yet, the review article by \citet{bci_eye_gaze} addresses multiple articles which concluded through real-world tests that being capable of eye gazing is not necessary for effective use of P300-based \glspl{bci}.
+
+These contradicting results on the use of P300-based \gls{bci} applications make it hard to determine which kind of system would be usable in the real world, providing a net benefit for the user.
+It also shows that promising objective results such as a high accuracy and communication rate are not guaranteed to provide a system which is enjoyed by the end user.
+Thus, many proposed systems require follow-up articles focusing on performing in-depth real-world experiments with the target population to conclude if they are worthwhile.
+However, doing such a study in the same article proposing the new novel system would mean that one singular article takes an incredible amount of time.
+This is contradictory to the expectations of many researchers in the field to publish a certain amount of articles yearly.
+However, the latter is an ethical dilemma that entails a higher risk of \textit{sloppy science}.
 
 % - - - - - - - - - -
-% other use cases
+% other use cases and summary
 % - - - - - - - - - -
 
-\subsection{More commercial and other use cases}
-\label{subsec:bci_common_use_cases_commercial_and_others}
-% al vermelde porn en vr maar ook andere
-TODO
-
-% - - - - - - - - - -
-% other use cases
-% - - - - - - - - - -
-
-\subsection{Summary on the use cases of BCIs}
+\subsection{Summary on the use cases for BCIs}
 \label{subsec:bci_common_use_summary}
 
-TODO
+
+Since \glspl{bci} can be seen as a novel interaction method for controlling external devices, the possible use-cases are endless.
+Even for the discussed P300 based \gls{bci} systems alone, a huge variety of applications can be created as addressed in Section \ref{subsec:bci_common_use_cases_bcis_replace_eye_tracking}.
+This has caused review articles to focus solely on these types of \gls{bci} systems or even subset of those types of systems \citep{p300_review_article1, p300_review_article2, p300_review_article3}.
+
+Thus, addressing all possible use cases for \glspl{bci} is far outside the scope of this thesis.
+For this section, the goal was for the reader to obtain a more general insight into the most studied uses for \glspl{bci}.
+In this regard, it succeeded in addressing all of the most popular use cases of \glspl{bci} as \gls{bc} systems in the real world as found by \citet{bci_review_arnau} and the most interesting use cases of \glspl{bci} addressed in the review article by \citet{bci_applications}.
+It also highlighted that current real-world applications still rely on other technologies to limit risk and improve accuracy as standalone non-invasive \gls{eeg} based \glspl{bci} are still not accurate and reliable enough for most real-world usage.
+Some of the main positive and negative points of the discussed articles were also addressed.
+
+Most notable from this section is the fact that objective measures are only a small part of making a system that can be used in the real world.
+Take for example the discussed experiment by \citet{p300_speller_real_life} which studied the use of P300 spellers by patients suffering from \gls{als}.
+With a classification accuracy of 70\% and only 5 symbols per minute, the objective measures from this system look terrible compared to able-bodied alternatives such as regular keyboard typing.
+However, \citet{p300_speller_real_life} found the users to have enjoyed the use of the P300 spellers and when taking into account the options available to the target users rather than able-bodied users, the objective measures are far more impressive.
+
+However, even the articles which perform experiments that take into account the \glsfirst{ux} can sometimes cause conflicting results.
+Take for example the discussed differences between the found user experience of P300 based \glspl{bci} between the experiment by \citet{eye_tracking_vs_p300_comparable} and \citet{no_interest_in_using_p300}.
+Able-bodied persons from the experiment by \citet{eye_tracking_vs_p300_comparable} mentioned a pleasant \gls{ux}.
+A more representative real-world study by \citet{no_interest_in_using_p300}, who looked at a singular patient suffering from \gls{lis} showed that this person had no interest in using such systems as a replacement for the existing human-based communication system which was already present.
+Even-though speed and autonomous use were far better and the \gls{ux} according to the able-bodied persons was great, the \gls{ux} for this person suffering from \gls{lis} was not good enough.
+Thus, the \gls{ux} is something that can only truly be measured when performing the experiments for an extended period with the target audience of the system, not through a single experiment on able-bodied participants.
+It is hard for an able-bodied person to understand that the confrontational aspect of \glspl{bci} on the limitation a user has can outweigh the benefits it seemingly offers.
+This and other more ethical questions are also addressed in Section \ref{sec:bci_ethical}.
+
+To summarize, as a \gls{bci} performs actions based on brain signals, a very fitting analogy could be made: \textit{a \gls{bci} could do anything you can think of}.
+That is, of course, only true in theory.
+Due to limited knowledge of the brain \citep{brainmapping} and limitations in what can be measured, a \gls{bci} can only truly do what you can think of in a \textit{measurable way}.
+Still, this is a whole lot of applications and an overview diagram of the most important ones is given in Figure \ref{fig:bci_use_cases_diagram}.
+This diagram is not only based on the use cases discussed in this thesis but also those discussed in the articles by \citet{bci_review_arnau} and \citet{bci_applications} among others \citep{bci_review_book_chapter, bci_review, bci_in_medicine, bci_history, bci_review_monkey, bci_handbook}.
+From Figure \ref{fig:bci_use_cases_diagram}, it should become apparent that most short-term goals of \glspl{bci} still lie in improving the quality of life for people with disabilities.
+However, the rise in popularity of \glspl{bci} in the gaming industry and amongst other big tech companies, as discussed in Section \ref{subsec:bci_gaining_popularity_big_tech}, shows there is a potential future where \glspl{bci} find more real-life use-cases in other fields as well.
+
+% TODO: overview based on review arnau en bci_applications, met die van bci_applications voorbeeld figuur
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\linewidth]{images/introduction/use_cases_overview.pdf}
+    \captionsetup{width=0.7\linewidth}
+    \captionsetup{justification=centering}
+    \caption{An overview of some of the many use cases for \glspl{bci}.} 
+    \label{fig:bci_use_cases_diagram}
+\end{figure}
+
+
 
 % ---------------------------------------------- 
 % SMALL PROJECTS
 % ---------------------------------------------- 
 
+% START HERE; TODO
+
 \section{Opportunities and obstacles for BCI research}
 \label{sec:bci_opportunities_obstacles}
 % Hoe verschilt dit met use cases? Wss doordat hier focus op hoe live improvement en challanges etc
 % Mss iets a la ups and downs of BCI research noemen? Of attractivenes en ... van BCI met dan hier link naar multidisciplanary ook
+
+% % bci_applications heeft ook overview onder 7 challenges
 
 As technology evolves, it has often been the case that people with certain disabilities benefit from the evolution as well.
 Take the evolution of live captions as a recent example, it has found its way directly into the Android smartphone operating system.
@@ -1154,6 +1261,7 @@ These \gls{dl} libraries can often work on raw \gls{eeg} data directly, which al
 Publicly available \gls{eeg} dataset such as the one by \citet{eeg_data} makes it possible for developers to work on a pipeline without needing the monetary investment in \gls{eeg} measuring equipment.
 If desired, the affordable headsets by OpenBCI and others, further compared in Section \ref{subsec:biomedical_signals_measuring_equipment}, make it possible to have \gls{eeg} measuring equipment with good open-source libraries for well under 1000 euros.
 These smaller projects do not only have the potential to be of big impact for very specific users, they often reveal common issues and interesting alternative approaches in the \gls{bci} field.
+
 
 % - - - - - - - - - -
 % motivating examples
@@ -1183,6 +1291,52 @@ This section will focus on some work that demonstrates which real-life applicati
 These works were motivational examples for this master thesis.
 They give a more thorough vision of what types of applications could be possible with consumer-grade systems in their current form, often highlighting the issues that are still present with them.
 Most of these works are centred around OpenBCI hardware, the manufacturer of some of the more successful low-cost \gls{biosignal} measuring devices as further discussed in Section \ref{sec:biomedical_signals_measuring}.
+
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{MI tasks}
+\label{subsubsec:bci_opportunities_obstacles_motivating_mi_tasks}
+
+% NOTE: this section is copy paste dus aanpassingen nodig
+
+
+
+
+
+
+
+\Citet{bci_mi_robot_arm} proposed a \gls{mi}-based \gls{bci} to control a robot arm system.
+Their research is interesting in two ways.
+First, they use only three distinct \gls{mi} classifications: imagined right-hand movement, imagined left-hand movement and imagined foot movement.
+These three controls enable the user to select eight different possible actions through a menu where two options are always shown that can be controlled using either an imagined left-hand movement or an imagined right-hand movement.
+Scrolling through the menu to show two other possible actions is possible through the imagined foot movement.
+This shows that with the right system design few controls can still allow for many actions to be taken.
+Secondly, they found that experienced users have better overall classification performance which indicates that \gls{mi} is something that can be trained.
+
+A more recent and more complex \gls{mi}-based \gls{bci} system is the vehicle control system by \citet{bci_mi_four_wheel_drive} which recognises four possible actions: left, right, throttle and brake.
+There are three very interesting aspects in the work by \citet{bci_mi_four_wheel_drive}.
+First, they use two distinct classifiers for the \gls{eeg} data.
+One makes a distinction between left and right through a typical \gls{mi}-based \gls{bpnn} whilst the other classifies throttle and brake behaviour using the subject’s threshold value of the average band power.
+Secondly, an additional system is in place to reduce the risk of wrong classifications in the system.
+This additional system is a type of collision detection and avoidance system that uses four ultrasonic wave radars and a camera.
+The rationale behind this additional system is that the car would operate more like a semi-autonomous system that is responsible for a safe ride whilst the input of the \gls{bci} system is used to steer this semi-autonomous car in the right direction.
+This additional system is required as the accuracy of around 84\% for the throttle and brake classification and 89\% for the left and right classification is not enough for a reliable system.
+Finally, they use an interesting data collection method to train the classifiers on a user-per-user basis.
+They configured a driving simulator where the user has the freedom to perform any action they want through a classical steering wheel and pedal setup.
+The user should synchronously think about the action they want to perform to generate \gls{mi} data and they have to perform the effective action, as to be able to label the data.
+Whilst this is an interesting approach, it is limited in the fact that it requires the user to be able to operate a steering wheel and pedals at the same time, which is not the case for classical target users of these systems.
+
+
+
+
+
+
+
+
+
+
 
 % | | | | | | | | | | | | |
 
@@ -1461,6 +1615,8 @@ TODO
 
 % User-training will also play an important role in the practical deployment of an application (Kuhner et al 2019). Users will not want to use a system that requires a long training time before being usable on a regular basis. Due to the non-stationary nature of the signals, users might have to re-train themselves and re-calibrate their device on every usage. These challenges are highlighted by the Cybathlon competition where one of the events is a race where participants have to complete a BCI task in the shortest time (McFarland and Wolpaw 2018, Perdikis et al 2018, Hehenberger et al 2021). Therefore, user training should be considered when designing the final control system, which is extensively discussed by Roc et al (2021).
 
+TODO
+
 
 % ---------------------------------------------- 
 % ETHICAL CHALLENGES
@@ -1471,8 +1627,6 @@ TODO
 % Duidelijk vermelden dat je geen expert bent
 % TODO: do after first 3 chapters finished and some code made
 % Interesting points: https://www.frontiersin.org/articles/10.3389/fcomp.2021.661300/full
-
-SECTION TO BE COMPLETED IN A LATER STAGE, LOREM IPSUM PLACED FOR APPROXIMATED LENGTH.
 
 TODO
 
@@ -1542,6 +1696,17 @@ TODO
 % second_sight_broken_ethics: https://spectrum.ieee.org/bionic-eye-obsolete
 % bci_blind_assist_review: https://www.frontiersin.org/articles/10.3389/fnhum.2021.638887/full
 % bci_vision_assist_review: https://link.springer.com/content/pdf/10.1007/s13311-018-0660-1.pdf
+TODO
+
+% - - - - - - - - - -
+% sloppy science
+% - - - - - - - - - -
+
+\subsection{The risk of sloppy science due to time-pressured researchers}
+\label{subsec:bci_ethical_sloppy_science}
+
+% TODO: link neuralink problemen en link dat goede testen veel tijd vragen vs classificatie
+
 TODO
 
 % ---------------------------------------------- 
