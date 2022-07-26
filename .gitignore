@@ -7,3 +7,17 @@ code/utils/__pycache__/
 code/experimental-notebooks/logs/**/
 !code/experimental-notebooks/logs/**.zip
 code/data/figures/funding_data.csv
+paper/source/template_files/main.toc
+paper/source/template_files/main.synctex.gz
+paper/source/template_files/main.run.xml
+paper/source/template_files/main.pdf
+paper/source/template_files/main.out
+paper/source/template_files/main.lot
+paper/source/template_files/main.log
+paper/source/template_files/main.lof
+paper/source/template_files/main.fls
+paper/source/template_files/main.fdb_latexmk
+paper/source/template_files/main.blg
+paper/source/template_files/main.bcf
+paper/source/template_files/main.bbl
+paper/source/template_files/main.aux
