@@ -1283,42 +1283,67 @@ Especially the possibility of regaining even the simplest form of mobility throu
 % motivating examples
 % - - - - - - - - - -
 
-\subsection{Motivating examples for this Master's thesis}
+\subsection{Motivating examples for this master's thesis}
 \label{subsec:bci_opportunities_obstacles_motivating_examples}
 
 % One publication uses EEG for wheelchair control (Zgallai et al 2019) 
 
-As discussed above, good open-source libraries, datasets and even measuring hardware have made the entry to the \gls{bci} field easier than ever before.
-Some of the open-source \gls{dl} libraries tailored towards \gls{eeg} classification work well on raw \gls{eeg} data, which allows for meaningful classification accuracy without the need of understanding all domain-specific properties of \gls{eeg} data required for classical preprocessing.
-The question remains whether which or even if, real-life applications are possible on consumer-grade \gls{bci} systems.
-In an ideal world, such applications should be fully configurable and usable by the end-user without the help of a domain expert and the system should be maintainable without exhaustive preliminary knowledge. 
-Many works have demonstrated the potential of these \gls{bci} systems but the lack of widespread adoption suggests there are still hurdles to overcome for them to become a reality.
-For this reason, this thesis focuses on providing a solid foundation to the \gls{bci} field, a \gls{poc} application to demonstrate how a working system can be implemented and a thorough viability discussion of these systems in their current state.
-
-Multiple studies comparing different aspects of these cheaper consumer-grade systems to the more traditional medical-grade \gls{bci} systems have already been done, as is further discussed in Section \ref{sec:biomedical_signals_measuring}.
-In general, cheaper systems work with a lower electrode count and those electrodes also have a lower signal quality.
-Whilst this means the hardware is of lower quality, cheaper consumer-grade systems can reach usable levels of accuracy as shown by \citet{openbci_vs_medical} and \citet{openbci_eeg_sensor_evaluation} for the Texas Instrument ADS1299 chip, commonly found in consumer-grade hardware such as the offerings from OpenBCI.
-Similarly, studies have been done on different types of electrodes as already touched upon in Section \ref{subsec:bci_gaining_popularity_better_measuring} and further discussed in Section \ref{subsec:biomedical_signals_measuring_equipment}.
-These electrode comparison studies have shown that the gap between easy-to-use and affordable dry electrodes and the more superior but harder to use and often more expensive wet electrodes is shrinking \citep{wet_vs_dry, dry_electrode_status, wet_dry_comparison_experiment}.
-However, these findings often follow from very controlled experiments in lab-like environments.
-This is to be expected, as most comparisons aim to eliminate as many random factors as possible.
-However, this means that these experiments don't give great insight into the real-life usability and applicability of these cheaper \gls{bci} systems.
-This section will focus on some work that demonstrates which real-life applications are possible on consumer-grade \gls{bci} hardware and how they are possible.
-These works were motivational examples for this master thesis.
-They give a more thorough vision of what types of applications could be possible with consumer-grade systems in their current form, often highlighting the issues that are still present with them.
-Most of these works are centred around OpenBCI hardware, the manufacturer of some of the more successful low-cost \gls{biosignal} measuring devices as further discussed in Section \ref{sec:biomedical_signals_measuring}.
-
+The discussed use cases from Section \ref{sec:bci_common_use_cases} were motivating examples for this master's thesis in themselves.
+However, there are some specific works that have motivated the creation of this master's thesis which will be discussed in detail here.
+These are mainly related to \glsfirst{mi} based \glspl{bci} working with affordable consumer-grade and non-invasive \gls{eeg} measuring equipment.
+Whilst many articles have demonstrated the potential of such \gls{bci} systems, the lack of widespread adoption suggests there are still hurdles to overcome for them to become a reality.
+When discussing these motivating examples, some of these hurdles will already be discussed, the main obstacles for \gls{bci} research are further discussed in later subsections.
 
 
 % | | | | | | | | | | | | |
 
-\subsubsection{MI tasks}
-\label{subsubsec:bci_opportunities_obstacles_motivating_mi_tasks}
+\subsubsection{Consumer-grade EEG measuring equipment has promosing potential}
+\label{subsubsec:bci_opportunities_obstacles_motivating_cheap_hardware_promosing}
 
 % NOTE: this section is copy paste dus aanpassingen nodig
 
+Section \ref{subsec:bci_gaining_popularity_better_measuring} and \ref{subsec:bci_gaining_popularity_better_processing} have already discussed the evolution of \gls{eeg} measuring equipment as a potential reason for the increased popularity of \gls{bci} research.
+Multiple studies comparing different aspects of cheaper consumer-grade systems to the more traditional medical-grade \gls{bci} systems have already been done \citep{openbci_vs_medical, openbci_eeg_sensor_evaluation, dry_electrode_status, wet_dry_comparison_experiment, wireless_dry_vs_wired_wet}.
+In general, cheaper systems work with dry electrodes at a lower electrode count and have a lower signal quality compared to medical systems.
+This means the cheaper systems provide poorer data quality, resulting in a more difficult classification problem.
+
+This raises the question if useful applications can be made using data from these cheaper systems.
+One of the best-known providers of \gls{eeg} equipment is OpenBCI and their products are further discussed in Section \ref{subsec:biomedical_signals_measuring_equipment}.
+This OpenBCI headset makes use of the Texas Instrument ADS1299 chip to convert the analogue signal of \gls{eeg} electrodes to a digital one.
+Whilst affordable and widely available, it has been shown that this chip is comparable to far more expensive alternatives that have been used in the laboratory for years \citep{openbci_eeg_sensor_evaluation, openbci_vs_medical}.
+However, a cheap consumer-grade system differs from medical systems in more areas than the general chip responsible for \gls{eeg} amplification and digitalisation.
+
+Studies comparing the use of cheaper dry electors against medical wet electrodes have already been discussed in Section \ref{subsec:bci_gaining_popularity_better_measuring}.
+Whilst the obtained results from these studies show the gap between both is shrinking but still present \citep{wet_vs_dry, dry_electrode_status, wet_dry_comparison_experiment}.
+However, the experiments used for obtaining these results come from very controlled experiments in lab-like environments.
+This is to be expected, as most comparisons aim to eliminate as many random factors as possible.
+However, this means that these experiments don't give great insight into the real-life usability and applicability of these cheaper \gls{bci} systems.
+Taking into account that none of the academic research discussed in the systematic review article by \citet{bci_review_arnau} makes use of such cheap systems hints that real-world usage of these systems remains hard.
 
 
+% | | | | | | | | | | | | |
+
+\subsubsection{Trainable motor imagery as input thoughts for the BCI system}
+\label{subsubsec:bci_opportunities_obstacles_motivating_mi_tasks}
+
+% NOTE: this section is copy paste dus aanpassingen nodig
+% TODO: hier was je bezig
+
+Section \ref{subsec:bci_common_use_cases_bcis_replace_eye_tracking} discussed P300 based \gls{bci} systems.
+Whilst the P300 signal is one that is relatively easy to detect and evoke, the discussed visual stimuli used has many limitating factor.
+Perhaps most limiting is that the user can not evoke the signal without reuqiring external stimuli.
+The public image of a person sitting behind a flashing screen is also not appealing to users and isn't in line with Wolpaw's definition of a perfect \gls{bci}.
+
+Detectable signals that can be evoked voluntary by the user are more interesting for most \gls{bci} applications, especially those that focus on providing \gls{bc}.
+Likewise, the process the user should go through to evoke this detectable signal should be one that doesn't require physical movement to both be applicable for users suffering from limited muscle control and be in line with Wolpaw's definition of a perfect \gls{bci}.
+\Glsfirst{mi} is such a cognitive process that is often used for this purpose.
+\Citet{mi_definition} defines the \gls{mi} process as follows:
+
+
+\setlength{\epigraphwidth}{0.9\textwidth}
+\epigraph{Motor imagery is a cognitive process in which a subject imagines that (s)he performs a movement without actually performing the movement and without even tensing the muscles. It is a dynamic state during which the representation of a specific motor action is internally activated without any motor output. In other words motor imagery requires the conscious activation of brain regions that are also involved in movement preparation and execution, accompanied by a voluntary inhibition of the actual movement.}{\textit{\citet{mi_definition}}}
+
+% TODO: hier was je stopped 
 
 
 
@@ -1753,3 +1778,5 @@ In part 2 of this thesis, a focus is put on how \gls{bci} systems can be develop
 To accomplish this, an offline \gls{bci} that classifies \gls{eeg} data is discussed in Chapter \ref{ch:offline_bci_system}.
 Chapter \ref{ch:online_bci_system} extends on this offline \gls{bci} pipeline by proposing a three-signal system for live control.
 Part 3 of this thesis consists of Chapter \ref{ch:evaluation} and \ref{ch:discussion} which aim to evaluate this three-signal system, taking into account the lack of generalized evaluation strategies as discussed earlier in Section \ref{subsec:bci_opportunities_obstacles_lack_of_testing}
+
+For this reason, this thesis focuses on providing a solid foundation to the \gls{bci} field, a \gls{poc} application to demonstrate how a working system can be implemented and a thorough viability discussion of these systems in their current state.
