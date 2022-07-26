@@ -6,17 +6,20 @@ The current draft version of the thesis can be found [here](paper/bci_master_the
 
 ## Table of contents
 
-- [Contact information](#contact-information)
-- [Documentation](#documentation)
-  - [Installation instructions](#installation-instructions)
-  - [Initialisation instructions](#initialisation-instructions)
-- [Code](#code)
-  - [Utility files](#utility-files)
-  - [Experimental notebooks](#experimental-notebooks)
-  - [Paper notebooks](#paper-notebooks)
-- [Literature review](#literature-review)
-  - [Scientific sources](#scientific-sources)
-  - [Informal sources](#informal-sources)
+- [BCI Master Thesis @ VUB 2021 - 2022](#bci-master-thesis--vub-2021---2022)
+  - [Table of contents](#table-of-contents)
+  - [Contact information](#contact-information)
+  - [Documentation](#documentation)
+    - [Installation instructions](#installation-instructions)
+    - [Initialisation instructions](#initialisation-instructions)
+  - [Code](#code)
+    - [Utility files](#utility-files)
+    - [Experimental notebooks](#experimental-notebooks)
+    - [Paper notebooks](#paper-notebooks)
+  - [Literature review](#literature-review)
+    - [Scientific sources](#scientific-sources)
+    - [Informal sources](#informal-sources)
+        - [© Lennert Bontinck VUB 2021-2022](#-lennert-bontinck-vub-2021-2022)
 
 <hr>
 
