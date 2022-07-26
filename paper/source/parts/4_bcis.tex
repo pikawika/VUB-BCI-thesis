@@ -5,6 +5,8 @@
 % Questions:
 %   -
 
+% TODO: mentionen dat geen systematic review a la standaarden zoals arnau maar wel goed en ook zeggen Zotero
+
 % NOTE: Uncomment this if the use of parts is desired
 \part{Understanding Brain-computer interfaces}
 
@@ -1226,48 +1228,62 @@ However, the rise in popularity of \glspl{bci} in the gaming industry and amongs
 \end{figure}
 
 
-
 % ---------------------------------------------- 
-% SMALL PROJECTS
+% Opportunities and obstacles for BCI research
 % ---------------------------------------------- 
 
 % START HERE; TODO
+% Done untill but not motivatin examples
+% bci_applications heeft ook overview onder 7 challenges
 
 \section{Opportunities and obstacles for BCI research}
 \label{sec:bci_opportunities_obstacles}
-% Hoe verschilt dit met use cases? Wss doordat hier focus op hoe live improvement en challanges etc
-% Mss iets a la ups and downs of BCI research noemen? Of attractivenes en ... van BCI met dan hier link naar multidisciplanary ook
 
-% % bci_applications heeft ook overview onder 7 challenges
+The most likely factors of why \glspl{bci} are gaining popularity and what the most common use cases are for \glspl{bci} were already discussed in Section \ref{sec:bci_gaining_popularity} and \ref{sec:bci_common_use_cases} respectively.
+From these sections, an interested reader could have already spotted some opportunities and potential obstacles for doing research in the field themselves.
+This section discusses some opportunities and obstacles present according to the author of this paper.
+The aspects that are covered in this section are oriented towards the interests of the author from this master's thesis and aim to explain why this master's thesis came to fruition.
+They also lay the foundation to the proposed \gls{bci} \gls{bc} system of this master thesis, which will be further discussed in Section \ref{sec:bci_concolusion_and_proposing_ours}.
 
-As technology evolves, it has often been the case that people with certain disabilities benefit from the evolution as well.
-Take the evolution of live captions as a recent example, it has found its way directly into the Android smartphone operating system.
+
+% ---------------------------------------------- 
+% Small projects
+% ---------------------------------------------- 
+
+\subsection{Seemingly small projects with huge impact}
+\label{subsec:bci_opportunities_obstacles_small_projects}
+
+As \glspl{bci} and other technologies become more commercially oriented, the main focus is often shifted to providing products that can be used by the masses to provide the highest possible revenue.
+Whilst \gls{bci} research sees its foundation from the medical world and most of the current users are people with a certain medical condition, a similar shift is likely, especially for the larger projects funded by big-tech companies.
+This isn't necessarily a bad thing for medical applications, since this doesn't mean academic research focusing on those people with a certain medical condition disappears, rather it becomes a smaller portion of all research in the field.
+The new technology and knowledge commercial products deliver can directly contribute to academic research focusing on medical applications.
+This may include cheaper and more capable measuring equipment, a more socially acceptable picture of \glspl{bci} aiding the aesthetic aspect of Wolpaw's definition for a perfect \gls{bci} and better performing classification algorithms.
+It is also possible that a commercial \gls{bci} application which is meant as a novelty for most, is life-changing to some.
+
+Take the evolution of live captions as a recent example from a different domain, it has found its way directly into the Android smartphone operating system.
 Whilst initially implemented for users to enjoy video content in situations where they can't listen to the audio, people with hearing difficulties now have a direct way to enjoy more content too.
 The push for autonomous cars will allow those that are traditionally unable to drive a car to finally enjoy the freedom a car can offer as well without being dependent on others to do so.
 Object and scene recognition algorithms made for optimizing smartphone cameras can also be used as a way of describing what is on a photograph for those who have limited vision.
 
-Whilst it is clear from the previous sections that research in \glspl{bci} has its roots in medical applications, more commercial applications are currently being explored as discussed in Section \ref{subsec:bci_gaining_popularity_big_tech}.
-These commercial applications have a larger potential audience, which will probably result in more sales.
-In general, hardware and software that is produced and used on a larger scale cause market competition which in term often lowers prices whilst increasing quality.
-This is bound to also make medical-oriented applications of \glspl{bci} more accessible and of better quality.
-It would also allow for smaller creators with a limited budget to create meaningful, quality-of-life improving applications.
+Likewise, as more people are exposed to complex medical and commercial applications, many individuals start to envision seemingly small applications that could have a major impact on them or people they know.
 This has been the case with smartphone applications for a long time.
-Simple applications such as a colour picker in the camera app can aid people who have colour blindness in determining whether a banana is ripe or not.
-Small applications by individual developers relying on location changes can remind those with short-term memory loss if they have not forgotten essential things such as locking the door.
+A colour picker app that uses the camera to describe the colour of the central pixel is something that can be implemented with very limited resources.
+Yet, such an application has already proven to significantly aid people who have colour blindness.
+For example, they may use this application to determine whether a banana is ripe or not, something they can't visually determine but is easy with a textual description of the colour.
+For such small applications to be feasible, an abundance of open-source material to re-use existing code for operating the camera, getting a textual colour description of an RGB colour code and more is required.
 
-
-More and more open-source \glsfirst{dl} libraries tailored towards \gls{eeg} such as the ones by \citet{eeg_model_hbm} and \citet{eeg_model_eegnet} have been introduced.
-These \gls{dl} libraries can often work on raw \gls{eeg} data directly, which allows developers who don't have much domain experience to make interesting and good performing classification pipelines or even make new discoveries in the field.
-Publicly available \gls{eeg} dataset such as the one by \citet{eeg_data} makes it possible for developers to work on a pipeline without needing the monetary investment in \gls{eeg} measuring equipment.
+This presence of open-source code has started to emerge for the \gls{bci} field as well, as discussed in Section \ref{subsec:bci_gaining_popularity_better_processing}.
+Combined with publicly available \gls{eeg} dataset such as the one by \citet{eeg_data}, it has become possible for developers to work on a pipeline without needing the monetary investment in \gls{eeg} measuring equipment.
 If desired, the affordable headsets by OpenBCI and others, further compared in Section \ref{subsec:biomedical_signals_measuring_equipment}, make it possible to have \gls{eeg} measuring equipment with good open-source libraries for well under 1000 euros.
-These smaller projects do not only have the potential to be of big impact for very specific users, they often reveal common issues and interesting alternative approaches in the \gls{bci} field.
+This has made individuals such as the author of this paper excited to create a wide variety of smaller applications that could have impactful meaning to some very specific people.
+Especially the possibility of regaining even the simplest form of mobility through some very basic controls derived from \glsfirst{mi} is what motivated the author of this master's thesis to study the field.
 
 
 % - - - - - - - - - -
 % motivating examples
 % - - - - - - - - - -
 
-\subsection{Motivating examples using consumer-grade BCIs}
+\subsection{Motivating examples for this Master's thesis}
 \label{subsec:bci_opportunities_obstacles_motivating_examples}
 
 % One publication uses EEG for wheelchair control (Zgallai et al 2019) 
