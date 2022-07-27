@@ -1232,10 +1232,6 @@ However, the rise in popularity of \glspl{bci} in the gaming industry and amongs
 % Opportunities and obstacles for BCI research
 % ---------------------------------------------- 
 
-% START HERE; TODO
-% Done untill but not motivatin examples
-% bci_applications heeft ook overview onder 7 challenges
-
 \section{Opportunities and obstacles for BCI research}
 \label{sec:bci_opportunities_obstacles}
 
@@ -1284,9 +1280,7 @@ Especially the possibility of regaining even the simplest form of mobility throu
 % - - - - - - - - - -
 
 \subsection{Motivational aspects for this master's thesis}
-\label{subsec:bci_opportunities_obstacles_motivating_examples}
-
-% One publication uses EEG for wheelchair control (Zgallai et al 2019) 
+\label{subsec:bci_opportunities_obstacles_motivating_examples} 
 
 The discussed use cases from Section \ref{sec:bci_common_use_cases} were motivating examples for this master's thesis in themselves.
 However, there are some specific articles and aspects from the field that have motivated the creation of this master's thesis which will be discussed in detail here.
@@ -1324,87 +1318,116 @@ Taking into account that none of the academic research discussed in the systemat
 \subsubsection{Trainable motor imagery as input thoughts for the BCI system}
 \label{subsubsec:bci_opportunities_obstacles_motivating_mi_tasks}
 
-% NOTE: this section is copy paste dus aanpassingen nodig
-% TODO: hier was je bezig
-
 Section \ref{subsec:bci_common_use_cases_bcis_replace_eye_tracking} discussed P300 based \gls{bci} systems.
-Whilst the P300 signal is one that is relatively easy to detect and evoke, the discussed visual stimuli used has many limitating factor.
-Perhaps most limiting is that the user can not evoke the signal without reuqiring external stimuli.
-The public image of a person sitting behind a flashing screen is also not appealing to users and isn't in line with Wolpaw's definition of a perfect \gls{bci}.
+Whilst the P300 signal is relatively easy to detect and evoke, the discussed visual stimuli used, have many limiting factors.
+Perhaps most limiting is that the user can not evoke the signal without requiring external stimuli.
+This is undesired in several ways.
+This external stimulus requires an additional system to be present, such as the flashing grid commonly used for visual P300 \gls{bci}, which adds to the cost and complexity of the system and limits portability.
+A system where a person sits behind a flashing screen is also hard to call aesthetically acceptable, making it unsuitable for Wolpaw's definition of a perfect \gls{bci}.
 
-Detectable signals that can be evoked voluntary by the user are more interesting for most \gls{bci} applications, especially those that focus on providing \gls{bc}.
-Likewise, the process the user should go through to evoke this detectable signal should be one that doesn't require physical movement to both be applicable for users suffering from limited muscle control and be in line with Wolpaw's definition of a perfect \gls{bci}.
-\Glsfirst{mi} is such a cognitive process that is often used for this purpose.
+Detectable signals that can be evoked voluntarily by the user are more interesting for most \gls{bci} applications.
+Likewise, the process to evoke this detectable signal should be one that doesn't require physical movement so that it is applicable for users suffering from limited muscle control.
+It should ideally also be a process that is invisible to those around the user, making it aesthetically ideal for Wolpaw's definition of a perfect \gls{bci}.
+\Glsfirst{mi} is such a cognitive process and is often used for controlling \glspl{bci} and in other fields such as sports, psychology, music, medicine and education \citep{mi_uses}.
 \Citet{mi_definition} defines the \gls{mi} process as follows:
 
 
 \setlength{\epigraphwidth}{0.9\textwidth}
-\epigraph{Motor imagery is a cognitive process in which a subject imagines that (s)he performs a movement without actually performing the movement and without even tensing the muscles. It is a dynamic state during which the representation of a specific motor action is internally activated without any motor output. In other words motor imagery requires the conscious activation of brain regions that are also involved in movement preparation and execution, accompanied by a voluntary inhibition of the actual movement.}{\textit{\citet{mi_definition}}}
+\epigraph{Motor imagery is a cognitive process in which a subject imagines that (s)he performs a movement without actually performing the movement and without even tensing the muscles. It is a dynamic state during which the representation of a specific motor action is internally activated without any motor output. In other words, motor imagery requires the conscious activation of brain regions that are also involved in movement preparation and execution, accompanied by a voluntary inhibition of the actual movement.}{\textit{\citet{mi_definition}}}
 
-% TODO: hier was je stopped 
+\Gls{mi} does have some drawbacks as well, mostly following from \gls{mi} being a cognitive process with no visual clues.
+Firstly, explaining how to \textit{do \gls{mi} correctly} is a difficult task.
+Whilst it can be trained, it has a far steeper learning curve to obtain pleasing results than the earlier mentioned P300 systems relying on \gls{erp}-based signals for example.
+\Citet{mi_training_hard} describes this problem and tips for teaching \gls{mi} in greater detail.
+The most general procedure of explaining the \gls{mi} task to a user consists of verbally explaining the \gls{mi} task.
+This can be further supported by a physical example of the task that should be envisioned.
+People with the capabilities of performing the envisioned task physically can also be asked to perform the task whilst simultaneously thinking about it as a first step too.
+After this, a training procedure of the user performing the \gls{mi} task without physical movement starts.
 
+This introduces the second problem, evaluating the users \textit{capability of doing \gls{mi}}.
+Such an evaluation exists of two parts, a survey taken beforehand and feedback during or after training.
+Multiple types of surveys have been proposed to determine beforehand if a person will be good in \gls{mi} tasks \citep{kviq, mi_survey_miqrs, mi_survey1, mi_survey2, mi_capability_review}.
+Most of these surveys are empirically created and based on the found correlations between the answers given by participants and their performance on a \gls{mi} \gls{bci} for those participants.
+However, correlation does not mean causation, and it has been the case that these questionnaires do poorly at predicting a survey respondent's capability of doing \gls{mi} in a detectable manner.
+For example, \citet{cheap_bci_feasibility} found no statistically significant correlation between the KVIQ-10 score of participants and the found classification accuracy.
+Thus, determining beforehand if a participant will have pleasant accuracy results beforehand through the KVIQ-10 questionnaire by \citet{kviq} wasn't reliable for the experiment by \citet{cheap_bci_feasibility}.
+This is an issue, as knowing this information beforehand can give a potential buyer a better indication if the system would be fit for them or not.
+Other surveys have been proven more successful at predicting \gls{mi} capability of a user but further research in finding a survey that is reliable at predicting a user's \gls{mi} skills is still required \citep{mi_capability_review}.
+Besides this survey that is taken beforehand, evaluating the \gls{mi} tasks performed by a user is also not an easy task.
+Most of the time, a model is trained or calibrated after obtaining training and test samples of the user performing the \gls{mi} tasks.
+The accuracy of this trained model can then be used as an indication of how good the user is at the \gls{mi} task.
+Alternatively, the user might be exposed to live feedback during data collection in the form of a visual or physical stimulus that indicates the \gls{bci} is detecting a specific \gls{mi} task.
+Including live feedback has been proven highly beneficial in training \gls{mi}, although it makes the training procedure even longer \citep{mi_training_hard}.
+As evaluation in this way is mainly empirical based on the obtained classification result, it is not uncommon to see varying ways of doing the \gls{mi} task between users.
+Some might perform the \gls{mi} tasks by envisioning the task from a third-person perspective whilst others opt for a first-person perspective.
+This introduces many variables in the data, causing a high variability between users and even between sessions of the same user.
+Visualisation of the brain signals and their decoding might aid in guiding users to perform a more equal \gls{mi} task, reducing the variability of the data.
+However, since brain signals are non-stationary and the visualisation techniques are limited, variability will always remain an issue.
+Forcing a user to perform the task in a specific manner also has downsides.
+Their personal accuracy for the \gls{bci} system may be poorer when forced to do the \gls{mi} task in a very specific way compared to finding the optimal method for them.
+The psychological burden of the long \gls{mi} training process will also be higher if the task is very strict, requiring more focus.
+Finally, the data may be so strictly obtained that it is far from realistic and the system performs well in the real world.
 
+This highlights the third and final important issue with \gls{mi}, the issue of generalisation.
+This issue is present in two different forms.
+First, there is the general issue not strictly limited to \gls{mi} that training and testing data is often obtained in strict manners and thus lab-like.
+When used in the real world, more noise is present in the signal resulting in far poorer results.
+The trained system does not generalize well to new, unseen data from the real world.
+Second, as discussed the brain signals produced during \gls{mi} tasks can vary greatly between participants and sessions.
+This variability means that creating a general model is far less successful, the trained model does not generalize well to other users.
+This makes \glsfirst{tl} far more difficult.
+This issue cascades to making the training procedure longer and having higher inter-patient variability in terms of accuracy results \citep{cheap_bci_feasibility, mi_training_hard}.
+The generalisation issue is an important one in many \gls{ml} applications and is discussed further in Section \ref{subsec:processing_signals_common_issues_generalisation}.
 
-
-\Citet{bci_mi_robot_arm} proposed a \gls{mi}-based \gls{bci} to control a robot arm system.
-Their research is interesting in two ways.
-First, they use only three distinct \gls{mi} classifications: imagined right-hand movement, imagined left-hand movement and imagined foot movement.
-These three controls enable the user to select eight different possible actions through a menu where two options are always shown that can be controlled using either an imagined left-hand movement or an imagined right-hand movement.
-Scrolling through the menu to show two other possible actions is possible through the imagined foot movement.
-This shows that with the right system design few controls can still allow for many actions to be taken.
-Secondly, they found that experienced users have better overall classification performance which indicates that \gls{mi} is something that can be trained.
-
-A more recent and more complex \gls{mi}-based \gls{bci} system is the vehicle control system by \citet{bci_mi_four_wheel_drive} which recognises four possible actions: left, right, throttle and brake.
-There are three very interesting aspects in the work by \citet{bci_mi_four_wheel_drive}.
-First, they use two distinct classifiers for the \gls{eeg} data.
-One makes a distinction between left and right through a typical \gls{mi}-based \gls{bpnn} whilst the other classifies throttle and brake behaviour using the subject’s threshold value of the average band power.
-Secondly, an additional system is in place to reduce the risk of wrong classifications in the system.
-This additional system is a type of collision detection and avoidance system that uses four ultrasonic wave radars and a camera.
-The rationale behind this additional system is that the car would operate more like a semi-autonomous system that is responsible for a safe ride whilst the input of the \gls{bci} system is used to steer this semi-autonomous car in the right direction.
-This additional system is required as the accuracy of around 84\% for the throttle and brake classification and 89\% for the left and right classification is not enough for a reliable system.
-Finally, they use an interesting data collection method to train the classifiers on a user-per-user basis.
-They configured a driving simulator where the user has the freedom to perform any action they want through a classical steering wheel and pedal setup.
-The user should synchronously think about the action they want to perform to generate \gls{mi} data and they have to perform the effective action, as to be able to label the data.
-Whilst this is an interesting approach, it is limited in the fact that it requires the user to be able to operate a steering wheel and pedals at the same time, which is not the case for classical target users of these systems.
-
-
-
-
-
-
-
-
-
+These issues with \gls{mi} result in datasets that seem comparable from a high-level description of the performed \gls{mi} task but are very different in the used training procedure and data acquisition process.
+The general \gls{mi} capabilities of the participants can also differ greatly between datasets, with some performing a survey beforehand to only include participants with a high possibility of being good at \gls{mi}.
+This means that choosing datasets from \textit{well capable \gls{mi} performers} will result in higher accuracy scores as the data is easier to learn from.
+Even when open-source databases are re-used between articles, it is not uncommon to find articles where the authors left out certain data in the training and testing procedure, arguing these users had poor \gls{mi} capability.
+This makes a comparison of results between articles far more difficult.
+This is an issue of not having standardized testing, which will be discussed in Section \ref{subsec:bci_opportunities_obstacles_lack_of_testing}.
 
 
 % | | | | | | | | | | | | |
 
-\subsubsection{Step-by-step implementation of a binary MI classification model by Peterson et al}
-\label{subsubsec:bci_opportunities_obstacles_motivating_examples_binary}
 
-\Citet{cheap_bci_feasibility} aimed to show the feasibility of a complete low-cost consumer-grade \gls{bci} system.
-\Citet{cheap_bci_feasibility} did this by discussing the steps required to make an offline binary \gls{mi} classification system using common low-cost consumer-grade hardware.
-The classification distinguished the \gls{mi} task of a grasping movement with the participants' dominant hand and a rest condition.
-They compare three different approaches in growing complexity: \gls{csp}, \gls{pfbcsp} and \gls{ptfbcsp}.
+
+% START HERE; TODO
+% bci_applications heeft ook overview onder 7 challenges
+
+% One publication uses EEG for wheelchair control (Zgallai et al 2019) uit arnau
+% NOTE: \subsubsection{Detailed literature on MI pipelines} all spell checked etc, gewoon nog 1x lezen
+
+\subsubsection{Detailed literature on MI pipelines}
+\label{subsubsec:bci_opportunities_obstacles_motivating_examples_mi_pipeline}
+
+Many articles still fail to provide the source code of their implemented models and lack the required detail to fully recreate the models \citep{bci_review_arnau}.
+This makes articles paying special attention to describing their model and discussing their design decisions stand out even more.
+Not only do such articles make creating the model providing libraries discussed in Section \ref{subsec:bci_gaining_popularity_improved_data_processing} possible, but they also give a good insight into what components are necessary for a \gls{bci} system.
+
+One article that focuses on this is the one by \citet{cheap_bci_feasibility} discussing the feasibility of a complete low-cost consumer-grade \gls{bci} system.
+\Citet{cheap_bci_feasibility} performed their feasibility study by discussing the steps required to make an offline binary \gls{mi} classification system using common low-cost consumer-grade hardware.
+The \gls{bci} distinguished two cases, the \gls{mi} task of a grasping movement with the participants' dominant hand and a rest condition.
+They compare three traditional \gls{ml} approaches for this classification task in growing complexity.
+These approaches differ in the feature extraction used, namely the use of traditional \gls{csp} and that of two extension, \gls{pfbcsp} and \gls{ptfbcsp}.
 The work by \citet{cheap_bci_feasibility} has five interesting aspects worth highlighting here.
 
 First, whilst they did use the OpenBCI Cyton and Daisy board they did not use the 3D printable Ultracortex Mark IV headset from OpenBCI.
 They argued that this is due to the Ultracortex Mark IV headset becoming uncomfortable quickly due to the use of dry electrodes combined with limited adjustability.
 This complaint on user comfort for the Ultracortex Mark IV headset is recurring with other authors including the one from this master thesis.
 Because of this, they opted for wet EEG electrodes attached to a very flexible and far more comfortable Electro-Cap.
-\Citet{cheap_bci_feasibility}  opting for wet electrodes is slightly odd, considering the user experience of having to apply a conductive gel before each use is not great and therefore not favourable for general real-life \gls{bci} applications.
+\Citet{cheap_bci_feasibility} opting for wet electrodes is slightly odd and makes the proposed system less compliant with Wolpaw's definition of a perfect \gls{bci}.
 
-Secondly, for the data gathering of their system \citet{cheap_bci_feasibility} used a \textit{common office room}, rather than a lab-like environment.
+Secondly, for the data gathering of their system, \citet{cheap_bci_feasibility} used a \textit{common office room}, rather than a lab-like environment.
 Except for a 3D printed holder for the OpenBCI board, there was no specialized shielding in place to protect the electrodes or OpenBCI boards from unwanted interference.
-They argue this makes the data more realistic, and whilst true, it is important to note there is still far less stochasticity than there would be in real life.
+They argue this makes the data more realistic.
+Whilst this is true to a certain extent, it is important to note there is still far less stochasticity than there would be in real life.
 The office room and hardware were identical for each of the participants in the data collection stage.
-The room was free of external stimulus as it was separated from the experiment organisers and the participant was \textit{left alone} for the entire trial.
+The room was free of external stimuli as it was separated from the experiment organisers and the participant was \textit{left alone} for the entire trial.
 All participants were right-handed and thus the dominant hand used for the \gls{mi} task was always the right hand.
 Adding to all of this, the dominant hand of the participant was placed inside a box to not allow them to see their hand.
-It could be argued these factors still make the data more lab-like than home-like.
 Still, \citet{cheap_bci_feasibility} found that the non-shielded regular office caused significant noise.
-In one trial the electromagnetic noise amplitude (50 Hz or 60 Hz depending on location) was four times higher than the meaningful EEG data.
-Other types of noise were also present, proving their environment was indeed far less ideal than a lab environment, which indeed makes it more realistic.
+In one trial the electromagnetic noise amplitude, which is 50Hz or 60Hz depending on location, was four times higher than the meaningful EEG data.
+Other types of noise were also present, so whilst it was by no means a perfect lab-like environment, calling it a real-world test is stretching it.
 
 Third, during the data collection, a \gls{emg} system was also in place.
 This \gls{emg} system was used to filter out samples of the collected \gls{mi} data where the movement was also physically performed, meaning it wasn't true \gls{mi} data.
@@ -1412,30 +1435,30 @@ Whilst this forms an interesting approach to data filtering when collecting trai
 However, it does automate the data filtering process used, which is more realistic for widespread use than the expert-based data filtering in most literature. 
 
 Fourth, they used the KVIQ-10 questionnaire by \citet{kviq} to determine how \textit{good} a participant would be in \gls{mi}, a task that is proven to be harder for some individuals.
-Interestingly, \citet{cheap_bci_feasibility} found no statistically significant correlation between the KVIQ-10 score of participants and the found classification accuracy.
-Thus, whilst they did find significant inter-participant differences in accuracy, determining beforehand if a participant will have pleasant accuracy results beforehand through the KVIQ-10 questionnaire by \citet{kviq} wasn't reliable for \citet{cheap_bci_feasibility}.
-This is an issue, as knowing this information beforehand can give a potential buyer a better indication if the system would be fit for them or not.
+As discussed earlier, the results of these surveys are not reliable and only give a rough indication with many exceptions and surprising results possible.
 
 Finally, even though the data acquisition happened under guidance in the work of \citet{cheap_bci_feasibility}, there were still issues with the recordings.
 Out of the 12 participants, there were multiple moments where connection loss with the OpenBCI main board occurred, one participant where a mechanical defect rendered the data useless and one where there were \gls{emg} detected movements of the hand for more than half of the \gls{mi} tasks rendering the trial of that patient useless as well.
 Whilst the latter is an issue independent of the hardware used, the other two are probably bigger issues on the cheaper hardware than the more reliable medical-grade hardware.
-Part of the reason medical-grade hardware is about 5 to 10 times as expensive for a similar experiment is due to the medical-grade hardware requiring certifications, which also guarantee some form of quality and reliability. 
+Part of the reason medical-grade hardware is about 5 to 10 times as expensive for a similar experiment is due to the medical-grade hardware requires certifications, which also guarantee some form of quality and reliability. 
 
 To conclude, the work by \Citet{cheap_bci_feasibility} discusses the creation of a complete low-cost consumer-grade \gls{bci} system.
 This system consists of the OpenBCI measuring equipment where the dry electrodes on the 3D printed Ultracortex Mark IV are replaced with electrodes in a more comfortable Electro-Cap.
 The effective classification of the system is a binary \glsfirst{mi} classification on whether or not the participant imagines a grasping movement of the hand or not.
-\Citet{cheap_bci_feasibility} achieved an average accuracy between 70\% and 85\%, being higher as the approach used becomes more complex.
+\Citet{cheap_bci_feasibility} achieved an average accuracy between 70\% and 85\%, scaling with the complexity of the used \gls{ml} approach.
 It is important to note that the evaluated models are on a patient-per-patient basis.
 This means that each patient has their own uniquely trained model and that data from the same patient is used in the evaluation process.
-Whilst the binary nature of the system makes it hard to find viable real-life applications, the performance reached is almost identical to those of medical-grade systems and follows from a less lab-like environment than is typically the case.
+Whilst the binary nature of the system makes it hard to find viable real-life applications, the performance reached is almost identical to those of medical-grade systems and follows from a slightly less lab-like environment than is typically the case.
 The system proposed by \Citet{cheap_bci_feasibility} is of less importance in their work, rather the steps and pitfalls highlighted are of value.
 
 
 
-% | | | | | | | | | | | | |
+\subsubsection{Detailed literature on complex classification models}
+\label{subsubsec:bci_opportunities_obstacles_motivating_examples_mi_models}
 
-\subsubsection{Multiclass classification methods for motor imagery EEG data}
-\label{subsubsec:bci_opportunities_obstacles_motivating_examples_mi_classification}
+% titel aangepast dus aanpassingen heel likely
+% hier zeker EEGNet, ShallowConvNet en DeepConvNet mee linken en die library met hun implementie
+% ook een RNN approach zoeken die LTSTM gebruikt zodat je die kan reffen naar ons werk
 
 The above discussed paper by \citet{cheap_bci_feasibility} provides great insight on the steps required to develop an \gls{eeg}-based consumer-grade \gls{bci} which uses \gls{mi} related signals.
 Since \citet{cheap_bci_feasibility} uses a binary classification model, there are only two possible outputs of the classifier, which is too limited for most applications.
@@ -1483,6 +1506,32 @@ However, other novel approaches such as the one by \citet{eeg_model_esi} which i
 
 \subsubsection{Connecting the classification model to physical devices}
 \label{subsubsec:bci_opportunities_obstacles_motivating_examples_physical_devices}
+
+% merge with onderstaand voor "few classifications, many actions"
+% dit dus copy paste
+
+\Citet{bci_mi_robot_arm} proposed a \gls{mi}-based \gls{bci} to control a robot arm system.
+Their research is interesting in two ways.
+First, they use only three distinct \gls{mi} classifications: imagined right-hand movement, imagined left-hand movement and imagined foot movement.
+These three controls enable the user to select eight different possible actions through a menu where two options are always shown that can be controlled using either an imagined left-hand movement or an imagined right-hand movement.
+Scrolling through the menu to show two other possible actions is possible through the imagined foot movement.
+This shows that with the right system design few controls can still allow for many actions to be taken.
+Secondly, they found that experienced users have better overall classification performance which indicates that \gls{mi} is something that can be trained.
+
+A more recent and more complex \gls{mi}-based \gls{bci} system is the vehicle control system by \citet{bci_mi_four_wheel_drive} which recognises four possible actions: left, right, throttle and brake.
+There are three very interesting aspects in the work by \citet{bci_mi_four_wheel_drive}.
+First, they use two distinct classifiers for the \gls{eeg} data.
+One makes a distinction between left and right through a typical \gls{mi}-based \gls{bpnn} whilst the other classifies throttle and brake behaviour using the subject’s threshold value of the average band power.
+Secondly, an additional system is in place to reduce the risk of wrong classifications in the system.
+This additional system is a type of collision detection and avoidance system that uses four ultrasonic wave radars and a camera.
+The rationale behind this additional system is that the car would operate more like a semi-autonomous system that is responsible for a safe ride whilst the input of the \gls{bci} system is used to steer this semi-autonomous car in the right direction.
+This additional system is required as the accuracy of around 84\% for the throttle and brake classification and 89\% for the left and right classification is not enough for a reliable system.
+Finally, they use an interesting data collection method to train the classifiers on a user-per-user basis.
+They configured a driving simulator where the user has the freedom to perform any action they want through a classical steering wheel and pedal setup.
+The user should synchronously think about the action they want to perform to generate \gls{mi} data and they have to perform the effective action, as to be able to label the data.
+Whilst this is an interesting approach, it is limited in the fact that it requires the user to be able to operate a steering wheel and pedals at the same time, which is not the case for classical target users of these systems.
+
+% dit oude content van dit puntje
 
 A complete \gls{bci} system could be thought of as a combination of three different components: a data collection process, the data processing step and the effective performing of actions by the system.
 The previously discussed motivating works focus mainly on how to collect \gls{eeg} data, especially for \gls{mi} tasks, and how to process this data to classify it.
