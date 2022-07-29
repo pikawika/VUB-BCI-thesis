@@ -1439,11 +1439,6 @@ The system proposed by \Citet{cheap_bci_feasibility} is of less importance in th
 \subsubsection{Detailed literature on complex classification pipelines}
 \label{subsubsec:bci_opportunities_obstacles_motivating_examples_mi_models}
 
-% START HERE; TODO
-% bci_applications heeft ook overview onder 7 challenges
-
-% One publication uses EEG for wheelchair control (Zgallai et al 2019) uit arnau
-
 The above discussed article by \citet{cheap_bci_feasibility} provides great insight on the steps required to develop an \gls{eeg}-based consumer-grade \gls{bci} which uses \gls{mi} related signals.
 Since \citet{cheap_bci_feasibility} uses a binary classification model, there are only two possible outputs of the classifier, which is too limited for most applications.
 However, when working with \glspl{bci}, a lack of training samples combined with noisy and often high-dimensional data makes multi-class classification considerably harder than binary.
@@ -1504,7 +1499,7 @@ However, the approach by \citet{eeg_model_esi} which incorporates the technique 
 As was discussed in Section \ref{sec:bci_introduction}, there is no exact definition of a \gls{bci}.
 In general, a complete \gls{bci} system is seen as a combination of three different processes: a data collection process, a data processing step and a step where effective actions are taken by the \gls{bci} based on the processed data.
 It is this last process that forms some ambiguity in what can be considered a \gls{bci} and what can't be, as was already discussed in Section \ref{sec:bci_common_use_cases}.
-\Glspl{bci} that functions as \gls{bc} systems, which explicitely control an external device, are included in each definition of a \gls{bci}.
+\Glspl{bci} that functions as \gls{bc} systems, which explicitely control an external device in real-time, are included in each definition of a \gls{bci}.
 However, how such an external device is controlled can vary greatly and requires special attention which may influence all other components of the \gls{bci} as well. 
 
 The labels provided by the classifier can be seen as an incoming input stream for the process responsible for mapping those classifications to an action on the external device.
@@ -1516,7 +1511,7 @@ This follows from some of the challenges with \gls{mi} \gls{eeg} classification,
 Since classification accuracy should be sufficient to operate the external device safely and reliably, a limited number of different and easy to distinguish \gls{mi} tasks are often used.
 
 To illustrate how such limited classes can be used for effective \gls{bc} systems, imagine the movement of a robotic arm to pick up objects using \gls{mi} \gls{eeg} data through a classifier that can distinguish 4 \gls{mi} tasks: left-hand squeeze, right-hand squeeze, foot movement and an idle state.
-Intuitively, one might want to obtain complete control over the robotic arm but the limited inputs render a direct mapping between the classification label and all possible movements of the arm impossible.
+Intuitively, one might want to obtain complete control over the robotic arm but the limited \gls{mi} tasks render a direct mapping between the classification label and all possible movements of the arm impossible.
 The most intuitive solution is the creation of a menu for movement options as illustrated in Figure \ref{fig:example_arm_control_bad}.
 Using the foot \gls{mi} task, the user switches between 3 operation modes of the robot arm: horizontal movement, vertical movement and grasping movement of the hand.
 Dependent on the active menu, the left-hand squeeze and right-hand squeeze \gls{mi} tasks can be used to move the robot arm left and right, up and down or to open and shut the robot hand.
@@ -1524,7 +1519,7 @@ This provides the user with all available control whilst remaining relatively in
 However, this assumes all commands are interpreted correctly.
 When taking into account that state-of-the-art struggles to reach an average of 80\% accuracy for classifying four \gls{mi} tasks in favourable conditions, it is not unreasonable to think that best case there will still be a misclassification once every five steps on average \citep{four_class_mi_CSP_good, four_class_mi_hybrid_good, four_class_mi_klrrm_good, four_class_mi_wavelet_good}.
 Taking into account that for picking up the desired object, the robot arm needs to be perfectly aligned both vertically and horizontally and the user needs to switch to the menu for grasping through envisioned foot movement and then chose the desired grasping movement through envisioned hand movement, it is highly unlikely this sequence of events will happen without misclassification.
-This will make the proposed system very inefficient.
+This long sequence will not only make the system inefficient to use, but it will also expose one user's intention to more points of failure as it will require many steps.
 
 Stepping away from the idea of wanting to control every movement of the robotic arm, a huge improvement in the efficiency of the system can be made.
 With grasp detection algorithms such as the one proposed by \citet{graspnet}, the detection of objects of interest for the robot arm to interact with can be detected through computer-vision algorithms.
@@ -1534,34 +1529,33 @@ Using the right-hand squeeze \gls{mi} task, the item could be picked up or set d
 This limits the amount of successful consecutive steps needed and being a three class \gls{mi} classification, the accuracy is expected to be higher.
 Thus, the system would be less intuitive but far more usable.
 This proposed design is shown in Figure \ref{fig:example_arm_control_good}.
+When comparing both subfigures of Figure \ref{fig:example_arm_control}, it becomes apparent that the less intuitive system is far more efficient at the given task, requiring only two actions to pick up the second glass rather than 13.
+It is noted this is only an educational example and real systems would likely still require a more complex interface.
+It is also noted that it is common to reduce misclassification by basing the taken actions on multiple classifications rather than one.
 
-
-% TODO: make an experimental design image, read the description above for content
-\begin{figure}[ht]
-  \begin{minipage}{\textwidth}
+\begin{figure}
     \centering
-    \begin{subfigure}{.48\textwidth}
+    \begin{subfigure}{\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{example-image-a}
-        \captionsetup{width=0.9\linewidth}
+        \includegraphics[width=\textwidth]{../images/introduction/example_arm_control_bad.pdf}
+        \captionsetup{width=0.95\linewidth}
         \captionsetup{justification=centering}
         \caption{A \gls{bci} system that offers complete control over a robotic arm but with poor efficiency.}
         \label{fig:example_arm_control_bad}
     \end{subfigure}
     \hfill
-    \begin{subfigure}{.48\textwidth}
+    \begin{subfigure}{\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{example-image-b}
-        \captionsetup{width=0.9\linewidth}
+        \includegraphics[width=\textwidth]{../images/introduction/example_arm_control_good.pdf}
+        \captionsetup{width=0.95\linewidth}
         \captionsetup{justification=centering}
         \caption{A \gls{bci} system that offers limited control over a robotic arm but with great efficiency. \\ \hfill}
         \label{fig:example_arm_control_good}
     \end{subfigure}
-    \captionsetup{width=0.9\linewidth}
+    \captionsetup{width=\linewidth}
     \captionsetup{justification=centering}
-    \caption{The contrast between mappings of \gls{mi} \gls{eeg} for controlling a robotic arm to grasp an item. One approahch allows for full control but requires four \gls{mi} classes and many steps. One appraoch offers less control but succeeds in the task with three \gls{mi} classes and very few steps.}
+    \caption{The contrast between mappings of \gls{mi} \gls{eeg} for controlling a robotic arm to grasp an item. One approach allows for full control but requires four \gls{mi} classes and many steps. One approach offers less control but succeeds in the task with three \gls{mi} classes and very few steps.}
     \label{fig:example_arm_control}
-  \end{minipage}  
 \end{figure}
 
 
@@ -1573,7 +1567,7 @@ Scrolling through the menu to show two other possible actions is possible throug
 This shows that with the right system design, few controls can still allow for many actions to be taken.
 However, they lack a detection of the idle state.
 This is possible by determining the idle state based on the certainty of the model that a certain prediction is correct.
-If the model is uncertain, it is likely the user wasn't performing any of the \gls{mi} tasks and thus the system should do anything.
+If the model is uncertain, it is likely the user wasn't performing any of the \gls{mi} tasks and thus the system should not do anything.
 
 
 % - - - - - - - - - -
@@ -1583,13 +1577,45 @@ If the model is uncertain, it is likely the user wasn't performing any of the \g
 \subsection{The potential of an AutoML variant for BCI pipelines}
 \label{subsec:bci_opportunities_obstacles_automl}
 
-% Another interesting development in the research and development of ML pipelines is AutoML (He et al 2021). This new approach to the design of ML pipelines allows for automated exploration of alternative methods for the different components of the pipeline. While this has not been developed yet in the context of biosignal control, it has proven to be a valuable tool for researchers and companies that are lacking the expertise to develop the whole pipeline themselves. Companies such as Google are now providing AutoML solutions as part of their cloud infrastructure13. Having such a framework for biosignal decoding pipeline development could significantly boost the deployment of real-world applications.
+People that are first introduced to \glsfirst{ml} and especially \glsfirst{dl} might think that these techniques provide a \textit{one-click solution} for data classification.
+Whilst in some cases, re-using existing complex \gls{dl} methods can give satisfying results when providing it with enough training data, creating high-quality \gls{ml} and \gls{dl} systems still requires a lot of human expertise.
+However, attempts are being made at providing such one-click solutions through a process called \gls{automl}, which is reviewed in detail by \citet{automl}.
+The idea behind \gls{automl} is self-explanatory.
+Rather than having an expert design a \gls{ml} pipeline, an automated system tries all sorts of combinations for a pipeline based on provided labelled data and perhaps some general preferences in techniques to be tested.
+The problem then boils down to an optimisation problem where the combination of fine-tuned components that maximizes a certain metric such as accuracy on test data has to be found.
+\Gls{automl} facilities have not yet been made for \gls{bci} specific pipelines, but with Google providing \gls{automl} as part of their cloud infrastructure for computer-vision, the \gls{automl} idea is becoming more and more popular \citep{bci_review_arnau}.
 
-TODO
+When taking into account the discussed literature so far, it is clear that many techniques for each component of the \gls{bci} pipeline already exist and that certain combinations have proven to be very successful.
+With more and more of these components being provided through open-source libraries as discussed in Section \ref{subsec:bci_gaining_popularity_improved_data_processing}, it is not unreasonable to think that an \gls{automl} library for \gls{bci} pipelines might be introduced in the future.
+If done right, this pipeline can set standards for the expected output of each component meaning that newly proposed components can be directly provided to the framework by the author of that new component.
+Whilst this would require a lot of commitment from the authors in the field, it could lead to newly gained insight on uncommon component combinations that provide a pipeline which performs best for certain problems.
+Such a framework would also enable new research to re-use existing components much faster as they would ideally all be present in the library with some form of a standardized output.
+
+As this library would require a lot of maintenance, it should be provided by a team that has sufficient resources on maintaining it and updating it to support newer techniques in the field.
+Whilst there is currently no big organisation in the field that is likely to take this task upon themselves, the rise in popularity might attract such big corporations.
+
+Besides aiming to provide a complete pipeline, a library that focuses on providing all alternatives of one component following a specific standard would already be incredibly handy.
+Take for example a library that provides all open-source \gls{bci} datasets from one singular library, with all of the datasets following a specific standard.
+This would allow for testing a model on a whole suite of \gls{bci} data, such as \gls{mi} \gls{eeg}, and thus make it easier to compare results with existing literature as these would also use datasets from this common library.
+This has already been proven possible in other fields.
+For example, in \glsfirst{rl}, the environments used for training, which could be seen as the training data, are often environments provided by the OpenAI Gym library \citep{gym}.
+This library is maintained by OpenAI, a big company interested in \gls{rl} among other \gls{ai} techniques.
+Due to its popularity, many other authors contribute to this open-source library by providing their custom environments in a format that is directly supported by the OpenAI Gym library.
+A similar system for providing all sorts of \gls{bci} data would be incredibly helpful for the field of \gls{bci} research.
+It could also cause a chain reaction, with the introduction of other libraries that include state-of-the-art classification algorithms which work directly with this common data-providing library.
+This is also the case in the \gls{rl} field with libraries providing algorithms for these mentioned Gym environments \citep{tianshou, rllib}.
+Thus, providing such a library as the first step to an \gls{automl} revolution in the \gls{bci} field might be a good idea.
+
+
+
 
 % - - - - - - - - - -
 % testing issues
 % - - - - - - - - - -
+
+
+% START HERE; TODO
+% bci_applications heeft ook overview onder 7 challenges
 
 \subsection{A lack of standardized testing}
 \label{subsec:bci_opportunities_obstacles_lack_of_testing}
