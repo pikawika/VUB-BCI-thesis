@@ -34,7 +34,7 @@
 \label{sec:processing_signals_introduction}
 % NOTE: "Introduction" exists in each chapter and gives short intro to chapter + what can be expected in chapter
 
-TODO
+\lipsum[1-3]
 
 
 
@@ -48,6 +48,8 @@ TODO
 
 % duidelijk bespreken welk ding echt CS en welk ding eigenlijk derden
 
+\lipsum[1-3]
+
 % - - - - - - - - - -
 % Data acquisition
 % - - - - - - - - - -
@@ -57,7 +59,7 @@ TODO
 
 % duidelijk bespreken welk ding echt CS en welk ding eigenlijk derden
 
-TODO
+\lipsum[1-2]
 
 % - - - - - - - - - -
 % Preprocessing
@@ -75,7 +77,7 @@ TODO
 
 % Signal filtering: applied on the signals, filters remove frequencies of the signals, to only keep those of interest. This is a form of noise removal, in which the expert designer knows that some frequencies never convey information and can only be noise. There are many different types of filters, which fall outside of the scope of this publication. For more information on filters and digital signal processing, interested readers are referred to (Orfanidis 1996).
 
-TODO
+\lipsum[1-5]
 
 % - - - - - - - - - -
 % Windowing
@@ -88,7 +90,7 @@ TODO
 
 % Windowing: when specific events in a signal (such as a spike or pattern) matters more than the overall shape of the complete signal, windowing allows to split a signal into fixed-length, usually overlapping, sub-sequences. Having the network focus on small sub-sequences allows it to be faster (less compute intensive, as less data is being processed), and generalize better, as a small number of easily-recognizable patterns (on which the network focuses) can appear in various positions in longer signals (that the network does not have to bother with). Several windowing methods exist, and are reviewed by Podder et al (2014). Jeong et al (2020) and Nguyen and Chung (2019) use Hamming windowing.
 
-TODO
+\lipsum[1-3]
 
 % - - - - - - - - - -
 % Feature
@@ -104,7 +106,7 @@ TODO
 
 % For a detailed review of possible feature extraction methods, we refer interested readers to Rashid et al (2020).
 
-TODO
+\lipsum[1-5]
 
 % - - - - - - - - - -
 % Classification
@@ -113,7 +115,7 @@ TODO
 \subsection{Classification model}
 \label{subsec:processing_signals_general_pipeline_classification}
 
-TODO
+\lipsum[1-5]
 
 % - - - - - - - - - -
 % Performing an action
@@ -122,7 +124,7 @@ TODO
 \subsection{Performing an action}
 \label{subsec:processing_signals_general_pipeline_perform_action}
 
-TODO
+\lipsum[1-3]
 
 % - - - - - - - - - -
 % Evaluation
@@ -133,7 +135,7 @@ TODO
 
 % accuracy, roc, froc, specificity, sensititivity etc etc
 
-TODO
+\lipsum[1-6]
 
 
 
@@ -150,7 +152,18 @@ TODO
 \subsection{Using existing open-source data for training and testing}
 \label{subsec:processing_signals_alternative_pipelines_using_existing_data}
 
-TODO
+\lipsum[1-3]
+
+% - - - - - - - - - -
+% No action performing
+% - - - - - - - - - -
+
+\subsection{Calibrating an existing system}
+\label{subsec:processing_signals_alternative_calibration}
+
+% uitleggen hoe TL
+
+\lipsum[1-3]
 
 % - - - - - - - - - -
 % No preprocessing & feature engineering
@@ -159,7 +172,7 @@ TODO
 \subsection{Neglecting preprocessing and feature engineering}
 \label{subsec:processing_signals_alternative_pipelines_no_preprocessing_and_features}
 
-TODO
+\lipsum[1-2]
 
 % - - - - - - - - - -
 % No action performing
@@ -170,7 +183,7 @@ TODO
 
 % niet strict conform met wolpaw's def want communication device
 
-TODO
+\lipsum[1-2]
 
 % - - - - - - - - - -
 % Offline vs online
@@ -179,7 +192,7 @@ TODO
 \subsection{Offline vs online BCI systems}
 \label{subsec:processing_signals_alternative_pipelines_offline_vs_online}
 
-TODO
+\lipsum[1-4]
 
 
 
@@ -215,7 +228,7 @@ TODO
 % nn_can_learn_from_raw
 % % Conceptually, given enough layers and neurons, and the proper architecture, a neural network can learn any mapping from inputs to outputs (Sonoda and Murata 2017) (they are universal function approximators). This means that any method of acquiring a signal, and representing it as floatingpoint values will eventually allow the network to make sense of the inputs, and learn something. bci review arnau
 
-TODO
+\lipsum[1-3]
 
 % - - - - - - - - - -
 % Common regular ML classifiers
@@ -230,7 +243,7 @@ TODO
 
 % Therefore, low-confidence labelled data is often used in a semi-supervised fashion as explained by \citet{deep_learn_low_label}.
 
-TODO
+\lipsum[1-3]
 
 % - - - - - - - - - -
 % Common regular ML classifiers
@@ -245,7 +258,7 @@ TODO
 % Single-layer Perceptron
 % bekijk ml_strats_used_in_papers
 
-TODO
+\lipsum[1-7]
 
 % - - - - - - - - - -
 % Common regular DL classifiers
@@ -266,7 +279,7 @@ TODO
 
 % bekijk ml_strats_used_in_papers
 
-TODO
+\lipsum[1-7]
 
 
 % ---------------------------------------------- 
@@ -275,7 +288,8 @@ TODO
 
 \section{Common issues when processing brain-signals and how to avoid them}
 \label{sec:processing_signals_common_issues}
-TODO
+
+\lipsum[1-2]
 
 % - - - - - - - - - -
 % biased data
@@ -284,7 +298,7 @@ TODO
 \subsection{Biased data}
 \label{subsec:processing_signals_common_issues_bias}
 
-TODO
+\lipsum[1-3]
 
 % - - - - - - - - - -
 % evaluation
@@ -294,7 +308,7 @@ TODO
 \label{subsec:processing_signals_common_issues_generalisation}
 % e.g. only look at a person we also used in training etc
 
-TODO
+\lipsum[1-3]
 
 % - - - - - - - - - -
 % explainability and interpretability
@@ -303,7 +317,7 @@ TODO
 \subsection{No explainability or interpretability}
 \label{subsec:processing_signals_common_issues_exaplainable}
 
-TODO
+\lipsum[1-3]
 
 % TOODO
 \Gls{dl} often requires significant processing power and time to train, impacting the affordability of \gls{bci} research.
@@ -324,7 +338,7 @@ Recent governmental reports have suggested that laws will be coming in place to 
 
 % uit bci_review_arnau
 
-TODO
+\lipsum[1-5]
 
 % ---------------------------------------------- 
 % CONCLUSIONS OF CHAPTER
@@ -333,4 +347,4 @@ TODO
 \label{sec:processing_signals_summary}
 % TODO: summary of this chapter
 
-TODO
+\lipsum[1-3]
