@@ -235,17 +235,6 @@ In recent years, new developments in this hardware have made meeting these crite
 \subsubsection{Hardware improvements in non-invasive EEG measuring equipment}
 \label{subsubsec:bci_gaining_popularity_better_measuring_hardware}
 
-% TODO: add sketch of measuring hardware with components in different colors for referencing in this paper.
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=\linewidth]{example-image-a}
-    \captionsetup{width=0.9\linewidth}
-    \captionsetup{justification=centering}
-    \caption{General components of non-invasive EEG measuring equipment.}
-    \label{fig:general_eeg_measuring_components}
-\end{figure}
-
 Three major hardware distinction made between the electrodes used in non-invasive \gls{eeg} measuring equipment is whether they are wet or dry electrodes, whether they are active or passive electrodes and whether communication to the processing unit happens wirelessly or not.
 When considering Wolpaw's definition of a perfect \gls{bci} described in Section \ref{sec:bci_introduction}, dry-electrodes with passive amplification that connect wirelessly to the processing unit would be ideal.
 However, when looking at data quality, a wired wet-electrode with active amplification is best.
@@ -253,14 +242,16 @@ Luckily, recent advancements have made these differences in data quality more ac
 
 Wet \gls{eeg} electrodes are electrodes which require an electrolytic gel to be applied between the electrode and the scalp.
 This gel functions as a conductor and, as discussed further in Section \ref{subsec:biomedical_signals_measuring_equipment}, currently allows wet electrodes to have better data quality compared to dry electrodes \citep{wet_vs_dry, dry_electrode_status, wet_dry_comparison_experiment}.
-However, wet electrodes require the assistance of a professional to correctly apply the gel and are far less aesthetically acceptable than dry electrodes.
+However, wet electrodes require the assistance of a professional to correctly apply the gel which leaves behind traces after use.
 Adding to this, the electrolytic gel could also cause allergic effects for the user. Due to the viscosity of the electrolytic gel changing over time, artefacts in measurements may also appear \citep{dry_electrode_status}.
 These are unwanted properties and conflict with Wolpaw's vision of a perfect \gls{bci}.
+The medical-grade \gls{eeg} equipment shown in Figure \ref{fig:example_eeg_measuring_devices_medical_bulky} uses wet electrodes with an electrode cap.
 
 Advancements in dry electrodes are making the gap with wet electrodes smaller and smaller \citep{wet_vs_dry, dry_electrode_status, wet_dry_comparison_experiment}.
 These dry electrodes don't require the use of an electrolytic gel and given the use of an appropriate headset can be installed on the scalp without the assistance of a professional. 
 Both of these properties are in favour of Wolpaw's properties for a perfect \gls{bci}.
 The main reason dry-electrodes are becoming more viable to be used in real-life environments is due to improvements in active electrode technology \citep{wet_vs_dry}.
+A relatively bulky setup of these dry electrodes with active amplification is shown in Figure \ref{fig:example_eeg_measuring_devices_commercial_clean}.
 
 Active electrodes are electrodes which do more than just forwarding their measured voltage fluctuation to the main controller board whilst passive electrodes do just that.
 This is often necessary since the measured signal is of such low strength that even a short distance cable from the electrode to the main board can cause a lot of noise due to electromagnetic interference \citep{active_electrode_explained}.
@@ -268,41 +259,40 @@ To reduce this noise, a preamplifier is used which additionally amplifies the si
 This makes the final system less compact and more expensive but is often required in anything but lab environments, especially for wireless dry electrodes, as further discussed by \citet{wet_vs_dry}.
 
 When talking about wireless electrodes, it is not the effective electrode itself that is wireless but rather the communication between the main controller board, a board to which all electrodes are connected by wire, and the processing unit such as a computer.
+Such a wireless setup is shown in Figure \ref{fig:example_eeg_measuring_devices_commercial_clean}.
 Whilst a wireless approach allows for the creation of an aesthetically more pleasing system where the measuring hardware and processing hardware are physically separated, a wired connection will always remain more efficient and reliable. 
 However, as discussed by \citet{bluetooth_evaluation}, Bluetooth, an open standard for wireless communication, has seen extensions that are more reliable, power efficient and capable of higher transmission speeds.
 This has made wireless solutions more appealing in \gls{bci} systems but overall issues with wireless solutions, in general, will prevail.
 Most important is the risk of connection loss and a higher latency resulting in a longer time between the point a signal is measured and it is received by the computational unit.
 
-All of these advancements have enabled companies such as Muse, Dreem and OpenBCI to develop non-invasive,  dry-electrode based \gls{eeg} measuring equipment with active amplification in an affordable and often aesthetically acceptable manner.
-An example of such an aesthetically pleasing system is given in Figure \ref{fig:example_eeg_measuring_devices_commercial_clean}.
+All of these advancements have enabled companies such as Muse, Dreem and OpenBCI to develop non-invasive, dry-electrode based \gls{eeg} measuring equipment with active amplification in an affordable and often aesthetically acceptable manner.
 As \glspl{bci} become even more popular, a heavier focus on affordability and visuals with \gls{eeg} measuring equipment is to be expected.
-As these two properties were less important in previous medical settings where a patient would wear such equipment only when undergoing a test in the hospital.
-Figure \ref{fig:example_eeg_measuring_devices} shows the contrast between a high-end medical-grade \gls{eeg} recording system and one that focuses on \glsfirst{ux}.
+These two properties were less important in previous medical settings where a patient would wear such equipment only when undergoing a test in the hospital.
+Figure \ref{fig:example_eeg_measuring_devices} shows the contrast between a medical-grade \gls{eeg} recording system and one that is consumer-grade.
 
-% TODO: find appropriate figures
 \begin{figure}[ht]
   \begin{minipage}{\textwidth}
     \centering
     \begin{subfigure}{.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{example-image-a}
+        \includegraphics[width=\textwidth]{../images/introduction/wet_eeg.jpg}
         \captionsetup{width=0.9\linewidth}
         \captionsetup{justification=centering}
-        \caption{Medical \gls{eeg} measuring devices that uses wet electrodes with active amplification over a wired connection.}
+        \caption{Medical-grade \gls{eeg} measuring equipment that uses wet electrodes which are each connected to a separate main board via a long cable. Image from Chris Hope, CC BY 2.0, via Wikimedia Commons.\\ \hfill}
         \label{fig:example_eeg_measuring_devices_medical_bulky}
     \end{subfigure}
     \hfill
     \begin{subfigure}{.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{example-image-b}
+        \includegraphics[width=\textwidth]{../images/introduction/openbci.jpg}
         \captionsetup{width=0.9\linewidth}
         \captionsetup{justification=centering}
-        \caption{Commercial \gls{eeg} measuring devices that uses dry electrodes with active amplification over a wireless connection.}
+        \caption{Commercial-grade \gls{eeg} measuring device that uses dry electrodes with active amplification connected to an attached wireless controller board. Image from Conorrussomanno, CC BY-SA 4.0, via Wikimedia Commons.}
         \label{fig:example_eeg_measuring_devices_commercial_clean}
     \end{subfigure}
     \captionsetup{width=0.9\linewidth}
     \captionsetup{justification=centering}
-    \caption{The contrast between \gls{eeg} measuring equipment focused on the best possible data quality and one that favours user comfort.}
+    \caption{The contrast between medical-grade \gls{eeg} measuring equipment and a consumer-grade alternative.}
     \label{fig:example_eeg_measuring_devices}
   \end{minipage}  
 \end{figure}
@@ -495,8 +485,8 @@ The replacement of physical computational units in close proximity to cloud solu
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.7\linewidth]{../images/introduction/papers_on_bci.pdf}
-    \captionsetup{width=0.65\linewidth}
+    \includegraphics[width=0.8\linewidth]{../images/introduction/papers_on_bci.pdf}
+    \captionsetup{width=0.7\linewidth}
     \captionsetup{justification=centering}
     \caption{Number of \gls{bci}-related papers over time. Based on data by \citet{bci_progress_overview} obtained by searching PubMed using the keyword: "brain-computer interface".}
     \label{fig:bci_publications}
@@ -564,11 +554,9 @@ Because of this, this thesis focuses on classification problems.
 The most common example of a \gls{cad} system is the classification of lung images as being either from a lung cancer patient or not, often also highlighting the nodules used for this classification.
 These pipelines are very similar to the ones used for \glspl{bci}, which is further discussed in Section \ref{sec:processing_signals_general_pipeline}.
 
-
-\begin{figure}[ht]
-  \begin{minipage}{\textwidth}
+\begin{sidewaysfigure}
     \centering
-    \begin{subfigure}{0.95\textwidth}
+    \begin{subfigure}{\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../images/introduction/cad_pipeline_ml.pdf}
         \captionsetup{width=0.9\linewidth}
@@ -577,7 +565,7 @@ These pipelines are very similar to the ones used for \glspl{bci}, which is furt
         \label{fig:cad_pipeline_ml}
     \end{subfigure}
     \hfill
-    \begin{subfigure}{.95\textwidth}
+    \begin{subfigure}{\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../images/introduction/cad_pipeline_dl.pdf}
         \captionsetup{width=0.9\linewidth}
@@ -589,8 +577,7 @@ These pipelines are very similar to the ones used for \glspl{bci}, which is furt
     \captionsetup{justification=centering}
     \caption{General pipelines of a \gls{cad} system used for classification. A \gls{ml} approach is called a two-step approach as it exists from feature extraction and classification. A \gls{dl} approach is called a one-step approach as it combines both of these steps into a singular classification algorithm.}
     \label{fig:cad_pipeline}
-  \end{minipage}  
-\end{figure}
+\end{sidewaysfigure}
 
 Traditional \gls{ml} is a commonly used name for the collection of \gls{ml} techniques that are not \gls{dl}.
 Such traditional \gls{ml} rely on a \textit{two-step} process where there is both a feature extraction step and a regular classification step as is visualised in Figure \ref{fig:cad_pipeline_ml}.
@@ -1220,7 +1207,7 @@ However, the rise in popularity of \glspl{bci} in the gaming industry and amongs
 % TODO: overview based on review arnau en bci_applications, met die van bci_applications voorbeeld figuur
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.7\linewidth]{../images/introduction/use_cases_overview.pdf}
+    \includegraphics[width=\linewidth]{../images/introduction/use_cases_overview.pdf}
     \captionsetup{width=0.7\linewidth}
     \captionsetup{justification=centering}
     \caption{An overview of some of the many use cases for \glspl{bci}.} 
@@ -1481,19 +1468,26 @@ In general, \glspl{ann} and other \gls{dl} models such as \glspl{cnn} have prove
 Because of this, many of the current state-of-the-art models for \gls{eeg} classification rely on \gls{dl} models.
 Especially classification pipelines that include \glspl{cnn} have proven to be successful for \gls{eeg} classification \citep{fbcnet, eeg_mi_model_mussi, eeg_mi_model_deep_cnn_spatial_filters, eeg_model_hbm, eeg_model_esi, eeg_model_eegnet}.
 
-% TODO: START visualisation technique refen EEGnet ref etc to section rather than chapter
+% TODO: START visualisation technique refen EEGnet ref etc to section rather than chapter en mss implementation van RNN/ LSTM reffen
 The \gls{cnn}-based approach by \citet{eeg_model_hbm} is commonly regarded as current state-of-the-art for \gls{mi} classification.
 The article by \citet{eeg_model_hbm} includes two different models, a deep \gls{cnn} named \text{DeepConvNet} and a shallower one named \text{ShallowConvNet}.
 In Chapter \ref{ch:offline_bci_system}, both of these models will be implemented and discussed further.
 \Citet{eeg_model_hbm} also describe a method of extracting a visualisation of the used brain signals by the model, which can aid in the explainability and interpretability of the model.
 Explainability and interpretability are further discussed in Section \ref{subsec:processing_signals_common_issues_exaplainable}, Chapter \ref{ch:offline_bci_system} further addresses the visualisation technique.
 
-One issue with more complex pipelines such as the DeepConvNet variant by \citet{eeg_model_hbm}, is the time and computational resources it takes to train the model and do predictions with it.
+One issue with more complex \gls{cnn}-based pipelines such as the DeepConvNet variant by \citet{eeg_model_hbm}, is the time and computational resources it takes to train the model and do predictions with it.
 The latter is an issue for real-time classification, something that is needed for an online \gls{bci} system which often works with relatively low-powered computational units.
 Pipelines such as the one by \citet{eeg_model_eegnet} have been developed to use \glspl{cnn} in such a way that real-time classification is possible.
 The model proposed by \citet{eeg_model_eegnet} also has promising results and will also be implemented in Chapter \ref{ch:offline_bci_system} where it is discussed in greater detail as well.
 
-% TODO: END visualisation technique refen EEGnet ref etc to section rather than chapter
+Whilst \gls{cnn}-based pipelines are among the most popular for the classification of \gls{mi} \gls{eeg} data, they fail to use a fundamental aspect of \gls{eeg} data.
+\Glspl{cnn} are not designed to perceive the input data as sequential data, which \gls{eeg} data is.
+As such, they do not explicitely use this property of the data for learning.
+\Glspl{rnn} and \glspl{lstm} in particular are a type of \gls{dl} networks that do explicitely use internal memory to explicitely use the sequential property for learning, as Section \ref{subsec:processing_signals_ml_and_dl_dl_classifiers} will discuss in greater detail.
+These approaches are most popular in speech processing as it is the sequence in which words are spoken that gives meaning to a sentence rather than individual words.
+\Citet{lstm_mi_eeg} used a traditional \gls{lstm} pipeline for \gls{mi} \gls{eeg} data classification with satisfactory results whilst \citet{lstm_cnn_mi_eeg} combined both ideas from \glspl{cnn} and \glspl{lstm} into a singular network that rivals \gls{cnn}-based state-of-the-art for \gls{mi} \gls{eeg} classification.
+
+% TODO: END visualisation technique refen EEGnet ref etc to section rather than chapter en mss implementation van RNN/ LSTM reffen
 
 Some more noteworthy \gls{mi} related \gls{eeg} classification approaches include the one by \citet{eeg_mi_model_image_based} and the one by \citet{eeg_model_esi}.
 \Citet{eeg_mi_model_image_based} took an interesting approach by first visualizing \gls{eeg} data as an image and using techniques from image processing for classification.
@@ -1507,57 +1501,42 @@ However, the approach by \citet{eeg_model_esi} which incorporates the technique 
 \subsubsection{Connecting the classification model to physical devices}
 \label{subsubsec:bci_opportunities_obstacles_motivating_examples_physical_devices}
 
-% merge with onderstaand voor "few classifications, many actions"
-% dit dus copy paste
+As was discussed in Section \ref{sec:bci_introduction}, there is no exact definition of a \gls{bci}.
+In general, a complete \gls{bci} system is seen as a combination of three different processes: a data collection process, a data processing step and a step where effective actions are taken by the \gls{bci} based on the processed data.
+It is this last process that forms some ambiguity in what can be considered a \gls{bci} and what can't be, as was already discussed in Section \ref{sec:bci_common_use_cases}.
+\Glspl{bci} that functions as \gls{bc} systems, which explicitely control an external device, are included in each definition of a \gls{bci}.
+However, how such an external device is controlled can vary greatly and requires special attention which may influence all other components of the \gls{bci} as well. 
 
-\Citet{bci_mi_robot_arm} proposed a \gls{mi}-based \gls{bci} to control a robot arm system.
-Their research is interesting in two ways.
-First, they use only three distinct \gls{mi} classifications: imagined right-hand movement, imagined left-hand movement and imagined foot movement.
-These three controls enable the user to select eight different possible actions through a menu where two options are always shown that can be controlled using either an imagined left-hand movement or an imagined right-hand movement.
-Scrolling through the menu to show two other possible actions is possible through the imagined foot movement.
-This shows that with the right system design few controls can still allow for many actions to be taken.
-Secondly, they found that experienced users have better overall classification performance which indicates that \gls{mi} is something that can be trained.
+The labels provided by the classifier can be seen as an incoming input stream for the process responsible for mapping those classifications to an action on the external device.
+When using \gls{mi} \gls{eeg}, it is intuitive to link the envisioned task with a similar action on the external device.
+For example, an envisioned left-hand squeeze corresponds to a left movement whilst an envisioned right-hand squeeze corresponds to a right movement.
+However, nothing is stopping the implementer from doing this mapping differently and in some scenarios, a less intuitive mapping might provide a more reliable and capable system that is easier to use.
 
-A more recent and more complex \gls{mi}-based \gls{bci} system is the vehicle control system by \citet{bci_mi_four_wheel_drive} which recognises four possible actions: left, right, throttle and brake.
-There are three very interesting aspects in the work by \citet{bci_mi_four_wheel_drive}.
-First, they use two distinct classifiers for the \gls{eeg} data.
-One makes a distinction between left and right through a typical \gls{mi}-based \gls{bpnn} whilst the other classifies throttle and brake behaviour using the subject’s threshold value of the average band power.
-Secondly, an additional system is in place to reduce the risk of wrong classifications in the system.
-This additional system is a type of collision detection and avoidance system that uses four ultrasonic wave radars and a camera.
-The rationale behind this additional system is that the car would operate more like a semi-autonomous system that is responsible for a safe ride whilst the input of the \gls{bci} system is used to steer this semi-autonomous car in the right direction.
-This additional system is required as the accuracy of around 84\% for the throttle and brake classification and 89\% for the left and right classification is not enough for a reliable system.
-Finally, they use an interesting data collection method to train the classifiers on a user-per-user basis.
-They configured a driving simulator where the user has the freedom to perform any action they want through a classical steering wheel and pedal setup.
-The user should synchronously think about the action they want to perform to generate \gls{mi} data and they have to perform the effective action, as to be able to label the data.
-Whilst this is an interesting approach, it is limited in the fact that it requires the user to be able to operate a steering wheel and pedals at the same time, which is not the case for classical target users of these systems.
+This follows from some of the challenges with \gls{mi} \gls{eeg} classification, in particular a limited amount of output classes and the fact that it is easier to distinguish between major \gls{mi} tasks such as left-hand and right-hand movement rather than individual finger movement for example.
+Since classification accuracy should be sufficient to operate the external device safely and reliably, a limited number of different and easy to distinguish \gls{mi} tasks are often used.
 
-% dit oude content van dit puntje
-
-A complete \gls{bci} system could be thought of as a combination of three different components: a data collection process, the data processing step and the effective performing of actions by the system.
-The previously discussed motivating works focus mainly on how to collect \gls{eeg} data, especially for \gls{mi} tasks, and how to process this data to classify it.
-Whilst these two steps are already very challenging, a component to go from the classification labels to effective actions should also be in place to form a complete \gls{bci} system.
-For this last component, the labels provided by the classifier can be seen as an incoming input stream.
-Whilst it is intuitive to link certain labels with specific actions, for example, a left movement is linked to an imagined left-hand squeeze and a right movement is linked to an imaged right-hand squeeze, this isn't strictly required.
-
-One of the challenges with \gls{bci} systems is the limited classification labels that can reliably be extracted.
-It is also the case that it is easier to distinguish between imagined left-hand movement and imagined right-hand movement than it is to differentiate between imagined left-hand thumb movement and imagined left-hand index finger movement.
-Because of this, less intuitive controls that are easier to classify and offer higher efficiency should often be considered.
-To illustrate this, imagine the movement of a robotic arm to pick up objects using \gls{mi} related \gls{eeg} data through a classifier that can distinguish left-hand squeeze, right-hand squeeze and an idle state.
+To illustrate how such limited classes can be used for effective \gls{bc} systems, imagine the movement of a robotic arm to pick up objects using \gls{mi} \gls{eeg} data through a classifier that can distinguish 4 \gls{mi} tasks: left-hand squeeze, right-hand squeeze, foot movement and an idle state.
 Intuitively, one might want to obtain complete control over the robotic arm but the limited inputs render a direct mapping between the classification label and all possible movements of the arm impossible.
-A menu for movement options could be made such as shown in Figure \ref{fig:example_arm_control_bad}.
-The imagined right-hand squeeze could be used to scroll through the menu options whilst the left-hand squeeze could be used to select that option.
-Stepping away from the idea of wanting to control every movement of the robotic arm can improve the efficiency of the system.
+The most intuitive solution is the creation of a menu for movement options as illustrated in Figure \ref{fig:example_arm_control_bad}.
+Using the foot \gls{mi} task, the user switches between 3 operation modes of the robot arm: horizontal movement, vertical movement and grasping movement of the hand.
+Dependent on the active menu, the left-hand squeeze and right-hand squeeze \gls{mi} tasks can be used to move the robot arm left and right, up and down or to open and shut the robot hand.
+This provides the user with all available control whilst remaining relatively intuitive.
+However, this assumes all commands are interpreted correctly.
+When taking into account that state-of-the-art struggles to reach an average of 80\% accuracy for classifying four \gls{mi} tasks in favourable conditions, it is not unreasonable to think that best case there will still be a misclassification once every five steps on average \citep{four_class_mi_CSP_good, four_class_mi_hybrid_good, four_class_mi_klrrm_good, four_class_mi_wavelet_good}.
+Taking into account that for picking up the desired object, the robot arm needs to be perfectly aligned both vertically and horizontally and the user needs to switch to the menu for grasping through envisioned foot movement and then chose the desired grasping movement through envisioned hand movement, it is highly unlikely this sequence of events will happen without misclassification.
+This will make the proposed system very inefficient.
+
+Stepping away from the idea of wanting to control every movement of the robotic arm, a huge improvement in the efficiency of the system can be made.
 With grasp detection algorithms such as the one proposed by \citet{graspnet}, the detection of objects of interest for the robot arm to interact with can be detected through computer-vision algorithms.
-Using such algorithms, another way of controlling the robotic arm could be using the imagined right-hand squeeze to switch between detected objects and using the imagined left-hand squeeze to pick them up, as depicted in Figure \ref{fig:example_arm_control_good}.
-Highlighting the item detected by the arm could for example be done by the arm hovering over that specific item.
-Since the task of the robotic arm was picking up items, both systems would succeed, but the latter would be more efficient.
-Whilst this is a very naive example, it should illustrate that special thought should be put into this last component of the \gls{bci} system to maximize accuracy and efficiency.
-% Dus eigenlijk dat context aware systems met variable mapping van classification labels aan actions zorgen voor betere control dan fixed dingen, hoewel soms intuitive moeilijker kan zijn
-%  high-level controller that will map a user command to a sequence of device actions or a lowlevel controller that can directly use the output from the decoder model to perform a device action. but allows for a reduction of the number of commands that need decoding when dealing with a high number of degrees of freedom (Kuhner et al 2019). The latter only needs to send the command to the device, but requires an output for each possible degree of freedom of the device (George et al 2020).
-% For example, (Kuhner et al 2019) use depth sensing cameras to track object and robot positions, which allows users to think of which object they want to grasp, without communicating the object’s position to the robot control system.
+Using such algorithms, another way of controlling the robotic arm could rely on only three \gls{mi} tasks: left-hand squeeze, right-hand squeeze and an idle state.
+Using the left-hand squeeze \gls{mi} task, the robot arm could be alternated between all possible items to grasp as detected by the grasp detection algorithm. 
+Using the right-hand squeeze \gls{mi} task, the item could be picked up or set down depending on the current state and computer-vision-aided tools.
+This limits the amount of successful consecutive steps needed and being a three class \gls{mi} classification, the accuracy is expected to be higher.
+Thus, the system would be less intuitive but far more usable.
+This proposed design is shown in Figure \ref{fig:example_arm_control_good}.
 
 
-% TODO: make experimental design image
+% TODO: make an experimental design image, read the description above for content
 \begin{figure}[ht]
   \begin{minipage}{\textwidth}
     \centering
@@ -1566,7 +1545,7 @@ Whilst this is a very naive example, it should illustrate that special thought s
         \includegraphics[width=\textwidth]{example-image-a}
         \captionsetup{width=0.9\linewidth}
         \captionsetup{justification=centering}
-        \caption{\gls{bci} system offering complete control but poor efficiency.}
+        \caption{A \gls{bci} system that offers complete control over a robotic arm but with poor efficiency.}
         \label{fig:example_arm_control_bad}
     \end{subfigure}
     \hfill
@@ -1575,34 +1554,26 @@ Whilst this is a very naive example, it should illustrate that special thought s
         \includegraphics[width=\textwidth]{example-image-b}
         \captionsetup{width=0.9\linewidth}
         \captionsetup{justification=centering}
-        \caption{\gls{bci} system offering limited control but great efficiency.}
+        \caption{A \gls{bci} system that offers limited control over a robotic arm but with great efficiency. \\ \hfill}
         \label{fig:example_arm_control_good}
     \end{subfigure}
     \captionsetup{width=0.9\linewidth}
     \captionsetup{justification=centering}
-    \caption{Contrast between a complete control design of a robotic grasping arm that is less efficient to operate and one that is more efficient to operate but has less control. Considering the task of grasping items, both systems would succeed but the more efficient one would likely be more pleasant to use.}
+    \caption{The contrast between mappings of \gls{mi} \gls{eeg} for controlling a robotic arm to grasp an item. One approahch allows for full control but requires four \gls{mi} classes and many steps. One appraoch offers less control but succeeds in the task with three \gls{mi} classes and very few steps.}
     \label{fig:example_arm_control}
   \end{minipage}  
 \end{figure}
 
-As discussed, the field of \gls{bci} is highly interdisciplinary.
-The \gls{eeg} data collection part relies heavily on neuroscience for the working of the brain to know what signals can be extracted and where they originate from.
-To extract those signals, engineers should develop hardware capable of measuring the tiny electrical current that is \gls{eeg}.
-Whilst those engineers also focus on noise reduction, computer scientists are also needed for preprocessing to further reduce this noise.
-The data processing is mainly a computer scientist task, although knowledge from neuroscience can be very helpful in this step as well as insight on the flaws of the hardware.
-The final component, where effective actions are performed, can relate to a wide variety of sciences once again.
-For example, the robotic arm proposed before requires computer vision knowledge for grasp detection, engineering knowledge to make the arm and general computer science knowledge to create an intuitive link between classification labels and action controls.
-Because of this, it is often the case that research focuses mainly on improving one of these three components rather than the whole system.
-Take for example the \gls{bci} system proposed by \citet{complex_hand_few_classes}.
-It has a significantly sophisticated robotic hand that functions almost completely as a human hand does.
-The effective hardware used for the complete \gls{bci} system, including the processing unit, are also well detailed and shows thorough knowledge as it proposes a very affordable custom system.
-However, the classification algorithms used and the user interface proposed could benefit from future extensions to make the complete \gls{bci} system even better.
 
-This is by no means a criticism to \citet{complex_hand_few_classes} but demonstrates the interdisciplinary nature of \gls{bci} systems and how researchers that are specialized in one of these disciplines will outperform certain aspects of a \gls{bci} system will leaving room for improvement in other aspects.
-Likewise, many papers on the data processing and classification algorithms for \gls{eeg} data are from computer scientists.
-Those papers often don't even include the final component where effective actions are taken, or the proposed system is limited to simulations because the development of robotics falls outside the scope of their discipline.
-This interdisciplinary of the \gls{bci} field is part of what makes it so fascinating yet also sophisticated.
-Commercial institutions that can hire many of the required professions will likely accelerate the creation of true complete \gls{bci} systems with state-of-the-art in each component of the system.
+
+\Citet{bci_mi_robot_arm} use comparable reasoning to propose a \gls{mi}-based \gls{bci} system to control a robot arm.
+\Citet{bci_mi_robot_arm} use only three distinct \gls{mi} classifications: imagined right-hand movement, imagined left-hand movement and imagined foot movement.
+These three controls enable the user to select eight different possible actions through a menu where two options are always shown that can be controlled using either an imagined left-hand movement or an imagined right-hand movement.
+Scrolling through the menu to show two other possible actions is possible through the imagined foot movement.
+This shows that with the right system design, few controls can still allow for many actions to be taken.
+However, they lack a detection of the idle state.
+This is possible by determining the idle state based on the certainty of the model that a certain prediction is correct.
+If the model is uncertain, it is likely the user wasn't performing any of the \gls{mi} tasks and thus the system should do anything.
 
 
 % - - - - - - - - - -
@@ -1680,6 +1651,25 @@ Likewise, 80\% accuracy on non-lab environment data with high stochasticity is f
 
 
 \lipsum[1-3]
+
+As discussed, the field of \gls{bci} is highly interdisciplinary.
+The \gls{eeg} data collection part relies heavily on neuroscience for the working of the brain to know what signals can be extracted and where they originate from.
+To extract those signals, engineers should develop hardware capable of measuring the tiny electrical current that is \gls{eeg}.
+Whilst those engineers also focus on noise reduction, computer scientists are also needed for preprocessing to further reduce this noise.
+The data processing is mainly a computer scientist task, although knowledge from neuroscience can be very helpful in this step as well as insight on the flaws of the hardware.
+The final component, where effective actions are performed, can relate to a wide variety of sciences once again.
+For example, the robotic arm proposed before requires computer vision knowledge for grasp detection, engineering knowledge to make the arm and general computer science knowledge to create an intuitive link between classification labels and action controls.
+Because of this, it is often the case that research focuses mainly on improving one of these three components rather than the whole system.
+Take for example the \gls{bci} system proposed by \citet{complex_hand_few_classes}.
+It has a significantly sophisticated robotic hand that functions almost completely as a human hand does.
+The effective hardware used for the complete \gls{bci} system, including the processing unit, are also well detailed and shows thorough knowledge as it proposes a very affordable custom system.
+However, the classification algorithms used and the user interface proposed could benefit from future extensions to make the complete \gls{bci} system even better.
+
+This is by no means a criticism to \citet{complex_hand_few_classes} but demonstrates the interdisciplinary nature of \gls{bci} systems and how researchers that are specialized in one of these disciplines will outperform certain aspects of a \gls{bci} system will leaving room for improvement in other aspects.
+Likewise, many papers on the data processing and classification algorithms for \gls{eeg} data are from computer scientists.
+Those papers often don't even include the final component where effective actions are taken, or the proposed system is limited to simulations because the development of robotics falls outside the scope of their discipline.
+This interdisciplinary of the \gls{bci} field is part of what makes it so fascinating yet also sophisticated.
+Commercial institutions that can hire many of the required professions will likely accelerate the creation of true complete \gls{bci} systems with state-of-the-art in each component of the system.
 
 % - - - - - - - - - -
 % repeatability issues
