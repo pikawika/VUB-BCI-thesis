@@ -1585,6 +1585,11 @@ Rather than having an expert design a \gls{ml} pipeline, an automated system tri
 The problem then boils down to an optimisation problem where the combination of fine-tuned components that maximizes a certain metric such as accuracy on test data has to be found.
 \Gls{automl} facilities have not yet been made for \gls{bci} specific pipelines, but with Google providing \gls{automl} as part of their cloud infrastructure for computer-vision, the \gls{automl} idea is becoming more and more popular \citep{bci_review_arnau}.
 
+% | | | | | | | | | | | | |
+
+\subsubsection{One library to develop a complete BCI pipeline}
+\label{subsubsec:bci_opportunities_obstacles_automl_one_library}
+
 When taking into account the discussed literature so far, it is clear that many techniques for each component of the \gls{bci} pipeline already exist and that certain combinations have proven to be very successful.
 With more and more of these components being provided through open-source libraries as discussed in Section \ref{subsec:bci_gaining_popularity_improved_data_processing}, it is not unreasonable to think that an \gls{automl} library for \gls{bci} pipelines might be introduced in the future.
 If done right, this pipeline can set standards for the expected output of each component meaning that newly proposed components can be directly provided to the framework by the author of that new component.
@@ -1593,6 +1598,11 @@ Such a framework would also enable new research to re-use existing components mu
 
 As this library would require a lot of maintenance, it should be provided by a team that has sufficient resources on maintaining it and updating it to support newer techniques in the field.
 Whilst there is currently no big organisation in the field that is likely to take this task upon themselves, the rise in popularity might attract such big corporations.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{One library to develop multiple variants of one component from the BCI pipeline}
+\label{subsubsec:bci_opportunities_obstacles_automl_one_component}
 
 Besides aiming to provide a complete pipeline, a library that focuses on providing all alternatives of one component following a specific standard would already be incredibly handy.
 Take for example a library that provides all open-source \gls{bci} datasets from one singular library, with all of the datasets following a specific standard.
@@ -1613,89 +1623,127 @@ Thus, providing such a library as the first step to an \gls{automl} revolution i
 % testing issues
 % - - - - - - - - - -
 
-
-% START HERE; TODO
-% bci_applications heeft ook overview onder 7 challenges
-
-\subsection{A lack of standardized testing}
+\subsection{A lack of standardized testing and reporting}
 \label{subsec:bci_opportunities_obstacles_lack_of_testing}
 
-% mss weg en  naar 6 bij "common issues" en dan hier maken "other common development issues"
+The evaluation and comparison of different \gls{bci} systems is not an easy task.
+This is in part due to the many components a \gls{bci} system consists of, making direct comparisons often impossible.
+Is comparing the performance of a classification model from a \gls{bci} system that works with dry electrodes in a real-world setting to one that works with data from medical equipment in a lab environment fair?
+Is it fair to compare traditional two-step \gls{ml} approaches that have great explainability and interpretability with black-box one-step \gls{dl} approaches?
+Many more of these questions exist and they remain mainly unsolved for the \gls{bci} field.
 
-% ook optimistic results
+% | | | | | | | | | | | | |
 
-%DL models have many components and hyperparameters that need to be chosen by the implementer. Performance of models can sometimes greatly vary between software and hardware that are used in training and evaluation. Evaluating the performance of a model requires great care in selecting the appropriate metrics to report. Additionally, evaluating the full control system requires more investigating than only assessing the decoding performance of the DL model. Recommendations will be formulated regarding reporting standards in relevant scientific fields.
+\subsubsection{The issue with individually evaluating BCI pipeline components}
+\label{subsubsec:bci_opportunities_obstacles_lack_of_testing_individual_components}
 
-% this should at least be a basic user study to validate that the control system improves the user experience of the targeted user group compared to alternative approaches. Only a small proportion of publications perform a user study, which emphasizes that there is a clear gap in current evaluation methodologies. The heterogeneity in evaluation methodologies also makes control system designs harder to compare without reimplementing the full control system. Having such guidelines should encourage researchers to adhere to a detailed user evaluation for POC prototypes and allows for the comparison of control systems for the same application types.
+One potential approach is evaluating each component of the \gls{bci} system individually.
+However, whilst these may make comparisons between the different components easier, these individual metrics don't tell the whole story for the complete system.
+To truly test the capabilities of a proposed \gls{bci} system in the real world, intensive user studies should be performed.
+Even in its simplest form, such a user study should validate if the \gls{bci} system succeeds in its advertised tasks in both a timely and reliable manner that is pleasant to use for the target audience \citep{bci_review_arnau}.
+It should also be compared to existing solutions to ensure that there is an added benefit compared to these alternatives for the user.
+To avoid biases, these user studies should not only include enough participants but the participant group should also be heterogeneous.
 
-% Since user opinions can be subjective, it is essential to have a heterogeneous group of participants, as mentioned in section 4.3.
+Doing even the most primitive version of such a user study takes significant resources to perform.
+As such, it is rather uncommon to see these user studies in the same paper that proposes a \gls{bci} system.
+Initial articles of a new proposed \gls{bci} system often focus on providing only objective evaluation metrics of the classification system.
+These objective measures include accuracy, sensitivity and specificity.
+Simple \glsfirst{poc} experiments are sometimes also included in these initial articles but these are tested only on a small group of participants, which are often not from the target audience.
+The earlier discussed system by \citet{eye_tracking_vs_p300_comparable} was user tested on able-bodied participants whilst the target audience was not.
+As discussed in Section \ref{subsec:bci_common_use_cases_bcis_replace_eye_tracking}, this study gave promosing results while a comparable system tested for a person in the target audience found that the user wasn't interested in using the proposed \gls{bci} system as existing solutions were more pleasant to use \citep{no_interest_in_using_p300}.
+Some of the articles included in the review by \citet{bci_review_arnau} also performed user tests on participants that are not part of the target audience.
+However, with many current \gls{bci} systems focusing on providing systems for medical purposes, finding enough participants from the target audience to form a heterogeneous group can be challenging.
 
-% dus vooral objective mesaures zoals accuracy nu
 
-% Reviews by Biet al(2019), Rashid et al(2020)and Al-Saegh et al (2021) among others discuss the differences between offline and online systems in more detail. Therefore, stress tests should be performed to evaluate the model under conditions that reflect reallife conditions. Unfortunately, such stress tests have not been developed yet in the context of biosignal control.
 
-% While there are no standardized guidelines regarding the evaluation of prototypes, good-practice examples can serve as a template for the recommended evaluation methods for a biosignal control system. User study is belangrijk, i.e., hoe ervaart persoon het systeem wat soms ook stom evaluated bv; s. However, we noticed that several papers do not evaluate the device on a target population. For example, both Nguyen and Chung (2018) and Kuhner et al (2019) only include able-bodied participants while their applications target paralyzed persons.
+% | | | | | | | | | | | | |
 
-%UIT bci_review_arnau
+\subsubsection{Proposing a complete BCI system throughout at least four articles}
+\label{subsubsec:bci_opportunities_obstacles_lack_of_testing_four_articles}
 
-Evaluating and comparing different \gls{bci} systems is not easy.
-This is in part due to a \gls{bci} system consisting of different components.
-Thus, evaluating a \gls{bci} system purely on the tasks it can achieve and with which accuracy doesn't tell all that much.
-Evaluating the system for the above discussed three different components can improve on this, but a lack of standardized testing also makes this rather challenging.
+The above-mentioned points make the author of this master's thesis believe that the development of a \gls{bci} system should take place over at least four separate articles.
+The first article should focus on data acquisition.
+It should discuss the equipment used for recording the brain signals.
+It should also address which kind of brain signals are extracted and where they are expected to originate from on an anatomical level.
+The exact procedure used for effective data collection should also be detailed.
+This includes details on what participants are included, if there were surveys used to test their capabilities both before or after the experiments, if the participants were trained, how many trials over which periods were performed per participant and much more. 
+Such an article may contribute to the field by providing an open-source dataset, describing a novel training technique, discussing a more user-friendly data collection procedure, proposing new hardware and more.
+What kind of evaluation should be done in this type of article depends mainly on what the contribution of the article is.
+When proposing completely new hardware, a comparison between comparable hardware may be done in the same manner as \citet{compare_eeg_devices_for_ssvep} compared different consumer-grade \gls{eeg} headsets.
+When testing a new training procedure, the data may be fitted to a common classifier to compare its learnability with the data of participants that followed a different training procedure. 
+Discussing all possible evaluation metrics falls outside the scope of this master's thesis, but the most important factor is discussing the exact data acquisition process, as important details such as if live feedback was used often lack in existing work providing open-source datasets.
 
-Take for example the comparison and evaluation of the performance of the measuring equipment of a \gls{bci} system.
-Many \gls{bci} systems use the noisy \gls{eeg} modality, but others make use of \gls{emg} and other modalities which can be more or less prone to noise. 
-Some make use of easy to use dry electrodes, whilst others make use of wet electrodes that require considerable preparation.
-One could use the \gls{snr} to compare and evaluate the \gls{eeg} measuring device.
-However, this doesn't take into account affordability and user experience.
-A higher \gls{snr} but with more predictable noise is also preferred over a lower \gls{snr} with completely stochastic noise.
-Comparing the classification accuracy for specific tasks might seem like a better option then, but how do you make a fair classification pipeline for all different headsets.
-It should become visible that there is no easy solution to evaluate the (e.g. \gls{eeg}) measuring equipment of a \gls{bci} system.
+A second article should focus on the classification pipeline.
+It can contribute by proposing a novel combination of existing pipeline components or completely new components altogether.
+The type of components such a pipeline has and the evaluation that can be done will be discussed in detail in Chapter \ref{ch:processing_signals}.
+These articles will make use of the data from the first article on data acquisition and should thus briefly summarize the used dataset.
+The experiments that will be done in this Master's thesis relate mainly to this type of article.
 
-Similar issues arise for the data processing component.
-For starters, whilst relatively complete datasets such as the one by \citet{eeg_data} exist, there is no real \textit{reference dataset} for \gls{bci} systems.
-In computer vision, for example, popular datasets such as MNIST \citep{mnist} and ImageNet \citep{imagenet} are often used to train and evaluate image classification algorithms.
-But \gls{eeg} classification algorithms are optimised to the input data.
-For example, some work better with noisy data whilst others are optimized for \gls{mi} specific classification tasks and so on.
-Do you train the models on a single patient and test them on the same patient, or do you test for generalisability?
+A third article should focus on linking this system to an external device such as a robot arm.
+This might involve changes to the classification pipelines, especially in the cutoff values for specific classes.
+Rather than optimizing global accuracy, it might be preferred to tune the system such that it makes more, but predictable errors.
+To illustrate this, a pipeline might be tuned such that it has a high true positive rate and a low false positive rate for actions that have significant risk.
+This means that when these actions with certain risks are performed, the system is almost certain the classification was correct.
+Doing this will make more false classifications for the other classes, but if these classes are neutral classes that don't perform actions, it has less risk associated.
+This corresponds to preferring a \gls{bci} for \gls{bc} over a robot arm that has a global accuracy of only 80\% but makes almost all of its errors in not moving when movement was desired over one that has 85\% global accuracy but has most errors in it moving when no movement was desired.
+The focus of this article is not on obtaining the best classification metrics anymore but rather on providing the safest and most predictable system that is still useful.
+This third article might perform a simple \gls{poc} to validate that the desired action taking is possible, even if this is only tested for best-case scenarios.
+It can contribute to the field by proposing more intuitive interaction methods, a new form or external device, a clever way of boosting reliability and predictability and more.
+
+A fourth article should then focus on an in-depth user study with a heterogeneous group from the target audience.
+Ideally, this study should be performed over multiple sessions to study long-term impacts on the user's life, including an idea of the public acceptance of the proposed system.
+It should review all previous articles and is likely to require most resources, but is also the most important for bringing the proposed \gls{bci} to the real world.
+It contributes to the field by addressing the good and bad points of a proposed \gls{bci} system being used in the real world.
+It may highlight points that went undetected in the previous articles. 
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Comparing these different articles}
+\label{subsubsec:bci_opportunities_obstacles_lack_of_testing_comparing}
+
+Some metrics for comparing each type of article with each other were named in this section already.
+However, standardized tests should be introduced to fully ensure comparability between results and that a correct evaluation is done in each article.
+These are not yet present in the \gls{bci} field and proposing them is a difficult task as the proposing authors should be respected so that other authors are even willing to accept their proposals.
+It is also not easy to propose testing and reporting standards that fit all variants of these proposed articles.
+Do you train the models on a single patient and test them on the same patient or do you test for generalisability?
 Do you allow it to run on very capable hardware or limited but very affordable hardware?
-Again, it should be apparent that there is no straightforward way of evaluating the data processing step. 
+It should be apparent that there is no straightforward way of proposing standardized testing and reporting for all variants of these articles.
 
-This thesis only aims to highlight the issue that arises when trying to evaluate and compare different \gls{bci} systems.
-These problems such as a standardized testing suite are open problems in the field and one that could greatly improve the field's work once a solution is proposed and accepted by the community.
-For now, focusing on reproducibility and specifying the data used and potential ways it makes tasks easier or harder is the best most researchers can do.
-It becomes apparent that a 90\% accuracy for a model that can be used on any user without re-training is far more impressive than one custom made for a specific user.
-Likewise, 80\% accuracy on non-lab environment data with high stochasticity is far more impressive than the same accuracy on the best measuring hardware in the most controlled environment. 
+This master's thesis only aims to highlight these issues as solving them is an open issue and standardized methods would need the consensus of the field, which a master's thesis is unlikely to obtain.
+For now, creating at least four different papers to propose a complete \gls{bci} system and focusing on being as transparent as possible in each is already a good step in the right direction.
+However, transparency lacks in many papers, albeit due to page constraints or a lack of standardized reporting.
+Providing the source code with additional notes through an external source such as GitHub may help combat the page constraint issue.
+Following guidelines from related fields such as PROBAST  \citep{probast} and TRIPOD  \citep{tripod} originally proposed for \gls{cad} and \gls{cade} research can help in determining a new reporting standard for \gls{bci} research.
 
 % - - - - - - - - - -
 % interdesciplinary issues
 % - - - - - - - - - -
 
+
+% START HERE; TODO
+% bci_applications heeft ook overview onder 7 challenges
+
 \subsection{Challenges from the highly interdisciplinary nature of BCI systems}
 \label{subsec:bci_opportunities_obstacles_interdisciplinary}
 
+The idea of splitting the development of a complete \gls{bci} system into at least four separate articles discussed in Section \ref{subsec:bci_opportunities_obstacles_lack_of_testing} can also help with the challenges that the highly interdisciplinary nature of BCI systems offers.
+Data acquisition relies heavily on neuroscience for the working of the brain to know what signals can be extracted and where they originate from.
+To extract those signals, engineers should develop hardware capable of measuring the brain signals.
+The data classification is mainly a computer scientist task, although knowledge from neuroscience can be very helpful in this step combined with an insight into the flaws of the hardware.
+The connection to an external device can relate to a wide variety of sciences once again.
+For example, the previously discussed robotic arm example shown in Figure \ref{fig:example_arm_control} requires computer vision knowledge for grasp detection, engineering knowledge to make the robot arm and general computer science knowledge to create a working link between classification labels and action controls.
+The user study can then require an ethics expert, people capable of studying psychological impact as well as all expertise needed for all previous parts.
 
-
-\lipsum[1-3]
-
-As discussed, the field of \gls{bci} is highly interdisciplinary.
-The \gls{eeg} data collection part relies heavily on neuroscience for the working of the brain to know what signals can be extracted and where they originate from.
-To extract those signals, engineers should develop hardware capable of measuring the tiny electrical current that is \gls{eeg}.
-Whilst those engineers also focus on noise reduction, computer scientists are also needed for preprocessing to further reduce this noise.
-The data processing is mainly a computer scientist task, although knowledge from neuroscience can be very helpful in this step as well as insight on the flaws of the hardware.
-The final component, where effective actions are performed, can relate to a wide variety of sciences once again.
-For example, the robotic arm proposed before requires computer vision knowledge for grasp detection, engineering knowledge to make the arm and general computer science knowledge to create an intuitive link between classification labels and action controls.
-Because of this, it is often the case that research focuses mainly on improving one of these three components rather than the whole system.
+With most current research still trying to propose a \gls{bci} system that is as complete as possible, the proposed system is only outstanding in one aspect.
 Take for example the \gls{bci} system proposed by \citet{complex_hand_few_classes}.
 It has a significantly sophisticated robotic hand that functions almost completely as a human hand does.
 The effective hardware used for the complete \gls{bci} system, including the processing unit, are also well detailed and shows thorough knowledge as it proposes a very affordable custom system.
-However, the classification algorithms used and the user interface proposed could benefit from future extensions to make the complete \gls{bci} system even better.
+However, the data acquisition, classification algorithms used and the user interface proposed could benefit from improvements to make the complete \gls{bci} system viable in the real world.
 
 This is by no means a criticism to \citet{complex_hand_few_classes} but demonstrates the interdisciplinary nature of \gls{bci} systems and how researchers that are specialized in one of these disciplines will outperform certain aspects of a \gls{bci} system will leaving room for improvement in other aspects.
-Likewise, many papers on the data processing and classification algorithms for \gls{eeg} data are from computer scientists.
-Those papers often don't even include the final component where effective actions are taken, or the proposed system is limited to simulations because the development of robotics falls outside the scope of their discipline.
 This interdisciplinary of the \gls{bci} field is part of what makes it so fascinating yet also sophisticated.
-Commercial institutions that can hire many of the required professions will likely accelerate the creation of true complete \gls{bci} systems with state-of-the-art in each component of the system.
+The above-proposed idea of splitting the development of a complete \gls{bci} system into multiple papers could limit the amount of time put into creating components that fall outside the scope of expertise and thus have less value in the article.
+
 
 % - - - - - - - - - -
 % repeatability issues
@@ -1707,19 +1755,6 @@ Commercial institutions that can hire many of the required professions will like
 % zoals discussed in section subsubsec:bci_gaining_popularity_improved_data_processing_open_source_data_code Unfortunately, only five papers fit the ideal profile that we defined for publications on control applications that use DL methods. From a reproducibility perspective, most publications can be reproduced from the provided descriptions. maar dus wel al beter maar nog niet ideal
 
 \lipsum[1-2]
-
-% - - - - - - - - - -
-% variation issues
-% - - - - - - - - - -
-
-\subsection{Complex data variability and user-training}
-\label{subsec:bci_opportunities_obstacles_training_and_variability}
-
-% An important issue researchers keep getting confronted with is the fact that there are still a lot of mysteries about the brain's inner workings, leaving many of the finer intercepted brain signals unexplained. \citet{brainmapping} states that the progress of mapping the brain and its billions of sensors and connections is accelerating yet still far from finished. This mapping would be a huge step in understanding the brain.
-
-% User-training will also play an important role in the practical deployment of an application (Kuhner et al 2019). Users will not want to use a system that requires a long training time before being usable on a regular basis. Due to the non-stationary nature of the signals, users might have to re-train themselves and re-calibrate their device on every usage. These challenges are highlighted by the Cybathlon competition where one of the events is a race where participants have to complete a BCI task in the shortest time (McFarland and Wolpaw 2018, Perdikis et al 2018, Hehenberger et al 2021). Therefore, user training should be considered when designing the final control system, which is extensively discussed by Roc et al (2021).
-
-\lipsum[1-3]
 
 
 % ---------------------------------------------- 
