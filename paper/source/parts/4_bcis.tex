@@ -1719,29 +1719,59 @@ Following guidelines from related fields such as PROBAST  \citep{probast} and TR
 % interdesciplinary issues
 % - - - - - - - - - -
 
-
-% START HERE; TODO
-% bci_applications heeft ook overview onder 7 challenges
-
 \subsection{Challenges from the highly interdisciplinary nature of BCI systems}
 \label{subsec:bci_opportunities_obstacles_interdisciplinary}
 
 The idea of splitting the development of a complete \gls{bci} system into at least four separate articles discussed in Section \ref{subsec:bci_opportunities_obstacles_lack_of_testing} can also help with the challenges that the highly interdisciplinary nature of BCI systems offers.
-Data acquisition relies heavily on neuroscience for the working of the brain to know what signals can be extracted and where they originate from.
-To extract those signals, engineers should develop hardware capable of measuring the brain signals.
-The data classification is mainly a computer scientist task, although knowledge from neuroscience can be very helpful in this step combined with an insight into the flaws of the hardware.
-The connection to an external device can relate to a wide variety of sciences once again.
-For example, the previously discussed robotic arm example shown in Figure \ref{fig:example_arm_control} requires computer vision knowledge for grasp detection, engineering knowledge to make the robot arm and general computer science knowledge to create a working link between classification labels and action controls.
-The user study can then require an ethics expert, people capable of studying psychological impact as well as all expertise needed for all previous parts.
+This is because each of those articles limits itself to a couple of domains rather than all domains present in \gls{bci} research.
+In practice, many articles aim to provide a system that is as complete as possible but this results in a system where many components, that fall outside the knowledge domain of the authors, are adopted from previous literature providing little to no scientific value.
 
-With most current research still trying to propose a \gls{bci} system that is as complete as possible, the proposed system is only outstanding in one aspect.
+% | | | | | | | | | | | | |
+
+\subsubsection{Disciplines needed for each of the four proposed articles}
+\label{subsubsec:bci_opportunities_obstacles_interdisciplinary_four_articles}
+
+
+When taking into account the four separate articles needed for proposing a complete \gls{bci} system proposed in Section \ref{subsec:bci_opportunities_obstacles_lack_of_testing}, the following experts may be required.
+For the data acquisition article, a neuroscientist can greatly improve the value of the article by understanding in detail what brain signals can be measured and what interpretation they may have.
+They can also help in determining the optimal placement of the electrodes based on the anatomy of the brain and the expected source of the signal of interest.
+To create the hardware for the headset that captures the wanted brain signals, e.g. an \gls{eeg} headset, engineers capable of reliably measuring and transmitting these incredibly low voltage and noisy signals are needed.
+A graphical designer can help with making the headset aesthetically acceptable.
+
+The article related to data classification can be done mainly by a computer scientist specialised in \glsfirst{ml}.
+However, when making visualisations and features, knowledge from neuroscience may still be needed.
+Because of this, a neuroscientist may still be very helpful for this article.
+Likewise, whilst a computer scientist may be able to reduce noise in a software manner, having an understanding of how the headset works and what types of noise and artefacts can be expected is also incredibly helpful.
+Whilst a well-documented data acquisition article may cover all these points, some aid from engineers in understanding the headset hardware can still be helpful.
+
+For the third article, where the connection to an external device is discussed, a wide variety of experts may be required.
+For example, the previously discussed robotic arm with example menu's shown in Figure \ref{fig:example_arm_control} requires computer vision knowledge for grasp detection, engineering knowledge to make the robot arm and general computer science knowledge to create a working link between classification labels and action controls.
+A graphical designer may once again help with making the external device aesthetically acceptable.
+General \glsfirst{ux} knowledge can help in creating a great mapping between the detected brain signals and the control over the external device.
+
+
+The fourth article may require all previous experts to finetune and configure the system.
+Since these trials involve human participants and often people suffering from a handicap, an ethics expert should also be consulted.
+Adding to this, by surveying the users in a manner that truly captures the \gls{ux} and net benefits, both a psychologist and an expert of comparable systems may be needed.
+These discussed experts may vary greatly based on the type of \gls{bci} system that is proposed.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{The issue with wanting to propose a complete system directly}
+\label{subsubsec:bci_opportunities_obstacles_interdisciplinary_complete_system}
+
+The idea of proposing a \gls{bci} system as a result of four articles is proposed in this master's thesis and is currently not present in the field.
+Whilst some researchers do focus on some components of a \gls{bci} system only, in the same spirit the division in multiple articles would do, most researchers aim to also propose a complete working \gls{bci} system in terms of a \glsfirst{poc}.
 Take for example the \gls{bci} system proposed by \citet{complex_hand_few_classes}.
 It has a significantly sophisticated robotic hand that functions almost completely as a human hand does.
-The effective hardware used for the complete \gls{bci} system, including the processing unit, are also well detailed and shows thorough knowledge as it proposes a very affordable custom system.
-However, the data acquisition, classification algorithms used and the user interface proposed could benefit from improvements to make the complete \gls{bci} system viable in the real world.
-
-This is by no means a criticism to \citet{complex_hand_few_classes} but demonstrates the interdisciplinary nature of \gls{bci} systems and how researchers that are specialized in one of these disciplines will outperform certain aspects of a \gls{bci} system will leaving room for improvement in other aspects.
-This interdisciplinary of the \gls{bci} field is part of what makes it so fascinating yet also sophisticated.
+The effective hardware used for the complete \gls{bci} system, including the processing unit, are also well detailed.
+This shows that the authors have a significant understanding of the hardware a \gls{bci} system requires.
+However, the methodology used for data acquisition, the used classification algorithms and the user interface to the external system as proposed by \citet{complex_hand_few_classes} could benefit from improvements.
+Since this is mostly a straight copy of existing methods and models not optimized to their proposed \gls{bci} system, one could argue they have little scientific value.
+The simple \gls{poc} experiments are also of low value as discussed in Section \ref{subsec:bci_opportunities_obstacles_lack_of_testing}.
+This means that these added components to create a \gls{poc}, which take significant time, have a limited scientific value.
+This is by no means a criticism to \citet{complex_hand_few_classes} but demonstrates the interdisciplinary nature of \gls{bci} systems and how researchers that are specialized in one of these disciplines will outperform certain aspects of a \gls{bci} system while leaving room for improvement in other aspects.
+This interdisciplinary nature of the \gls{bci} field is part of what makes it so fascinating yet also very sophisticated with a steep learning curve.
 The above-proposed idea of splitting the development of a complete \gls{bci} system into multiple papers could limit the amount of time put into creating components that fall outside the scope of expertise and thus have less value in the article.
 
 
@@ -1751,6 +1781,9 @@ The above-proposed idea of splitting the development of a complete \gls{bci} sys
 
 \subsection{Difficulties with repeatability and reproducibility of experiments}
 \label{subsec:bci_opportunities_obstacles_repeatability_reproducibility}
+
+% START HERE; TODO
+% bci_applications heeft ook overview onder 7 challenges
 
 % zoals discussed in section subsubsec:bci_gaining_popularity_improved_data_processing_open_source_data_code Unfortunately, only five papers fit the ideal profile that we defined for publications on control applications that use DL methods. From a reproducibility perspective, most publications can be reproduced from the provided descriptions. maar dus wel al beter maar nog niet ideal
 
