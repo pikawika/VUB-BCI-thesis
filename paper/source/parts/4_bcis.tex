@@ -1,5 +1,4 @@
 % TODO:
-%   - Refs to sections check if truly explained there
 %   - Cleanup of text
 % ----------  
 % Questions:
@@ -8,13 +7,13 @@
 % TODO: mentionen dat geen systematic review a la standaarden zoals arnau maar wel goed en ook zeggen Zotero
 
 % NOTE: Uncomment this if the use of parts is desired
-\part{Understanding Brain-computer interfaces}
+\part{Understanding brain-computer interfaces}
 
 
 % NOTE: In a new chapter, reset the GLS to once again use the full version in the first occurrence
 \glsresetall
 
-\chapter{Brain-Computer interfaces}
+\chapter{Brain-computer interfaces}
 \label{ch:bci}
 
 % ---------------------------------------------- 
@@ -1849,8 +1848,6 @@ Some articles have also been made focusing solely on ethical questions surroundi
 % confrontation
 % - - - - - - - - - -
 
-% TODO: start here
-
 \subsection{Painfully confronting users with their brain}
 \label{subsec:bci_ethical_confronting}
 
@@ -1885,14 +1882,23 @@ This poor \gls{ux} for certain users is something that can only be found with th
 \subsection{E-waste inside your skull}
 \label{subsec:bci_ethical_e_waste}
 
-% TODO: nerdland reference
+Section \ref{subsec:bci_common_use_cases_prosthesis_exoskeleton} already adressed Second Sight, one of few companies providing visual prostheses with approval from the \gls{fda}.
+This company discontinued support for some of its earlier visual prostheses.
+This resulted in all of the users from those early products losing any form of support.
+As discussed by \citet{second_sight_broken_ethics}, this has major consequences.
+First, the technology that has enabled them to restore their vision to a certain extent can fail at any time.
+If this happens, this results in an indefinite loss of vision again due to the lack of support.
+Second, the company refuses to make the required data for the maintenance of the system public.
+This means that no third party can ever work on it.
+Third, due to no third party being capable of removing the system, the users are essentially stuck with what is or will become e-waste inside their skull.
+This has already caused major issues for one user, Ross Doerr.
+As discussed by \citet{second_sight_broken_ethics}, Ross can't get the help he needs with a brain tumour due to doctors not having the required information about the brain implant to ensure a safe operation.
+Even a simple \gls{mri} scan can't be planned safely due to this lack of information surrounding the brain implant.
 
-% al vermeld in bci_common_use_cases_prosthesis_exoskeleton over second sight
-
-% second_sight_broken_ethics: https://spectrum.ieee.org/bionic-eye-obsolete
-% bci_blind_assist_review: https://www.frontiersin.org/articles/10.3389/fnhum.2021.638887/full
-% bci_vision_assist_review: https://link.springer.com/content/pdf/10.1007/s13311-018-0660-1.pdf
-\lipsum[1]
+With commercial companies showing interest in invasive \glspl{bci}, such as the earlier discussed Elon Musk company Neuralink, it is not unreasonable to think a similar situation might occur from the manufacturer of such systems.
+What happens to an invasive \gls{bci} system once the manufacturer doesn't support it anymore or the patient isn't interested in using it anymore?
+It becomes clear that some form of regulations should be in place to ensure that users of such invasive systems are always able to get the information needed from the manufacturer to ensure they are not restricted in getting needed care.
+It also begs the question if invasive \glspl{bci} is really the road to go and how dependent we want to be on these technologies, taking into account they might fail for an unspecified period at some point.
 
 % - - - - - - - - - -
 % personal identity
@@ -1901,12 +1907,42 @@ This poor \gls{ux} for certain users is something that can only be found with th
 \subsection{Changing peoples personal identities}
 \label{subsec:bci_ethical_identity}
 
-% TODO: Discuss how the "blind" and "deaf" culture is a thing and how people that regain these capabilities feel as if they have lost their own culture
-\lipsum[1]
+Section \ref{subsec:bci_ethical_confronting} already adressed the trial conducted by \citet{first_bci_trial}.
+In this trial, six patients suffering from epilepsy using an invasive \gls{bci} for epileptic seizure reduction were monitored over a long period.
+Besides the finding of extreme psychological burden for one patient, the following words from \textit{patient six} are also eye-opening:
+
+\setlength{\epigraphwidth}{0.9\textwidth}
+\epigraph{[The BCI] was me, it became me. [...] I found myself changing. [...] I felt like I could do anything. [...] With this device, I found myself. }{\textit{Patient six from the study by \citet{first_bci_trial}}}
+
+Whilst this is a positive experience according to the user, \citet{first_bci_trial} described this as a radical symbiosis between the patient and the system.
+The idea of users feeling themselves becoming one with technology, creating a symbiosis, has multiple ethical concerns \citep{ethics_of_bci}.
+These concerns fall outside the scope of this small ethical discussion on \glspl{bci}.
+However, this change of personality is something that can influence the patient's life in a manner that perhaps wasn't initially expected.
+For example, when someone goes through major weight loss, they have more chance to see a marital status change.
+Both in terms of getting married or having a divorce \citep{weight_loss_divorce}.
+Similar trends might occur due to behaviour changes as a consequence of having a \gls{bci}.
+
+Likewise, some people that suffer from a medical condition might embrace their condition and share some sort of culture with people that have the same condition.
+People suffering from major hearing loss may enjoy parties oriented toward them where bass-heavy music is played at loud volumes such that they can feel the vibrations of the music throughout their body.
+For them, this is how they can enjoy music without hearing music.
+If such a person were to regain hearing through a \gls{bci}, it is unlikely they will enjoy hearing the load and constant bass.
+Similarly, people suffering from major vision impairment might enjoy tactile art.
+When vision is restored, their impressions of these kinds of artworks are bound to change.
+
+In both of these situations, the interest in the events they once liked might faint and the connection to the community surrounding them might vanish.
+They lose touch with the \textit{community they were once part of} (i.e. the blind and deaf community).
+These are things that might go unthought of when looking at the added benefits of a \gls{bci} system might offer.
+However, they can cause major identity issues where users are left in a quest of finding who they are after a major change in their daily life.
+This quest is one that not many look forward to doing and maybe a reason some people opt to not use a \gls{bci} system.
+
+
+
 
 % - - - - - - - - - -
 % sloppy science
 % - - - - - - - - - -
+
+% TODO: start here
 
 \subsection{The risk of sloppy science due to time-pressured researchers}
 \label{subsec:bci_ethical_sloppy_science}
@@ -1956,16 +1992,16 @@ This poor \gls{ux} for certain users is something that can only be found with th
 \label{sec:bci_concolusion_and_proposing_ours}
 
 % TODO: summary of this chapter
-% Also discuss the order of things on paper
-
 % TODO: discuss what system will be made in this paper
+% TODO: discusses the order of things on paper
+
 % MI instead of P300 due to user comfort and fatigue over time which decreases performance; e.g. https://www.scitepress.org/Papers/2020/88709/88709.pdf
 % Robot example https://github.com/NTX-McGill/NeuroTechX-McGill-2019
 % die wheelchair example uit thesis arnau?
 
 \textbf{NOTE: this will be edited once the thesis is "finished"}
 
-As discussed, this master' thesis focuses on providing a great foundation for the knowledge required for working in the \gls{bci} field as a computer scientist.
+As discussed, this masters' thesis focuses on providing a great foundation for the knowledge required for working in the \gls{bci} field as a computer scientist.
 The exhaustive literature review from this chapter should provide a great general introduction to the field and current state-of-the-art as well as challenges and promises of the field.
 As touched upon in Section \ref{subsec:bci_opportunities_obstacles_motivating_examples} and further discussed in Chapter \ref{ch:processing_signals} many different pipelines and approaches exists for the data processing component of a \gls{bci} system.
 Whilst some of the libraries available which make use of \glsfirst{dl} allow for raw \gls{eeg} input, the author of this paper believes it to be of importance to know the nature of this \gls{eeg} data to some extend.
