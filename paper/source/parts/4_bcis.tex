@@ -3,7 +3,7 @@
 %   - Cleanup of text
 % ----------  
 % Questions:
-%   -
+%   - Should I do a summary for the 1.4 and 1.5?
 
 % TODO: mentionen dat geen systematic review a la standaarden zoals arnau maar wel goed en ook zeggen Zotero
 
@@ -131,7 +131,7 @@ In fact, during the F8 conference \citep{fb_building8} a couple of years before 
 
 
 \setlength{\epigraphwidth}{0.9\textwidth}
-\epigraph{Specifically, we have a goal of creating a silent speech system capable of typing 100 words per minute straight from your brain – that’s five times faster than you can type on a smartphone today.}{\textit{\citet{fb_building8}}}
+\epigraph{Specifically, we have a goal of creating a silent speech system capable of typing 100 words per minute straight from your brain - that's five times faster than you can type on a smartphone today.}{\textit{\citet{fb_building8}}}
 
 
 Such a virtual keyboard could replace certain speech-to-text applications already broadly used for commercial purposes.
@@ -1783,21 +1783,39 @@ The above-proposed idea of splitting the development of a complete \gls{bci} sys
 \subsection{Brain signals are a complex data source}
 \label{subsec:bci_opportunities_obstacles_complex}
 
-% TODO: start hier, niet te groot
 
-% brainmapping
-There are still a lot of unknowns on the complete structure and working of the brain, with no exact mapping of the brain in existence \citep{brainmapping}.
-As such, there are still a lot of unknowns with interpreting brain signals.
-This makes the development of great feature extraction methods or \gls{dl} models for brain signals challanging.
-It is known that the brain works in a a dynamic, nonstationary and non-linear way \citep{bci_applications}.
-Non linearity is a common challenge in many research fields and many \gls{ml} and \gls{dl} models exist that can work with such data.
-However, the dynamic and nonstationary nature of brain signals are less common and form an extra challenge.
-This nonstationary arise mostly from what could be seen as internal noise.
-Internal noise can be seen as brain signals that are present next to the brain signal of interest.
-Even though the envisioned \gls{mi} task may be identical, the presence of brain activity for breathing, moving, listening to sounds and much more will continuously vary.
-The brain's capability of learning 
-Neuroplasticity, which was already discussed in Section \ref{subsec:bci_common_use_cases_medical_phenomena}, can also be seen as a source of internal noise.
-External noise includes common artifacts such as electrical interference and will be discussed in more detail in Section \ref{subsec:biomedical_signals_measuring_artefacts}.
+The human brain is an incredibly complex system of billions of neurons and trillions of synapses.
+Whilst great efforts are being made in mapping all of these neurons and synapses, faster than predicted, a complete mapping remains unavailable.
+The lack of such a complete mapping directly implies that research is unable to simulate the brain in silico.
+It also implies that there are still many unknowns in the complete structure of the brain and its internal working.
+\Citet{brainmapping} talks about the efforts in mapping the brain and the many unknowns still present in the working of the brain in more detail.
+This limited understanding of the brain makes it a highly complex source of data, even when working with well-understood brain signals.
+
+The most difficulties in using brain signals as a data source arise from the fact that the brain is a dynamic, nonstationary and non-linear system \citep{bci_applications}.
+Non-linearity is a common challenge in many research fields and many \gls{ml} and \gls{dl} models can work with non-linearly correlated data.
+However, the dynamic and nonstationary nature of brain signals is less common in applications of \gls{ml} and \gls{dl}.
+Intuitively, this dynamic and nonstationary property results in measurements that can differ greatly for the same patient during the same trial doing the same task.
+For example, an envisioned \gls{mi} task of the right-hand movement can be repeated by the user multiple times.
+However, the user's mental and emotional state, their focus and fatigue levels and many other aspects that will influence the brain signals will change continuously.
+Both due to the limited spatial resolution of measuring modalities and our limited knowledge of the brain, it is impossible to measure the wanted brain signal without measuring any other brain activity.
+Thus, this change in the brain activity that is not of interest makes the measurements nonstationary and dynamic, making the learning task significantly harder and more complex.
+
+Adding to this, neuroplasticity, which was already discussed in Section \ref{subsec:bci_common_use_cases_medical_phenomena}, can change the structure and working of the brain.
+This makes the brain even more dynamic.
+Adding to what could be seen as internal noise factors of the brain, external noise can also be present in a nonstationary and dynamic manner.
+This external noise includes common artifacts such as electrical interference and the detection of \gls{emg}, which will be discussed in more detail in Section \ref{subsec:biomedical_signals_measuring_artefacts}.
+
+All of these factors already makes brain signals an incredibly complex data source for \gls{ml} and \gls{dl}, as is used in \gls{bci} systems.
+The limited knowledge of the brain's inner working and the dynamic, nonstationary and noisy nature of brain signal measurements also challenges the explainability and interpretability of these signals.
+This issue of explainability and interpretability is further discussed in Section \ref{subsec:processing_signals_common_issues_exaplainable}.
+Besides these factors, brain measurements are far harder to collect resulting in an often very limited amount of training data \citep{bci_applications}.
+This makes many of the techniques used in fields where gigantic datasets are available, unapplicable for \gls{bci} research.
+Take for example the \gls{eeg} \gls{mi} dataset by \citet{eeg_data}, which is one of the largest publicly available datasets of this type.
+This dataset by \citet{eeg_data} has around 60 000 combined usable samples over many different \gls{mi} tasks and paradigms.
+Taking into account that only a subset of these samples can be used for training, this collection is multiple orders of magnitude smaller than datasets from other \gls{ml} and \gls{dl} applications.
+Take for example the commonly used ImageNet dataset by \citet{imagenet} which contains over 3 000 000 images for training an image recognition classifier.
+The high dimensional and time-dependent nature of brain measurements also makes it harder to re-use common \gls{ml} and \gls{dl} approaches from other fields.
+
 
 
  
@@ -1811,22 +1829,90 @@ External noise includes common artifacts such as electrical interference and wil
 
 \section{Ethical challenges for BCIs}
 \label{sec:bci_ethical}
-% Duidelijk vermelden dat je geen expert bent
-% TODO: do after first 3 chapters finished and some code made
-% Interesting points: https://www.frontiersin.org/articles/10.3389/fcomp.2021.661300/full
 
-\lipsum[1-2]
+% plural full needed
+\glsreset{bci}
+
+The field of \glspl{bci} has many promosing aspects, with Sections \ref{sec:bci_gaining_popularity}, \ref{sec:bci_common_use_cases} and \ref{sec:bci_opportunities_obstacles} discussing the rise in popularity, the growing amount of use cases for \gls{bci} systems and some of the opportunities in the field.
+These evolutions in the field have made \glspl{bci} present in more then just research labs \citep{ethical_dillemas,bci_applications}.
+Widespread adoption of \gls{bci} systems is still unlikely in its current state, with some obstacles that need to be overcome first.
+This relates to creating a system that fits Wolpaw's definition of a perfect \gls{bci} and overcoming at least the challenges discussed in Section \ref{sec:bci_opportunities_obstacles}.
+However, with the recent news coverage of the Elon Musk company Neuralink \citep{neuralink_whitepaper}, discussed in Section \ref{subsec:bci_gaining_popularity_big_tech}, it has become clear that ethical challenges might be tougher to overcome than technical ones.
+Even if Wolpaw's vision of a perfect \gls{bci} can be met and a net benefit to the user has been proven, some users' moral intuition may refrain them from using such a system.
+
+Whilst the author of this Master's thesis is by no means an ethics expert, he believes that it is important for any researcher interested in the \gls{bci} field to be aware of some of the many ethical challenges \glspl{bci} have.
+This section aims to illustrate what kinds of ethical challenges are related to \gls{bci} research and how there is no clear solution for them.
+The interested reader is invited to consult the interesting articles on the ethics of \glspl{bci} by \citet{ethics_of_bci} and \citet{ethical_dillemas} for a more in depth ethical study.
+Some articles have also been made focusing solely on ethical questions surrounding the Neuralink proposed \gls{bci} \citep{neuralink_ethics,neuralink_ethics2}.
 
 % - - - - - - - - - -
-% luddites
+% confrontation
 % - - - - - - - - - -
 
-\subsection{The return of the Luddites}
-\label{subsec:bci_ethical_luddites}
+% TODO: start here
 
-% note: ludites are not against tech, they are against it taking their profession that is hard to learn, look this up and perhaps link with "egoism" of doctors
-% making the rich even richer
-% https://www.history.com/news/who-were-the-luddites
+\subsection{Painfully confronting users with their brain}
+\label{subsec:bci_ethical_confronting}
+
+When a \gls{bci} system is used by patients suffering from a brain disorder, it is easy for the user to be confronted with their disorder by that system.
+Take for example an invasive medical \gls{bci} used to predict when an epileptic seizure would occur such that it can alert the user to take the right medication to prevent the seizure from occurring.
+Each time the system alerts the user, the user is confronted with the fact that they have epilepsy and a potential epileptic seizure coming.
+\Citet{first_bci_trial} performed a clinical trial on six users suffering from epilepsy that use such a \gls{bci} system.
+Whilst positive results in seizure reduction were found for all patients using the system, the \glsfirst{ux} differs greatly between all six participants.
+
+From all six patients, four expressed how they felt more in control of their daily life thanks to the system.
+They reported a pleasant overall experience with the system.
+Another patient, \textit{patient four}, expressed that he saw epilepsy as part of his life and himself.
+As a result, he wasn't interested in being dependent on the \gls{bci} system to warn him and ignored it most of the time.
+More worryingly, \textit{patient three} said the following: 
+
+\setlength{\epigraphwidth}{0.9\textwidth}
+\epigraph{[The BCI] made me feel I had no control. So I didn't have control over what I was going to do. [...]  It made me feel that I was always different [from] everyone not just in the moment of the seizure [...] I got really depressed}{\textit{Patient three from the study by \citet{first_bci_trial}}}
+
+Being aware that the system was constantly monitoring her brain activity and an alert could be sent at any time, the patient felt \textit{different to everyone else} all of the time, whilst without the system, this feeling was only present when a seizure occurred.
+The \gls{bci} system constantly reminded her that she has a brain condition which had a significant psychological burden.
+Whilst this is only the experience of one patient from a small trial, it was an important finding that has given many ethicists reason to question the use of \gls{bci} systems for all patients \citep{ethics_of_bci}.
+It is not unreasonable to think that similar feelings might occur when using \glspl{bci} for neurological rehabilitation through neuroplasticity, a use case discussed in Section \ref{subsubsec:bci_common_use_cases_medical_phenomena_restoration}.
+Neuroplasticity may take a long time or even be impossible for some users.
+Having constant feedback that shows no or poor progress can be very confronting for the user.
+Even in commercial settings, when a person tries to calibrate a headset relying on \gls{mi} tasks and the calibration fails due to the user being poor in envisioning the \gls{mi} task, a feeling of \textit{lacking this capability compared to others} might cause a dramatic \gls{ux}.
+This poor \gls{ux} for certain users is something that can only be found with thorough trials and further shows how important it is to do real-world experiments.
+
+% - - - - - - - - - -
+% e-waste
+% - - - - - - - - - -
+
+\subsection{E-waste inside your skull}
+\label{subsec:bci_ethical_e_waste}
+
+% TODO: nerdland reference
+
+% al vermeld in bci_common_use_cases_prosthesis_exoskeleton over second sight
+
+% second_sight_broken_ethics: https://spectrum.ieee.org/bionic-eye-obsolete
+% bci_blind_assist_review: https://www.frontiersin.org/articles/10.3389/fnhum.2021.638887/full
+% bci_vision_assist_review: https://link.springer.com/content/pdf/10.1007/s13311-018-0660-1.pdf
+\lipsum[1]
+
+% - - - - - - - - - -
+% personal identity
+% - - - - - - - - - -
+
+\subsection{Changing peoples personal identities}
+\label{subsec:bci_ethical_identity}
+
+% TODO: Discuss how the "blind" and "deaf" culture is a thing and how people that regain these capabilities feel as if they have lost their own culture
+\lipsum[1]
+
+% - - - - - - - - - -
+% sloppy science
+% - - - - - - - - - -
+
+\subsection{The risk of sloppy science due to time-pressured researchers}
+\label{subsec:bci_ethical_sloppy_science}
+
+% TODO: link neuralink problemen en link dat goede testen veel tijd vragen vs classificatie
+
 \lipsum[1]
 
 % - - - - - - - - - -
@@ -1849,51 +1935,17 @@ External noise includes common artifacts such as electrical interference and wil
 % TODO: https://link.springer.com/article/10.1007/s10586-021-03326-z
 \lipsum[1]
 
-% - - - - - - - - - -
-% personal identity
-% - - - - - - - - - -
-
-\subsection{Changing peoples personal identities}
-\label{subsec:bci_ethical_identity}
-
-% TODO: Discuss how the "blind" and "deaf" culture is a thing and how people that regain these capabilities feel as if they have lost their own culture
-\lipsum[1]
 
 % - - - - - - - - - -
-% confrontation
+% luddites
 % - - - - - - - - - -
 
-\subsection{Painfully confronting users with their brain}
-\label{subsec:bci_ethical_confronting}
+\subsection{The return of the Luddites}
+\label{subsec:bci_ethical_luddites}
 
-% TODO: Link to nature article findings and how user experience is really important
-\lipsum[1]
-
-% - - - - - - - - - -
-% e-waste
-% - - - - - - - - - -
-
-\subsection{E-waste inside your skull}
-\label{subsec:bci_ethical_e_waste}
-
-% TODO: nerdland reference
-
-% al vermeld in bci_common_use_cases_prosthesis_exoskeleton over second sight
-
-% second_sight_broken_ethics: https://spectrum.ieee.org/bionic-eye-obsolete
-% bci_blind_assist_review: https://www.frontiersin.org/articles/10.3389/fnhum.2021.638887/full
-% bci_vision_assist_review: https://link.springer.com/content/pdf/10.1007/s13311-018-0660-1.pdf
-\lipsum[1]
-
-% - - - - - - - - - -
-% sloppy science
-% - - - - - - - - - -
-
-\subsection{The risk of sloppy science due to time-pressured researchers}
-\label{subsec:bci_ethical_sloppy_science}
-
-% TODO: link neuralink problemen en link dat goede testen veel tijd vragen vs classificatie
-
+% note: ludites are not against tech, they are against it taking their profession that is hard to learn, look this up and perhaps link with "egoism" of doctors
+% making the rich even richer
+% https://www.history.com/news/who-were-the-luddites
 \lipsum[1]
 
 % ---------------------------------------------- 
