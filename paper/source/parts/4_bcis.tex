@@ -1714,6 +1714,7 @@ For now, creating at least four different papers to propose a complete \gls{bci}
 However, transparency lacks in many papers, albeit due to page constraints or a lack of standardized reporting.
 Providing the source code with additional notes through an external source such as GitHub may help combat the page constraint issue.
 Following guidelines from related fields such as PROBAST  \citep{probast} and TRIPOD  \citep{tripod} originally proposed for \gls{cad} and \gls{cade} research can help in determining a new reporting standard for \gls{bci} research.
+Such a reporting standard will also aid in the repeatability and reproducibility of articles, especially for those where sharing the source code and data is not possible.
 
 % - - - - - - - - - -
 % interdesciplinary issues
@@ -1779,15 +1780,29 @@ The above-proposed idea of splitting the development of a complete \gls{bci} sys
 % repeatability issues
 % - - - - - - - - - -
 
-\subsection{Difficulties with repeatability and reproducibility of experiments}
-\label{subsec:bci_opportunities_obstacles_repeatability_reproducibility}
+\subsection{Brain signals are a complex data source}
+\label{subsec:bci_opportunities_obstacles_complex}
 
-% START HERE; TODO
-% bci_applications heeft ook overview onder 7 challenges
+% TODO: start hier, niet te groot
 
-% zoals discussed in section subsubsec:bci_gaining_popularity_improved_data_processing_open_source_data_code Unfortunately, only five papers fit the ideal profile that we defined for publications on control applications that use DL methods. From a reproducibility perspective, most publications can be reproduced from the provided descriptions. maar dus wel al beter maar nog niet ideal
+% brainmapping
+There are still a lot of unknowns on the complete structure and working of the brain, with no exact mapping of the brain in existence \citep{brainmapping}.
+As such, there are still a lot of unknowns with interpreting brain signals.
+This makes the development of great feature extraction methods or \gls{dl} models for brain signals challanging.
+It is known that the brain works in a a dynamic, nonstationary and non-linear way \citep{bci_applications}.
+Non linearity is a common challenge in many research fields and many \gls{ml} and \gls{dl} models exist that can work with such data.
+However, the dynamic and nonstationary nature of brain signals are less common and form an extra challenge.
+This nonstationary arise mostly from what could be seen as internal noise.
+Internal noise can be seen as brain signals that are present next to the brain signal of interest.
+Even though the envisioned \gls{mi} task may be identical, the presence of brain activity for breathing, moving, listening to sounds and much more will continuously vary.
+The brain's capability of learning 
+Neuroplasticity, which was already discussed in Section \ref{subsec:bci_common_use_cases_medical_phenomena}, can also be seen as a source of internal noise.
+External noise includes common artifacts such as electrical interference and will be discussed in more detail in Section \ref{subsec:biomedical_signals_measuring_artefacts}.
 
-\lipsum[1-2]
+
+ 
+
+
 
 
 % ---------------------------------------------- 
