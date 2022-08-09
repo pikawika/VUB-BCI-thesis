@@ -258,7 +258,7 @@ This makes the final system less compact and more expensive but is often require
 When talking about wireless electrodes, it is not the effective electrode itself that is wireless but rather the communication between the main controller board, a board to which all electrodes are connected by wire, and the processing unit such as a computer.
 Such a wireless setup is shown in Figure \ref{fig:example_eeg_measuring_devices_commercial_clean}.
 Whilst a wireless approach allows for the creation of an aesthetically more pleasing system where the measuring hardware and processing hardware are physically separated, a wired connection will always remain more efficient and reliable. 
-However, as discussed by \citet{bluetooth_evaluation}, Bluetooth, an open standard for wireless communication, has seen extensions that are more reliable, power efficient and capable of higher transmission speeds.
+However, as discussed by \citet{bluetooth_evaluation}, \gls{bt}, an open standard for wireless communication, has seen extensions that are more reliable, power efficient and capable of higher transmission speeds.
 This has made wireless solutions more appealing in \gls{bci} systems but overall issues with wireless solutions, in general, will prevail.
 Most important is the risk of connection loss and a higher latency resulting in a longer time between the point a signal is measured and it is received by the computational unit.
 
@@ -408,8 +408,8 @@ The availability of open-source datasets for common tasks related to brain signa
 \label{subsubsec:bci_gaining_popularity_better_processing_split_into_components}
 
 Early attempts at making \glspl{bci} more portable and affordable include those by \citet{early_bci_drowsiness} and \citet{early_bci_multimedia}.
-In essence, these applications rely on separating the data acquisition process and data processing into two standalone systems connected over Bluetooth.
-Remember from Section \ref{subsec:bci_gaining_popularity_better_measuring} that Bluetooth is an open standard for wireless communication that has seen improvement in the last couple of years.
+In essence, these applications rely on separating the data acquisition process and data processing into two standalone systems connected over \glsfirst{bt}.
+Remember from Section \ref{subsec:bci_gaining_popularity_better_measuring} that \gls{bt} is an open standard for wireless communication that has seen improvement in the last couple of years.
 Dividing a \gls{bci} system in a data acquisition and data processing system allows for creating a lightweight measuring device to be placed on the user's head, with a heavier and bulkier computational unit to process the signals which ideally is still pocket-able.
 The latter was not a trivial task and introduced the need for custom hardware at the time.
 \citet{early_bci_drowsiness} used a custom-made \gls{dsp} for the task whilst \citet{early_bci_multimedia} opted for a more general \gls{fpga} based \gls{dsp}.
@@ -432,7 +432,7 @@ In essence, such a system relies on a category of brain signals that are often e
 This type of system can be used for a wide variety of applications.
 Imagine an audio-guided tour in a museum where visitors only need to stare at a screen next to an item of interest to start hearing the explanation of that item.
 This could be achieved with only a couple of dry electrodes placed on the skull in a headset that also provides the audio to the visitor.
-This headset could then be connected over Bluetooth to the visitor's phone running an app for the museum tour.
+This headset could then be connected over \glsfirst{bt} to the visitor's phone running an app for the museum tour.
 The technology needed for such a system would lean close to that of so-called \textit{P300 spellers}, which have already been heavily studied \citep{p300_spellers_review, p300_keyboard_flashing, p300_spellers}.
 Such a system would also fit perfectly with Wolpaw's definition of a perfect \gls{bci}, albeit oriented to a commercial setting rather than a medical one.
 
@@ -455,7 +455,7 @@ These M series processors have a neural engine that is stated to accelerate the 
 Because of this, the author of this paper believes custom-made chips could create a future where the headset has a directly integrated processing unit once again.
 Whilst this would make for a more attractive package for the customer and give commercial advantages to the manufacturer, it would be disadvantageous for research purposes.
 The manufacturer could limit the possibilities of using the \gls{bci} for different purposes, patent promising hardware and more.
-Another possible route the author of this paper sees is the use of cloud computing and fast 5G connections to also create a more simple user experience that doesn't require Bluetooth tethering to a close-by processing unit.
+Another possible route the author of this paper sees is the use of cloud computing and fast 5G connections to also create a more simple user experience that doesn't require \glsfirst{bt} tethering to a close-by processing unit.
 This approach would still leave a separation between measuring hardware and processing hardware making changes to any of the two independently easier.
 Concerning Wolpaw's criteria of a perfect \gls{bci}, these approaches would also be acceptable.
 This belief of switching back to all-in-one devices or using a cloud service for processing the data is further endorsed by the findings of \citet{bci_review_arnau}.
@@ -1979,26 +1979,19 @@ New legislations are likely required to limit the amount of processing that can 
 % hacking
 % - - - - - - - - - -
 
-% TODO: start here
-
 \subsection{Hacking BCI systems}
 \label{subsec:bci_ethical_hacking}
 
-% TODO: https://link.springer.com/article/10.1007/s10586-021-03326-z
-\lipsum[1]
+It is impossible to fully protect any system against hacking, hijacking or any other malignant use.
+Locks can be picked, databases can be breached, \glsfirst{bt} connections can be spoofed and even the most secure encryption algorithms are prone to hacking \citep{quantum_hacking}.
+\Citet{p300_hacking} have shown that an \gls{eeg} based \gls{bci} working with P300 signals can be hacked by generating fake P300 waves from an external device.
+These generated waves are recorded similar to other electrical interference, such as the typical 50Hz or 60Hz \gls{ac} inference, but the processing algorithms see them as effective P300 signals and thus the system is now controlled by those artificially generated waves rather than the user's brain signals.
 
-
-% - - - - - - - - - -
-% luddites
-% - - - - - - - - - -
-
-\subsection{The return of the Luddites}
-\label{subsec:bci_ethical_luddites}
-
-% note: ludites are not against tech, they are against it taking their profession that is hard to learn, look this up and perhaps link with "egoism" of doctors
-% making the rich even richer
-% https://www.history.com/news/who-were-the-luddites
-\lipsum[1]
+More traditional hacks such as \gls{bt} spoofing can also be performed when \gls{bt} is used in a wireless \gls{bci}.
+Even if the data transmitted over \gls{bt} is encrypted, flaws in the encryption methodology may be found that enable hackers to decrypt the encrypted data.
+Whilst none of this is exclusive to \gls{bci} systems, it is something that raises ethical questions.
+If \glspl{bci} are ever used for controlling many devices, some having certain risks, the hacking of these \gls{bci} devices can impose fatal consequences.
+Will all companies put in the required resources and effort to protect their \gls{bci} systems from malignant attacks?
 
 % ---------------------------------------------- 
 % CONCLUSION AND PROPOSED SYSTEM
