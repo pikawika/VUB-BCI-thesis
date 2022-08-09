@@ -4,8 +4,6 @@
 % Questions:
 %   - Should I do a summary for the 1.4 and 1.5?
 
-% TODO: mentionen dat geen systematic review a la standaarden zoals arnau maar wel goed en ook zeggen Zotero
-
 % NOTE: Uncomment this if the use of parts is desired
 \part{Understanding brain-computer interfaces}
 
@@ -51,7 +49,7 @@ The remainder of this chapter further introduces the main rationale behind \glsp
 Chapter \ref{ch:biomedical_signals} gives more depth on the origins and measurability of brain signals while Chapter \ref{ch:processing_signals} addresses the techniques and technologies needed to process brain-signals and take actions based on their interpretation. 
 As research on \glspl{bci} is highly multidisciplinary, entering the field as a computer scientist can be rather intimidating due to the steep learning curve of the ideas, technologies, challenges and terminology used in such research.
 To lower this initial learning curve, these first three chapters aim to introduce the most important concepts in an easy-to-understand manner for a typical computer scientist student with some \gls{ai} background.
-These first chapters follow no specific systematic review procedure.
+These first chapters follow no standardized procedure for systematic review.
 However, special attention was payed to favor papers from reputable sources, such as famous authors in the field (i.e. Jonathan R. Wolpaw).
 A focus was also put on articles which have been influential based on both the amount of times the work itself is cited in other articles and the performance of these other articles citing the original article.
 The latter was determined by using the connected papers tool\footnote{\url{https://www.connectedpapers.com/}}.
@@ -1103,8 +1101,6 @@ This study has shown that P300 spellers can be used by \gls{dmd} patients with s
 
 % | | | | | | | | | | | | |
 
-% TODO; hieronder verder lezen, reeds spell checked etc
-
 \subsubsection{Using the P300 signal for other BCI applications}
 \label{subsubsec:bci_common_use_cases_bcis_replace_eye_tracking_p300_other_applications}
 
@@ -1203,7 +1199,6 @@ This diagram is not only based on the use cases discussed in this thesis but als
 From Figure \ref{fig:bci_use_cases_diagram}, it should become apparent that most short-term goals of \glspl{bci} still lie in improving the quality of life for people with disabilities.
 However, the rise in popularity of \glspl{bci} in the gaming industry and amongst other big tech companies, as discussed in Section \ref{subsec:bci_gaining_popularity_big_tech}, shows there is a potential future where \glspl{bci} find more real-life use-cases in other fields as well.
 
-% TODO: overview based on review arnau en bci_applications, met die van bci_applications voorbeeld figuur
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\linewidth]{../images/introduction/use_cases_overview.pdf}
@@ -1438,6 +1433,8 @@ The system proposed by \Citet{cheap_bci_feasibility} is of less importance in th
 \subsubsection{Detailed literature on complex classification pipelines}
 \label{subsubsec:bci_opportunities_obstacles_motivating_examples_mi_models}
 
+% TODO: herlezen met mogelijks meer/betere refs naar onze implemented models en discussion van die models zoals visualisation techniques etc
+
 The above discussed article by \citet{cheap_bci_feasibility} provides great insight on the steps required to develop an \gls{eeg}-based consumer-grade \gls{bci} which uses \gls{mi} related signals.
 Since \citet{cheap_bci_feasibility} uses a binary classification model, there are only two possible outputs of the classifier, which is too limited for most applications.
 However, when working with \glspl{bci}, a lack of training samples combined with noisy and often high-dimensional data makes multi-class classification considerably harder than binary.
@@ -1451,8 +1448,6 @@ Some of the proposed pipelines also focus on providing a general model which has
 Whilst such models have poorer performance compared to one trained for a specific user, they can be used as an initial model to allow the user to explore the possibilities of the \gls{bci} without having to undergo the often tedious training data collection process.
 Such a general model can also be used as a base model for calibration, a process based on the idea of \glsfirst{tl} further discussed in Section \ref{subsec:processing_signals_alternative_calibration}.
 
-% todo hieronder
-
 A complete in-depth review of all of the different approaches that have been proposed for \gls{eeg} classification falls outside the scope of this research paper.
 \Citet{eeg_analysis_methods_epilepsy_review} compared \glsfirst{lr}, \glsfirst{ann}, \glsfirst{svm} and \glsfirst{cnn} for a binary classification task of either being epileptic \gls{eeg} data or not.
 Whilst this is a binary classification task that is more tailored towards \glsfirst{cad}, the techniques used in the experiments are often used in the multi-class classification of \gls{eeg} data for common \gls{bci} purposes.
@@ -1462,7 +1457,6 @@ In general, \glspl{ann} and other \gls{dl} models such as \glspl{cnn} have prove
 Because of this, many of the current state-of-the-art models for \gls{eeg} classification rely on \gls{dl} models.
 Especially classification pipelines that include \glspl{cnn} have proven to be successful for \gls{eeg} classification \citep{fbcnet, eeg_mi_model_mussi, eeg_mi_model_deep_cnn_spatial_filters, eeg_model_hbm, eeg_model_esi, eeg_model_eegnet}.
 
-% TODO: START visualisation technique refen EEGnet ref etc to section rather than chapter en mss implementation van RNN/ LSTM reffen
 The \gls{cnn}-based approach by \citet{eeg_model_hbm} is commonly regarded as current state-of-the-art for \gls{mi} classification.
 The article by \citet{eeg_model_hbm} includes two different models, a deep \gls{cnn} named \text{DeepConvNet} and a shallower one named \text{ShallowConvNet}.
 In Chapter \ref{ch:offline_bci_system}, both of these models will be implemented and discussed further.
@@ -1480,8 +1474,6 @@ As such, they do not explicitely use this property of the data for learning.
 \Glspl{rnn} and \glspl{lstm} in particular are a type of \gls{dl} networks that do explicitely use internal memory to explicitely use the sequential property for learning, as Section \ref{subsec:processing_signals_ml_and_dl_dl_classifiers} will discuss in greater detail.
 These approaches are most popular in speech processing as it is the sequence in which words are spoken that gives meaning to a sentence rather than individual words.
 \Citet{lstm_mi_eeg} used a traditional \gls{lstm} pipeline for \gls{mi} \gls{eeg} data classification with satisfactory results whilst \citet{lstm_cnn_mi_eeg} combined both ideas from \glspl{cnn} and \glspl{lstm} into a singular network that rivals \gls{cnn}-based state-of-the-art for \gls{mi} \gls{eeg} classification.
-
-% TODO: END visualisation technique refen EEGnet ref etc to section rather than chapter en mss implementation van RNN/ LSTM reffen
 
 Some more noteworthy \gls{mi} related \gls{eeg} classification approaches include the one by \citet{eeg_mi_model_image_based} and the one by \citet{eeg_model_esi}.
 \Citet{eeg_mi_model_image_based} took an interesting approach by first visualizing \gls{eeg} data as an image and using techniques from image processing for classification.
@@ -1936,24 +1928,34 @@ However, they can cause major identity issues where users are left in a quest of
 This quest is one that not many look forward to doing and maybe a reason some people opt to not use a \gls{bci} system.
 
 
-
-
 % - - - - - - - - - -
 % sloppy science
 % - - - - - - - - - -
 
-% TODO: start here
-
-\subsection{The risk of sloppy science due to time-pressured researchers}
+\subsection{A great risk of sloppy science}
 \label{subsec:bci_ethical_sloppy_science}
 
-% TODO: link neuralink problemen en link dat goede testen veel tijd vragen vs classificatie
+With a lack of standardized testing and reporting as discussed in Section \ref{subsec:bci_opportunities_obstacles_lack_of_testing}, it is easy for researchers to perform \textit{sloppy science}.
+It allows them to report and compare only those metrics that have the desired outcomes rather than performing time-consuming user trials that have the most scientific value.
+With many authors wanting to propose complete systems over singular components, the risk of sloppy science is increased even further as the other components are highly likely to receive less thought resulting in poorer quality, as discussed in Section \ref{subsec:bci_opportunities_obstacles_interdisciplinary}.
+However, respected journals have appropriate mechanisms in place, such as peer reviews, to stop published articles from performing sloppy science.
 
-\lipsum[1]
+More worryingly, private companies aiming to commercialise their \gls{bci} systems as soon as possible are less subject to these mechanisms of protecting against sloppy science.
+\Citet{tailored_brain_book} expresses some of her concerns with Elon Musk's Neuralink company in this regard.
+\Citet{tailored_brain_book} refers to an interview with ex-employees by \citet{neuralink_rushed_timelines}.
+In that interview, it is discussed how more than half of the initial researchers have left the Neuralink company already and how these ex-employees experienced a rushed timeline which wasn't compatible with the slow pace of science.
+This led to multiple internal discussions between the initial researchers wanting more time and shareholders wanting a sellable product quickly.
+Whilst these ex-employees were also quick to state that they see Neuralink as an incredibly innovative company in the \gls{bci} field and believe they will succeed in their mission, these words about a rushed timeline are worrying.
+As discussed in Section \ref{subsec:bci_opportunities_obstacles_lack_of_testing}, thorough experiments take a lot of time, so it isn't surprising that this isn't compatible with a commercial aim of providing a product to market as soon as possible.
+However, when considering that Neuralink's proposed system is an invasive one and the ethical questions about e-waste in your brain discussed in Section \ref{subsec:bci_ethical_e_waste}, the worry of such companies performing sloppy science to be among the first on the market only grows.
+Whilst some legislations are in place that should ensure safe human trials, only time will tell how much these commercial companies respect the time-consuming nature of research.
+
 
 % - - - - - - - - - -
 % ads
 % - - - - - - - - - -
+
+% TODO: start here
 
 \subsection{Advertisements based on your thoughts}
 \label{subsec:bci_ethical_data_mining}
