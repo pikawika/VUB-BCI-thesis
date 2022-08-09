@@ -6,6 +6,7 @@
 
 % NOTE: Uncomment this if the use of parts is desired
 \part{Understanding brain-computer interfaces}
+\label{part:understanding}
 
 
 % NOTE: In a new chapter, reset the GLS to once again use the full version in the first occurrence
@@ -835,7 +836,7 @@ Intuitively, these \gls{bci} systems aim to improve the brain's ability to adapt
 This self-adapting property of the brain is known as brain plasticity or neuroplasticity.
 A well-developed \gls{bci} system could show patients and medical staff which regions of the brain are currently being used and which types of brain signals and abnormalities are being detected.
 This information could then be relayed to the patient through various means so that it induces neuroplasticity.
-Such systems are still in development and require sophisticated neurological expertise that falls outside the scope of this master' thesis.
+Such systems are still in development and require sophisticated neurological expertise that falls outside the scope of this master's thesis.
 However, they are very promising and the interested reader is referred to the overview provided by \citet{bci_rehabilitation}.
 It is noted once more this paper was co-authored by Professor Jonathan R. Wolpaw, which has been discussed in this paper multiple time for his definition of a \gls{bci} and a perfect \gls{bci}.
 
@@ -1220,7 +1221,7 @@ The most likely factors of why \glspl{bci} are gaining popularity and what the m
 From these sections, an interested reader could have already spotted some opportunities and potential obstacles for doing research in the field themselves.
 This section discusses some opportunities and obstacles present according to the author of this paper.
 The aspects that are covered in this section are oriented towards the interests of the author from this master's thesis and aim to explain why this master's thesis came to fruition.
-They also lay the foundation to the proposed \gls{bci} \gls{bc} system of this master' thesis, which will be further discussed in Section \ref{sec:bci_concolusion_and_proposing_ours}.
+They also lay the foundation to the proposed \gls{bci} \gls{bc} system of this master's thesis, which will be further discussed in Section \ref{sec:bci_concolusion_and_proposing_ours}.
 
 
 % ---------------------------------------------- 
@@ -1433,7 +1434,7 @@ The system proposed by \Citet{cheap_bci_feasibility} is of less importance in th
 \subsubsection{Detailed literature on complex classification pipelines}
 \label{subsubsec:bci_opportunities_obstacles_motivating_examples_mi_models}
 
-% TODO: herlezen met mogelijks meer/betere refs naar onze implemented models en discussion van die models zoals visualisation techniques etc
+% TODO: reread once thesis finished to provide better references
 
 The above discussed article by \citet{cheap_bci_feasibility} provides great insight on the steps required to develop an \gls{eeg}-based consumer-grade \gls{bci} which uses \gls{mi} related signals.
 Since \citet{cheap_bci_feasibility} uses a binary classification model, there are only two possible outputs of the classifier, which is too limited for most applications.
@@ -2000,26 +2001,42 @@ Will all companies put in the required resources and effort to protect their \gl
 \section{Chapter conclusions and system proposal}
 \label{sec:bci_concolusion_and_proposing_ours}
 
-% TODO: summary of this chapter
-% TODO: discuss what system will be made in this paper
-% TODO: discusses the order of things on paper
 
-% MI instead of P300 due to user comfort and fatigue over time which decreases performance; e.g. https://www.scitepress.org/Papers/2020/88709/88709.pdf
 % Robot example https://github.com/NTX-McGill/NeuroTechX-McGill-2019
-% die wheelchair example uit thesis arnau?
+% Wheelchair example from review article arnau?
 
+% plural full needed
+\glsreset{bci}
+\glsreset{biosignal}
+
+% TODO: redo this part once thesis is finished
 \textbf{NOTE: this will be edited once the thesis is "finished"}
 
-As discussed, this masters' thesis focuses on providing a great foundation for the knowledge required for working in the \gls{bci} field as a computer scientist.
-The exhaustive literature review from this chapter should provide a great general introduction to the field and current state-of-the-art as well as challenges and promises of the field.
-As touched upon in Section \ref{subsec:bci_opportunities_obstacles_motivating_examples} and further discussed in Chapter \ref{ch:processing_signals} many different pipelines and approaches exists for the data processing component of a \gls{bci} system.
-Whilst some of the libraries available which make use of \glsfirst{dl} allow for raw \gls{eeg} input, the author of this paper believes it to be of importance to know the nature of this \gls{eeg} data to some extend.
-For this, an introduction to \glspl{biosignal} and how they can be measured is given in the next chapter.
-This deeper understanding of the data source ultimately leads to better design decisions in the data processing component.
+This first chapter gave an in-depth introduction to \glspl{bci}.
+Section \ref{sec:bci_gaining_popularity} discussed the growing scientific and commercial interest in \glspl{bci}.
+Sections \ref{sec:bci_common_use_cases} and \ref{sec:bci_opportunities_obstacles} provided some more insight on the common use cases for \glspl{bci} and some of the opportunities and obstacles for \gls{bci} research.
+This chapter ended by addressing some ethical challenges any researcher interested in \glspl{bci} should be aware of.
+Throughout this chapter, many articles were discussed and some strong points and weak points were explicitly mentioned.
+Many of the discussed \gls{bci} systems were also compared to Wolpaw's definition of a perfect \gls{bci} given in Section \ref{sec:bci_introduction}.
 
-In part 2 of this thesis, a focus is put on how \gls{bci} systems can be development.
-To accomplish this, an offline \gls{bci} that classifies \gls{eeg} data is discussed in Chapter \ref{ch:offline_bci_system}.
-Chapter \ref{ch:online_bci_system} extends on this offline \gls{bci} pipeline by proposing a three-signal system for live control.
-Part 3 of this thesis consists of Chapter \ref{ch:evaluation} and \ref{ch:discussion} which aim to evaluate this three-signal system, taking into account the lack of generalized evaluation strategies as discussed earlier in Section \ref{subsec:bci_opportunities_obstacles_lack_of_testing}
+From this chapter, it should become clear that \gls{bci} research has grown and matured significantly over the last few years.
+Positive human trials have been performed showing that \glspl{bci} can improve the quality of life for people with certain medical conditions.
+However, many systems can still see improvement and it is incredibly hard to meet Wolpaw's definition of a perfect \gls{bci}.
+This is great news for researchers interested in the field, as it means that there is still a lot of work that can be done.
+Some of the biggest current challenges with \glspl{bci} lie in the fact that the amount of open-source data and code-providing libraries is rather limited and that there is no standardized way of testing and reporting on a \gls{bci} system.
+It was also discussed that \gls{bci} research is highly interdisciplinary which makes it hard for individual authors or authors from the same expertise domain to provide a complete \gls{bci} system.
+To tackle some of these challanges, Section \ref{subsec:bci_opportunities_obstacles_lack_of_testing} proposed that the proposal of a complete \gls{bci} system should happen over at least four different papers.
+In order, they should focus on data acquisition, data classification, connecting the classifier to an external device and testing the whole system in a thorough human trial.
 
-For this reason, this thesis focuses on providing a solid foundation to the \gls{bci} field, a \gls{poc} application to demonstrate how a working system can be implemented and a thorough viability discussion of these systems in their current state.
+Since this master's thesis is from a computer science student, the following chapters will focus on what is important for a computer science student that wants to contribute to this field.
+The remainder of Part \ref{part:understanding} will provide some more general \gls{bci} knowledge required to fully provide an article on the data processing of a \gls{bci} system.
+To do this, Chapter \ref{ch:biomedical_signals} will discuss in greater detail what \glspl{biosignal} such as brain signals are, where they originate from and how they can be measured.
+With a deeper understanding of what \gls{eeg} data is, Chapter \ref{ch:processing_signals} discusses in greater detail how they can be processed.
+All of the components from a common \gls{bci} pipeline are discussed and some examples of these components are given.
+Alternatives to this common \gls{bci} pipeline are also discussed together with the role of \gls{ml} and \gls{dl} and some of the issues that often arise when creating classifiers for these systems.
+
+The next part, Part \ref{part:development} puts this theory to practice by discussing the development of multiple \gls{bci} pipelines.
+This includes both re-implementation and extensions to state-of-the-art.
+Whilst focusing on an offline \gls{bci} system in Chapter \ref{ch:offline_bci_system}, the required steps to go to an online system are discussed in Chapter \ref{ch:online_bci_system}.
+The implemented system makes use of existing \gls{eeg} data from multiple \gls{mi} tasks for classification.
+All of the implemented variants of the \gls{bci} pipeline are compared and further discussed in the final part of this master's thesis, Part \ref{part:reflection}.
