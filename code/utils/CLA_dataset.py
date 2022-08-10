@@ -368,6 +368,24 @@ def get_specific_raw_mne_data_for_subject(subject_id, index: int):
     else:
         raise ValueError(f"There is no MNE raw at the provided index {index} for the subject {subject_id}") 
 
+def get_last_raw_mne_data_for_subject(subject_id):
+    """
+    Gets the MNE raw of a subject with the latest recording date.
+    This could be seen as the last session a user performed.
+    """
+    # Get all MNE raws
+    mne_raws = get_raw_mne_data_for_subject(subject_id)
+    
+    # Find newest MNE
+    newest_mne_raw = mne_raws[0]
+    for mne_raw in mne_raws:
+        if mne_raw.info["meas_date"] > newest_mne_raw.info["meas_date"]:
+            # New ones date is bigger a.k.a. more recent
+            newest_mne_raw = mne_raw
+            
+    # Return newest mne raw
+    return newest_mne_raw.load_data()
+
 def get_important_markers(filename):
     """Gets important markers for given filename."""
     # Example call: get_important_markers("CLASubjectC1511263StLRHand")
@@ -410,7 +428,7 @@ def get_events_and_dict_from_annotated_raw(raw_mne):
     
     return mne.events_from_annotations(raw_mne, event_id=textual_to_marker_dict, verbose=False)
 
-def get_usefull_epochs_from_raw(raw_mne, start_offset=-0.2, end_offset=0.2):
+def get_usefull_epochs_from_raw(raw_mne, start_offset=-0.2, end_offset=0.2, baseline=(0, 1)):
     """Gets epochs from raw epoch with the ability to specify the offset on the start and of the evoked signal"""
     
     # Get events
@@ -419,6 +437,6 @@ def get_usefull_epochs_from_raw(raw_mne, start_offset=-0.2, end_offset=0.2):
     # Return the epochs
     return mne.Epochs(raw= raw_mne, events= mne_events,
                       event_id= usefull_mi_marker_to_textual_dict,
-                      baseline=(0,1),
+                      baseline= baseline,
                       verbose= False,
                       tmin= (0 + start_offset), tmax= (1 + end_offset))
