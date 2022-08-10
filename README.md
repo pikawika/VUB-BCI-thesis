@@ -99,6 +99,7 @@ What we refer to as paper notebooks are notebooks which include code for experim
 
 | Title      | Location                                               |
 | ---------- | ------------------------------------------------------ |
+| 1: Data visualisation | Available [here](code/paper-notebooks/1-data-visualisation.ipynb) |
 | A: Figures | Available [here](code/paper-notebooks/A-figures.ipynb) |
 
 
