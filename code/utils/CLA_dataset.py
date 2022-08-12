@@ -386,6 +386,37 @@ def get_last_raw_mne_data_for_subject(subject_id):
     # Return newest mne raw
     return newest_mne_raw.load_data()
 
+def get_all_but_last_raw_mne_data_for_subject(subject_id):
+    """
+    Gets the MNE raws of a subject except for the one with the latest recording date.
+    This could be seen as all sessions except for the last one.
+    """
+    # Get all MNE raws
+    mne_raws = get_raw_mne_data_for_subject(subject_id)
+    
+    # List of accepted MNE raws
+    return_list = []
+    
+    # Find newest MNE
+    newest_mne_raw = mne_raws[0].load_data()
+    for mne_raw in mne_raws:
+        mne_raw.load_data()
+        if mne_raw.info["meas_date"] > newest_mne_raw.info["meas_date"]:
+            # New ones date is bigger a.k.a. more recent, previous one may be included in data
+            return_list.append(newest_mne_raw)
+            
+            # Current raw is new "last" so should not be included
+            newest_mne_raw = mne_raw
+        else:
+            # Only add if not our current one (i.e. our initial one set)
+            if (newest_mne_raw !=  mne_raw):
+                return_list.append(mne_raw)
+            
+    
+            
+    # Return newest mne raw
+    return return_list
+
 def get_important_markers(filename):
     """Gets important markers for given filename."""
     # Example call: get_important_markers("CLASubjectC1511263StLRHand")
