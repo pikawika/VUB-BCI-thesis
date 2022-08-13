@@ -459,7 +459,7 @@ def get_events_and_dict_from_annotated_raw(raw_mne):
     
     return mne.events_from_annotations(raw_mne, event_id=textual_to_marker_dict, verbose=False)
 
-def get_usefull_epochs_from_raw(raw_mne, start_offset=-0.2, end_offset=0.2, baseline=(0, 1)):
+def get_usefull_epochs_from_raw(raw_mne, start_offset=-0.2, end_offset=0.2, baseline=None):
     """Gets epochs from raw epoch with the ability to specify the offset on the start and of the evoked signal"""
     
     # Get events

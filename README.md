@@ -101,6 +101,8 @@ What we refer to as paper notebooks are notebooks which include code for experim
 | ---------- | ------------------------------------------------------ |
 | 1: Data visualisation | Available [here](code/paper-notebooks/1-data-visualisation.ipynb) |
 | 2: Standard CSP pipelines | Available [here](code/paper-notebooks/2-standard-csp-pipelines.ipynb) |
+| 3: Advanced CSP pipelines | Available [here](code/paper-notebooks/3-advanced-csp-pipelines.ipynb) |
+| 4: EEGNet | Available [here](code/paper-notebooks/4-eegnet.ipynb) |
 | A: Figures | Available [here](code/paper-notebooks/A-figures.ipynb) |
 
 
