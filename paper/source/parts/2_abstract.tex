@@ -1,5 +1,5 @@
 % TODO:
-%   - See cheap_bci_feasibility for an example of good abstract 
+%   - Nalezen op einde of alles included; mss ook extensie niet gewoon comparison
 % ----------  
 % Questions:
 %   - Should this be included in ToC?
@@ -7,17 +7,21 @@
 \chapter{Abstract}
 \label{ch:abstract}
 
-This master thesis explores the field of \glspl{bci}.
-First, it aims to provide a great foundation for the knowledge required for working in the \gls{bci} field as a computer scientist.
-To accomplish this, an exhaustive literature review in the introductory chapter aims to provide a great general introduction to the field and current state-of-the-art as well as challenges and promises of the field.
-A chapter on \glspl{biosignal}, the source of data for \gls{bci} systems, is also provided.
-It discusses how \gls{eeg} can be measured and provides an overview of common hardware, issues and more.
+\textbf{NOTE: this abstract could be altered once the thesis is finished.}
 
-Next, the viability of real-world applications using classification algorithms on live \gls{eeg} measures collected from affordable \glspl{bci} hardware is explored.
-This is done by first introducing a general \gls{bci} pipeline and discussing all of its components.
-Afterwards, a three-signal control system is proposed as \gls{poc} based on this general \gls{bci} pipeline.
-Special care is given to include all important details of the system, in an attempt to improve reproducibility.
-The system is also evaluated taking into account best-practice techniques whilst also realising the \gls{bci} field lacks standardized testing strategies.
+This master's thesis explores the field of \glspl{bci}.
+Part \ref{part:understanding} aims to provide a great foundation of the knowledge required to work in the \gls{bci} field as a computer scientist.
+An exhaustive literature review in the introductory chapter aims to provide a more intuitive introduction to the field by addressing the reasons for a growing scientist and commercial interest along with some of the common use cases for \glspl{bci}.
+This introductory chapter also addresses some promising opportunities and obstacles in the field of \glspl{bci}.
+The introductory chapter ends by touching upon some ethical challenges related to \gls{bci} research.
+Chapters \ref{ch:biomedical_signals} and \ref{ch:processing_signals} from part \ref{part:understanding} are more technical and tailored towards computer scientists.
+Chapter \ref{ch:biomedical_signals} discusses the origin and measuring modalities for \glspl{biosignal} and brain signals in particular.
+Chapter \ref{ch:processing_signals} goes over some common \gls{bci} pipeline components for classifying  \gls{mi} \gls{eeg} data.
 
-% TODO
-\textbf{TODO: this abstract should be further completed after the thesis is finished.}
+Part \ref{part:development} puts this theory to practice and compares multiple state-of-the-art techniques in \gls{mi} \gls{eeg} classification.
+The focus of this part is on offline techniques and both two-step \gls{ml} approaches and one-step \gls{dl} approaches.
+However, some of the steps required to move to an online classification system and eventually a complete \gls{bci} system are also discussed.
+This master's thesis ends with Part \ref{part:reflection} where the added value and results of this work are reflected upon.
+
+
+
