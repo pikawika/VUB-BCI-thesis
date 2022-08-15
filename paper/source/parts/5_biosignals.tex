@@ -1,28 +1,21 @@
 % TODO:
-%   - Make this background chapter
-%   - Section on ethics
-%   - Split out your own work from literature
-%   - Move BCI pipeline to separate chapter
+%   - Kijk na of titels in header overflowen
 % ----------  
 % Questions:
 %   - XXX
 
 % https://www.brainlatam.com/blog/wet-dry-active-and-passive-electrodes.-what-are-they-and-what-to-choose-413
+
 % https://www.brainlatam.com/blog/a-brief-introduction-to-eeg-and-the-types-of-electrodes-75
 
-% https://iopscience.iop.org/article/10.1088/1741-2552/abc902/pdf h
-% heel goede review van DL in brain signals en alle soorten systemen etc, bron gevonden via bci_review_arnau
+% https://iopscience.iop.org/article/10.1088/1741-2552/abc902/pdf
 
-% Goed boek voor sources bci_review_book_chapter
-
-% verder lezen arnau paper voor beter idee zeker laatste appendix dingen
-
-% ook zeker herhalen spatial resolution en dat we niet 1 neuron measuren en nooit dat zullen kunnen wss
+% bci_review_book_chapter
 
 % In a new chapter, reset the GLS to once again use full version in first occurence
 \glsresetall
 
-\chapter{Origin and acquisition of biomedical signals}
+\chapter{Origins and acquisition of biomedical signals}
 \label{ch:biomedical_signals}
 
 % ---------------------------------------------- 
@@ -32,26 +25,51 @@
 \label{sec:biomedical_signals_introduction}
 % NOTE: "Introduction" exists in each chapter and gives short intro to chapter + what can be expected in chapter
 
-% TODO: e.g. for better understanding the data used which is important although DL doesn't strictly require
+Whilst Chapter \ref{ch:bci} has provided an in-depth intuitive introduction to \glspl{bci}, some more technical aspects need addressing as well to provide a computer scientist with all of the required foundational knowledge for \gls{bci} research.
+This chapter provides the required technical knowledge on the data that \gls{bci} systems use, brain signals.
+Brain signals are only one of the many types of \gls{biosignal} present in the human body.
+Whilst from a computer scientist's perspective brain signals may just be another type of input data to a classification model, having at least a basic understanding of this data is crucial in making good classification algorithms.
+Even when using \gls{dl} approaches where no manual feature engineering has to be done and where basic models without much thought may have pleasing results, understanding the data will allow for the creation of better models.
+This understanding of the data also helps in troubleshooting why some models may not have the desired results.
 
-\lipsum[1-3]
+To provide this basic understanding, this chapter starts by discussing \glspl{biosignal} in general.
+It is discussed what \glspl{biosignal} are and where they originate from in the human body.
+After this general discussion on \glspl{biosignal}, a focus is put on the different \glspl{biosignal} from the human brain, with brain signals measured using \gls{eeg} in particular.
+This \gls{eeg} measuring technique and other measuring techniques are also discussed in greater detail.
+Whilst it is addressed that \gls{eeg} has some fundamental shortcomings over other measuring modalities, it also has some attractive properties over these alternatives.
+These attractive properties are listed and provide an argument as to why the remainder of this master thesis will focus on \gls{eeg} and \gls{mi} \gls{eeg} in particular.
+
+
 
 % ---------------------------------------------- 
 % ORIGINS
 % ---------------------------------------------- 
 
-\section{Origins of biosignals}
-\label{sec:biomedical_signals_origin}
+\section{Biosignals in the human body}
+\label{sec:biomedical_signals_biosignals_in_human}
 
+% TODO: start here
 
 \lipsum[1-2]
+
+% - - - - - - - - - -
+% what are they
+% - - - - - - - - - -
+
+\subsection{What biosignals are and why they are useful}
+\label{subsec:biomedical_signals_biosignals_in_human_what}
+
+% Bioelectricity etc uitleggen
+
+
+\lipsum[1-3]
 
 % - - - - - - - - - -
 % electrical signals
 % - - - - - - - - - -
 
-\subsection{Electrical biosignals}
-\label{subsec:biomedical_signals_origin_electrical}
+\subsection{Types of electrical biosignals and their origin}
+\label{subsec:biomedical_signals_biosignals_in_human_electrical}
 
 % Bioelectricity etc uitleggen
 
@@ -62,8 +80,8 @@
 % non-electrical signals
 % - - - - - - - - - -
 
-\subsection{Non-electrical biosignals}
-\label{subsec:biomedical_signals_origin_non_electrical}
+\subsection{Other types of biosignals}
+\label{subsec:biomedical_signals_biosignals_in_human_others}
 
 % opzoeken welke juist maar niet focus deze paper
 % optical signals (e.g. movements) aka eye tracking enzo
@@ -78,8 +96,8 @@
 % TODO 'bci paradigms" 
 % info about signals: https://www.e-iji.net/dosyalar/iji_2021_2_48.pdf
 
-\section{Biosignals from the brain}
-\label{sec:biomedical_signals_brain_signals}
+\section{Biosignals in the human brain}
+\label{sec:biomedical_signals_from_brain}
 
 
 \lipsum[1-2]
@@ -90,7 +108,7 @@
 % - - - - - - - - - -
 
 \subsection{Anatomy of the brain}
-\label{subsec:biomedical_signals_brain_signals_anatomy}
+\label{subsec:biomedical_signals_from_brain_anatomy}
 
 % al getoond in bci chapter
 
@@ -101,7 +119,8 @@
 % - - - - - - - - - -
 
 \subsection{Brain waves}
-\label{subsec:biomedical_signals_brain_signals_brain_waves}
+\label{subsec:biomedical_signals_from_brain_brain_waves}
+% table wolf
 
 \lipsum[1-3]
 
@@ -109,8 +128,8 @@
 % Measurable brain activity
 % - - - - - - - - - -
 
-\subsection{Measurable brain-activity}
-\label{subsec:biomedical_signals_brain_signals_measurable_brain_activity}
+\subsection{Common brain signal inducing methods}
+\label{subsec:biomedical_signals_from_brain_inducing_methods}
 
 % bci_applications heeft ook overview onder 6. BCI electrical signa
 
@@ -133,7 +152,7 @@ In general, \gls{erp} related signals are easier to detect reliably, as the stim
 
 An alternative to \glspl{erp} is using a mental phenomenon called \gls{mi} as source of signals for a \gls{bci} system.
 \Gls{mi} is the process in which a person generates brain activity in the motor cortex merely by imagining motor movements.
-Section \ref{subsec:biomedical_signals_brain_signals_measurable_brain_activity} explains in further detail how \gls{mi} is not dependent on an external stimuli nor actual motor movements.
+Section \ref{subsec:biomedical_signals_from_brain_inducing_methods} explains in further detail how \gls{mi} is not dependent on an external stimuli nor actual motor movements.
 This makes \gls{mi}-based \glspl{bci} extra appealing as they don't require external stimuli and are applicable for people with motor disabilities.
 \Citet{first_mi} were the first to experiment with the idea of using \gls{mi} in an \gls{eeg} classification task.
 Since then, many \gls{mi}-based \glspl{bci} have been proposed.
@@ -144,7 +163,7 @@ Since then, many \gls{mi}-based \glspl{bci} have been proposed.
 % - - - - - - - - - -
 
 \subsection{Generalisation issues of brain activity}
-\label{subsec:biomedical_signals_brain_signals_generalisation}
+\label{subsec:biomedical_signals_from_brain_generalisation}
 
 % neuroplasticity and inter-human variation en non stationarity en mapping brain en... bespreken
 
@@ -162,6 +181,8 @@ Since then, many \gls{mi}-based \glspl{bci} have been proposed.
 
 % TODO: Different affordable consumer-grade EEG devices have appeared in both Academia (e.g. [5, 6, 7, 8]) and the market (e.g. B-Alert X10, NeuroSky, OpenBCI, Emotiv)
 % FROM: cheap_bci_feasibility
+
+% ook zeker herhalen spatial resolution en dat we niet 1 neuron measuren en nooit dat zullen kunnen wss
 
 
 % There is a wide variety in the devices used for the acquisition of each signal. For EEG, the number of recorded channels (electrodes) varies from a single channel to 64 channels, with sampling frequencies ranging from 128 to 1000 Hz. For the types of electrodes used, there is no dominating type with both wet and dry, and active and passive electrodes being
@@ -184,6 +205,8 @@ As discussed before, the user experience of a \gls{bci} system is as important i
 \label{subsec:biomedical_signals_measuring_modalities}
 % EEG ECOG ETC ETC
 
+% Ook inviasive bespreken en wat het is 
+
 % kijk naar wolf ook voor welke types
 
 % bci_applications heeft ook overview onder 5. Signal acquisition
@@ -203,18 +226,6 @@ Because of this, the German neuroscientist and psychiatrist Hans Berger is often
 Whilst he was one of the first to use the term \textit{elektrenkephalogramm}, it was Richard Caton who first described the findings of brain waves in general.
 He found this phenomena in animal brains as early as 1875 \citep{first_eeg}.
 Since then, \gls{eeg} methodology and equipment has matured and evolved a lot.
-
-% - - - - - - - - - -
-% why EEG
-% - - - - - - - - - -
-
-\subsection{Motivation for using non-invasive EEG}
-\label{subsec:biomedical_signals_measuring_why_eeg}
-
-% uitleggen wat invasive is en waarom wij niet
-
-% TODO
-\lipsum[1-2]
 
 % - - - - - - - - - -
 % EEG standards
@@ -263,8 +274,10 @@ todo
 % ---------------------------------------------- 
 % CONCLUSIONS OF CHAPTER
 % ---------------------------------------------- 
-\section{Chapter conclusions}
-\label{sec:biomedical_signals_summary}
+\section{Motivation for using non-invasive MI EEG and chapter conclusions}
+\label{sec:biomedical_signals_eeg_motivation_and_summary}
 % TODO: summary of this chapter
+
+% uitleggen waarom EEG en MI
 
 \lipsum[1-3]

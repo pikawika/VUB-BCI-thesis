@@ -1,5 +1,5 @@
 % TODO:
-%   - Zou klaar moeten zijn
+%   - Zou klaar moeten zijn maar laatste section nog nalezen want afhankelijk rest thesis
 % ----------  
 % Questions:
 %   - 
@@ -156,7 +156,7 @@ And thus, the most prominent type of commercial \glspl{bci} are those focusing o
 In this regard, the headsets by InteraXon, produced under the Muse brand, are one of the earliest examples, with their first version being released in 2014.
 The first iteration of this product was advertised as a meditation aid.
 This headset relies on measuring Theta waves in the brain, which are lower frequency waves that suggest a user is meditating.
-Section \ref{subsec:biomedical_signals_brain_signals_brain_waves} talks about these brain wave frequencies in more detail.
+Section \ref{subsec:biomedical_signals_from_brain_brain_waves} talks about these brain wave frequencies in more detail.
 The actual accuracy and usefulness of these types of systems are debated, as discussed by \citet{interaxon_tests}.
 More recently, a newer version of the InteraXon headset came to market, named Muse 2, which also aids in sleep monitoring.
 This relies on detecting Delta waves among other patterns to determine the sleep quality of a user.
@@ -349,7 +349,7 @@ However, alternatives to \gls{eeg} exist for measuring brain signals, some of wh
 Most notable in recent years is measuring modalities that rely on capturing brain signals by equipment directly inserted into the human body, making it an invasive approach.
 One such example of an invasive measuring modality is \gls{ecog} and the most popular invasive \gls{bci} at the moment is the one proposed by \citet{neuralink_whitepaper}.
 The white paper by \citet{neuralink_whitepaper} has shown that invasive \glspl{bci} could greatly exceed the data quality and visual aesthetics of even the best non-invasive alternatives.
-As further discussed in \ref{subsec:biomedical_signals_measuring_why_eeg}, this invasive method places flexible electrodes directly inside the skull.
+As further discussed in \ref{subsec:biomedical_signals_measuring_modalities}, this invasive method places flexible electrodes directly inside the skull.
 These electrodes are invisible to the human eye with the only visual component being a rechargeable wireless transmitter that is magnetically attached to the skull.
 Neuralink's final aim is to make the brain-signal measuring equipment completely invisible to the human eye.
 
@@ -428,7 +428,7 @@ It is noted that \gls{eeg} measuring hardware is not strictly needed for a compu
 
 With the introduction of the iPhone in 2007, it didn't take long for researchers to explore the idea of using a mobile phone as a processing unit for a \glspl{bci}.
 \citet{early_bci_phone} were one of the first to explore this idea, with a \gls{ssvep}-based \gls{bci}.
-Section \ref{subsec:biomedical_signals_brain_signals_measurable_brain_activity} will go into further detail on the types of measurable brain-signals.
+Section \ref{subsec:biomedical_signals_from_brain_inducing_methods} will go into further detail on the types of measurable brain-signals.
 In essence, such a system relies on a category of brain signals that are often easy to detect but require a specific stimulation.
 This type of system can be used for a wide variety of applications.
 Imagine an audio-guided tour in a museum where visitors only need to stare at a screen next to an item of interest to start hearing the explanation of that item.
@@ -887,7 +887,7 @@ In particular, people who have neurological diseases, limiting the production of
 However, the viability of robotic prostheses and exoskeletons for these patients has been steadily on the rise as \gls{eeg} based \glspl{bci} have been proposed for this purpose.
 \Citet{bci_prostheses} give an in-depth systematic review of upper and lower limb exoskeletons and robotic prostheses controlled by \gls{eeg}-based \gls{bci}.
 Just as was the case for rehabilitation and restoration discussed in Section \ref{subsec:bci_common_use_cases_medical_phenomena}, these systems often make use of brain signals measurable after imagined movement.
-This process of thinking of movement but not doing the movement is known as \glsfirst{mi} and further discussed in Section \ref{subsec:biomedical_signals_brain_signals_measurable_brain_activity}.
+This process of thinking of movement but not doing the movement is known as \glsfirst{mi} and further discussed in Section \ref{subsec:biomedical_signals_from_brain_inducing_methods}.
 
 
 % | | | | | | | | | | | | |
@@ -1036,7 +1036,7 @@ Since the number of combinations to create hybrid \gls{bci} systems are nearly e
 \label{subsec:bci_common_use_cases_bcis_replace_eye_tracking}
 
 \gls{bci} systems relying on P300 signals where already briefly mentioned in Section \ref{subsec:bci_gaining_popularity_better_processing}.
-As further discussed in section \ref{subsec:biomedical_signals_brain_signals_measurable_brain_activity}, a P300 signal is a positive bio-electrical wave measurable with \gls{eeg} around 300ms after a specific stimulus occurred.
+As further discussed in section \ref{subsec:biomedical_signals_from_brain_inducing_methods}, a P300 signal is a positive bio-electrical wave measurable with \gls{eeg} around 300ms after a specific stimulus occurred.
 This specific stimulus consists of a rare and contrasting stimulus when the user was focusing on what is otherwise a relatively static object with a frequent stimulus \citep{eye_tracking_vs_p300_comparable}.
 The most famous example is the use of a computer screen showing elements in a grid-like pattern as the static object with a frequent stimulus and flashing one specific element as the rare and contrasting stimulus.
 If the element the user was focused on flashes, the P300 signal will be present and relatively easily detectable in non-invasive \gls{eeg} measures.
@@ -2012,7 +2012,7 @@ Will all companies put in the required resources and effort to protect their \gl
 % TODO: redo this part once thesis is finished
 \textbf{NOTE: this will be edited once the thesis is "finished"}
 
-This first chapter gave an in-depth introduction to \glspl{bci}.
+This first chapter gave an in-depth but intuitive introduction to \glspl{bci}.
 Section \ref{sec:bci_gaining_popularity} discussed the growing scientific and commercial interest in \glspl{bci}.
 Sections \ref{sec:bci_common_use_cases} and \ref{sec:bci_opportunities_obstacles} provided some more insight on the common use cases for \glspl{bci} and some of the opportunities and obstacles for \gls{bci} research.
 This chapter ended by addressing some ethical challenges any researcher interested in \glspl{bci} should be aware of.
@@ -2036,7 +2036,7 @@ All of the components from a common \gls{bci} pipeline are discussed and some ex
 Alternatives to this common \gls{bci} pipeline are also discussed together with the role of \gls{ml} and \gls{dl} and some of the issues that often arise when creating classifiers for these systems.
 
 The next part, Part \ref{part:development} puts this theory to practice by discussing the development of multiple \gls{bci} pipelines.
-This includes both re-implementation and extensions to state-of-the-art.
+This includes the implementation of state-of-the-art two-step \gls{ml} approaches and one-step \gls{dl} approaches.
 Whilst focusing on an offline \gls{bci} system in Chapter \ref{ch:offline_bci_system}, the required steps to go to an online system are discussed in Chapter \ref{ch:online_bci_system}.
 The implemented system makes use of existing \gls{eeg} data from multiple \gls{mi} tasks for classification.
-All of the implemented variants of the \gls{bci} pipeline are compared and further discussed in the final part of this master thesis, Part \ref{part:reflection}.
+All of the implemented variants of the \gls{bci} pipeline are compared and the results of this master thesis are further discussed in Part \ref{part:reflection}, the final part.
