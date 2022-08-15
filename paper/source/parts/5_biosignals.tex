@@ -48,9 +48,34 @@ These attractive properties are listed and provide an argument as to why the rem
 \section{Biosignals in the human body}
 \label{sec:biomedical_signals_biosignals_in_human}
 
-% TODO: start here
+\Glspl{biosignal} can be defined as any signal produced by living organisms, such as humans and animals, that can be constantly measured and monitored.
+\Glspl{biosignal} can be produced by different energy forms, such as electrical and chemical energy.
+Table \ref{tab:biomedical_signals_energy_forms} summarizes some of these energy forms and which type of \glspl{biosignal} they can produce.
+Whilst living beings, including humans, produce many different types of \glspl{biosignal}, this master thesis will only consider time-varying electrical \glspl{biosignal}.
+These types of \glspl{biosignal}, sometimes reffered to as \textit{bioelectrical signals}, are the ones used as input data for \gls{bci} systems.
+\Citet{biosignal_definition} discusses all different types of \glspl{biosignal} in greater detail.
 
-\lipsum[1-2]
+\begingroup
+\setlength{\tabcolsep}{6pt} % Default value: 6pt
+\renewcommand{\arraystretch}{2} % Default value: 1
+\begin{table}[]
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{|l|p{5cm}|p{7cm}|}
+        \hline
+        \textbf{Energy form} & \textbf{Variable type}                 & \textbf{Biosignals}                                                                     \\ \hline
+        Chemical             & Chemical activity and/or \newline concentration & Blood ions, O2, CO2, pH, hormonal \newline concentrations, and other chemistry                             \\ \hline
+        Mechanical           & Position, force, torque or \newline pressure    & Muscle movement or cardiovascular pressures, muscle contractility, valve and other cardiac sounds \\ \hline
+        Electrical           & Voltage or current                     & EEG, ECG, EMG, EOG, ERG, EGG, GSR                                                                 \\ \hline
+        Thermal             & Temperature                            & Body temperature, thermography                                                                    \\ \hline
+        \end{tabular}%
+        }
+    \captionsetup{width=0.8\linewidth}
+    \captionsetup{justification=centering}
+    \caption{Some of the different energy forms in living beings and the measurable biosignals they produce. Data from \citet{biosignal_definition}.}
+    \label{tab:biomedical_signals_energy_forms}
+\end{table}
+\endgroup
+
 
 % - - - - - - - - - -
 % what are they
@@ -71,23 +96,11 @@ These attractive properties are listed and provide an argument as to why the rem
 \subsection{Types of electrical biosignals and their origin}
 \label{subsec:biomedical_signals_biosignals_in_human_electrical}
 
+% bioelectrical signals
 % Bioelectricity etc uitleggen
 
 
 \lipsum[1-3]
-
-% - - - - - - - - - -
-% non-electrical signals
-% - - - - - - - - - -
-
-\subsection{Other types of biosignals}
-\label{subsec:biomedical_signals_biosignals_in_human_others}
-
-% opzoeken welke juist maar niet focus deze paper
-% optical signals (e.g. movements) aka eye tracking enzo
-
-
-\lipsum[1-2]
 
 % ---------------------------------------------- 
 % BIOSIGNALS FROM THE BRAIN
