@@ -81,7 +81,7 @@ Some utility files are provided to extract certain aspects from the main noteboo
 
 Some of the code written is not used explicitly in the paper but was used to gain information or test code that will be used in the final project. We call these experimental notebooks and they contain a lot of annotations as well. The following experimental notebooks are available:
 
-| Title                                                        | Location                                                     |
+| Title                                                        | Notebook location                                            |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1: CLA dataset exploration notebook                          | Available [here](code/experimental-notebooks/1-CLA-dataset-exploration-notebook.ipynb) |
 | 2: MNE datastructure exploration notebook                    | Available [here](code/experimental-notebooks/2-MNE-datastructure-exploration-notebook.ipynb) |
@@ -95,15 +95,15 @@ Some of the code written is not used explicitly in the paper but was used to gai
 
 ### Paper notebooks
 
-What we refer to as paper notebooks are notebooks which include code for experiments and plotting results that are directly used in the paper or directly referenced in the paper. Special attention to reproduction and well-documented code is given in these notebooks to improve their scientific value.
+What we refer to as paper notebooks are notebooks which include code for experiments and plotting results that are directly used in the paper or directly referenced in the paper. Special attention to reproduction and well-documented code is given in these notebooks to improve their scientific value. A HTML export of each notebook is made so the code and output can be looked at without requiring the Anaconda environment.
 
-| Title      | Location                                               |
-| ---------- | ------------------------------------------------------ |
-| 1: Data visualisation | Available [here](code/paper-notebooks/1-data-visualisation.ipynb) |
-| 2: Standard CSP pipelines | Available [here](code/paper-notebooks/2-standard-csp-pipelines.ipynb) |
-| 3: Advanced CSP pipelines | Available [here](code/paper-notebooks/3-advanced-csp-pipelines.ipynb) |
-| 4: EEGNet | Available [here](code/paper-notebooks/4-eegnet.ipynb) |
-| A: Figures | Available [here](code/paper-notebooks/A-figures.ipynb) |
+| Title      | Notebook location                              | HTML export location |
+| ---------- | ------------------------------------------------------ | ---------- |
+| 1: Data visualisation | Available [here](code/paper-notebooks/1-data-visualisation.ipynb) |  |
+| 2: Standard CSP pipelines | Available [here](code/paper-notebooks/2-standard-csp-pipelines.ipynb) | Available [here](code/paper-notebooks/HTML_exports/2-standard-csp-pipelines.html) |
+| 3: Advanced CSP pipelines |  |  |
+| 4: EEGNet | Available [here](code/paper-notebooks/4-eegnet.ipynb) | Available [here](code/paper-notebooks/HTML_exports/4-eegnet.html) |
+| A: Figures | Available [here](code/paper-notebooks/A-figures.ipynb) |  |
 
 
 ****
