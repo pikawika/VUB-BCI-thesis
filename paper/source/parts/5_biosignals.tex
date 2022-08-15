@@ -39,8 +39,6 @@ This \gls{eeg} measuring technique and other measuring techniques are also discu
 Whilst it is addressed that \gls{eeg} has some fundamental shortcomings over other measuring modalities, it also has some attractive properties over these alternatives.
 These attractive properties are listed and provide an argument as to why the remainder of this master thesis will focus on \gls{eeg} and \gls{mi} \gls{eeg} in particular.
 
-
-
 % ---------------------------------------------- 
 % ORIGINS
 % ---------------------------------------------- 
@@ -48,11 +46,14 @@ These attractive properties are listed and provide an argument as to why the rem
 \section{Biosignals in the human body}
 \label{sec:biomedical_signals_biosignals_in_human}
 
-\Glspl{biosignal} can be defined as any signal produced by living organisms, such as humans and animals, that can be constantly measured and monitored.
+In theory, a \glspl{biosignal} is nothing more than a measurement over time of a living
+being.
+In practice, these \glspl{biosignal} are closely related to physiological processes.
+This makes it possible to monitor or detect those physiological processes using \glspl{biosignal}.
 \Glspl{biosignal} can be produced by different energy forms, such as electrical and chemical energy.
 Table \ref{tab:biomedical_signals_energy_forms} summarizes some of these energy forms and which type of \glspl{biosignal} they can produce.
 Whilst living beings, including humans, produce many different types of \glspl{biosignal}, this master thesis will only consider time-varying electrical \glspl{biosignal}.
-These types of \glspl{biosignal}, sometimes reffered to as \textit{bioelectrical signals}, are the ones used as input data for \gls{bci} systems.
+These types of \glspl{biosignal}, sometimes reffered to as \gls{elecbiosignal}, are the ones used as input data for \gls{bci} systems.
 \Citet{biosignal_definition} discusses all different types of \glspl{biosignal} in greater detail.
 
 \begingroup
@@ -65,8 +66,8 @@ These types of \glspl{biosignal}, sometimes reffered to as \textit{bioelectrical
         \textbf{Energy form} & \textbf{Variable type}                 & \textbf{Biosignals}                                                                     \\ \hline
         Chemical             & Chemical activity and/or \newline concentration & Blood ions, O2, CO2, pH, hormonal \newline concentrations, and other chemistry                             \\ \hline
         Mechanical           & Position, force, torque or \newline pressure    & Muscle movement or cardiovascular pressures, muscle contractility, valve and other cardiac sounds \\ \hline
-        Electrical           & Voltage or current                     & EEG, ECG, EMG, EOG, ERG, EGG, GSR                                                                 \\ \hline
-        Thermal             & Temperature                            & Body temperature, thermography                                                                    \\ \hline
+        Electrical           & Voltage or current                     & EEG, ECG, EMG, EOG, ERG, EGG, GSR and EDA                                                                 \\ \hline
+        Thermal             & Temperature                            & Body temperature and thermography                                                                    \\ \hline
         \end{tabular}%
         }
     \captionsetup{width=0.8\linewidth}
@@ -76,31 +77,38 @@ These types of \glspl{biosignal}, sometimes reffered to as \textit{bioelectrical
 \end{table}
 \endgroup
 
-
 % - - - - - - - - - -
-% what are they
-% - - - - - - - - - -
-
-\subsection{What biosignals are and why they are useful}
-\label{subsec:biomedical_signals_biosignals_in_human_what}
-
-% Bioelectricity etc uitleggen
-
-
-\lipsum[1-3]
-
-% - - - - - - - - - -
-% electrical signals
+% how produced
 % - - - - - - - - - -
 
-\subsection{Types of electrical biosignals and their origin}
-\label{subsec:biomedical_signals_biosignals_in_human_electrical}
+\subsection{How the human body produces bioelectricity}
+\label{subsec:biomedical_signals_biosignals_in_human_how}
 
-% bioelectrical signals
-% Bioelectricity etc uitleggen
+Bioelectricity can be seen as the generation or action of tiny electric currents or
+voltages in physiological processes.
+This bioelectricity is what is measured when monitoring \glspl{elecbiosignal}.
+This is one of the reasons \glspl{biosignal} are closely related to these physiological processes, since it measures the bioelectricity used in these processes.
+Whilst a complete understanding on how bioelectricity is made, maintained and transmitted in the human body isn't required for computer scientist to contribute to the \gls{bci} field, a simplified version is discussed here. 
+
+% TODO: further membrame potential and action potential HOC Z
+% https://sci-hub.mksa.top/10.1016/B978-0-12-809395-5.00001-1
 
 
-\lipsum[1-3]
+% - - - - - - - - - -
+% why produced
+% - - - - - - - - - -
+
+\subsection{The function of bioelectricity in the human body}
+\label{subsec:biomedical_signals_biosignals_in_human_why}
+
+% Complete this further but with link to previous on how it is produced
+
+Bioelectricity is omnipresent in the human body. 
+The human nervous system relies on bioelectricity to quickly carry \textit{messages} from the human body to the brain and the other way around.
+The process of muscle contraction is started when action potentials, which are tiny bursts of bioelectricity, from motor neurons are transmitted to muscle fibres.
+\Citet{bioelectricity_baby} explains how bioelectricity even plays a crucial role in developmental biology.
+As discussed by \citet{bioelectricity_cancer}, bioelectricity can even be \textit{hijacked} as a way of novel medicine and treatment, i.e. for cancer treatment.
+Listing all of the uses for bioelectricity falls outside the scope of this master thesis but it should be apparent that bioelectricity is one of the more vital phenomena in the human body.
 
 % ---------------------------------------------- 
 % BIOSIGNALS FROM THE BRAIN
@@ -112,7 +120,7 @@ These types of \glspl{biosignal}, sometimes reffered to as \textit{bioelectrical
 \section{Biosignals in the human brain}
 \label{sec:biomedical_signals_from_brain}
 
-
+% \gls{elecbiosignal}
 \lipsum[1-2]
 
 
