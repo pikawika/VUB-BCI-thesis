@@ -103,7 +103,7 @@ What we refer to as paper notebooks are notebooks which include code for experim
 | 2: Standard CSP pipelines | Available [here](code/paper-notebooks/2-standard-csp-pipelines.ipynb) | Available [here](code/paper-notebooks/HTML_exports/2-standard-csp-pipelines.html) |
 | 3: Advanced CSP pipelines |  |  |
 | 4: EEGNet | Available [here](code/paper-notebooks/4-eegnet.ipynb) | Available [here](code/paper-notebooks/HTML_exports/4-eegnet.html) |
-| 5: DeepConvNet            |                                                              |  |
+| 5: DeepConvNet            | Available [here](code/paper-notebooks/5-deepconvnet.ipynb) | Available [here](code/paper-notebooks/HTML_exports/5-deepconvnet.html) |
 | 6: ShallowConvNet |  | |
 | 7: Extensions |  | |
 | 8: Going online |  | |
