@@ -14,8 +14,8 @@ The current draft version of the thesis can be found [here](paper/bci_master_the
     - [Initialisation instructions](#initialisation-instructions)
   - [Code](#code)
     - [Utility files](#utility-files)
-    - [Experimental notebooks](#experimental-notebooks)
     - [Paper notebooks](#paper-notebooks)
+    - [Experimental notebooks](#experimental-notebooks)
   - [Literature review](#literature-review)
     - [Scientific sources](#scientific-sources)
     - [Informal sources](#informal-sources)
@@ -75,7 +75,21 @@ Some utility files are provided to extract certain aspects from the main noteboo
 | TF tools         | Available [here](code/utils/TF_tools.py)    |
 | EEG models       | Available [here](code/utils/EEGModels.py)   |
 
+### Paper notebooks
 
+What we refer to as paper notebooks are notebooks which include code for experiments and plotting results that are directly used in the paper or directly referenced in the paper. Special attention to reproduction and well-documented code is given in these notebooks to improve their scientific value. A HTML export of each notebook is made so the code and output can be looked at without requiring the Anaconda environment.
+
+| Title      | Notebook location                              | HTML export location |
+| ---------- | ------------------------------------------------------ | ---------- |
+| 1: Data visualisation | Available [here](code/paper-notebooks/1-data-visualisation.ipynb) |  |
+| 2: Standard CSP pipelines | Available [here](code/paper-notebooks/2-standard-csp-pipelines.ipynb) | Available [here](code/paper-notebooks/HTML_exports/2-standard-csp-pipelines.html) |
+| 3: Advanced CSP pipelines |  |  |
+| 4: EEGNet | Available [here](code/paper-notebooks/4-eegnet.ipynb) | Available [here](code/paper-notebooks/HTML_exports/4-eegnet.html) |
+| 5: DeepConvNet            | Available [here](code/paper-notebooks/5-deepconvnet.ipynb) | Available [here](code/paper-notebooks/HTML_exports/5-deepconvnet.html) |
+| 6: ShallowConvNet | Available [here](code/paper-notebooks/6-shallowconvnet.ipynb) | Available [here](code/paper-notebooks/HTML_exports/6-shallowconvnet.html) |
+| 7: Extensions |  | |
+| 8: Going online |  | |
+| A: Figures | Available [here](code/paper-notebooks/A-figures.ipynb) | |
 
 ### Experimental notebooks
 
@@ -92,22 +106,6 @@ Some of the code written is not used explicitly in the paper but was used to gai
 | 7: Improving inter-session EEGNet                            | Available [here](code/experimental-notebooks/7-improving-inter-session-eegnet.ipynb) |
 
 
-
-### Paper notebooks
-
-What we refer to as paper notebooks are notebooks which include code for experiments and plotting results that are directly used in the paper or directly referenced in the paper. Special attention to reproduction and well-documented code is given in these notebooks to improve their scientific value. A HTML export of each notebook is made so the code and output can be looked at without requiring the Anaconda environment.
-
-| Title      | Notebook location                              | HTML export location |
-| ---------- | ------------------------------------------------------ | ---------- |
-| 1: Data visualisation | Available [here](code/paper-notebooks/1-data-visualisation.ipynb) |  |
-| 2: Standard CSP pipelines | Available [here](code/paper-notebooks/2-standard-csp-pipelines.ipynb) | Available [here](code/paper-notebooks/HTML_exports/2-standard-csp-pipelines.html) |
-| 3: Advanced CSP pipelines |  |  |
-| 4: EEGNet | Available [here](code/paper-notebooks/4-eegnet.ipynb) | Available [here](code/paper-notebooks/HTML_exports/4-eegnet.html) |
-| 5: DeepConvNet            | Available [here](code/paper-notebooks/5-deepconvnet.ipynb) | Available [here](code/paper-notebooks/HTML_exports/5-deepconvnet.html) |
-| 6: ShallowConvNet | Available [here](code/paper-notebooks/6-shallowconvnet.ipynb) | |
-| 7: Extensions |  | |
-| 8: Going online |  | |
-| A: Figures | Available [here](code/paper-notebooks/A-figures.ipynb) | |
 
 
 ****
