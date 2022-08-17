@@ -28,11 +28,11 @@
 Whilst Chapter \ref{ch:bci} has provided an in-depth intuitive introduction to \glspl{bci}, some more technical aspects need addressing as well to provide a computer scientist with all of the required foundational knowledge for \gls{bci} research.
 This chapter provides the required technical knowledge on the data that \gls{bci} systems use, brain signals.
 Brain signals are only one of the many types of \gls{biosignal} present in the human body.
-Whilst from a computer scientist's perspective brain signals may just be another type of input data to a classification model, having at least a basic understanding of this data is crucial in making good classification algorithms.
+Whilst from a computer scientist's perspective brain signals may just be another type of input data to a classification model, having at least a basic understanding of this data is crucial in making good classification algorithms for \gls{bci} systems.
 Even when using \gls{dl} approaches where no manual feature engineering has to be done and where basic models without much thought may have pleasing results, understanding the data will allow for the creation of better models.
 This understanding of the data also helps in troubleshooting why some models may not have the desired results.
 
-To provide this basic understanding, this chapter starts by discussing \glspl{biosignal} in general.
+To provide this basic understanding, this chapter starts by briefly discussing \glspl{biosignal} in general.
 It is discussed what \glspl{biosignal} are and where they originate from in the human body.
 After this general discussion on \glspl{biosignal}, a focus is put on the different \glspl{biosignal} from the human brain, with brain signals measured using \gls{eeg} in particular.
 This \gls{eeg} measuring technique and other measuring techniques are also discussed in greater detail.
@@ -50,11 +50,11 @@ In theory, a \glspl{biosignal} is nothing more than a measurement over time of a
 being.
 In practice, these \glspl{biosignal} are closely related to physiological processes.
 This makes it possible to monitor or detect those physiological processes using \glspl{biosignal}.
-\Glspl{biosignal} can be produced by different energy forms, such as electrical and chemical energy.
+\Glspl{biosignal} can be produced by different energy forms, such as the electrical energy form when measuring \gls{eeg} in \gls{mv}.
 Table \ref{tab:biomedical_signals_energy_forms} summarizes some of these energy forms and which type of \glspl{biosignal} they can produce.
 Whilst living beings, including humans, produce many different types of \glspl{biosignal}, this master thesis will only consider time-varying electrical \glspl{biosignal}.
 These types of \glspl{biosignal}, sometimes reffered to as \gls{elecbiosignal}, are the ones used as input data for \gls{bci} systems.
-\Citet{biosignal_definition} discusses all different types of \glspl{biosignal} in greater detail.
+\Citet{biosignal_definition} discusses these and other types of \glspl{biosignal} in greater detail.
 
 \begingroup
 \setlength{\tabcolsep}{6pt} % Default value: 6pt
@@ -81,17 +81,84 @@ These types of \glspl{biosignal}, sometimes reffered to as \gls{elecbiosignal}, 
 % how produced
 % - - - - - - - - - -
 
-\subsection{How the human body produces bioelectricity}
+\subsection{How the human body produces electricity}
 \label{subsec:biomedical_signals_biosignals_in_human_how}
 
-Bioelectricity can be seen as the generation or action of tiny electric currents or
-voltages in physiological processes.
-This bioelectricity is what is measured when monitoring \glspl{elecbiosignal}.
-This is one of the reasons \glspl{biosignal} are closely related to these physiological processes, since it measures the bioelectricity used in these processes.
-Whilst a complete understanding on how bioelectricity is made, maintained and transmitted in the human body isn't required for computer scientist to contribute to the \gls{bci} field, a simplified version is discussed here. 
+Electricity in the human body, better known as bioelectricity, can be seen as the generation or action of tiny electric currents and voltages in physiological processes.
+As shown in Table \ref{tab:biomedical_signals_energy_forms}, the measurement of this bioelectricity is what enables the monitoring of \glspl{elecbiosignal}.
+This is one of the reasons \glspl{biosignal} are closely related to physiological processes since it measures the bioelectricity used in some of these processes.
+A complete understanding of how bioelectricity is made, maintained and transmitted in the human body isn't required for a computer scientist to contribute to the \gls{bci} field.
+However, a superficial understanding of this process makes it easier to understand the limits of the accompanied \glspl{elecbiosignal}.
+For this reason, the remainder of this section gives a simplified explanation of how bioelectricity is made, maintained and transmitted in the human brain.
+This explanation is based on chapter 12 of the recently renewed book by \citet{bioelec_book}, an \gls{eeg} focused explanation of bioelectricity by \citet{eeg_bioelec_creation} and multiple YouTube videos by Neuroscientifically Challenged\footnote{\url{https://youtu.be/tIzF2tWy6KI}}\footnote{\url{https://youtu.be/W2hHt_PXe5o}}\footnote{\url{https://youtu.be/WhowH0kb7n0}}.
 
-% TODO: further membrame potential and action potential HOC Z
-% https://sci-hub.mksa.top/10.1016/B978-0-12-809395-5.00001-1
+% | | | | | | | | | | | | |
+
+\subsubsection{Resting membrane potential causes negatively charged neurons}
+\label{subsubsec:biomedical_signals_biosignals_in_human_how_membrane_potential}
+
+As was already addressed in Section \ref{subsec:bci_gaining_popularity_better_measuring}, the human brain has billions of neurons with \citet{neurons_book} stating that around $10^7$ parallel pyramidal neurons reside in only a single $cm^3$ of the brain cortex alone.
+A neuron, also known as a nerve cell, is an electrically excitable cell.
+Being an electrically excitable cell, a neuron has a resting membrane potential.
+This resting membrane potential is around $-70$ \gls{milv} and expresses the difference in electrical charge between the inside and the outside of a neuron.
+This negative difference is maintained by the sodium-potassium pump which is responsible for the hydrolysis of ATP to ADP.
+During this hydrolysis process the sodium-potassium pump releases three positively charged sodium ions ($Na^+$) whilst only taking in two positively charged potassium ions ($Ka^+$), this difference causes the membrane potential to remain negative.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Action potential allows for neuron communication}
+\label{subsubsec:biomedical_signals_biosignals_in_human_how_action_potential}
+
+Whilst the sodium-potassium pump inside the neuron explains why there is a negative resting membrane potential of around $-70$ \gls{milv}, it doesn't explain the variable volt measurements of \gls{eeg}.
+The change in membrane potential occurs when the neuron gets excited.
+The most common way a cell gets excited is through the process known as an action potential.
+An action potential forms the basis for electrical signalling within neurons, enabling some form of communication between them.
+To do this communication, neurotransmitters released by another neuron bind to receptors on the dendrites of the receiving neuron which has a depolarization effect.
+
+This depolarization causes the neuron to become less polarized, resulting in its membrane potential moving close to zero.
+When sufficient depolarization occurs, the action potential process could start.
+This process is visualised in Figure \ref{fig:biomedical_signals_action_potential}.
+For the action potential process to start, the depolarization should be of such a magnitude that the neuron reaches its threshold membrane potential, which is around $-55$ \gls{milv}.
+This is achieved through the repeated binding of neurotransmitters to the receptors.
+The annotation for "failed initiations" in Figure \ref{fig:biomedical_signals_action_potential} denotes the common situations when the threshold membrane potential is not reached.
+
+When the threshold is reached, a large number of sodium channels open, allowing many positive sodium ions ($Na^+$) into the neuron, causing the membrane potential to rise quickly.
+This depolarization is what creates the electrical signal known as the action potential that travels down the neuron to eventually release neurotransmitters itself.
+Eventually, a peak is reached, after which the sodium channels close, not allowing any further sodium ions ($Na^+$) to enter the neuron.
+To return to its resting membrane potential, the neuron opens its potassium channels to release many potassium ions ($Ka^+$).
+This is known as the falling phase where the neuron repolarizes.
+However, the release of positive potassium ions ($Ka^+$) happens so quickly that the membrane potential falls below the resting membrane potential.
+The neuron is now hyperpolarized, denoted as undershoot in Figure \ref{fig:biomedical_signals_action_potential}.
+During this hyperpolarized state, also known as the refractory period, failed initiations occur more often as it is very difficult to fire the neuron again.
+Eventually, the resting membrane potential is reached again and the neuron functions like before.
+
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\linewidth]{../images/biosignals/action_potential.jpg}
+    \captionsetup{width=0.6\linewidth}
+    \captionsetup{justification=centering}
+    \caption{Chart of the membrane potential during the action potential process in a neuron. Figure from Synaptidude, GFDL 1.2, via Wikimedia Commons.} 
+    \label{fig:biomedical_signals_action_potential}
+\end{figure}
+
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{EEG measures postsynaptic potentials}
+\label{subsubsec:biomedical_signals_biosignals_in_human_how_postsynaptic_potential}
+
+Whilst the action potential explains how most changes in membrane potential of an individual neuron occur, it is highly unlikely to be measured by \gls{eeg} and other measuring modalities.
+This follows from the fact that, as discussed earlier, many billion neurons make up the brain making it impossible to monitor a singular neuron.
+Since action potentials are such rapid current flows, it is highly unlikely enough neighbouring neurons will have an action potential at the same time resulting in a measurable signal.
+However, whilst it was discussed how neurotransmitters can cause depolarization which can initialize action potentials, these neurotransmitters can also influence the membrane potential in the opposite direction by causing further polarization.
+The release of these neurotransmitters and the binding to the receiving neuron also causes currents known as postsynaptic potentials.
+Whilst these are not action potentials, they are essentially what causes an action potential to take place and the action potential can also cause the release of neurotransmitters.
+These postsynaptic potentials are present for a longer period than action potentials.
+Thus, it is more likely for many neighbouring neurons to have active postsynaptic potentials simultaneously.
+The summation of these postsynaptic potential currents from many millions of neurons is what is detected by \gls{eeg}.
+However, neurons experiencing action potential at that same time are among many other things sources of noise in this summation of these currents.
 
 
 % - - - - - - - - - -
@@ -100,6 +167,8 @@ Whilst a complete understanding on how bioelectricity is made, maintained and tr
 
 \subsection{The function of bioelectricity in the human body}
 \label{subsec:biomedical_signals_biosignals_in_human_why}
+
+% TODO: start here, short section
 
 % Complete this further but with link to previous on how it is produced
 
