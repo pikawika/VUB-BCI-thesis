@@ -9,6 +9,13 @@
 # IMPORTS
 ##################################
 
+# IO for message surpression
+from IPython.utils import io
+
+# OS for setting MNE logging
+import os
+os.environ['MNE_LOGGING_LEVEL'] = 'WARNING'
+
 # SKLearn
 import sklearn
 from sklearn.base import BaseEstimator,TransformerMixin
@@ -67,17 +74,18 @@ class EpochsToFilteredData(BaseEstimator,TransformerMixin):
         """
         Transforms the inputed epochs by first filtering it using an overlap-add FIR filter with the provided lower and upper bound and then returning only the data in window of interest.
         """
-        # Filter on complete data
-        filtered = mne.filter.filter_data(data=X,
-                                          sfreq= self.sfreq,
-                                          l_freq = self.filter_lower_bound,
-                                          h_freq = self.filter_upper_bound,
-                                          picks= None,
-                                          phase= "minimum",
-                                          fir_window= "blackman",
-                                          fir_design= "firwin",
-                                          pad= 'median',
-                                          verbose= False)
+        with io.capture_output():
+            # Filter on complete data
+            filtered = mne.filter.filter_data(data=X,
+                                              sfreq= self.sfreq,
+                                              l_freq = self.filter_lower_bound,
+                                              h_freq = self.filter_upper_bound,
+                                              picks= None,
+                                              phase= "minimum",
+                                              fir_window= "blackman",
+                                              fir_design= "firwin",
+                                              pad= 'median',
+                                              verbose= False)
         
         # Determine zero point, aka true seconds in epoch where queue onset is
         zero_point_time = 0 - self.start_offset
@@ -91,7 +99,7 @@ class EpochsToFilteredData(BaseEstimator,TransformerMixin):
         end_index = np.round(end_time * self.sfreq).astype(int)
         
         # Return list, carefull data is 3D [epoch_id, electrode_id, data]
-        return_list = [[l3[start_index:end_index] for l3 in l2] for l2 in filtered]
+        return_list = np.array([[l3[start_index:end_index] for l3 in l2] for l2 in filtered])
         
         # Return the sliced data
         return return_list
