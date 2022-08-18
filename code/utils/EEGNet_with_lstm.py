@@ -28,15 +28,13 @@ from tensorflow.keras import Sequential
 ##################################
 
 def ThreeDimToTwoDimLayer(x):
+    """ 
+    Conversion layer needed to remove last dimension of 3D input, from (_, 25, 16, 1) -> (_, 25, 16).
+    """
     
     shape = x.shape
     
-    # 1 possibility: H,W*channel
     reshape = Reshape((shape[1],shape[2]*shape[3]))(x)
-    
-    # 2 possibility: W,H*channel
-    # transpose = Permute((2,1,3))(x)
-    # reshape = Reshape((shape[1],shape[2]*shape[3]))(transpose)
     
     return reshape
 
@@ -97,7 +95,7 @@ def EEGNet_bidirectional_lstm(nb_classes, Chans = 64, Samples = 128,
     
     model.add(Activation('elu'))
     
-    model.add(AveragePooling2D((1, 4)))
+    model.add(AveragePooling2D((1, 2))) # Limited to maintain some form of time 
     
     model.add(dropoutType(dropoutRate))
     
@@ -108,7 +106,7 @@ def EEGNet_bidirectional_lstm(nb_classes, Chans = 64, Samples = 128,
     
     model.add(Activation('elu'))
     
-    model.add(AveragePooling2D((1, 8)))
+    model.add(AveragePooling2D((1, 2))) # Limited to maintain some form of time 
     
     model.add(dropoutType(dropoutRate))
     
@@ -116,8 +114,9 @@ def EEGNet_bidirectional_lstm(nb_classes, Chans = 64, Samples = 128,
     ###################################
     # LSTM on found features
     
-    model.add(Lambda(ThreeDimToTwoDimLayer)) # <========== pass from 4D to 3D
-
+    model.add(Permute((2, 3, 1)))  # (_, 1, 25, 16) -> (_, 25, 16, 1) if 100Hz
+    
+    model.add(Lambda(ThreeDimToTwoDimLayer)) # (_, 25, 16, 1) -> (_, 25, 16) if 100Hz
 
     model.add(Bidirectional(LSTM(LSTM_size)))
     
@@ -187,10 +186,10 @@ def EEGNet_lstm_1Dconv(nb_classes, Chans = 64, Samples = 128,
     block1       = Activation('elu')(block1)
     block1       = dropoutType(dropoutRate)(block1)
     
-    reshape      = Permute((2, 1, 3))(block1) # (_, 21, 100, 16) -> (None, 100, 21, 16)
-    
     ###################################
     # LSTM CONV LAYER
+    
+    reshape      = Permute((2, 1, 3))(block1) # (_, 21, 100, 16) -> (None, 100, 21, 16)
     
     lstmconv     = ConvLSTM1D(filters = lstm_filters,
                               kernel_size = lstm_kernel_size,
