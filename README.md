@@ -87,7 +87,7 @@ What we refer to as paper notebooks are notebooks which include code for experim
 | 4: EEGNet | Available [here](code/paper-notebooks/4-eegnet.ipynb) | Available [here](code/paper-notebooks/HTML_exports/4-eegnet.html) |
 | 5: DeepConvNet            | Available [here](code/paper-notebooks/5-deepconvnet.ipynb) | Available [here](code/paper-notebooks/HTML_exports/5-deepconvnet.html) |
 | 6: ShallowConvNet | Available [here](code/paper-notebooks/6-shallowconvnet.ipynb) | Available [here](code/paper-notebooks/HTML_exports/6-shallowconvnet.html) |
-| 7: Extensions |  | |
+| 7: CNN with memory | Available [here](code/paper-notebooks/7-CNN-with-memory.ipynb) | |
 | 8: Going online |  | |
 | A: Figures | Available [here](code/paper-notebooks/A-figures.ipynb) | |
 
