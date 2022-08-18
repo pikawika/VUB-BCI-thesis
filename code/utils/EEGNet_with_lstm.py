@@ -13,6 +13,7 @@
 ##################################
 
 from tensorflow.keras.models import Model
+from tensorflow.keras import regularizers
 from tensorflow.keras.layers import Dense, Activation, Dropout
 from tensorflow.keras.layers import Conv2D, AveragePooling2D
 from tensorflow.keras.layers import SeparableConv2D, DepthwiseConv2D
@@ -46,7 +47,7 @@ def ThreeDimToTwoDimLayer(x):
 def EEGNet_bidirectional_lstm(nb_classes, Chans = 64, Samples = 128, 
                               dropoutRate = 0.5, kernLength = 64, F1 = 8, 
                               D = 2, F2 = 16, norm_rate = 0.25, dropoutType = 'Dropout',
-                              LSTM_size= 4):
+                              LSTM_size= 4, ltsm_dropout = 0.5, ltsm_l1 = 0.0001, ltsm_l2 = 0.0001):
     """ 
     Extension to the Keras Implementation of EEGNet provided by ARL_EEGModels.
     Adds a singular biderectional LSTM after the EEGNet feature extraction as a way to provide memory to the model.
@@ -66,6 +67,7 @@ def EEGNet_bidirectional_lstm(nb_classes, Chans = 64, Samples = 128,
                         convolution. Default: D = 2
       dropoutType     : Either SpatialDropout2D or Dropout, passed as a string.
       LSTM_size       : Size of LSTM layer (amount of units)
+      ltsm_dropout    : Dropout after LTSM
     """
     
     if dropoutType == 'SpatialDropout2D':
@@ -118,16 +120,41 @@ def EEGNet_bidirectional_lstm(nb_classes, Chans = 64, Samples = 128,
     
     model.add(Lambda(ThreeDimToTwoDimLayer)) # (_, 25, 16, 1) -> (_, 25, 16) if 100Hz
 
-    model.add(Bidirectional(LSTM(LSTM_size)))
+    model.add(Bidirectional(
+        LSTM(units = LSTM_size,
+             activation="tanh",
+             recurrent_activation="sigmoid",
+             use_bias=True,
+             kernel_initializer="glorot_uniform",
+             recurrent_initializer="orthogonal",
+             bias_initializer="zeros",
+             unit_forget_bias=True,
+             kernel_regularizer=regularizers.L1L2(l1= ltsm_l1, l2= ltsm_l2),
+             recurrent_regularizer=None,
+             kernel_constraint=None,
+             recurrent_constraint=None,
+             bias_constraint=None,
+             dropout= (ltsm_dropout/2),
+             recurrent_dropout= (ltsm_dropout/2),
+             return_sequences=False,
+             return_state=False,
+             go_backwards=False,
+             stateful=False,
+             time_major=False,
+             unroll=False
+             )))
+    
+    model.add(Dropout(rate=ltsm_dropout))
     
     
     ###################################
     # CNN based "feature extraction" as per EEGNet
     
     model.add(Flatten(name = 'flatten'))
-    model.add(Dense(nb_classes, name = 'dense', 
+    model.add(Dense(128, activation='relu', name = 'dense_after_lstm'))
+    model.add(Dense(nb_classes, name = 'dense_last', 
                     kernel_constraint = max_norm(norm_rate)))
-    model.add(Activation('softmax', name = 'softmax'))
+    model.add(Activation('softmax', name = 'softmax_output'))
     
     
     return model
@@ -139,7 +166,8 @@ def EEGNet_bidirectional_lstm(nb_classes, Chans = 64, Samples = 128,
 def EEGNet_lstm_1Dconv(nb_classes, Chans = 64, Samples = 128, 
                        dropoutRate = 0.5, kernLength = 64, F1 = 8, 
                        D = 2, norm_rate = 0.25, dropoutType = 'Dropout',
-                       lstm_filters = 32, lstm_kernel_size=3):
+                       lstm_filters = 32, lstm_kernel_size=3, ltsm_dropout=0.5,
+                       ltsm_l1 = 0.0001, ltsm_l2 = 0.0001):
     """ 
     Extension to the Keras Implementation of EEGNet provided by ARL_EEGModels.
     Adds a Conv1D LSTM after the first block of EEGNet feature extraction as a way to provide memory to the model.
@@ -159,6 +187,7 @@ def EEGNet_lstm_1Dconv(nb_classes, Chans = 64, Samples = 128,
       dropoutType     : Either SpatialDropout2D or Dropout, passed as a string.
       lstm_filters    : Amount of filters for LSTM layer Conv1D. Default: 32
       lstm_kernel_size: Kernels size for LSTM layer Conv1D Default: 32
+      ltsm_dropout    : Dropout after LTSM
     """
     
     if dropoutType == 'SpatialDropout2D':
@@ -195,19 +224,24 @@ def EEGNet_lstm_1Dconv(nb_classes, Chans = 64, Samples = 128,
                               kernel_size = lstm_kernel_size,
                               strides= 1,
                               padding= "same",
+                              kernel_regularizer=regularizers.L1L2(l1= ltsm_l1, l2= ltsm_l2),
                               data_format= "channels_first", # 21 electrodes
-                              stateful=False,
-                              dropout=0.0,
-                              recurrent_dropout=0.0)(reshape)                         
+                              stateful= False,
+                              dropout= (ltsm_dropout/2),
+                              recurrent_dropout= (ltsm_dropout/2))(reshape) 
+    
+    lstmdrop     = Dropout(rate=ltsm_dropout)(lstmconv)
 
        
     ###################################
     # EEGNET BASED CLASSIFICATION
      
-    flatten      = Flatten(name = 'flatten')(lstmconv)
+    flatten      = Flatten(name = 'flatten')(lstmdrop)
+    
+    bigdens      = Dense(128, activation='relu', name = 'dense_after_lstm')(flatten)
     
     dense        = Dense(nb_classes, name = 'dense', 
-                         kernel_constraint = max_norm(norm_rate))(flatten)
+                         kernel_constraint = max_norm(norm_rate))(bigdens)
     softmax      = Activation('softmax', name = 'softmax')(dense)
     
     return Model(inputs=input1, outputs=softmax)
