@@ -44,10 +44,10 @@ def ThreeDimToTwoDimLayer(x):
 # EEGNET WITH BIDERECTIONAL LSTM
 ##################################
 
-def EEGNet_bidirectional_lstm(nb_classes, Chans = 64, Samples = 128, 
-                              dropoutRate = 0.5, kernLength = 64, F1 = 8, 
-                              D = 2, F2 = 16, norm_rate = 0.25, dropoutType = 'Dropout',
-                              LSTM_size= 4, ltsm_dropout = 0.5, ltsm_l1 = 0.0001, ltsm_l2 = 0.0001):
+def EEGNet_bidirectional_lstm(nb_classes, Chans = 21, Samples = 100, 
+                              dropoutRate = 0.5, kernLength = 50, F1 = 8, 
+                              D = 2, F2 = 16, norm_rate = 0.3, dropoutType = 'SpatialDropout2D',
+                              LSTM_size= 64, ltsm_dropout = 0.6, ltsm_l1 = 0.0001, ltsm_l2 = 0.0001):
     """ 
     Extension to the Keras Implementation of EEGNet provided by ARL_EEGModels.
     Adds a singular biderectional LSTM after the EEGNet feature extraction as a way to provide memory to the model.
@@ -134,8 +134,8 @@ def EEGNet_bidirectional_lstm(nb_classes, Chans = 64, Samples = 128,
              kernel_constraint=None,
              recurrent_constraint=None,
              bias_constraint=None,
-             dropout= (ltsm_dropout),
-             recurrent_dropout= (ltsm_dropout),
+             dropout= ltsm_dropout,
+             recurrent_dropout= 0, # Required to use the significantly faster cuDNN
              return_sequences=False,
              return_state=False,
              go_backwards=False,
@@ -144,14 +144,17 @@ def EEGNet_bidirectional_lstm(nb_classes, Chans = 64, Samples = 128,
              unroll=False
              )))
     
-    model.add(Dropout(rate=ltsm_dropout))
+    model.add(Dropout(rate=(ltsm_dropout/2)))
     
     
     ###################################
     # CNN based "feature extraction" as per EEGNet
     
     model.add(Flatten(name = 'flatten'))
-    model.add(Dense(128, activation='relu', name = 'dense_after_lstm'))
+    
+    # Add complixity without gain
+    # model.add(Dense(128, activation='relu', name = 'dense_after_lstm'))
+    
     model.add(Dense(nb_classes, name = 'dense_last', 
                     kernel_constraint = max_norm(norm_rate)))
     model.add(Activation('softmax', name = 'softmax_output'))
@@ -166,7 +169,7 @@ def EEGNet_bidirectional_lstm(nb_classes, Chans = 64, Samples = 128,
 def EEGNet_lstm_1Dconv(nb_classes, Chans = 64, Samples = 128, 
                        dropoutRate = 0.5, kernLength = 64, F1 = 8, 
                        D = 2, norm_rate = 0.25, dropoutType = 'Dropout',
-                       lstm_filters = 32, lstm_kernel_size=3, ltsm_dropout=0.5,
+                       lstm_filters = 64, lstm_kernel_size= 4, ltsm_dropout=0.5,
                        ltsm_l1 = 0.0001, ltsm_l2 = 0.0001):
     """ 
     Extension to the Keras Implementation of EEGNet provided by ARL_EEGModels.
@@ -207,9 +210,8 @@ def EEGNet_lstm_1Dconv(nb_classes, Chans = 64, Samples = 128,
                                    input_shape = (Chans, Samples, 1), 
                                    use_bias = False)(input1)
     block1       = BatchNormalization()(block1)
-    block1       = DepthwiseConv2D((Chans, 1), use_bias = False, # (_, 21, 100, 8) -> (_, 21, 100, 16)
+    block1       = DepthwiseConv2D((Chans, 1), use_bias = False, # (_, 21, 100, 8) -> (_, 1, 100, 16)
                                    depth_multiplier = D,
-                                   padding = 'same',
                                    depthwise_constraint = max_norm(1.))(block1)
     block1       = BatchNormalization()(block1)
     block1       = Activation('elu')(block1)
@@ -218,7 +220,7 @@ def EEGNet_lstm_1Dconv(nb_classes, Chans = 64, Samples = 128,
     ###################################
     # LSTM CONV LAYER
     
-    reshape      = Permute((2, 1, 3))(block1) # (_, 21, 100, 16) -> (None, 100, 21, 16)
+    reshape      = Permute((2, 1, 3))(block1) # (_, 1, 100, 16) -> (None, 100, 16, 1)
     
     lstmconv     = Bidirectional(ConvLSTM1D(filters = lstm_filters,
                                             kernel_size = lstm_kernel_size,
@@ -227,8 +229,8 @@ def EEGNet_lstm_1Dconv(nb_classes, Chans = 64, Samples = 128,
                                             kernel_regularizer=regularizers.L1L2(l1= ltsm_l1, l2= ltsm_l2),
                                             data_format= "channels_first", # 21 electrodes
                                             stateful= False,
-                                            dropout= (ltsm_dropout),
-                                            recurrent_dropout= (ltsm_dropout)))(reshape) 
+                                            dropout= ltsm_dropout,
+                                            recurrent_dropout= ltsm_dropout))(reshape) 
     
     lstmdrop     = Dropout(rate=ltsm_dropout)(lstmconv)
 
@@ -238,10 +240,11 @@ def EEGNet_lstm_1Dconv(nb_classes, Chans = 64, Samples = 128,
      
     flatten      = Flatten(name = 'flatten')(lstmdrop)
     
-    bigdens      = Dense(128, activation='relu', name = 'dense_after_lstm')(flatten)
+    # Increases complexity without gain
+    #bigdens      = Dense(128, activation='relu', name = 'dense_after_lstm')(flatten)
     
     dense        = Dense(nb_classes, name = 'dense', 
-                         kernel_constraint = max_norm(norm_rate))(bigdens)
+                         kernel_constraint = max_norm(norm_rate))(flatten)
     softmax      = Activation('softmax', name = 'softmax')(dense)
     
     return Model(inputs=input1, outputs=softmax)
