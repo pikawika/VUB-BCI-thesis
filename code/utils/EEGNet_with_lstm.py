@@ -134,8 +134,8 @@ def EEGNet_bidirectional_lstm(nb_classes, Chans = 64, Samples = 128,
              kernel_constraint=None,
              recurrent_constraint=None,
              bias_constraint=None,
-             dropout= (ltsm_dropout/2),
-             recurrent_dropout= (ltsm_dropout/2),
+             dropout= (ltsm_dropout),
+             recurrent_dropout= (ltsm_dropout),
              return_sequences=False,
              return_state=False,
              go_backwards=False,
@@ -220,15 +220,15 @@ def EEGNet_lstm_1Dconv(nb_classes, Chans = 64, Samples = 128,
     
     reshape      = Permute((2, 1, 3))(block1) # (_, 21, 100, 16) -> (None, 100, 21, 16)
     
-    lstmconv     = ConvLSTM1D(filters = lstm_filters,
-                              kernel_size = lstm_kernel_size,
-                              strides= 1,
-                              padding= "same",
-                              kernel_regularizer=regularizers.L1L2(l1= ltsm_l1, l2= ltsm_l2),
-                              data_format= "channels_first", # 21 electrodes
-                              stateful= False,
-                              dropout= (ltsm_dropout/2),
-                              recurrent_dropout= (ltsm_dropout/2))(reshape) 
+    lstmconv     = Bidirectional(ConvLSTM1D(filters = lstm_filters,
+                                            kernel_size = lstm_kernel_size,
+                                            strides= 1,
+                                            padding= "valid", # reduces dimension
+                                            kernel_regularizer=regularizers.L1L2(l1= ltsm_l1, l2= ltsm_l2),
+                                            data_format= "channels_first", # 21 electrodes
+                                            stateful= False,
+                                            dropout= (ltsm_dropout),
+                                            recurrent_dropout= (ltsm_dropout)))(reshape) 
     
     lstmdrop     = Dropout(rate=ltsm_dropout)(lstmconv)
 
