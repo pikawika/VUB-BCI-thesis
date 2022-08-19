@@ -59,7 +59,7 @@ These types of \glspl{biosignal}, sometimes reffered to as \gls{elecbiosignal}, 
 \begingroup
 \setlength{\tabcolsep}{6pt} % Default value: 6pt
 \renewcommand{\arraystretch}{2} % Default value: 1
-\begin{table}[]
+\begin{table}[ht]
     \resizebox{\columnwidth}{!}{%
     \begin{tabular}{|l|p{5cm}|p{7cm}|}
         \hline
@@ -226,8 +226,8 @@ This has caused the introduction of many different measuring modalities, each wi
 However, many of these modalities require bulky equipment which makes them non-portable and thus non-attractive for use in general \gls{bci} systems \citep{modalities_review1}.
 
 Table \ref{tab:biomedical_signals_modalities} provides an overview of the most common measuring modalities considered for use in \gls{bci} applications together with some of their properties.
-\Gls{eeg}, \gls{ecog}, intravescular electrodes and \gls{fnirs} seem most probable to be used in \gls{bci} systems for the foreseeable future.
-Because of this, this section focuses on these modalities.
+\Gls{eeg}, \gls{ecog}, and \gls{fnirs} seem most probable to be used in \gls{bci} systems for the foreseeable future \citep{modalities_review2}.
+Because of this, this section focuses on these modalities, the works by \citet{modalities_review1} and \citet{modalities_review2} cover the other modalities given in Table \ref{tab:biomedical_signals_modalities}.
 Further refinement of other modalities or even new modalities might cause a shift in the modalities used for \glspl{bci}.
 This is already visible with the Elon Musk company Neuralink, discussed in Section \ref{subsec:bci_gaining_popularity_better_measuring}, pushing \glspl{bci} to an invasive future away from the now very commonly used non-invasive \gls{eeg} modality.
  
@@ -237,14 +237,14 @@ This is already visible with the Elon Musk company Neuralink, discussed in Secti
 \begingroup
 \setlength{\tabcolsep}{6pt} % Default value: 6pt
 \renewcommand{\arraystretch}{2} % Default value: 1
-\begin{table}[]
+\begin{table}[ht]
     \resizebox{\columnwidth}{!}{%
     \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
         \hline
         \textbf{Modality}          & \textbf{Invasive} & \textbf{Risks} & \textbf{Temporal resolution} & \textbf{Spatial resolution} & \textbf{Affordability} & \textbf{Ease-of-installation} & \textbf{Ease-of-use} & \textbf{Comfort} \\ \hline
         EEG                        & No                & Low            & 50ms                        & 10mm                       & €                      & Good                          & Good                 & Medium           \\ \hline
         ECoG                       & Yes               & High           & 5ms                         & 1mm                        & €€-€€€                 & Poor                          & Good                 & Good             \\ \hline
-        Intravescular electrodes    & Yes               & Medium         & 5ms                          & 2.4mm                       & €€-€€€                 & Poor                          & Good                 & Good             \\ \hline
+        Intravascular electrodes    & Yes               & Medium         & 5ms                          & 2.4mm                       & €€-€€€                 & Poor                          & Good                 & Good             \\ \hline
         fNIRS                      & No                & Low            & 1000ms                       & 10mm                        & €-€€€                 & Good                          & Good                 & Medium           \\ \hline
         Implemented microelectrode & Yes               & High           & 3ms                          & 0.05mm - 0.5mm              & €€€                    & Poor                          & Good                 & Good             \\ \hline
         fTCD                       & No                & Low            & 1ms - 5ms                    & 10mm - 30mm                 & €                      & Medium                        & Medium               & Poor             \\ \hline
@@ -310,19 +310,32 @@ Some studies have also shown that extensive \gls{eeg} use can cause temporary ha
 
 % | | | | | | | | | | | | |
 
-\subsubsection{Electrocorticography (ECoG)}
+\subsubsection{Electrocorticography (ECoG) and other invasive methods}
 \label{subsubsec:biomedical_signals_measuring_brain_modalities_ecog}
 
-% TODO: start here
+With most shortcomings of \gls{eeg} being related to the non-invasive nature of the modality, invasive variants of \gls{eeg} have been studied extensively as well.
+One such invasive modality to measure the \gls{elecbiosignal} of the brain is \glsfirst{ecog}.
+When using \gls{ecog}, electrodes are placed directly on the cerebral cortex, the outer layer of the brain.
+\Gls{ecog} was first explored in the 1950s to determine the exact origin of epileptic seizures so that this part of the brain could be surgically removed \citep{ecog_origin}.
+The procedure used involved opening a portion of the skull, placing the electrodes on the exposed area of the cerebral cortex, waiting for a seizure to occur such that \gls{ecog} can be used to determine the exact location, removing that part of the brain, removing the electrodes and closing the skull again.
+This was done in this manner as the electrodes are physically closer to the brain, improving the spatial resolution and \gls{snr} significantly when compared to \gls{eeg}.
+To this day, \gls{ecog} is still used in certain brain surgeries and this type of use of \gls{ecog} is called \textit{intraoperative} \gls{ecog}.
 
-% invasive EEG
-% ecog: Modalities include the electrocorticogram where electrodes are implanted on the top of the cortex, right under the skull. There is also the possibility to implant electrodes directly in the brain matter (intracortical EEG) to further increase SNR and spatial resolution. However, such invasive approaches fall outside of the scope of this article.
+However, this superior spatial resolution, far better \gls{snr} and the relatively fixed electrode positioning combined with a system that is invisible to the human eye has made it an attractive variant of \gls{eeg} for post-surgery measurements as well.
+This is known as \textit{extraoperative} \gls{ecog}.
+Many successful steps have been made to lower the risk and costs associated with the invasive nature of \gls{ecog}.
+When only interested in \textit{extraoperative} \gls{ecog}, a craniotomy, also known as an open skull surgery, is not needed anymore.
+Instead, tiny holes can be made in the skull to implement the electrodes in that way.
+The size and associated surgical risks of those holes have been shrinking.
 
-
-% | | | | | | | | | | | | |
-
-\subsubsection{Intravescular electrodes}
-\label{subsubsec:biomedical_signals_measuring_brain_modalities_intravesc_electrodes}
+The Neuralink company discussed in Section \ref{subsec:bci_gaining_popularity_better_measuring} is responsible for the most recent advancements in this area, with the implantation of hair-sized electrodes being capable using only a robot and minimal anaesthesia.
+At this stage, it is unclear whether their system will be considered \textit{extraoperative} \gls{ecog} or a different type of invasive measuring modality.
+Since these electrodes are so tiny, many thousands could be used for measuring the brain signals, compared to \gls{eeg} where a system with 21 or 64 electrodes is most common.
+Whilst for \gls{eeg} having more than 1024 electrodes is almost impossible due to the physically limited space on the scalp, invasive techniques are aiming to allow for thousands of electrodes in only a small region of the brain.
+Whether this increase in electrodes will be useful has yet to be determined, as for \gls{eeg} it is known that adding more electrodes does not improve the measured information past a certain point \citep{dropping_curve_eeg_lectrodes, more_electrodes_not_better}.
+However, many of these procedures still need significant medical trials before widespread use will be possible and as such, \gls{ecog} and other invasive methods such as intravascular electrodes (minimally invasive) and implemented microelectrodes (best spatial resolution) are yet to see widespread \gls{bci} adoption outside medical applications.
+These latter invasive methods are covered in more detail by \citet{modalities_review1}.
+There are also some ethical questions surrounding the use of invasive \gls{bci}, as discussed in Section \ref{subsec:bci_ethical_e_waste}.
 
 
 % | | | | | | | | | | | | |
@@ -330,17 +343,12 @@ Some studies have also shown that extensive \gls{eeg} use can cause temporary ha
 \subsubsection{Functional near-infrared spectroscopy (fNIRS)}
 \label{subsubsec:biomedical_signals_measuring_brain_modalities_fnirs}
 
-% | | | | | | | | | | | | |
+% TODO start here
 
-\subsubsection{Other modalities}
-\label{subsubsec:biomedical_signals_measuring_brain_modalities_others}
-
-% ook deze heel invasive vermelden? https://en.wikipedia.org/wiki/Intracortical_encephalogram_signal_analysis
-
-% Alternative signals include magnetoencephalogram (Gross 2019), functional near infrared spectroscopy (Naseer and Hong 2015), and functional Magnetic Resonance Imaging (Sitaram et al 2007). Lesser known signal types are also becoming usable, such as acoustic resonance (Norman et al 2021), which uses the Doppler effect to detect changes in brain activity, and Photoplethysmogram (Han et al 2020), which uses optical reflections to monitor brain activity, in a similar way to near infrared spectroscopy. Another possibility is to monitor spinal cord activity using magnetospinography (Sakakiet al 2020) if one is only interested in lower-limb activity
-% UIT bci_review_arnau
-
-% The technique of MRS or magnetic resonance spectroscopy can measure something closer to action potentials but it too has issues and has not gained wide usage. It has enormous potential and hopefully will become integrated into the toolbox of neuroimagers
+%  Easy to measure
+% Involves no radioactivity
+% Low temporal resolution
+% Needs time to be measured ( > 2– 5 s)
 
 % - - - - - - - - - -
 % Why EEG
@@ -352,6 +360,7 @@ Some studies have also shown that extensive \gls{eeg} use can cause temporary ha
 % bci_invasive_or_not1
 % bci_invasive_or_not2
 
+TODO
 
 % - - - - - - - - - -
 % EEG standards
@@ -360,11 +369,13 @@ Some studies have also shown that extensive \gls{eeg} use can cause temporary ha
 \subsection{Standards for EEG measuring systems}
 \label{subsec:biomedical_signals_measuring_brain_standards}
 
-% The international 10 20 systems is a standard method of measuring the head and placing electrodeS. Depends on four main components of the head that are easily transfarable between patients, first is the nasion at the bridge of the nose then the inion at the back of the head and then two pre-auricular points near the ear
+% The international 10 20 systems is a standard method of measuring the head and placing electrodes. Depends on four main components of the head that are easily transfarable between patients, first is the nasion at the bridge of the nose then the inion at the back of the head and then two pre-auricular points near the ear
 % https://www.youtube.com/watch?v=XMizSSOejg0 
 
 % To ensure consistent electrode placement it is often the case that the standardised ‘10/20’ system is implemented (Jasper, 1958). The values 10 and 20 indicate that the distances between adjacent electrodes are either 10 % or 20 % of the total front-back or right-left size of the skull. Figure 2.1a gives a graphical representation of the standardised ‘10/20’ system. The labels of the electrodes relate to the lobes of the brain for which they record. With the advancement of EEG electrodes, various extensions of the standardised ‘10/20’ system have emerged. Figure 2.1b gives a graphical representation of the ‘10/10’ system (Oostenveld & Praamstra, 2001). For a detailed review of a range of electrode placement schemes, the reader is referred to the work of Jurcak et al. (2007).
-\lipsum[1-2]
+
+TODO
+
 
 % - - - - - - - - - -
 % available equipment
@@ -387,10 +398,6 @@ As discussed before, the user experience of a \gls{bci} system is as important i
 % TODO: Different affordable consumer-grade EEG devices have appeared in both Academia (e.g. [5, 6, 7, 8]) and the market (e.g. B-Alert X10, NeuroSky, OpenBCI, Emotiv)
 % FROM: cheap_bci_feasibility
 
-% TODO
-todo
-\lipsum[1-7]
-
 % https://imotions.com/blog/eeg-headset-prices/
 % Nextmind 
 % Neurosky
@@ -404,6 +411,8 @@ todo
 % TODO: citing for sources of img?
 % this image was here: https://docs.google.com/document/d/1uaRHNNBJsR8vqT50TllE8s3Jf2dUtAVCcLJb-vhncMM/edit
 
+TODO
+
 % - - - - - - - - - -
 % artefacts
 % - - - - - - - - - -
@@ -412,7 +421,8 @@ todo
 \label{subsec:biomedical_signals_measuring_brain_artefacts}
 
 % TODO also discuss how to use them e.g. eye blink as input, ook bespreken niet goed voor e.g. sroke patienten
-\lipsum[1-5]
+
+TODO
 
 % ---------------------------------------------- 
 % WORKING WITH EEG
@@ -426,7 +436,7 @@ todo
 \label{sec:biomedical_signals_working_with_eeg}
 
 % \gls{elecbiosignal}
-\lipsum[1-2]
+TODO
 
 
 % - - - - - - - - - -
@@ -438,7 +448,7 @@ todo
 % Bespreken welke regions important voor MI
 % al getoond in bci chapter
 
-\lipsum[1-2]
+TODO
 
 % - - - - - - - - - -
 % Brain waves
@@ -450,7 +460,7 @@ todo
 % 2.1.1 Brain Waves from https://www.sciencedirect.com/book/9780128044902/introduction-to-eeg-and-speech-based-emotion-recognition
 % bespreken hoe frequentie belangrijk en dus vaak frequency analysis en ook bespreken range MI
 
-\lipsum[1-3]
+TODO
 
 % - - - - - - - - - -
 % Measurable brain activity
@@ -472,8 +482,6 @@ todo
 % MI
 % erd
 
-\lipsum[1-7]
-
 % TODO zie chapter 23 bci_handbook
 % Issues MI: https://www.frontiersin.org/articles/10.3389/fnins.2021.824759/full
 \Gls{mi} is the process in which a person generates brain-activity in the motor cortex merely by imagining motor movements.
@@ -490,6 +498,8 @@ This makes \gls{mi}-based \glspl{bci} extra appealing as they don't require exte
 Since then, many \gls{mi}-based \glspl{bci} have been proposed.
 % MI can be trained
 
+TODO
+
 % - - - - - - - - - -
 % generalisation issues
 % - - - - - - - - - -
@@ -501,7 +511,7 @@ Since then, many \gls{mi}-based \glspl{bci} have been proposed.
 
 % However, as mentioned, since this is an invasive technique, it is not discussed here. Lastly, a crucial property of EEG in the context of machine learning, is its nonstationarity (Klonowski, 2009). A stationary signal is one of which the properties do not change with time. On the other hand, a nonstationary signal is inconsistent with time. EEG’s nonstationarity is a result of it capturing the activity of a multitude of different latent variables in the brain, each of which are transmitting with different and variable intensity. In a fraction of a second, the latent variables whose activities are currently dominant can change. Nonstationarity makes interpreting EEG a nontrivial task. If not properly addressed, machine learning models are certain to struggle to learn anything valuable from EEG. This is reflected by the number of preprocessing and feature extraction methods that exist for EEG.
 
-\lipsum[1-3]
+TODO
 
 
 % ---------------------------------------------- 
@@ -515,4 +525,4 @@ Since then, many \gls{mi}-based \glspl{bci} have been proposed.
 
 % uitleggen dat hybrid in de toekomst mss wel beter zal zijn maar momenteel nog geen zicht op
 
-\lipsum[1-3]
+TODO
