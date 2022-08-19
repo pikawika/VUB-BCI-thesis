@@ -220,7 +220,7 @@ def EEGNet_lstm_1Dconv(nb_classes, Chans = 64, Samples = 128,
     ###################################
     # LSTM CONV LAYER
     
-    reshape      = Permute((2, 1, 3))(block1) # (_, 1, 100, 16) -> (None, 100, 16, 1)
+    reshape      = Permute((2, 1, 3))(block1) # (_, 1, 100, 16) -> (None, 100, 1, 16)
     
     lstmconv     = Bidirectional(ConvLSTM1D(filters = lstm_filters,
                                             kernel_size = lstm_kernel_size,
@@ -230,9 +230,9 @@ def EEGNet_lstm_1Dconv(nb_classes, Chans = 64, Samples = 128,
                                             data_format= "channels_first", # 21 electrodes
                                             stateful= False,
                                             dropout= ltsm_dropout,
-                                            recurrent_dropout= ltsm_dropout))(reshape) 
+                                            recurrent_dropout= 0))(reshape) # For speed
     
-    lstmdrop     = Dropout(rate=ltsm_dropout)(lstmconv)
+    lstmdrop     = Dropout(rate=(ltsm_dropout/2))(lstmconv)
 
        
     ###################################
@@ -241,7 +241,7 @@ def EEGNet_lstm_1Dconv(nb_classes, Chans = 64, Samples = 128,
     flatten      = Flatten(name = 'flatten')(lstmdrop)
     
     # Increases complexity without gain
-    #bigdens      = Dense(128, activation='relu', name = 'dense_after_lstm')(flatten)
+    #bigdense     = Dense(128, activation='relu', name = 'dense_after_lstm')(flatten)
     
     dense        = Dense(nb_classes, name = 'dense', 
                          kernel_constraint = max_norm(norm_rate))(flatten)
