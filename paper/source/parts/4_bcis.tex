@@ -156,7 +156,7 @@ And thus, the most prominent type of commercial \glspl{bci} are those focusing o
 In this regard, the headsets by InteraXon, produced under the Muse brand, are one of the earliest examples, with their first version being released in 2014.
 The first iteration of this product was advertised as a meditation aid.
 This headset relies on measuring Theta waves in the brain, which are lower frequency waves that suggest a user is meditating.
-Section \ref{subsec:biomedical_signals_from_brain_brain_waves} talks about these brain wave frequencies in more detail.
+Section \ref{subsec:biomedical_signals_working_with_eeg_brain_waves} talks about these brain wave frequencies in more detail.
 The actual accuracy and usefulness of these types of systems are debated, as discussed by \citet{interaxon_tests}.
 More recently, a newer version of the InteraXon headset came to market, named Muse 2, which also aids in sleep monitoring.
 This relies on detecting Delta waves among other patterns to determine the sleep quality of a user.
@@ -165,7 +165,7 @@ A similar commercial product for sleep tracking is available from the company Dr
 Dreem has received more funding, as can be seen in Figure \ref{fig:bci_money}, but InteraXon, the company behind the Muse headset, has arguably contributed more to the field.
 Not only was it one of the first commercial \glspl{bci} that gained media attention, but the company also plays an important role in the commercialisation of \glspl{bci} as their headsets are cheap, non-invasive and visually pleasing whilst also being widely available. 
 Adding to this, these headsets have pretty good supporting libraries in Python among other programming languages that allow developers to use these headsets for other purposes as well.
-Besides InteraXon, some other companies that specialize in providing commercially usable brain-signal recording headsets exist, as will be further discussed in Section \ref{subsec:biomedical_signals_measuring_equipment}.
+Besides InteraXon, some other companies that specialize in providing commercially usable brain-signal recording headsets exist, as will be further discussed in Section \ref{subsec:biomedical_signals_measuring_brain_equipment}.
 
 Perhaps the most promising short-term commercial use of \glspl{bci} is in combination with \gls{vr} and \gls{ar}.
 Besides Meta's interest in this region, as discussed earlier in this section, Valve has also said it is actively researching how to use \glspl{bci} as a novel interaction system in \gls{vr} games \citep{valve_bci_interest}.
@@ -196,7 +196,7 @@ In this way, they also contribute to Wolpaw's vision of a perfect \gls{bci} syst
 
 Figure \ref{fig:bci_money} shows the funding of \gls{bci}-related companies founded after 2010 as a rough indication of how much money is spent on start-up companies in the field.
 Interestingly, from the companies Neurable, Muse and Neuralink mentioned in this thesis, the funding amount is in proportion to the overall popularity of that company to the wider public, although this is by no means a proven relation.
-It also shows that whilst academic research on \glspl{bci} doesn't require huge funding, with open-source datasets and relatively cheap hardware available as is further discussed in Section \ref{subsec:bci_gaining_popularity_improved_data_processing}, \ref{subsec:biomedical_signals_measuring_equipment}, and \ref{subsec:processing_signals_alternative_pipelines_using_existing_data}, creating an effective commercial product can become an expensive affaire rather quickly.
+It also shows that whilst academic research on \glspl{bci} doesn't require huge funding, with open-source datasets and relatively cheap hardware available as is further discussed in Section \ref{subsec:bci_gaining_popularity_improved_data_processing}, \ref{subsec:biomedical_signals_measuring_brain_equipment}, and \ref{subsec:processing_signals_alternative_pipelines_using_existing_data}, creating an effective commercial product can become an expensive affaire rather quickly.
 
 \begin{figure}[ht]
     \centering
@@ -239,7 +239,7 @@ However, when looking at data quality, a wired wet-electrode with active amplifi
 Luckily, recent advancements have made these differences in data quality more acceptable, as will shortly be discussed in what follows.
 
 Wet \gls{eeg} electrodes are electrodes which require an electrolytic gel to be applied between the electrode and the scalp.
-This gel functions as a conductor and, as discussed further in Section \ref{subsec:biomedical_signals_measuring_equipment}, currently allows wet electrodes to have better data quality compared to dry electrodes \citep{wet_vs_dry, dry_electrode_status, wet_dry_comparison_experiment}.
+This gel functions as a conductor and, as discussed further in Section \ref{subsec:biomedical_signals_measuring_brain_equipment}, currently allows wet electrodes to have better data quality compared to dry electrodes \citep{wet_vs_dry, dry_electrode_status, wet_dry_comparison_experiment}.
 However, wet electrodes require the assistance of a professional to correctly apply the gel which leaves behind traces after use.
 Adding to this, the electrolytic gel could also cause allergic effects for the user. Due to the viscosity of the electrolytic gel changing over time, artefacts in measurements may also appear \citep{dry_electrode_status}.
 These are unwanted properties and conflict with Wolpaw's vision of a perfect \gls{bci}.
@@ -345,11 +345,11 @@ These techniques also have the added benefit of cleaning the time-varying signal
 \label{subsubsec:bci_gaining_popularity_better_measuring_invasive}
 
 The previous parts discussed how non-invasive \gls{eeg} measurements have been improved.
-However, alternatives to \gls{eeg} exist for measuring brain signals, some of which are further discussed in Section \ref{subsec:biomedical_signals_measuring_modalities}.
+However, alternatives to \gls{eeg} exist for measuring brain signals, some of which are further discussed in Section \ref{subsec:biomedical_signals_measuring_brain_modalities}.
 Most notable in recent years is measuring modalities that rely on capturing brain signals by equipment directly inserted into the human body, making it an invasive approach.
 One such example of an invasive measuring modality is \gls{ecog} and the most popular invasive \gls{bci} at the moment is the one proposed by \citet{neuralink_whitepaper}.
 The white paper by \citet{neuralink_whitepaper} has shown that invasive \glspl{bci} could greatly exceed the data quality and visual aesthetics of even the best non-invasive alternatives.
-As further discussed in \ref{subsec:biomedical_signals_measuring_modalities}, this invasive method places flexible electrodes directly inside the skull.
+As further discussed in \ref{subsec:biomedical_signals_measuring_brain_modalities}, this invasive method places flexible electrodes directly inside the skull.
 These electrodes are invisible to the human eye with the only visual component being a rechargeable wireless transmitter that is magnetically attached to the skull.
 Neuralink's final aim is to make the brain-signal measuring equipment completely invisible to the human eye.
 
@@ -423,12 +423,12 @@ It also makes it possible for smaller research teams or even individuals with a 
 As an example, it enables computer scientists to purchase off-the-shelve affordable \gls{eeg} measuring hardware and communicate with it through provided libraries for their favourite programming language.
 In most cases, the personal computer they already own is powerful enough for the experiments, especially for offline systems.
 This allows for reusing existing hardware which is great from a financial perspective.
-Section \ref{subsec:biomedical_signals_measuring_equipment} discusses some of the \gls{eeg} measuring equipment available on the market.
+Section \ref{subsec:biomedical_signals_measuring_brain_equipment} discusses some of the \gls{eeg} measuring equipment available on the market.
 It is noted that \gls{eeg} measuring hardware is not strictly needed for a computer scientist as researchers such as \citet{eeg_data} have made excellent free-to-use \gls{eeg} datasets available.
 
 With the introduction of the iPhone in 2007, it didn't take long for researchers to explore the idea of using a mobile phone as a processing unit for a \glspl{bci}.
 \citet{early_bci_phone} were one of the first to explore this idea, with a \gls{ssvep}-based \gls{bci}.
-Section \ref{subsec:biomedical_signals_from_brain_inducing_methods} will go into further detail on the types of measurable brain-signals.
+Section \ref{subsec:biomedical_signals_working_with_eeg_inducing_methods} will go into further detail on the types of measurable brain-signals.
 In essence, such a system relies on a category of brain signals that are often easy to detect but require a specific stimulation.
 This type of system can be used for a wide variety of applications.
 Imagine an audio-guided tour in a museum where visitors only need to stare at a screen next to an item of interest to start hearing the explanation of that item.
@@ -887,7 +887,7 @@ In particular, people who have neurological diseases, limiting the production of
 However, the viability of robotic prostheses and exoskeletons for these patients has been steadily on the rise as \gls{eeg} based \glspl{bci} have been proposed for this purpose.
 \Citet{bci_prostheses} give an in-depth systematic review of upper and lower limb exoskeletons and robotic prostheses controlled by \gls{eeg}-based \gls{bci}.
 Just as was the case for rehabilitation and restoration discussed in Section \ref{subsec:bci_common_use_cases_medical_phenomena}, these systems often make use of brain signals measurable after imagined movement.
-This process of thinking of movement but not doing the movement is known as \glsfirst{mi} and further discussed in Section \ref{subsec:biomedical_signals_from_brain_inducing_methods}.
+This process of thinking of movement but not doing the movement is known as \glsfirst{mi} and further discussed in Section \ref{subsec:biomedical_signals_working_with_eeg_inducing_methods}.
 
 
 % | | | | | | | | | | | | |
@@ -998,7 +998,7 @@ They used the Emotiv EPOC headset as a non-invasive source for the \gls{eeg} usi
 This means that it seems to comply with most properties of Wolpaw's definition for a perfect \gls{bci} except for one of the most important ones, it is not at all as fast as the regular interaction method.
 Adding to this, their system doesn't make use of actual brain signals but rather relies on muscular activity, such as smirks and eyebrow movement.
 This movement of the facial muscles is known to provide an easily detectable artefact in the \gls{eeg} and is often used as a supplementary input for the \gls{bci} system.
-As section \ref{subsec:biomedical_signals_measuring_artefacts} will discuss in greater detail, such an approach has many negatives.
+As section \ref{subsec:biomedical_signals_measuring_brain_artefacts} will discuss in greater detail, such an approach has many negatives.
 Finally, the system of \citet{bci_smart_home_app} was tested on four subjects but the article fails to deliver exact details on this experiment and it is assumed the participants were neither elderly nor people with a handicap.
 
 Whilst this means the system by \citet{bci_smart_home_app} isn't a true \glsfirst{bci} due to the use of \gls{eeg} artefacts and the paper has questionable scientific value, it was one of the first to explore the idea of using a \gls{bci} for smart home control.
@@ -1036,7 +1036,7 @@ Since the number of combinations to create hybrid \gls{bci} systems are nearly e
 \label{subsec:bci_common_use_cases_bcis_replace_eye_tracking}
 
 \gls{bci} systems relying on P300 signals where already briefly mentioned in Section \ref{subsec:bci_gaining_popularity_better_processing}.
-As further discussed in section \ref{subsec:biomedical_signals_from_brain_inducing_methods}, a P300 signal is a positive bio-electrical wave measurable with \gls{eeg} around 300ms after a specific stimulus occurred.
+As further discussed in section \ref{subsec:biomedical_signals_working_with_eeg_inducing_methods}, a P300 signal is a positive bio-electrical wave measurable with \gls{eeg} around 300ms after a specific stimulus occurred.
 This specific stimulus consists of a rare and contrasting stimulus when the user was focusing on what is otherwise a relatively static object with a frequent stimulus \citep{eye_tracking_vs_p300_comparable}.
 The most famous example is the use of a computer screen showing elements in a grid-like pattern as the static object with a frequent stimulus and flashing one specific element as the rare and contrasting stimulus.
 If the element the user was focused on flashes, the P300 signal will be present and relatively easily detectable in non-invasive \gls{eeg} measures.
@@ -1056,7 +1056,7 @@ This makes the effective use of these types of \gls{bci} systems debatable, an i
 In general, \glspl{bci} using the P300 signal are often used as they have a low learning curve and there is a relatively low variation in performance between users compared to other types of \glspl{bci} \citep{p300_spellers, p300_spellers_review}.
 The reason these systems have a low learning curve is due to their simple user interface and a combination of a system that generalises well and that has been studied thoroughly for the use of \glsfirst{tl}.
 Early examples of using \gls{tl} for P300 related \glspl{bci} include those by \citet{p300_speller_tl}.
-Adding to this, P300 signals can be detected with non-invasive \gls{eeg} using dry electrodes, which are available in multiple \gls{eeg} measuring headsets at affordable prices in a comfortable and visually pleasing package, as further discussed in Section \ref{subsec:biomedical_signals_measuring_equipment}.
+Adding to this, P300 signals can be detected with non-invasive \gls{eeg} using dry electrodes, which are available in multiple \gls{eeg} measuring headsets at affordable prices in a comfortable and visually pleasing package, as further discussed in Section \ref{subsec:biomedical_signals_measuring_brain_equipment}.
 Whilst these factors hint that such \gls{bci} systems comply with Wolpaw's definition for a perfect \gls{bci} addressed in Section \ref{sec:bci_introduction}, it will become clear in this section that the communication rate of these systems is still a limiting factor.
 
 However, these aspects do make it possible for P300-based \glspl{bci} to be rapidly configured and used by a new user.
@@ -1252,7 +1252,7 @@ For such small applications to be feasible, an abundance of open-source material
 
 This presence of open-source code has started to emerge for the \gls{bci} field as well, as discussed in Section \ref{subsec:bci_gaining_popularity_better_processing}.
 Combined with publicly available \gls{eeg} dataset such as the one by \citet{eeg_data}, it has become possible for developers to work on a pipeline without needing the monetary investment in \gls{eeg} measuring equipment.
-If desired, the affordable headsets by OpenBCI and others, further compared in Section \ref{subsec:biomedical_signals_measuring_equipment}, make it possible to have \gls{eeg} measuring equipment with good open-source libraries for well under 1000 euros.
+If desired, the affordable headsets by OpenBCI and others, further compared in Section \ref{subsec:biomedical_signals_measuring_brain_equipment}, make it possible to have \gls{eeg} measuring equipment with good open-source libraries for well under 1000 euros.
 This has made individuals such as the author of this paper excited to create a wide variety of smaller applications that could have impactful meaning to some very specific people.
 Especially the possibility of regaining even the simplest form of mobility through some very basic controls derived from \glsfirst{mi} is what motivated the author of this master thesis to study the field.
 
@@ -1282,7 +1282,7 @@ In general, cheaper systems work with dry electrodes at a lower electrode count 
 This means the cheaper systems provide poorer data quality, resulting in a more difficult classification problem.
 
 This raises the question if useful applications can be made using data from these cheaper systems.
-One of the best-known providers of \gls{eeg} equipment is OpenBCI and their products are further discussed in Section \ref{subsec:biomedical_signals_measuring_equipment}.
+One of the best-known providers of \gls{eeg} equipment is OpenBCI and their products are further discussed in Section \ref{subsec:biomedical_signals_measuring_brain_equipment}.
 This OpenBCI headset makes use of the Texas Instrument ADS1299 chip to convert the analogue signal of \gls{eeg} electrodes to a digital one.
 Whilst affordable and widely available, it has been shown that this chip is comparable to far more expensive alternatives that have been used in the laboratory for years \citep{openbci_eeg_sensor_evaluation, openbci_vs_medical}.
 However, a cheap consumer-grade system differs from medical systems in more areas than the general chip responsible for \gls{eeg} amplification and digitalisation.
@@ -1795,7 +1795,7 @@ Thus, this change in the brain activity that is not of interest makes the measur
 Adding to this, neuroplasticity, which was already discussed in Section \ref{subsec:bci_common_use_cases_medical_phenomena}, can change the structure and working of the brain.
 This makes the brain even more dynamic.
 Adding to what could be seen as internal noise factors of the brain, external noise can also be present in a nonstationary and dynamic manner.
-This external noise includes common artifacts such as electrical interference and the detection of \gls{emg}, which will be discussed in more detail in Section \ref{subsec:biomedical_signals_measuring_artefacts}.
+This external noise includes common artifacts such as electrical interference and the detection of \gls{emg}, which will be discussed in more detail in Section \ref{subsec:biomedical_signals_measuring_brain_artefacts}.
 
 All of these factors already makes brain signals an incredibly complex data source for \gls{ml} and \gls{dl}, as is used in \gls{bci} systems.
 The limited knowledge of the brain's inner working and the dynamic, nonstationary and noisy nature of brain signal measurements also challenges the explainability and interpretability of these signals.
