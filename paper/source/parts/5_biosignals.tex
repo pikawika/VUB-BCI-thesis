@@ -226,12 +226,13 @@ This has caused the introduction of many different measuring modalities, each wi
 However, many of these modalities require bulky equipment which makes them non-portable and thus non-attractive for use in general \gls{bci} systems \citep{modalities_review1}.
 
 Table \ref{tab:biomedical_signals_modalities} provides an overview of the most common measuring modalities considered for use in \gls{bci} applications together with some of their properties.
-\Gls{eeg}, \gls{ecog}, and \gls{fnirs} seem most probable to be used in \gls{bci} systems for the foreseeable future \citep{modalities_review2}.
-Because of this, this section focuses on these modalities, the works by \citet{modalities_review1} and \citet{modalities_review2} cover the other modalities given in Table \ref{tab:biomedical_signals_modalities}.
-Further refinement of other modalities or even new modalities might cause a shift in the modalities used for \glspl{bci}.
-This is already visible with the Elon Musk company Neuralink, discussed in Section \ref{subsec:bci_gaining_popularity_better_measuring}, pushing \glspl{bci} to an invasive future away from the now very commonly used non-invasive \gls{eeg} modality.
- 
-
+Many more modalities exist but these are currently not portable enough or have not yet been proven useful for use in \glspl{bci} \citep{modalities_review1, modalities_review2}.
+Modalities based on the presence of \glspl{elecbiosignal} in the human brain seem most probable to be used in \gls{bci} systems for the foreseeable future \citep{modalities_review2}.
+This includes \gls{eeg}, \gls{ecog}, intravascular electrodes and implemented electrodes among other modalities.
+However, there is also a growing interest in using modalities working with non-electrical signals for \gls{bci} applications.
+Whilst these are still limited due to poor portability and affordability, they have promising aspects for future research.
+This section focuses on some of the most important modalities for \gls{bci} research.
+The works by \citet{modalities_review1} and \citet{modalities_review2} cover some more modalities in greater detail.
 
 
 \begingroup
@@ -241,18 +242,19 @@ This is already visible with the Elon Musk company Neuralink, discussed in Secti
     \resizebox{\columnwidth}{!}{%
     \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
         \hline
-        \textbf{Modality}          & \textbf{Invasive} & \textbf{Risks} & \textbf{Temporal resolution} & \textbf{Spatial resolution} & \textbf{Affordability} & \textbf{Ease-of-installation} & \textbf{Ease-of-use} & \textbf{Comfort} \\ \hline
-        EEG                        & No                & Low            & 50ms                        & 10mm                       & €                      & Good                          & Good                 & Medium           \\ \hline
-        ECoG                       & Yes               & High           & 5ms                         & 1mm                        & €€-€€€                 & Poor                          & Good                 & Good             \\ \hline
-        Intravascular electrodes    & Yes               & Medium         & 5ms                          & 2.4mm                       & €€-€€€                 & Poor                          & Good                 & Good             \\ \hline
-        fNIRS                      & No                & Low            & 1000ms                       & 10mm                        & €-€€€                 & Good                          & Good                 & Medium           \\ \hline
-        Implemented microelectrode & Yes               & High           & 3ms                          & 0.05mm - 0.5mm              & €€€                    & Poor                          & Good                 & Good             \\ \hline
-        fTCD                       & No                & Low            & 1ms - 5ms                    & 10mm - 30mm                 & €                      & Medium                        & Medium               & Poor             \\ \hline
+        Modality                   & Invasive & Risks  & Temporal resolution & Spatial resolution & Affordability & Ease-of-installation & Ease-of-use & Comfort \\ \hline
+        EEG                        & No       & Low    & 50ms                & 10mm               & €             & Good                 & Good        & Medium  \\ \hline
+        ECoG                       & Yes      & High   & 5ms                 & 1mm                & €€-€€€        & Poor                 & Good        & Good    \\ \hline
+        fNIRS                      & No       & Low    & 1000ms              & 10mm               & €-€€€        & Good                 & Good        & Medium  \\ \hline
+        Implemented microelectrode & Yes      & High   & 3ms                 & 0.05mm - 0.5mm     & €€€           & Poor                 & Good        & Good    \\ \hline
+        Intravescular electrode    & Yes      & Medium & 5ms                 & 2.4mm              & €€-€€€        & Poor                 & Good        & Good    \\ \hline
+        fTCD                       & No       & Low    & 1000ms - 5000ms     & 10mm - 30mm        & €             & Medium               & Medium      & Poor    \\ \hline
+        MEG*                       & No       & Low    & 1ms - 5ms           & 1mm                & €€€+          & Good                 & Poor        & Poor    \\ \hline
         \end{tabular}%
         }
     \captionsetup{width=0.9\linewidth}
     \captionsetup{justification=centering}
-    \caption{Overview of the most common neuroimaging modalities for use in BCI systems. Data based on \citet{modalities_review1} and \citet{modalities_review2}.}
+    \caption{Overview of the most common neuroimaging modalities for use in BCI systems. *: Currently not available in a portable manner. Data based on \\\citet{modalities_review1} and \citet{modalities_review2}.}
     \label{tab:biomedical_signals_modalities}
 \end{table}
 \endgroup
@@ -269,7 +271,7 @@ The cerebral cortex, better known as grey matter, is the outmost layer of the br
 Whilst more inner layers of the brain also produce information-rich \gls{elecbiosignal}, these signals do not reach the scalp in a clear detectable manner for \gls{eeg} to pick up.
 As discussed in Section \ref{subsec:biomedical_signals_biosignals_electrical}, \gls{eeg} is not capable of measuring the individual activity of neurons in the cerebral cortex but rather the activity of large groups of neurons that are active at the same time.
 Postsynaptic potentials contribute most to these measurements as action potentials are too short in duration.
-The location at which electrodes are placed on the scalp often follows specific standards which are further explained in Section \ref{subsec:biomedical_signals_measuring_brain_standards}.
+The location at which electrodes are placed on the scalp often follows specific standards which are further explained in Section \ref{subsec:biomedical_signals_working_with_eeg_standards}.
 These electrodes can be divided based on whether they are wet or dry, active or passive and whether they are wired or wireless.
 The difference between these types has already been covered in Section \ref{subsec:bci_gaining_popularity_better_measuring}.
 
@@ -290,7 +292,7 @@ The output of the differential amplifier is what is known as the \gls{eeg} measu
     \includegraphics[width=\linewidth]{../images/eeg/montages.pdf}
     \captionsetup{width=0.8\linewidth}
     \captionsetup{justification=centering}
-    \caption{Illustration of the three most common montages for the differential amplifier in EEG. The annotations are the electrode names used in the international 10–20 system.} 
+    \caption{Illustration of the three most common montages for the differential amplifier in EEG. The annotations are the electrode names used in the international 10-20 system.} 
     \label{fig:biomedical_signals_eeg_montages}
 \end{figure}
 
@@ -340,116 +342,254 @@ There are also some ethical questions surrounding the use of invasive \gls{bci},
 
 % | | | | | | | | | | | | |
 
-\subsubsection{Functional near-infrared spectroscopy (fNIRS)}
-\label{subsubsec:biomedical_signals_measuring_brain_modalities_fnirs}
+\subsubsection{Other modalities which do not rely on bioelectricity}
+\label{subsubsec:biomedical_signals_measuring_brain_modalities_others}
 
-% TODO start here
+As discussed in Section \ref{sec:biomedical_signals_biosignals_in_human}, there are multiple energy forms that produce \glspl{biosignal}.
+Measuring electrical signals from the brain is by far the most common in \gls{bci} research as these \glspl{elecbiosignal} carry much information surrounding brain activity whilst also being relatively easy to measure.
+The discussed \gls{eeg}, \gls{ecog}, intravascular electrodes and implemented electrodes all measure \glspl{elecbiosignal}.
+Besides measuring \glspl{biosignal} which are being emitted by the human body all the time, it is also possible to expose the human body to an external energy form and measure the reaction of the human body.
+These types of modalities are common for medical imaging in hospitals.
+The popular X-ray, \gls{ct}, \gls{pet} and \gls{spect} imaging modalities all rely on different forms of ionising radioactive exposure to the human body.
+Non-ionising methods are also common, such as the \gls{mri} modality which relies on exposing the body to strong electrical fields.
 
-% Volgende urls usefull (al in bibtex)
-% https://sci.bban.top/pdf/10.1093/neuros%252Fnyz286.pdf#view=FitH
-% https://reader.elsevier.com/reader/sd/pii/S0925231216312152?token=94B390D3BCD568F9B7EB09512938996970FAFDA891D6F3C735DF0269F53EB82C6B4E2BD4BFA8A5187A73D8619E212B1C&originRegion=eu-west-1&originCreation=20220820121810
-% https://www.youtube.com/watch?v=XMizSSOejg0
-% file:///Users/lennertbontinck/Downloads/thesis.pdf
+Some of these medical imaging modalities have seen use in highly medical \gls{bci} applications, but they require expensive and non-portable equipment, which makes them unsuited for use in general use \gls{bci} systems and conflicting with Wolpaw's definition of a perfect \gls{bci} given in Section \ref{sec:bci_introduction} \citep{modalities_review1,modalities_review2}.
+One very promising medical imaging technology for measuring brain activity is \gls{meg}.
+Intuitively, \gls{meg} could be seen as an alternative to \gls{eeg} that measures the magnetic activity associated with brain activity rather than the electrical activity.
+\Gls{meg} distinguishes itself from other modalities by offering excellent temporal and spatial resolution whilst being non-invasive and without any mentionable risk.
+These properties make \gls{meg} an incredibly attractive modality for use in \gls{bci} research.
+However, the device required to perform a \gls{meg} scan costs millions, is non-portable and requires high maintenance in its current form.
+This makes it unsuited for general \gls{bci} usage and only highly medical and temporary \gls{bci} applications have been made with it \citep{modalities_review2}.
+If \gls{meg} would ever become portable and affordable it is bound to revolutionise the \gls{bci} field.
+\Citet{meg_explained} explains the \gls{meg} modality in greater detail.
 
-%  Easy to measure
-% Involves no radioactivity
-% Low temporal resolution
-% Needs time to be measured ( > 2– 5 s)
+A technique that has seen such a decrease in price and increase in portability is \gls{fnirs}.
+As shown by \citet{fnirs_cheap}, a comfortable and portable \gls{fnirs} headset can be made for only a few hundred euros, compared to previously available solutions which cost thousands and are less portable and comfortable.
+\Gls{fnirs} thanks its name due to the use of a light source that operates near the infrared wavelength for detecting changes in haemoglobin species present in the brain.
+\Gls{fnirs} does not expose the body to ionising radiation and is proven to be a safe modality for repeated use \citep{fnirs_explained}.
+Whilst the poor temporal resolution of \gls{fnirs} limits it usability for online \gls{bci} systems where a fast response time is desired, it has been used in combination with \gls{eeg} to form a successful hybrid-\gls{bci} \citep{modalities_review1, eeg_fnirs_drone}.
+\Citet{fnirs_explained} explains the \gls{fnirs} modality in more detail.
+
 
 % - - - - - - - - - -
 % Why EEG
 % - - - - - - - - - -
 
-\subsection{EEG is the most common measuring modality in BCIs}
+\subsection{The attractiveness of non-invasive EEG for BCIs}
 \label{subsec:biomedical_signals_measuring_brain_why_eeg}
 
-% bci_invasive_or_not1
-% bci_invasive_or_not2
+It is clear from table \ref{tab:biomedical_signals_modalities} that invasive modalities for measuring \glspl{elecbiosignal} from the brain generaly have excellent spatial and temporal resolution.
+Adding to this, the invasive device is always present and ready to be used once implanted and if the implantation procedure has no side effects, the user comfort and easy-to-use factor of these approaches should also be among the best.
+With electrodes being physically closer to the brain, the \gls{snr} and other data quality metrics are also often superior compared to non-invasive alternatives.
+All of these properties point towards invasive solutions being superior to non-invasive alternatives for \glspl{bci} applications.
 
-TODO
+However, there are also some major drawbacks to invasive solutions.
+As discussed in Section \ref{subsec:bci_ethical_e_waste}, ethical questions on what happens to an invasive \gls{bci} once it eventually stops working or stops receiving support are challenging to answer.
+Other ethical questions present for \glspl{bci} in general, such as data privacy discussed in \ref{subsec:bci_ethical_data_mining}, are even more challenging for invasive approaches, as they can't simply be removed when the user wants to ensure the device is not active.
+Besides these ethical issues, there are also still significant medical risks and high costs associated with these invasive solutions.
+Whilst an automated implantation procedure is likely to reduce both costs and risks, as already demonstrated by \citet{neuralink_whitepaper}, there is no widespread availability possible yet.
 
-% - - - - - - - - - -
-% EEG standards
-% - - - - - - - - - -
+Given the risks, high costs and limited availability still associated with invasive approaches, this master thesis and most research active in the field still focus on non-invasive solutions.
+From these available modalities, \gls{eeg} is the oldest but also the most studied.
+It's been proven capable of making multiple \gls{bci} applications possible as discussed throughout Chapter \ref{ch:bci}.
+The good temporal resolution, affordability and \gls{ux} for headset installation, use and comfort make \gls{eeg} attractive over other non-invasive modalities.
+The limited spatial resolution and poorer \gls{snr} are downsides but can be taken into account when developing a \gls{bci} system.
+This is what makes \gls{eeg} attractive in current \gls{bci} research and why it remains so common and the modality of focus for this master thesis.
 
-\subsection{Standards for EEG measuring systems}
-\label{subsec:biomedical_signals_measuring_brain_standards}
-
-% The international 10 20 systems is a standard method of measuring the head and placing electrodes. Depends on four main components of the head that are easily transfarable between patients, first is the nasion at the bridge of the nose then the inion at the back of the head and then two pre-auricular points near the ear
-% https://www.youtube.com/watch?v=XMizSSOejg0 
-
-% To ensure consistent electrode placement it is often the case that the standardised ‘10/20’ system is implemented (Jasper, 1958). The values 10 and 20 indicate that the distances between adjacent electrodes are either 10 % or 20 % of the total front-back or right-left size of the skull. Figure 2.1a gives a graphical representation of the standardised ‘10/20’ system. The labels of the electrodes relate to the lobes of the brain for which they record. With the advancement of EEG electrodes, various extensions of the standardised ‘10/20’ system have emerged. Figure 2.1b gives a graphical representation of the ‘10/10’ system (Oostenveld & Praamstra, 2001). For a detailed review of a range of electrode placement schemes, the reader is referred to the work of Jurcak et al. (2007).
-
-TODO
-
+The choice between invasive and non-invasive solutions is an open discussion in the \gls{bci} field as \citet{bci_invasive_or_not1} and \citet{bci_invasive_or_not2} discuss in greater detail.
+Once invasive systems become safer and more affordable, only time will tell how the ethical challenges will influence a potential future dominance of invasive solutions.
+Given non-invasive solutions such as \gls{meg} have proven to be far superior to \gls{eeg} and even some invasive alternatives, further evolution in affordability and portability of these modalities are likely to leave the debate between invasive and non-invasive solutions ongoing for a long time.
 
 % - - - - - - - - - -
 % available equipment
 % - - - - - - - - - -
 
-\subsection{Comparison of available EEG measuring equipment}
+\subsection{Available EEG measuring equipment}
 \label{subsec:biomedical_signals_measuring_brain_equipment}
 
-% There is a wide variety in the devices used for the acquisition of each signal. For EEG, the number of recorded channels (electrodes) varies from a single channel to 64 channels, with sampling frequencies ranging from 128 to 1000 Hz. For the types of electrodes used, there is no dominating type with both wet and dry, and active and passive electrodes being
-% Uit Arnau?
+With \gls{eeg} being one of the oldest brain signal measuring modalities, many devices for the acquisition of \gls{eeg} have been introduced.
+Some consumer-grade \gls{eeg} devices, such as the Neurosky Mindwave Mobile 2, only use a singular electrode for capturing brain signals whilst some medical-grade devices, such as the g. Pangolin High density EEG, boast up to 1024 electrodes \citep{bci_cheap_viability5}.
+Likewise, most consumer-grade \gls{eeg} devices offer a sensible 256 \gls{hz} to 512\gls{hz} sampling frequency whilst some medical devices, such as the ANT Neuro eego my lab 256, support up to a 16000\gls{hz} sampling frequency and more.
+As discussed in Section \ref{subsec:biomedical_signals_measuring_brain_modalities} and \ref{subsec:bci_gaining_popularity_better_measuring}, there are also various types of electrodes that can be used.
+This means that hardware capable of measuring \gls{eeg} can start anywhere from a couple of hundred euros to multiple tens or even hundreds of thousands of euros.
 
-Many comparisons between different types of measuring equipment, often with greatly differing costs, have already been made \citep{bci_cheap_viability1, bci_cheap_viability2, bci_cheap_viability3, bci_cheap_viability4, bci_cheap_viability5}.
-The main consensus is that the cheaper consumer-grade equipment has the potential to reach similar performance of a conventional, often medical-grade, BCI system.
-These results are promising but due to the controlled nature of the experiments, they might not reflect real-life applications accurately.
-As discussed before, the user experience of a \gls{bci} system is as important if not more important then the raw performance of the system.
-% FROM: cheap_bci_feasibility
-% OpenBCI1 is an open-source, versatile and affordable biosensing system which can be used to acquire not only EEG signals but also to measure electrical activity of muscle (EMG) and heart (ECG). All OpenBCI boards are based on the open-source electronic platform Arduino with wireless connection to the computer. OpenBCI offers a variety of low-cost amplifiers (boards), electrode systems (e.g. 3D-printed headware) and a software for viewing and recording the biosignals (OpenBCI GUI).2
-% as well as from the user’s comfort perspective [4, 13, 14].
+Many comparisons between different types of measuring equipment, often with greatly differing costs, have already been made \citep{bci_cheap_viability1, bci_cheap_viability2, bci_cheap_viability3, bci_cheap_viability4, bci_cheap_viability5, low_cost_eeg_devices, muse_comparison}.
+Table \ref{tab:biomedical_signals_eeg_equipment} shows some of the available \gls{eeg} measuring equipment and their specifications.
+Comparing all of these devices falls outside the scope of this master thesis but the remainder of this section will highlight the meaning of the provided specifications.
 
-% TODO: Different affordable consumer-grade EEG devices have appeared in both Academia (e.g. [5, 6, 7, 8]) and the market (e.g. B-Alert X10, NeuroSky, OpenBCI, Emotiv)
-% FROM: cheap_bci_feasibility
 
-% https://imotions.com/blog/eeg-headset-prices/
-% Nextmind 
-% Neurosky
-% Interaxon
-% Muse
-% Emotiv
-% myBrain
-% OpenBCI
-% Emotiv EPOC headset
+\begingroup
+\setlength{\tabcolsep}{6pt} % Default value: 6pt
+\renewcommand{\arraystretch}{2} % Default value: 1
+\begin{sidewaystable}
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+        \hline
+        \textbf{Company}          & \textbf{Product} & \textbf{Price estimate} & \textbf{Electrode count} & \textbf{Electrode type} & \textbf{Sampling frequency} & \textbf{Headset aesthetics} & \textbf{Customizability} & \textbf{Wireless} & \textbf{Python support} \\ \hline
+        NeuroSky                  & Mindwave         & €150                    & 1                        & Dry                     & 512Hz                       & Good                        & Poor                     & Yes               & Minimal                 \\ \hline
+        InteraXon                 & Muse 2           & €270                    & 4                        & Dry                     & 256Hz                       & Good                        & Poor                     & Yes               & Good                    \\ \hline
+        OpenBCI                   & Ganglion         & €800                    & 4                        & Variable (active dry)   & 200Hz                       & Variable (poor)             & Good                     & Yes               & Good                    \\ \hline
+        OpenBCI                   & Cyton            & €1500                   & 8                        & Variable (active dry)   & 250Hz                       & Variable (poor)             & Good                     & Yes               & Good                    \\ \hline
+        Emotiv                    & Epoc Flex        & €2000                   & 32                       & Variable (passive wet)  & 128Hz                       & Decent                      & Decent                   & Yes               & Good                    \\ \hline
+        OpenBCI                   & Cyton + Daisy    & €2500                   & 16                       & Variable (active dry)   & 125Hz-250Hz                 & Variable (poor)             & Good                     & Yes               & Good                    \\ \hline
+        Neuroelectrics            & Enobio 20        & €10000+                 & 20                       & Wet                     & 500 Hz                      & Decent                      & Decent                   & Yes               & Good                    \\ \hline
+        Advanced brain monitoring & B-Alert X24      & €10000+                 & 20                       & Wet                     & 256Hz                       & Poor                        & Decent                   & Yes               & Poor                    \\ \hline
+        Wearable Sensing          & DSI 24           & €20000                  & 24                       & Dry                     & 600Hz                       & Poor                        & Poor                     & Yes               & Minimal                 \\ \hline
+        ANT Neuro                 & eego mylab 256   & €25000+                 & 256                      & Wet                     & 16000Hz                     & Decent                      & Poor                     & No                & Minimal                 \\ \hline
+        \end{tabular}%
+        }
+    \captionsetup{width=0.9\linewidth}
+    \captionsetup{justification=centering}
+    \caption{Some of the available EEG measuring equipment with their most important specifications. Some equipment consists of multiple configurable components, these are annotated as "variable" with the default option provided in brackets. Prices are estimates based on buying a minimal total configuration of the product. Data was gathered from the original manufacturer's website and community blogs. More information on the provided properties is given in Section \ref{subsec:biomedical_signals_measuring_brain_equipment}.}
+    \label{tab:biomedical_signals_eeg_equipment}
+\end{sidewaystable}
+\endgroup
 
-% TODO: citing for sources of img?
-% this image was here: https://docs.google.com/document/d/1uaRHNNBJsR8vqT50TllE8s3Jf2dUtAVCcLJb-vhncMM/edit
 
-TODO
+% | | | | | | | | | | | | |
 
-% - - - - - - - - - -
-% artefacts
-% - - - - - - - - - -
+\subsubsection{Pricing of EEG equipment}
+\label{subsubsec:biomedical_signals_measuring_brain_equipment_pricing}
 
-\subsection{Common EEG artefacts}
-\label{subsec:biomedical_signals_measuring_brain_artefacts}
+% Research showing OpenBCI Cyton to be comparable to 25x more expensive bioamplifier
 
-% TODO also discuss how to use them e.g. eye blink as input, ook bespreken niet goed voor e.g. sroke patienten
+Prices of \gls{eeg} measuring equipment vary a lot.
+Cheap consumer-grade systems like the InteraXon Muse 2 can be bought for under €300.
+These types of systems are often considered novelty items, as their limited electrode counts combined with poor \gls{snr} is believed to limit their capabilities as part of a \gls{bci} system.
+However, the InteraXon Muse 2 has been proven to have good support in Python libraries and other programming languages.
+This has caused many individuals and researchers to try the headset, which has resulted in a broad range of commercial \gls{bci} applications, proving both its educational and overall usefulness is greater than the specifications would suggest \citep{muse_comparison}.
+Research-grade equipment like the OpenBCI Cyton, OpenBCI Cyton + Daisy and Emotiv Epoc Flex can be bought for around €2000, which includes the main board, electrodes and a headset or cap for holding those electrodes.
+Medical-grade \gls{eeg} hardware has to have specific licenses and approvals which increases the costs significantly.
+Since these medical-grade devices are bought for a specific medical application and thus are often bundled with software, exact prices are rarely stated online.
+However, known prices for medical \gls{eeg} equipment are well above €10000, with more than double that not being uncommon when paired with capable software.
 
-TODO
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Electrode type and count of EEG equipment}
+\label{subsubsec:biomedical_signals_measuring_brain_equipment_electrodes}
+
+Cheap consumer-grade hardware often focuses on a pleasant \gls{ux} rather than raw data quality.
+Because of this, these cheaper systems often make use of only a small number of dry electrodes in an all-in-one package.
+Research-grade hardware is often more flexible in this regard, with main boards that can work with both wet and dry electrodes through universal connectors that allow for many different types of electrodes to be connected.
+Most of these research-grade headsets even support other types of sensors, such as \gls{emg} electrodes, to be connected as well. 
+The electrode count of these research-grade devices is often around 20, as it aims to be compatible with the international 10-20 system discussed in Section \ref{subsec:biomedical_signals_working_with_eeg_standards}.
+Medical grade systems often aim for the highest data quality possible, using expensive golden wet electrodes.
+Whilst most of these systems offer interchangeable electrodes as well, they often use proprietary connectors which limits the choice of electrodes significantly.
+Electrode counts of some expensive medical-grade systems are also multitudes higher than those of other hardware, with 256 electrodes not being uncommon.
+However, this increased electrode count does not guarantee an increase in information captured, as already touched upon in Section \ref{subsec:bci_gaining_popularity_better_measuring}.
+Experiments by \citet{ideal_eeg_electrode_count_place} revealed that 32 well-placed electrodes could be sufficient for most \gls{eeg} applications.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Sampling frequency of EEG equipment}
+\label{subsubsec:biomedical_signals_measuring_brain_equipment_sampling_frequency}
+
+% CYTON + DAISY
+% The CytonDaisy Board samples data at 125 Hz on each of its 16 channels. However, if you select the "save data to microSD card" option in the OpenBCI GUI, you can take advantage of the 250 Hz sampling rate.
+
+The sampling frequency of \gls{eeg} equipment is often expressed in \glsfirst{hz} and corresponds to the number of samples taken from every electrode per second.
+When taking into account the Nyquist sampling theorem, the sampling frequency should be at least twice the highest frequency contained in the signal that is being measured \citep{nyquist_theory}.
+Considering the highest frequency of the five widely recognized brain waves discussed in Section \ref{subsec:biomedical_signals_working_with_eeg_brain_waves} is 100\gls{hz} for the gamma waves, a minimal sampling frequency of 200\gls{hz} is common for \gls{eeg} equipment.
+However, based on the applications, the desired sampling rate may be higher or lower \citep{sampling_rate1, sampling_rate2}.
+The high sampling rates boast by some medical-grade \gls{eeg} equipment caries a significant computational and storage overhead making it unneeded for most but highly specific medical applications.
+It should be noted that some headsets, such as the Emotiv Epoc Flex and OpenBCI Cyton + Daisy, have a higher internal sampling frequency which is downsampled before transmission.
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Headset aesthetics and customizability of EEG equipment}
+\label{subsubsec:biomedical_signals_measuring_brain_equipment_styling}
+
+Cheap consumer-grade \gls{eeg} equipment often focuses on headset aesthetics as it is an important factor for the sales of a commercial product. 
+However, these systems are often an all-in-one solution that offers limited to no customizability.
+Traditionally, research-grade and medical-grade hardware have not focused on the aesthetics of the headset or cap that holds the electrodes in place but have provided more customizability.
+This difference in customizability was already present when the electrode types were discussed earlier in this section.
+With Wolpaw's definition of a perfect \gls{bci}, discussed in Section \ref{sec:bci_introduction}, including a requirement of being aesthetically acceptable and the increasing competition in the field, an increasing focus has been put on aesthetics for both research-grade and medical-grade systems as well.
+The Emotiv Epoc Flex offers a sleek black cap that has clear thought put into cable management of the wet electrodes and a nice holder for both the main board and batteries.
+Whilst still covering the entire scalp and thus hard to call fashionable, it is far more visually pleasing than traditional medical caps where no thought has been put into the visual design at all.
+The research-grade OpenBCI offerings come standard with a 3D-printed headset, the Ultracortex Mark IV.
+This headset has a lot of exposed wires and looks more like a prototype than a finished product.
+The comfort of this one-size-fits-all headset is also far from ideal.
+However, the 3D model is made available publicly and as a result, the OpenBCI community has provided multiple alternative designs that are far more attractive and comfortable.
+In terms of customizability, OpenBCI products are among the best in the field.
+A comfortable and aesthetically pleasing design will be important for a widespread \gls{bci}.
+
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Other properties of EEG equipment}
+\label{subsubsec:biomedical_signals_measuring_brain_equipment_others}
+
+% library support
+% wireless
+% connectivity
+% ...
+% https://pypi.org/project/NeuroSkyPy/
+
+Many other properties of \gls{eeg} equipment play an important role in deciding which one to choose.
+For \gls{bci} researchers, support of the system in their preferred programming language will play an important role.
+Most hardware providers have at least an SDK that allows for a live connection between the headset and a Python environment.
+Systems having only a Python compatible SDK are labelled 'minimal' in Table \ref{tab:biomedical_signals_eeg_equipment}.
+Research-grade equipment often provides these SDKs in an open-source manner which allows other developers to provide additional libraries and support for the equipment as well. 
+Equipment that has multiple supporting Python libraries, both from the manufacturer and third parties, is labelled 'good' in Table \ref{tab:biomedical_signals_eeg_equipment}.
+Besides this, factors such as connectivity, guarantee policies, parts availability and more can also influence the decision of which equipment to pick.
+
+
 
 % ---------------------------------------------- 
 % WORKING WITH EEG
 % ---------------------------------------------- 
 
-% TODO: start here
-% TODO 'bci paradigms" 
-% info about signals: https://www.e-iji.net/dosyalar/iji_2021_2_48.pdf
 
 \section{Working with EEG}
 \label{sec:biomedical_signals_working_with_eeg}
 
-% \gls{elecbiosignal}
-TODO
+This section discusses a few guidelines and standards that should be known when working with \gls{eeg} data in a \gls{bci} setting.
+Some details on what electrode locations correspond roughly with which part and function of the brain are also given.
+Some of the common methods to induce specific electrical brain activity that can be used for decoding specific user intentions, such as \gls{mi} and the evocation of P300 signals, are also addressed.
+Finally, some common issues with \gls{eeg} including common artefacts and generalisation problems are also addressed.
+
+% - - - - - - - - - -
+% EEG standards
+% - - - - - - - - - -
+
+% TODO: start here
+
+\subsection{Standards and guidelines for EEG measuring}
+\label{subsec:biomedical_signals_working_with_eeg_standards}
+
+% info about signals: https://www.e-iji.net/dosyalar/iji_2021_2_48.pdf
+
+% Good to have open:
+% https://sci.bban.top/pdf/10.1093/neuros%252Fnyz286.pdf#view=FitH
+% https://reader.elsevier.com/reader/sd/pii/S0925231216312152?token=A79C4D30CCF68E7B27791960CC964CCEF69723CAF12B2ABE110F0CC06BE284A5BC96543B96B9D8CF07E25128D6401357&originRegion=eu-west-1&originCreation=20220823103653
+% https://sci-hub.mksa.top/10.1088/0031-9120/49/6/697
+
+% The international 10 20 systems is a standard method of measuring the head and placing electrodes. Depends on four main components of the head that are easily transfarable between patients, first is the nasion at the bridge of the nose then the inion at the back of the head and then two pre-auricular points near the ear
+% https://www.youtube.com/watch?v=XMizSSOejg0 
+
+
+% To ensure consistent electrode placement it is often the case that the standardised ‘10/20’ system is implemented (Jasper, 1958). The values 10 and 20 indicate that the distances between adjacent electrodes are either 10 % or 20 % of the total front-back or right-left size of the skull. Figure 2.1a gives a graphical representation of the standardised ‘10/20’ system. The labels of the electrodes relate to the lobes of the brain for which they record. With the advancement of EEG electrodes, various extensions of the standardised ‘10/20’ system have emerged. Figure 2.1b gives a graphical representation of the ‘10/10’ system (Oostenveld & Praamstra, 2001). For a detailed review of a range of electrode placement schemes, the reader is referred to the work of Jurcak et al. (2007).
+
+As discussed in Section \ref{subsec:biomedical_signals_measuring_brain_modalities}, \gls{eeg} relies on electrodes being placed on the scalp and the produced signals are dependent on what montage is used.
+However, the amount of electrodes, the placement of these electrodes, which montage to use and other aspects of \gls{eeg} equipment are not fixed. % mss link naar eeg equipment
+Whilst this leaves freedom for both hardware manufracturers and users to find a setup that is best for them, it can be limiting on compatibility with algorithms and comparability between data.
+Because of this, multiple standards and guidelines have been proposed over the years.
+
+% 10/20
+% Data format
+% Sampling freq
+% ...
+% Zie: https://www.acns.org/practice/guidelines
 
 
 % - - - - - - - - - -
 % anatomy
 % - - - - - - - - - -
 
-\subsection{Anatomy of the brain}
+\subsection{Using the anatomy of the brain for electrode subsampling}
 \label{subsec:biomedical_signals_working_with_eeg_anatomy}
 % Bespreken welke regions important voor MI
 % al getoond in bci chapter
@@ -472,7 +612,7 @@ TODO
 % Measurable brain activity
 % - - - - - - - - - -
 
-\subsection{Common brain signal inducing methods}
+\subsection{Common methods for inducing electrical brain activity}
 \label{subsec:biomedical_signals_working_with_eeg_inducing_methods}
 
 % bci_applications heeft ook overview onder 6. BCI electrical signal
@@ -516,6 +656,17 @@ TODO
 % neuroplasticity and inter-human variation en non stationarity en mapping brain en... bespreken
 
 % However, as mentioned, since this is an invasive technique, it is not discussed here. Lastly, a crucial property of EEG in the context of machine learning, is its nonstationarity (Klonowski, 2009). A stationary signal is one of which the properties do not change with time. On the other hand, a nonstationary signal is inconsistent with time. EEG’s nonstationarity is a result of it capturing the activity of a multitude of different latent variables in the brain, each of which are transmitting with different and variable intensity. In a fraction of a second, the latent variables whose activities are currently dominant can change. Nonstationarity makes interpreting EEG a nontrivial task. If not properly addressed, machine learning models are certain to struggle to learn anything valuable from EEG. This is reflected by the number of preprocessing and feature extraction methods that exist for EEG.
+
+TODO
+
+% - - - - - - - - - -
+% artefacts
+% - - - - - - - - - -
+
+\subsection{Common EEG artefacts}
+\label{subsec:biomedical_signals_working_with_eeg_artefacts}
+
+% TODO also discuss how to use them e.g. eye blink as input, ook bespreken niet goed voor e.g. sroke patienten
 
 TODO
 

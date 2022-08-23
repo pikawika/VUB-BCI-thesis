@@ -212,7 +212,7 @@ It also shows that whilst academic research on \glspl{bci} doesn't require huge 
 % - - - - - - - - - -
 
 
-\subsection{Improved brain-signal measuring facilities}
+\subsection{Continued improvement of brain-signal measuring facilities}
 \label{subsec:bci_gaining_popularity_better_measuring}
 
 \glsreset{bci}
@@ -384,7 +384,7 @@ As is further discussed in Section \ref{subsec:processing_signals_general_pipeli
 % better hardware
 % - - - - - - - - - -
 
-\subsection{More powerful, affordable and portable equipment}
+\subsection{Availability of more powerful, affordable and portable equipment}
 \label{subsec:bci_gaining_popularity_better_processing}
 
 The improvements in brain signal measuring equipment have likely been influential in the gaining popularity of \glspl{bci} as it provides more precise data more affordably.
@@ -495,7 +495,7 @@ The replacement of physical computational units in close proximity to cloud solu
 % better software
 % - - - - - - - - - -
 
-\subsection{Specialized data processing techniques}
+\subsection{New and refined data processing techniques}
 \label{subsec:bci_gaining_popularity_improved_data_processing}
 
 \glsreset{dl}
@@ -998,7 +998,7 @@ They used the Emotiv EPOC headset as a non-invasive source for the \gls{eeg} usi
 This means that it seems to comply with most properties of Wolpaw's definition for a perfect \gls{bci} except for one of the most important ones, it is not at all as fast as the regular interaction method.
 Adding to this, their system doesn't make use of actual brain signals but rather relies on muscular activity, such as smirks and eyebrow movement.
 This movement of the facial muscles is known to provide an easily detectable artefact in the \gls{eeg} and is often used as a supplementary input for the \gls{bci} system.
-As section \ref{subsec:biomedical_signals_measuring_brain_artefacts} will discuss in greater detail, such an approach has many negatives.
+As section \ref{subsec:biomedical_signals_working_with_eeg_artefacts} will discuss in greater detail, such an approach has many negatives.
 Finally, the system of \citet{bci_smart_home_app} was tested on four subjects but the article fails to deliver exact details on this experiment and it is assumed the participants were neither elderly nor people with a handicap.
 
 Whilst this means the system by \citet{bci_smart_home_app} isn't a true \glsfirst{bci} due to the use of \gls{eeg} artefacts and the paper has questionable scientific value, it was one of the first to explore the idea of using a \gls{bci} for smart home control.
@@ -1795,7 +1795,7 @@ Thus, this change in the brain activity that is not of interest makes the measur
 Adding to this, neuroplasticity, which was already discussed in Section \ref{subsec:bci_common_use_cases_medical_phenomena}, can change the structure and working of the brain.
 This makes the brain even more dynamic.
 Adding to what could be seen as internal noise factors of the brain, external noise can also be present in a nonstationary and dynamic manner.
-This external noise includes common artifacts such as electrical interference and the detection of \gls{emg}, which will be discussed in more detail in Section \ref{subsec:biomedical_signals_measuring_brain_artefacts}.
+This external noise includes common artifacts such as electrical interference and the detection of \gls{emg}, which will be discussed in more detail in Section \ref{subsec:biomedical_signals_working_with_eeg_artefacts}.
 
 All of these factors already makes brain signals an incredibly complex data source for \gls{ml} and \gls{dl}, as is used in \gls{bci} systems.
 The limited knowledge of the brain's inner working and the dynamic, nonstationary and noisy nature of brain signal measurements also challenges the explainability and interpretability of these signals.
@@ -1986,7 +1986,7 @@ New legislations are likely required to limit the amount of processing that can 
 It is impossible to fully protect any system against hacking, hijacking or any other malignant use.
 Locks can be picked, databases can be breached, \glsfirst{bt} connections can be spoofed and even the most secure encryption algorithms are prone to hacking \citep{quantum_hacking}.
 \Citet{p300_hacking} have shown that an \gls{eeg} based \gls{bci} working with P300 signals can be hacked by generating fake P300 waves from an external device.
-These generated waves are recorded similar to other electrical interference, such as the typical 50Hz or 60Hz \gls{ac} inference, but the processing algorithms see them as effective P300 signals and thus the system is now controlled by those artificially generated waves rather than the user's brain signals.
+These generated waves are recorded similar to other electrical interference, such as the typical 50 \gls{hz} or 60\gls{hz} \gls{ac} inference, but the processing algorithms see them as effective P300 signals and thus the system is now controlled by those artificially generated waves rather than the user's brain signals.
 
 More traditional hacks such as \gls{bt} spoofing can also be performed when \gls{bt} is used in a wireless \gls{bci}.
 Even if the data transmitted over \gls{bt} is encrypted, flaws in the encryption methodology may be found that enable hackers to decrypt the encrypted data.
