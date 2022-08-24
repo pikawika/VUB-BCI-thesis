@@ -217,7 +217,7 @@ The remainder of this master thesis then focuses on the \gls{eeg} modality as it
 \subsection{Common measuring modalities in BCI systems}
 \label{subsec:biomedical_signals_measuring_brain_modalities}
 
-Research by \citet{human_eeg_discovery} is the first in describing the measurement of brain waves from the human brain in a non-invasive manner.
+Research by \citet{human_eeg_discovery} is the first in describing the measurement of brainwaves from the human brain in a non-invasive manner.
 Because of this, the German neuroscientist and psychiatrist Hans Berger is often seen as the inventor of \gls{eeg}.
 Whilst he was one of the first to use the term \textit{elektrenkephalogramm}, it was Richard Caton who first described the findings of bioelectricity in brains in general.
 He found this phenomenon in animal brains as early as 1875 \citep{first_eeg}.
@@ -242,14 +242,14 @@ The works by \citet{modalities_review1} and \citet{modalities_review2} cover som
     \resizebox{\columnwidth}{!}{%
     \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
         \hline
-        Modality                   & Invasive & Risks  & Temporal resolution & Spatial resolution & Affordability & Ease-of-installation & Ease-of-use & Comfort \\ \hline
-        EEG                        & No       & Low    & 50ms                & 10mm               & €             & Good                 & Good        & Medium  \\ \hline
-        ECoG                       & Yes      & High   & 5ms                 & 1mm                & €€-€€€        & Poor                 & Good        & Good    \\ \hline
-        fNIRS                      & No       & Low    & 1000ms              & 10mm               & €-€€€        & Good                 & Good        & Medium  \\ \hline
-        Implemented microelectrode & Yes      & High   & 3ms                 & 0.05mm - 0.5mm     & €€€           & Poor                 & Good        & Good    \\ \hline
-        Intravescular electrode    & Yes      & Medium & 5ms                 & 2.4mm              & €€-€€€        & Poor                 & Good        & Good    \\ \hline
-        fTCD                       & No       & Low    & 1000ms - 5000ms     & 10mm - 30mm        & €             & Medium               & Medium      & Poor    \\ \hline
-        MEG*                       & No       & Low    & 1ms - 5ms           & 1mm                & €€€+          & Good                 & Poor        & Poor    \\ \hline
+        \textbf{Modality}          & \textbf{Invasive} & \textbf{Risks} & \textbf{Temporal resolution} & \textbf{Spatial resolution} & \textbf{Affordability} & \textbf{Ease-of-installation} & \textbf{Ease-of-use} & \textbf{Comfort} \\ \hline
+        EEG                        & No                & Low            & 50ms                         & 10mm                        & €                      & Good                          & Good                 & Medium           \\ \hline
+        ECoG                       & Yes               & High           & 5ms                          & 1mm                         & €€-€€€                 & Poor                          & Good                 & Good             \\ \hline
+        fNIRS                      & No                & Low            & 1000ms                       & 10mm                        & €-€€€                  & Good                          & Good                 & Medium           \\ \hline
+        Implemented microelectrode & Yes               & High           & 3ms                          & 0.05mm - 0.5mm              & €€€                    & Poor                          & Good                 & Good             \\ \hline
+        Intravescular electrode    & Yes               & Medium         & 5ms                          & 2.4mm                       & €€-€€€                 & Poor                          & Good                 & Good             \\ \hline
+        fTCD                       & No                & Low            & 1000ms - 5000ms              & 10mm - 30mm                 & €                      & Medium                        & Medium               & Poor             \\ \hline
+        MEG*                       & No                & Low            & 1ms - 5ms                    & 1mm                         & €€€+                   & Good                          & Poor                 & Poor             \\ \hline
         \end{tabular}%
         }
     \captionsetup{width=0.9\linewidth}
@@ -490,7 +490,7 @@ Experiments by \citet{ideal_eeg_electrode_count_place} revealed that 32 well-pla
 
 The sampling frequency of \gls{eeg} equipment is often expressed in \glsfirst{hz} and corresponds to the number of samples taken from every electrode per second.
 When taking into account the Nyquist sampling theorem, the sampling frequency should be at least twice the highest frequency contained in the signal that is being measured \citep{nyquist_theory}.
-Considering the highest frequency of the five widely recognized brain waves discussed in Section \ref{subsec:biomedical_signals_working_with_eeg_brain_waves} is 100\gls{hz} for the gamma waves, a minimal sampling frequency of 200\gls{hz} is common for \gls{eeg} equipment.
+Considering the highest frequency of the five widely recognized brainwaves discussed in Section \ref{subsec:biomedical_signals_working_with_eeg_brain_waves} is 100\gls{hz} for the gamma waves, a minimal sampling frequency of 200\gls{hz} is common for \gls{eeg} equipment.
 However, based on the applications, the desired sampling rate may be higher or lower \citep{sampling_rate1, sampling_rate2}.
 The high sampling rates boast by some medical-grade \gls{eeg} equipment caries a significant computational and storage overhead making it unneeded for most but highly specific medical applications.
 It should be noted that some headsets, such as the Emotiv Epoc Flex and OpenBCI Cyton + Daisy, have a higher internal sampling frequency which is downsampled before transmission.
@@ -522,12 +522,6 @@ A comfortable and aesthetically pleasing design will be important for a widespre
 \subsubsection{Other properties of EEG equipment}
 \label{subsubsec:biomedical_signals_measuring_brain_equipment_others}
 
-% library support
-% wireless
-% connectivity
-% ...
-% https://pypi.org/project/NeuroSkyPy/
-
 Many other properties of \gls{eeg} equipment play an important role in deciding which one to choose.
 For \gls{bci} researchers, support of the system in their preferred programming language will play an important role.
 Most hardware providers have at least an SDK that allows for a live connection between the headset and a Python environment.
@@ -546,43 +540,92 @@ Besides this, factors such as connectivity, guarantee policies, parts availabili
 \section{Working with EEG}
 \label{sec:biomedical_signals_working_with_eeg}
 
-This section discusses a few guidelines and standards that should be known when working with \gls{eeg} data in a \gls{bci} setting.
+This section discusses a few guidelines and standards that should be known when working with \gls{eeg} data, specifically in a \gls{bci} setting.
 Some details on what electrode locations correspond roughly with which part and function of the brain are also given.
-Some of the common methods to induce specific electrical brain activity that can be used for decoding specific user intentions, such as \gls{mi} and the evocation of P300 signals, are also addressed.
+Some of the common methods to induce specific electrical brain activity that can be used for decoding specific user intentions, such as \glsfirst{mi} and the evocation of P300 signals, are also addressed.
 Finally, some common issues with \gls{eeg} including common artefacts and generalisation problems are also addressed.
 
 % - - - - - - - - - -
 % EEG standards
 % - - - - - - - - - -
 
-% TODO: start here
-
-\subsection{Standards and guidelines for EEG measuring}
+\subsection{Standards and guidelines for EEG measurements}
 \label{subsec:biomedical_signals_working_with_eeg_standards}
 
-% info about signals: https://www.e-iji.net/dosyalar/iji_2021_2_48.pdf
+There is no singular method nor device to measure \gls{eeg} as discussed in Section \ref{subsec:biomedical_signals_measuring_brain_modalities} and \ref{tab:biomedical_signals_eeg_equipment}.
+Whilst this leaves freedom for both hardware manufracturers and users to find a setup that is best for them, it can be challenging to compare clinical results between setups and to make algorithms that support all possible variations.
+Because of this, multiple standards and guidelines have been proposed.
+This section summarizes the most important guidelines and consensus statements on \gls{eeg} by the American Clinical Neurophysiology Society.
 
-% Good to have open:
-% https://sci.bban.top/pdf/10.1093/neuros%252Fnyz286.pdf#view=FitH
-% https://reader.elsevier.com/reader/sd/pii/S0925231216312152?token=A79C4D30CCF68E7B27791960CC964CCEF69723CAF12B2ABE110F0CC06BE284A5BC96543B96B9D8CF07E25128D6401357&originRegion=eu-west-1&originCreation=20220823103653
-% https://sci-hub.mksa.top/10.1088/0031-9120/49/6/697
+\Citet{eeg_guidelines1} provide guidelines on the minimal technical requirements for performing \gls{eeg} in a clincial setting.
+Their guidelines propose the use of an \gls{eeg} machine with support for at least 16 electrodes capable of measuring signals with a frequency range between 0.5\gls{hz} and 70\gls{hz}.
+Electrical shielding of the \gls{eeg} machine is not required given the wiring for the \gls{ac} within the building meets labratory standards.
+Other guidelines on interest for this master thesis included in this document are on the use of a standardised electrode placement and montage.
+The most common electrode montages were already discussed in Section \ref{tab:biomedical_signals_modalities} and illustrated in Figure \ref{fig:biomedical_signals_eeg_montages}.
 
-% The international 10 20 systems is a standard method of measuring the head and placing electrodes. Depends on four main components of the head that are easily transfarable between patients, first is the nasion at the bridge of the nose then the inion at the back of the head and then two pre-auricular points near the ear
-% https://www.youtube.com/watch?v=XMizSSOejg0 
+\Citet{eeg_guidelines2} discusses the standardised electrode placements in more detail.
+The most commonly used scheme for electrode placement is the international 10-20 system, which was first introduced in late 1950s \citep{internat_1020_system}.
+The 10-20 system, shown in Figure \ref{fig:biomedical_signals_10_20_system_original}, makes use of 21 electrodes placed at relative distances between four main positions on the head that are easily transfarable between subjects.
+These four points are the nasion (bridge of the nose), inion (the midline bony prominence at the back of the heaf) and two preauricular points near the front of each ear.
+These roughly correspond with the nasion, inion, A1 and A2 annotations on figure \ref{fig:biomedical_signals_10_20_system_original}.
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../images/biosignals/10-20_system.pdf}
+        \captionsetup{width=0.95\linewidth}
+        \captionsetup{justification=centering}
+        \caption{Electrode placement and channel names of the international 10-20 system. Figure by TOMATON, Public domain, via Wikimedia Commons.\\ \hfill}
+        \label{fig:biomedical_signals_10_20_system_original}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../images/biosignals/10-20_system_extended.pdf}
+        \captionsetup{width=0.95\linewidth}
+        \captionsetup{justification=centering}
+        \caption{Electrode placement and channel names of the modified combinatorial nomenclature for the 10-10 system. Figure by Brylie Christopher Oxley, CC0, via Wikimedia Commons.}
+        \label{fig:biomedical_signals_10_20_system_extended}
+    \end{subfigure}
+    \captionsetup{width=\linewidth}
+    \captionsetup{justification=centering}
+    \caption{The original international 10-20 system for EEG electrode placement and its modified combinatorial nomenclature (the 10-10 system) which supports more electrodes.}
+    \label{fig:biomedical_signals_10_20_system}
+\end{figure}
+
+To go from these four identifiable points on the skull to the locations where electrodes should be placed, a specific process based on the proportion shown in Figure \ref{fig:biomedical_signals_10_20_system_placement} is followed.
+First, a line is drawn from the nasion to the inion and marks are placed on the following proportional intervals: 10\%, 20\%, 20\%, 20\%, 20\%, 10\% as shown by the blue line and marks in Figure \ref{fig:biomedical_signals_10_20_system_placement}.
+Next, the same procedure is followed but going from the preauricular point near the left ear to the preauricular point near the right ear as shown by the red line and marks in Figure \ref{fig:biomedical_signals_10_20_system_placement}.
+Then, a circle is drawn with the centre mark used as the middle and a diameter that corresponds with the distance between the most outer marks on the line drawn between both ears.
+In this circle, a total of 10 marks are placed, each at a distance of 10\% from each other.
+The most outer marks from the horizontal line between the ears are included, but the most outer points of the first drawn vertical line from the nasion to the inion are not.
+This step corresponds with the green circle and marks in Figure \ref{fig:biomedical_signals_10_20_system_placement}.
+After this, parasagittal measurements are made as illustrated by the yellow curves from the nasion to the onion in Figure \ref{fig:biomedical_signals_10_20_system_placement}.
+At a 25\% interval from the outside of the parasagittal measurements, transverse measurements are made, as illustrated by the remaining yellow curves in Figure \ref{fig:biomedical_signals_10_20_system_placement}.
+The intersections of both parasagittal measurements and transverse measurements are the locations for the final four makers.
+All markers, except for the two most outer ones on the line from the nasion to the inion, represent a location for electrodes.
+This totals 19 locations, with the last two simply being electrodes connected to the ears.
 
 
-% To ensure consistent electrode placement it is often the case that the standardised ‘10/20’ system is implemented (Jasper, 1958). The values 10 and 20 indicate that the distances between adjacent electrodes are either 10 % or 20 % of the total front-back or right-left size of the skull. Figure 2.1a gives a graphical representation of the standardised ‘10/20’ system. The labels of the electrodes relate to the lobes of the brain for which they record. With the advancement of EEG electrodes, various extensions of the standardised ‘10/20’ system have emerged. Figure 2.1b gives a graphical representation of the ‘10/10’ system (Oostenveld & Praamstra, 2001). For a detailed review of a range of electrode placement schemes, the reader is referred to the work of Jurcak et al. (2007).
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\linewidth]{../images/biosignals/10-20_system_placement.pdf}
+    \captionsetup{width=0.9\linewidth}
+    \captionsetup{justification=centering}
+    \caption{Illustration of how the placement of electrodes in the 10-20 system is determined based on the four identifiable points of the skull around the nasion, inion and ears. Black crosses are used for identification of the blue interval only and no electrodes are placed here. Crosses with a coloured background are used for determining two intervals, the cross colour and background colour intervals.} 
+    \label{fig:biomedical_signals_10_20_system_placement}
+\end{figure}
 
-As discussed in Section \ref{subsec:biomedical_signals_measuring_brain_modalities}, \gls{eeg} relies on electrodes being placed on the scalp and the produced signals are dependent on what montage is used.
-However, the amount of electrodes, the placement of these electrodes, which montage to use and other aspects of \gls{eeg} equipment are not fixed. % mss link naar eeg equipment
-Whilst this leaves freedom for both hardware manufracturers and users to find a setup that is best for them, it can be limiting on compatibility with algorithms and comparability between data.
-Because of this, multiple standards and guidelines have been proposed over the years.
+Each electrode is then represented by a combination of letters and numbers.
+The numbers indicate the side of the head, with odd numbers on the left side of the skull and even numbers on the right side, when looking from the top with the nose in front.
+Lower numbers correspond to electrodes closer to the midline drawn from the nasion to the inion.
+The names for the electrodes on this midline do not contain a number but rather end with a 'z' denoting zero.
+The letters are indicators of the position on the head, with F(rontal), C(entral), P(arietal), T(emporal), O(ccipital) and A which refers to the prominent bone found behind the outer ear.
 
-% 10/20
-% Data format
-% Sampling freq
-% ...
-% Zie: https://www.acns.org/practice/guidelines
+Besides highlighting this international 10-20 system, \citet{eeg_guidelines2} also addresses the 10-10 system as a common standard for when more electrodes are desired. 
+This system is shown in Figure \ref{fig:biomedical_signals_10_20_system_extended} and follows a similar approach to the 10-20 system but by using smaller intervals.
+The other guidelines by the American Clinical Neurophysiology Society are more specific to the medical world and highlight the importance of choosing the right montage, considerations when measuring \gls{eeg} with young individuals or individuals who are suspected to be brain dead, how to store \gls{eeg} data and how to report on \gls{eeg} measures among other things \citep{eeg_guidelines3, eeg_guidelines4, eeg_guidelines5, eeg_guidelines6, eeg_guidelines7}.
 
 
 % - - - - - - - - - -
@@ -592,24 +635,10 @@ Because of this, multiple standards and guidelines have been proposed over the y
 \subsection{Using the anatomy of the brain for electrode subsampling}
 \label{subsec:biomedical_signals_working_with_eeg_anatomy}
 
-% TODO: nog zeggen waar MI en waar P300 en dan gewoon dat kan nog voor meer en dan wat deftig schrijven
-
-Section \ref{subsec:bci_gaining_popularity_better_measuring} already discussed that due to the anatomy of the brain, \gls{eeg} gets a partial and blurred view of the brain activity.
-This was illustrated in Figure \ref{fig:brain_anatomy}, where the brain was annotated as one singular piece.
-The brain is often devided into further regions based on the motor and sensory activity present in that region.
-This is illustrated in Figure \ref{fig:brain_regions}.
-Whilst \gls{eeg} has limited spatial resolution, as discussed in Section \ref{tab:biomedical_signals_modalities}, these regions can be used as a guide of which electrodes are of interest for certain tasks.
-
-For example, \gls{mi} ...
-
-Likewise, P300 signals are known to... 
-
-Remvoving electrodes that are not close to the region of interest can help in reducing data dimensionality without losing too much useful information.
-It can also help in reducing the learning of a phenomena different from the problem.
-For example, when a user performs specific eye movements or facial muscle movements, which cause \gls{eeg} artefacts, when performing a \gls{mi} task, it is more likely to learn those artefacts related to the task rather then the \gls{mi} task itself.
-Whilst this can have beneficial improvements for individuals that are persistent in this behaviour, it derives from learning what is expected and will cause poor generalisation.
-As such, the removal of the data from the frontal electrodes which capture these muscle movements might be a smart approach.
-However, since \gls{eeg} has such poor spatial resolution, the blurry view it has and likely activity in other regions of the brain that are also of interest, removing to many electrode inputs can have a degrading effect on performance.
+The human brain is a complex organ which has multiple functions and responsibilities.
+For this reason, the brain is often divided into regions based on the motor and sensory activity known to be most present in that region.
+These regions are illustrated in Figure \ref{fig:biomedical_signals_brain_regions}.
+Whilst \gls{eeg} has limited spatial resolution, as discussed in Section \ref{tab:biomedical_signals_modalities}, and works with a blocked and blurred view, as discussed in Section \ref{subsec:bci_gaining_popularity_better_measuring}, this information on brain regions can still be used in \gls{eeg}-based \gls{bci} systems.
 
 \begin{figure}[ht]
     \centering
@@ -617,20 +646,69 @@ However, since \gls{eeg} has such poor spatial resolution, the blurry view it ha
     \captionsetup{width=0.85\linewidth}
     \captionsetup{justification=centering}
     \caption{Sideview of the brain with motor and sensory regions highlighted. The left side corresponds to the back of the head, with the visual cortex being just above the back of the human neck. Free to use figure by \citet{figure_blausen}, CC BY 3.0, via Wikimedia Commons.}
-    \label{fig:brain_regions}
+    \label{fig:biomedical_signals_brain_regions}
 \end{figure}
 
+For example, much research has been put into localising the region of interest when performing \gls{mi} \citep{mi_location1, mi_location2, mi_location3, mi_location4, mi_location5, mi_location6}.
+Whilst there is some variance between subjects and experiments, it is generally believed that most information-rich activity is centred around the precentral gyrus and premotor cortex.
+When using the 10-20 system, this would correspond roughly with the following electrodes: C3, Cz, C4, P3, P4, F3, Fz and F4.
+As discussed by \citet{mi_location6}, the prefrontal cortex has also been shown active during specific \gls{mi} tasks and as such is sometimes also considered to be a region of interest.
+When using the 10-20 system this corresponds roughly to the Fp1 and Fp2 electrodes.
+Similar studies have been done for other types of brain activity, such as localising both visual and auditory P300 signals \citep{p300_location}, the former of which is mostly active in the visual cortex.
+
+Removing electrodes that are not close to the region of interest can help in reducing data dimensionality without losing too much useful information.
+It can also help in reducing the learning of activity that is concurrent with the desired activity.
+For example, \gls{eeg} artefacts caused by eye movement and the movement of facial muscles produce far stronger signals than those related to a \gls{mi} task.
+If a user is asked to perform left-hand and right-hand motor imagery tasks but twitches the eyebrow of the left or right eye corresponding to the envisioned task, most algorithms will learn to detect this twitching rather than the desired problem.
+Whilst this can have beneficial improvements for individuals that are persistent in this behaviour, it will cause poor generalisation as it isn't learning the desired tasks.
+As such, the removal of the data from the frontal electrodes which capture these muscle movements might be a smart approach.
+However, due to the blurry view \gls{eeg} receives and the poor spatial resolution combined with the smaller related activity present in other regions of the brain, removing too many electrode inputs can have a significant degrading effect on performance.
+
+
 % - - - - - - - - - -
-% Brain waves
+% Brainwaves
 % - - - - - - - - - -
 
-\subsection{The five widely recognized brain waves}
+\subsection{The five widely recognized brainwaves}
 \label{subsec:biomedical_signals_working_with_eeg_brain_waves}
-% table wolf
-% 2.1.1 Brain Waves from https://www.sciencedirect.com/book/9780128044902/introduction-to-eeg-and-speech-based-emotion-recognition
-% bespreken hoe frequentie belangrijk en dus vaak frequency analysis en ook bespreken range MI
 
-TODO
+Brainwaves are defined as the oscillating \gls{elecbiosignal} from the brain of which modalities such as \gls{eeg} measure a superposition.
+There are five widely recognized brainwaves, delta ($\delta$), theta ($\theta$), alpha ($\alpha$), beta($\beta$) and gamma ($\gamma$) waves \citep{book_eeg_emotion_recognition}.
+These can be further divided into some low and high variants of which Table \ref{tab:biomedical_signals_brainwaves} provides the properties \citep{fifty_year_bci_review}.
+Besides these five widely recognized brainwaves, other waves with known properties exist such as the sensorimotor mu ($\mu$) wave with a frequency range from 7\gls{hz} to 12\gls{hz} \citep{mu_waves}.
+Disproportions in these waves are the basis for multiple medical diagnostics as discussed by \citet{fifty_year_bci_review}.
+
+For \gls{bci} applications, knowing which frequency range is of interest for a given task may help in preprocessing the signal such that only that frequency range is included.
+For example, \gls{eeg} data from \gls{mi} tasks is often filtered to only include signals from the alpha and beta wave and thus a frequency range of 8\gls{hz} to 30\gls{hz} \citep{mi_range}.
+Sometimes the lower threshold is set to 7\gls{hz} such that the mu wave is also included \citep{mu_waves}.
+However, the exact thresholds of these frequencies are known to be subject-dependent \citep{mu_waves}.
+Because of this, subject-wise finetuning may be required for obtaining optimal results.
+
+
+\begingroup
+\setlength{\tabcolsep}{6pt} % Default value: 6pt
+\renewcommand{\arraystretch}{2} % Default value: 1
+\begin{table}[ht]
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{Brainwave (Frequency band)} & \textbf{Frequency range} & \textbf{Brain states}                                                                                                     \\ \hline
+        Delta ($\delta$)       & 0.5Hz-4Hz                & State of deep sleep, when there is no focus, the person is totally absent, unconscious.                                   \\ \hline
+        Theta ($\theta$)       & 4Hz-8Hz                  & Deep relaxation, internal focus, meditation, intuition access to unconscious material such as imaging, fantasy, dreaming. \\ \hline
+        Low alpha ($\alpha$)   & 8Hz-10Hz                 & Wakeful relaxation, consciousness, awareness without attention or concentration, good mood, calmness.                     \\
+        High alpha ($\alpha$)  & 10Hz-12Hz                & Increased self-awareness and focus, learning of new information.                                                          \\ \hline
+        Low beta ($\beta$)     & 12Hz-18Hz                & Active thinking, active attention, focus towards problem solving, judgment and decision making.                           \\
+        High beta($\beta$)     & 18Hz-30Hz                & Engagement in mental activity, also alertness and agitation.                                                              \\ \hline
+        Low gamma ($\gamma$)   & 30Hz-50Hz                & Cognitive processing, senses, intelligence, compassion, self-control.                                                     \\
+        High gamma($\gamma$)   & 50Hz-70Hz                & Cognitive tasks: memory, hearing, reading and speaking.                                                                   \\ \hline
+        \end{tabular}%
+    }
+    \captionsetup{width=0.9\linewidth}
+    \captionsetup{justification=centering}
+    \caption{Overview of the five widely recognized brainwaves according to data from \citet{book_eeg_emotion_recognition}, with further subdivision in low and high brainwaves by data from \citet{fifty_year_bci_review}.}
+    \label{tab:biomedical_signals_brainwaves}
+\end{table}
+\endgroup
 
 % - - - - - - - - - -
 % Measurable brain activity
@@ -639,40 +717,69 @@ TODO
 \subsection{Common methods for inducing electrical brain activity}
 \label{subsec:biomedical_signals_working_with_eeg_inducing_methods}
 
-% bci_applications heeft ook overview onder 6. BCI electrical signal
 
-% Since these signals can capture neural activity related to sensory and cognitive processes, they are called Event-Related Potentials (ERP). Examples of ERPs are Slow Cortical Potentials (SCP; Kleber & Birbaumer, 2005), which are very slow fluctuations in cortical activity that can be made positive or negative through operant conditioning, ERrorRelated Potentials (ErrP; Abiri et al., 2019), which occur when a BCIs action does not correspond with the user’s intention, Steady-State Evoked Potentials (SSEP; Djamal & Lodaya, 2017), which appear when a person perceives a periodic stimulus, and Movement Related Cortical Potentials (MRCP; Shakeel et al., 2015), which are low-frequency negative shifts that take place about 2 seconds prior to voluntary movement. An overview of ERPs and their usage in BCIs is described by Rashid et al. (2020).
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{../images/biosignals/brain_signal_inducing_methods.pdf}
+    \captionsetup{width=0.8\linewidth}
+    \captionsetup{justification=centering}
+    \caption{Overview of the most common methods for inducing electrical brain activity and the signals they produce.}
+    \label{fig:biomedical_signals_inducing_methods}
+\end{figure}
 
-% it is important to note that a person’s intention can not only be decoded from invoked potentials such as ERPs but also from phenomena such as Event-Related Synchronisation (ERS) and Event-Related Desynchronisation (ERD). These denote, respectively, the increase and decrease of oscillatory activity within frequency bands (Pfurtscheller & da Silva, 2017). Such oscillations are known to occur in preparation for movement or imagining movement, i.e., motor imagery. Certain body parts, like the hands and tongue, are associated with a large and distinguishable cortical area, which has allowed BCIs to control them via motor imagery (Schl¨ogl et al., 2005).
 
-% TODO
-% echt uitleggen wat ERP is
-% ssvep
-% p300 zeker
-% MI
-% erd
 
-% TODO zie chapter 23 bci_handbook
-% Issues MI: https://www.frontiersin.org/articles/10.3389/fnins.2021.824759/full
-\Gls{mi} is the process in which a person generates brain-activity in the motor cortex merely by imagining motor movements.
-\Gls{mi}-based \glspl{bci} are interesting because they don't require any external stimulus nor effective motor movements
+For general \glspl{bci} to consistently work with brain signals, it is often desired that the expected signals can be induced by the user.
+There are two possible approaches for this, either by using external stimulations to trigger \glspl{ep} or by relying on specific tasks performed by the user which causes \gls{ers} or \gls{erd} without the need for external stimulation.
+Figure \ref{fig:biomedical_signals_inducing_methods} provides an overview of these methods.
 
-\glspl{erp} and the measurable signals they produce, such as the P300 signal, are only one of many sources for detectable brain signals.
-In general, \gls{erp} related signals are easier to detect reliably, as the stimulus can be controlled, giving a hint when and where to look for signals and what to look for.
+% | | | | | | | | | | | | |
 
-An alternative to \glspl{erp} is using a mental phenomenon called \gls{mi} as source of signals for a \gls{bci} system.
-\Gls{mi} is the process in which a person generates brain activity in the motor cortex merely by imagining motor movements.
-Section \ref{subsec:biomedical_signals_working_with_eeg_inducing_methods} explains in further detail how \gls{mi} is not dependent on an external stimuli nor actual motor movements.
-This makes \gls{mi}-based \glspl{bci} extra appealing as they don't require external stimuli and are applicable for people with motor disabilities.
+\subsubsection{Evoked potentials (EPs)}
+\label{subsubsec:biomedical_signals_working_with_eeg_inducing_methods_ep}
+
+\Glsfirst{ep} are measurable \gls{elecbiosignal} from the brain that occur after a certain stimulus is given to the subject \citep{bci_applications}.
+An \gls{ep} can be of exogenous or endogenous nature.
+Exogenous potentials are influenced by the physical properties of the stimulus, for example, visual exogenous potentials can be influenced by the brightness intensity, the refresh rate and more.
+Endogenous potentials are different as they are related to the psychological significance of the stimulus to the subject, for example, a feeling of joy for the user \citep{endog_ep, bci_applications}.
+
+\Glspl{ep} can be further divided into \glspl{erp} and \glspl{ssep}.
+\Glspl{erp} can be seen as a change from previous brain activity after the user is exposed to a stimulus change.
+\Glspl{erp} can originate from visual (\gls{vep}), auditory (\gls{aep}) and somatosensory (\gls{somsep}) stimulus changes.
+These changes can be either positive or negative in amplitude which is reflected in the name of the potential together with the expected latency from the stimulus change.
+For example, the commonly used P300 potential denotes a positive electrical change around 300 milliseconds after the stimulus change.
+Likewise, an N400 potential denotes a negative change 400 milliseconds after the stimulus change. 
+
+\Gls{ssep} are potentials which occur at a frequency that is equal to or related to the frequency of the stimulus.
+This \gls{ssep} can also be from visual (\gls{ssvep}), auditory (\gls{ssaep}) and somatosensory (\gls{sssep}) origin.
+A \gls{ssep} begins and ends with the presence of the stimulus.
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Event related synchronisation and desynchronisation}
+\label{subsubsec:biomedical_signals_working_with_eeg_inducing_methods_erd}
+
+Besides using external stimuli for inducing \gls{ep}, the user can induce changes in the ongoing brain activity by performing certain tasks.
+These are known as \gls{ers} and \gls{erd}.
+As discussed by \citet{bci_applications}, \gls{ers} and \gls{erd} are time-locked to the event but not phase-locked, making them harder to detect and requiring non-linear methods.
+The intuitive idea behind \gls{ers} and \gls{erd} is that certain tasks performed by the user change the synchrony of measured neurons through \gls{eeg} and thus the measured signal.
+If the power of this synchrony increases, the term \gls{ers} is used, whilst \gls{erd} denotes a decrease in this power.
+
+One commonly used method for causing these types of electrical activity changes is \glsfirst{mi}.
+\Gls{mi} is the process in which a person imagines motor movements such as the closing or opening of the right hand.
+\Gls{mi}-based \glspl{bci} are interesting because they don't require any external stimulus nor effective motor movements.
+This makes \gls{mi}-based \glspl{bci} applicable for many people, including those with motor disabilities.
 \Citet{first_mi} were the first to experiment with the idea of using \gls{mi} in an \gls{eeg} classification task.
 Since then, many \gls{mi}-based \glspl{bci} have been proposed.
-% MI can be trained
-
-TODO
+However, the \gls{mi} capability of users can differ greatly and some may require significant training as was already discussed in Section \ref{subsubsec:bci_opportunities_obstacles_motivating_mi_tasks}.
+Other methods comparable to \gls{mi} include mental arithmetic and mental rotation.
 
 % - - - - - - - - - -
 % generalisation issues
 % - - - - - - - - - -
+
+% TODO: start here
 
 \subsection{Generalisation issues of brain activity}
 \label{subsec:biomedical_signals_working_with_eeg_generalisation}
