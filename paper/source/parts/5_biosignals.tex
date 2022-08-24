@@ -12,7 +12,7 @@
 
 % bci_review_book_chapter
 
-% In a new chapter, reset the GLS to once again use full version in first occurence
+% In a new chapter, reset the GLS to once again use the full version in the first occurrence
 \glsresetall
 
 \chapter{Origins and acquisition of biomedical signals}
@@ -23,7 +23,7 @@
 % ---------------------------------------------- 
 \section{Introduction to this chapter}
 \label{sec:biomedical_signals_introduction}
-% NOTE: "Introduction" exists in each chapter and gives short intro to chapter + what can be expected in chapter
+% NOTE: "Introduction" exists in each chapter and gives a short intro to the chapter + what can be expected in the chapter
 
 Whilst Chapter \ref{ch:bci} has provided an in-depth intuitive introduction to \glspl{bci}, some more technical aspects need addressing as well to provide a computer scientist with all of the required foundational knowledge for \gls{bci} research.
 This chapter provides the required technical knowledge on the data that \gls{bci} systems use, brain signals.
@@ -81,7 +81,7 @@ These types of \glspl{biosignal}, sometimes reffered to as \gls{elecbiosignal}, 
 % how produced
 % - - - - - - - - - -
 
-\subsection{Origin of electricity inside the the human body}
+\subsection{Origin of electricity inside the human body}
 \label{subsec:biomedical_signals_biosignals_electrical}
 
 Electricity in the human body, better known as bioelectricity, can be seen as the generation or action of tiny electric currents and voltages in physiological processes.
@@ -247,7 +247,7 @@ The works by \citet{modalities_review1} and \citet{modalities_review2} cover som
         ECoG                       & Yes               & High           & 5ms                          & 1mm                         & €€-€€€                 & Poor                          & Good                 & Good             \\ \hline
         fNIRS                      & No                & Low            & 1000ms                       & 10mm                        & €-€€€                  & Good                          & Good                 & Medium           \\ \hline
         Implemented microelectrode & Yes               & High           & 3ms                          & 0.05mm - 0.5mm              & €€€                    & Poor                          & Good                 & Good             \\ \hline
-        Intravescular electrode    & Yes               & Medium         & 5ms                          & 2.4mm                       & €€-€€€                 & Poor                          & Good                 & Good             \\ \hline
+        Intravascular electrode    & Yes               & Medium         & 5ms                          & 2.4mm                       & €€-€€€                 & Poor                          & Good                 & Good             \\ \hline
         fTCD                       & No                & Low            & 1000ms - 5000ms              & 10mm - 30mm                 & €                      & Medium                        & Medium               & Poor             \\ \hline
         MEG*                       & No                & Low            & 1ms - 5ms                    & 1mm                         & €€€+                   & Good                          & Poor                 & Poor             \\ \hline
         \end{tabular}%
@@ -560,11 +560,11 @@ This section summarizes the most important guidelines and consensus statements o
 \Citet{eeg_guidelines1} provide guidelines on the minimal technical requirements for performing \gls{eeg} in a clincial setting.
 Their guidelines propose the use of an \gls{eeg} machine with support for at least 16 electrodes capable of measuring signals with a frequency range between 0.5\gls{hz} and 70\gls{hz}.
 Electrical shielding of the \gls{eeg} machine is not required given the wiring for the \gls{ac} within the building meets labratory standards.
-Other guidelines on interest for this master thesis included in this document are on the use of a standardised electrode placement and montage.
+Other guidelines of interest for this master thesis included in this document relate to the use of standardised electrode placements and montages.
 The most common electrode montages were already discussed in Section \ref{tab:biomedical_signals_modalities} and illustrated in Figure \ref{fig:biomedical_signals_eeg_montages}.
 
 \Citet{eeg_guidelines2} discusses the standardised electrode placements in more detail.
-The most commonly used scheme for electrode placement is the international 10-20 system, which was first introduced in late 1950s \citep{internat_1020_system}.
+The most commonly used scheme for electrode placement is the international 10-20 system, which was first introduced in the late 1950s \citep{internat_1020_system}.
 The 10-20 system, shown in Figure \ref{fig:biomedical_signals_10_20_system_original}, makes use of 21 electrodes placed at relative distances between four main positions on the head that are easily transfarable between subjects.
 These four points are the nasion (bridge of the nose), inion (the midline bony prominence at the back of the heaf) and two preauricular points near the front of each ear.
 These roughly correspond with the nasion, inion, A1 and A2 annotations on figure \ref{fig:biomedical_signals_10_20_system_original}.
@@ -779,16 +779,31 @@ Other methods comparable to \gls{mi} include mental arithmetic and mental rotati
 % generalisation issues
 % - - - - - - - - - -
 
-% TODO: start here
-
 \subsection{Generalisation issues of brain activity}
 \label{subsec:biomedical_signals_working_with_eeg_generalisation}
 
-% neuroplasticity and inter-human variation en non stationarity en mapping brain en... bespreken
+In an ideal world, one singular model would classify \gls{mi} tasks performed by any individual with high accuracy.
+However, intersubject classification has proven to be difficult and even intersession classification from the same subject is challenging when working with multiple classes.
+Most of the generalisation issues lie in the non-linear and non-stationary nature of the brain which is reflected in the recorded \gls{eeg} data.
+\Citet{brain_nonlinear} describes the non-linear nature of the brain in greater detail.
+As discussed by \citet{bci_applications}, the most important consequence of the non-linearity of the brain is that no linearity assumptions should be made when working with \gls{eeg} signals and as such non-linear classification models are likely to perform better.
 
-% However, as mentioned, since this is an invasive technique, it is not discussed here. Lastly, a crucial property of EEG in the context of machine learning, is its nonstationarity (Klonowski, 2009). A stationary signal is one of which the properties do not change with time. On the other hand, a nonstationary signal is inconsistent with time. EEG’s nonstationarity is a result of it capturing the activity of a multitude of different latent variables in the brain, each of which are transmitting with different and variable intensity. In a fraction of a second, the latent variables whose activities are currently dominant can change. Nonstationarity makes interpreting EEG a nontrivial task. If not properly addressed, machine learning models are certain to struggle to learn anything valuable from EEG. This is reflected by the number of preprocessing and feature extraction methods that exist for EEG.
+Compared to stationary signals whose properties do not change over time, brain signals measured with \gls{eeg} do see significant change over time.
+This change may be caused by slight displacements of the \gls{eeg} electrodes during use and varying noise but also by the working of the brain itself.
+Since \gls{eeg} can not record the activity of singular neurons, there are always several unknown and constantly changing latent variables captured even if the signal of interest is identical.
+These changing latent variables can cause two identical \gls{mi} tasks performed only seconds apart to look drastically different on an \gls{eeg}.
+Even if no latent variables were present, neuroplasticity and other neurological properties of the brain can change the shape and location of the signal of interest over time.
+This means that the non-stationary nature of brain signals and \gls{eeg} should always be taken into account when working with \gls{eeg}.
 
-TODO
+Finally, the human brain can differ greatly between subjects, both anatomically and functionally.
+As a result, precise models learned for one subject are not guaranteed to work well on another subject in an intersubject setting.
+When working with \gls{ers} and \gls{erd}, there is also going to be user-variability in how these changes are induced.
+For example, even after sufficient training, one user may perform a \gls{mi} task of the hand with the hand envisioned in front of them, whilst another may envision the movement with the hand located next to them.
+Such subtle changes are bound to add up and cause a change in the generated \gls{ers} and \gls{erd}.
+These factors significantly limit generalisability between subjects and sometimes even between sessions of the same user.
+
+
+
 
 % - - - - - - - - - -
 % artefacts
@@ -797,9 +812,48 @@ TODO
 \subsection{Common EEG artefacts}
 \label{subsec:biomedical_signals_working_with_eeg_artefacts}
 
-% TODO also discuss how to use them e.g. eye blink as input, ook bespreken niet goed voor e.g. sroke patienten
+\Gls{eeg} artefacts can be seen as recorded signals which do not originate from the brain or the region or signal of interest.
+Such artefacts cause minor to significant changes from the expected \gls{eeg} measurement.
+A distinction is made between artefacts not caused by the user, nonphysiologic artefacts, and artefacts caused by the user, physiologic artefacts.
+This section discusses the most important artefacts found in both categories.
+Chapter 8 from the book by \citet{eeg_artifacts} provides a detailed overview of these artefacts and many more accompanied by visual examples of these artefacts in the time domain.
 
-TODO
+% | | | | | | | | | | | | |
+
+\subsubsection{Nonphysiologic EEG artefacts}
+\label{subsubsec:biomedical_signals_working_with_eeg_artefacts_nonphysiologic}
+
+By far the most common nonphysiologic \gls{eeg} artefact that should always be taken into account is the electrical and electromagnetic interferences caused by \gls{ac} electrical lines and devices present in the environment.
+These artefacts are easily detectable in the frequency domain as there will be a great spike at either 50\gls{hz} or 60\gls{hz} dependent on the \gls{ac} standard present in the geographical location of measurement.
+Since artefacts from this type are so common, most \gls{eeg} measuring equipment has a built-in filter to eliminate this frequency.
+
+The second most common nonphysiologic artefact is electrode pop caused by a change in potential between the scalp and an electrode.
+It is often short in duration and can vary greatly in appearance in both the time and frequency domain.
+In general, these types of artefacts are most visual in the time domain with an abrupt and unusually high amplitude change.
+Some \gls{eeg} equipment has additional pressure sensors to notice if the location from the electrode to the scalp changes, the information of which can be used to temporarily ignore that channel.
+Likewise, postprocessing may temporarily suppress electrodes with such abrupt changes in amplitude.
+However, certain medical conditions can have properties comparable to the artefacts caused by electrode popping and thus some applications might opt to not filter away all abrupt changes.
+Other nonphysiologic artefacts include additional movement of the \gls{eeg} equipment such as the electrode cables as well as poorly placed electrodes or grounds and defective components in general.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Physiologic EEG artefacts}
+\label{subsubsec:biomedical_signals_working_with_eeg_artefacts_physiologic}
+
+Muscle activity underneath or nearby electrodes causes significant artefacts in the \gls{eeg} measurements and are by far the most important type of physiologic \gls{eeg} artefacts.
+Whilst these types of artefacts are actual \gls{emg} measurements rather than \gls{eeg} measurements and thus should not be desired in \gls{eeg}, they are commonly used in \gls{bci} applications, both deliberately and accidental.
+As shown by \citet{using_emg_in_eeg_artefact}, muscle artefacts are far easier to detect and classify then effective brain signals.
+As a result, systems such as the ones by \citet{eeg_fnirs_drone} use these easier-to-detect \gls{emg} activities in \gls{eeg}-based \gls{bci}, with repeated blinking of one or both eyes and smirk movements being most common.
+However, certain users suffering from medical conditions that limit control over voluntary movements of these body parts are directly excluded from using such \gls{bci} systems.
+As such, using these types of artefacts deliberately is often seen as a hacky solution to \glspl{bci}.
+Accidental use of these artefacts includes unknowingly using or learning consistent concurrent muscle movement by a user performing the goal task, as already described in Section \ref{subsec:biomedical_signals_working_with_eeg_anatomy}.
+
+Other movements such as eye movement, tongue movement during speech and general movements during breathing or walking also cause significant artefacts in the \gls{eeg} measurements.
+Besides muscle artefacts in the form of \gls{emg} measurements made with \gls{eeg} equipment, \gls{ecg} measurements due to electrical activity from the heart can sometimes also be detected with \gls{eeg}.
+A last important physiologic artefact is caused by sweat.
+Not only can perspiration cause distinct very low-frequency electrical artefacts, but it can also short electrodes when a user is sweating heavily.
+
+
 
 
 % ---------------------------------------------- 
@@ -807,10 +861,19 @@ TODO
 % ---------------------------------------------- 
 \section{Motivation for using non-invasive MI EEG and chapter conclusions}
 \label{sec:biomedical_signals_summary}
-% TODO: summary of this chapter
 
-% uitleggen waarom EEG en MI
+This chapter detailed the origin and function of \glspl{biosignal} and bioelectricity in the human body.
+Multiple modalities for measuring brain activity, both invasive and non-invasive, were discussed.
+Whilst invasive solutions were determined to be superior in all criteria related to data quality, they still impose significant risk and are not yet widely available in an affordable manner.
+As such, they were found unfeasible for use in current and foreseeable future general \gls{bci} applications.
+From the non-invasive methods, \gls{meg} was the most capable modality in terms of temporal and spatial resolution.
+However, \gls{meg} has an incredibly high cost and maintenance and is non-portable in its current state.
+Two cheap and portable non-invasive modalities, \gls{fnirs} and \gls{eeg}, where also discussed.
+It was discussed that \gls{eeg} with its great temporal resolution is most promising in the current and foreseeable future \gls{bci} application.
+As such, this master thesis will further focus on the \gls{eeg} modality and data from it alone.
+Some of the available \gls{eeg} equipment was discussed showing that capable research-grade \gls{eeg} equipment is obtainable for around 2000 euros and usable cheap consumer-grade \gls{eeg} equipment starts at only a couple of hundred euros.
 
-% uitleggen dat hybrid in de toekomst mss wel beter zal zijn maar momenteel nog geen zicht op
-
-TODO
+Next to this technical discussion on measuring modalities and \gls{eeg} equipment, some practical guidelines and pointers for working with \gls{eeg} data were given.
+From the discussed methods for inducing electrical brain activity, \gls{ers} and \gls{erd} seem most promising as they don't require an external stimulus.
+In this regard, this master thesis will focus on \gls{eeg} data related to \gls{mi} tasks.
+Whilst these are more difficult to extract and require user training, using the pointers given and knowing the common artefacts present in \gls{eeg}, it is possible to develop a capable offline classifier for \gls{mi} \gls{eeg} data, as discussed further in the following chapters.
