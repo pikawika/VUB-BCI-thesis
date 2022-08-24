@@ -591,10 +591,34 @@ Because of this, multiple standards and guidelines have been proposed over the y
 
 \subsection{Using the anatomy of the brain for electrode subsampling}
 \label{subsec:biomedical_signals_working_with_eeg_anatomy}
-% Bespreken welke regions important voor MI
-% al getoond in bci chapter
 
-TODO
+% TODO: nog zeggen waar MI en waar P300 en dan gewoon dat kan nog voor meer en dan wat deftig schrijven
+
+Section \ref{subsec:bci_gaining_popularity_better_measuring} already discussed that due to the anatomy of the brain, \gls{eeg} gets a partial and blurred view of the brain activity.
+This was illustrated in Figure \ref{fig:brain_anatomy}, where the brain was annotated as one singular piece.
+The brain is often devided into further regions based on the motor and sensory activity present in that region.
+This is illustrated in Figure \ref{fig:brain_regions}.
+Whilst \gls{eeg} has limited spatial resolution, as discussed in Section \ref{tab:biomedical_signals_modalities}, these regions can be used as a guide of which electrodes are of interest for certain tasks.
+
+For example, \gls{mi} ...
+
+Likewise, P300 signals are known to... 
+
+Remvoving electrodes that are not close to the region of interest can help in reducing data dimensionality without losing too much useful information.
+It can also help in reducing the learning of a phenomena different from the problem.
+For example, when a user performs specific eye movements or facial muscle movements, which cause \gls{eeg} artefacts, when performing a \gls{mi} task, it is more likely to learn those artefacts related to the task rather then the \gls{mi} task itself.
+Whilst this can have beneficial improvements for individuals that are persistent in this behaviour, it derives from learning what is expected and will cause poor generalisation.
+As such, the removal of the data from the frontal electrodes which capture these muscle movements might be a smart approach.
+However, since \gls{eeg} has such poor spatial resolution, the blurry view it has and likely activity in other regions of the brain that are also of interest, removing to many electrode inputs can have a degrading effect on performance.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../images/biosignals/brain_areas.pdf}
+    \captionsetup{width=0.85\linewidth}
+    \captionsetup{justification=centering}
+    \caption{Sideview of the brain with motor and sensory regions highlighted. The left side corresponds to the back of the head, with the visual cortex being just above the back of the human neck. Free to use figure by \citet{figure_blausen}, CC BY 3.0, via Wikimedia Commons.}
+    \label{fig:brain_regions}
+\end{figure}
 
 % - - - - - - - - - -
 % Brain waves
