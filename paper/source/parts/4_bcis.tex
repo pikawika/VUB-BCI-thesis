@@ -1,6 +1,7 @@
 % TODO:
 %   - Changes Arnau
 %   - P300 is GEEN steady state (zie Common methods for inducing electrical brain activity)
+%   - Further subdivision of "four papers to bci" mogelijk want we hebben bv offline classi dat nog verder studied zou moeten worden voor online use
 % ----------  
 % Questions:
 %   - 
@@ -197,14 +198,14 @@ In this way, they also contribute to Wolpaw's vision of a perfect \gls{bci} syst
 
 Figure \ref{fig:bci_money} shows the funding of \gls{bci}-related companies founded after 2010 as a rough indication of how much money is spent on start-up companies in the field.
 Interestingly, from the companies Neurable, Muse and Neuralink mentioned in this thesis, the funding amount is in proportion to the overall popularity of that company to the wider public, although this is by no means a proven relation.
-It also shows that whilst academic research on \glspl{bci} doesn't require huge funding, with open-source datasets and relatively cheap hardware available as is further discussed in Section \ref{subsec:bci_gaining_popularity_improved_data_processing}, \ref{subsec:biomedical_signals_measuring_brain_equipment}, and \ref{subsec:processing_signals_alternative_pipelines_using_existing_data}, creating an effective commercial product can become an expensive affaire rather quickly.
+It also shows that whilst academic research on \glspl{bci} doesn't require huge funding, with open-source datasets and relatively cheap hardware available as is further discussed in Section \ref{subsec:bci_gaining_popularity_improved_data_processing}, \ref{subsec:biomedical_signals_measuring_brain_equipment}, and \ref{subsec:processing_signals_general_pipeline_data_acquisition}, creating an effective commercial product can become an expensive affaire rather quickly.
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\linewidth]{../images/introduction/funding.pdf}
     \captionsetup{width=0.9\linewidth}
     \captionsetup{justification=centering}
-    \caption{Funding of newer \gls{bci} related companies depicted in millions (USD).\\Figure based on data by \citet{bci_money} from 2019. It is noted this data is limited to companies that were created after 2010 where funding information is made available.}
+    \caption{Funding of newer \gls{bci} related companies depicted in millions (USD).\\Figure after the results of research by \citet{bci_money}. It is noted this data is limited to companies that were created after 2010 where funding information is made available.}
     \label{fig:bci_money}
 \end{figure}
 
@@ -277,7 +278,7 @@ Figure \ref{fig:example_eeg_measuring_devices} shows the contrast between a medi
         \includegraphics[width=\textwidth]{../images/introduction/wet_eeg.jpg}
         \captionsetup{width=0.9\linewidth}
         \captionsetup{justification=centering}
-        \caption{Medical-grade \gls{eeg} measuring equipment that uses wet electrodes which are each connected to a separate main board via a long cable. Image from Chris Hope, CC BY 2.0, via Wikimedia Commons.\\ \hfill}
+        \caption{Medical-grade \gls{eeg} measuring equipment that uses wet electrodes which are each connected to a separate main board via a long cable. Free to use image by Chris Hope, CC BY 2.0, via Wikimedia Commons.\\ \hfill}
         \label{fig:example_eeg_measuring_devices_medical_bulky}
     \end{subfigure}
     \hfill
@@ -286,7 +287,7 @@ Figure \ref{fig:example_eeg_measuring_devices} shows the contrast between a medi
         \includegraphics[width=\textwidth]{../images/introduction/openbci.jpg}
         \captionsetup{width=0.9\linewidth}
         \captionsetup{justification=centering}
-        \caption{Commercial-grade \gls{eeg} measuring device that uses dry electrodes with active amplification connected to an attached wireless controller board. Image from Conorrussomanno, CC BY-SA 4.0, via Wikimedia Commons.}
+        \caption{Commercial-grade \gls{eeg} measuring device that uses dry electrodes with active amplification connected to an attached wireless controller board. Free to use image by Conorrussomanno, CC BY-SA 4.0, via Wikimedia Commons.}
         \label{fig:example_eeg_measuring_devices_commercial_clean}
     \end{subfigure}
     \captionsetup{width=0.9\linewidth}
@@ -311,9 +312,9 @@ It also allows for fewer electrodes to be used if only the activity of certain a
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.7\linewidth]{../images/introduction/brain_anatomy.pdf}
-    \captionsetup{width=0.7\linewidth}
+    \captionsetup{width=0.8\linewidth}
     \captionsetup{justification=centering}
-    \caption{The anatomy of the human head, specifically of the cerebrospinal system. Non-invasive \gls{eeg} measuring equipment is placed on the scalp, causing signals from the brain to be blocked by the skull and \glsfirst{csf} among other structures. Free to use Figure by \citet{figure_blausen}, CC BY 3.0, via Wikimedia Commons.}
+    \caption{The anatomy of the human head, specifically of the cerebrospinal system. Non-invasive \gls{eeg} measuring equipment is placed on the scalp, causing signals from the brain to be blocked by the skull and \glsfirst{csf} among other structures. Free to use figure by \citet{figure_blausen}, CC BY 3.0, via Wikimedia Commons.}
     \label{fig:brain_anatomy}
 \end{figure}
 
@@ -487,7 +488,7 @@ The replacement of physical computational units in close proximity to cloud solu
     \includegraphics[width=0.8\linewidth]{../images/introduction/papers_on_bci.pdf}
     \captionsetup{width=0.7\linewidth}
     \captionsetup{justification=centering}
-    \caption{Number of \gls{bci}-related papers over time. Based on data by \citet{bci_progress_overview} obtained by searching PubMed using the keyword: "brain-computer interface".}
+    \caption{The number of \gls{bci}-related papers over time. Figure after the results of research by \citet{bci_progress_overview} who searched PubMed using the keyword "brain-computer interface".}
     \label{fig:bci_publications}
 \end{figure}
 
@@ -774,7 +775,7 @@ Sensitivity could be seen as the accuracy of the model on positive cases (i.e. i
 However, \citet{eeg_dangerous_situation_car} do provide the \gls{roc} and provide reasoning for choosing an optimal classification threshold that resulted in this 70\% accuracy.
 This threshold specifies how certain the classification prediction should be before acting on its classification.
 This shows that it is important to look at more than just accuracy, as for this application being good at taking action in case a dangerous scenario is present is ideal, but taking action when there is no dangerous scenario could create a dangerous scenario itself.
-Section \ref{subsec:processing_signals_general_pipeline_evaluating} discusses how to evaluate systems using different metrics and reasoning in more detail.
+Section \ref{subsec:processing_signals_evaluating_and_using_evaluation} discusses how to evaluate systems using different metrics and reasoning in more detail.
 Many other examples of using \glspl{bci} for the detection of symptoms that can lead to traffic accidents exist. 
 \Citet{eeg_motion_sickness} developed a system that could estimate motion sickness levels, which in turn could again be used to alert drivers to take a break.
 
@@ -1448,7 +1449,7 @@ Many other multi-class classification pipelines have been proposed in literature
 These proposed pipelines generally work on both consumer-grade and medical-grade systems, although consumer-grade systems can often benefit more from pipelines with specific noise-reduction steps.
 Some of the proposed pipelines also focus on providing a general model which has been trained on data from multiple users and has usable performance for unseen users.
 Whilst such models have poorer performance compared to one trained for a specific user, they can be used as an initial model to allow the user to explore the possibilities of the \gls{bci} without having to undergo the often tedious training data collection process.
-Such a general model can also be used as a base model for calibration, a process based on the idea of \glsfirst{tl} further discussed in Section \ref{subsec:processing_signals_alternative_calibration}.
+Such a general model can also be used as a base model for calibration, a process based on the idea of \glsfirst{tl} further discussed in Section \ref{subsec:processing_signals_evaluating_and_using_calibration}.
 
 A complete in-depth review of all of the different approaches that have been proposed for \gls{eeg} classification falls outside the scope of this research paper.
 \Citet{eeg_analysis_methods_epilepsy_review} compared \glsfirst{lr}, \glsfirst{ann}, \glsfirst{svm} and \glsfirst{cnn} for a binary classification task of either being epileptic \gls{eeg} data or not.

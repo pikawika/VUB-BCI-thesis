@@ -4,30 +4,12 @@
 % Questions:
 %   - XXX
 
-% appendix paper arnaa
-
-% beter onderscheid maken tussen wat dit is en volgend chapter, note wel de refs naar chapters/sections nog kloppen
-% mss Herstructureren naar pipeline based op figure uit bci_review_arnau en dan per blokje bespreken en dan ander chapter echt een implementatie?
-
-% preprocessing: After acquiring the signal, it typically needs to be cleaned because biosignals have a low signal-tonoise ratio (SNR). This means that there will be more noise present in the acquired data, making it harder to extract useful information. Therefore, a preprocessing step is necessary to improve SNR and yield a ‘clean’ signal that eliminates artifacts, such as those resulting from power supplies or unrelated muscle
-
-% classification vs regression: This can either be classification into a discrete set of classes or regression into a value that is relevant to the control application. regression vooral in exoskeleton en prosthesis by data from bci_review_arnau
-
-% The most common form of ML is supervised learning, in which we assume that the data is presented as a set of input-output pairs, a dataset, which we call labeled data, as each input is labeled with its corresponding output.
-
-
- 
-% Methods and algorithms that allow to concretely perform this learning operation are extensively reviewed by Caruana and Niculescu-Mizil (2006).
- 
-% generalization bespreken: With neural networks, the main avenue to increase generalization is to decrease over-fitting. Over-fitting happens when a neural network remembers exactly what training input should learn which training output, without having actually made sense of the data. The network achieves a training loss close to 0, but produces garbage output on the testing set. It is like a small child that learns how to read words, and remembers that card number 7 is pronounced ‘cat’, without actually looking at the word written on the card, or being able to read at all. Batch normalization (Ioffe and Szegedy 2015) considers the input of every layer in a neural network, and normalizes it so that, in expectation, the inputs of every layer has a zero mean and a unit variance. Intuitively, this normalization prevents ludicrously large or small values from appearing inside the network, which makes it ‘behave better’ or ‘be smoother’ (so, easier to train, and better at generalization). The actual mathematical way in which batch normalization works is however still unknown, with recent papers providing the first insights (Santurkar et al 2018). Dropout (Srivastava et al 2014) does not modify the values that flow through a neural network, but instead randomly disables neurons every time the network is evaluated during training. The main motivation behind Dropout is to avoid one particular neuron in the network to learn how to compensate (and thus cancel out) another particular neuron in the network. When neurons are constantly randomly disabled and re-enabled, they all have to learn independently from each other. More mathematically, Dropout leads to a neural network that is made of a different set of neurons every time it is evaluated. This leads to a large ensemble of ‘sub-networks’, all trained on different datapoints. Ensembles of function approximators such as this are known to help with generalization (Dietterich 2000). Both batch normalization (Tayeb et al 2019, Tam et al 2020) and Dropout (Gautam et al 2020, Tortora et al 2020a) are often used in biosignal decoding papers, sometimes both at the same time. Other normalization techniques are possible, such as L1- normalization or clipping the gradients (Zhang et al 2019a), but they have been superseded by Batch Normalization and Dropout.
 
 % In a new chapter, reset the GLS to once again use full version in first occurence
 \glsresetall
 
-\chapter{Processing brain-signals and taking actions from their interpretation}
+\chapter{Decoding brain signals with machine learning}
 \label{ch:processing_signals}
-
-
 
 % ---------------------------------------------- 
 % INTRODUCTION
@@ -36,32 +18,109 @@
 \label{sec:processing_signals_introduction}
 % NOTE: "Introduction" exists in each chapter and gives short intro to chapter + what can be expected in chapter
 
-\lipsum[1-3]
+The previous chapter, Chapter \ref{ch:biomedical_signals} discussed \gls{biosignal} and how bioelectricity is made in the human body.
+Multiple modalities for measuring brain signals were discussed and it was discussed how \gls{eeg} seems like the most promising measuring modality for capturing \gls{elecbiosignal} from the brain in a \gls{bci} setting.
+Chapter \ref{ch:biomedical_signals} also discussed that \gls{mi} is one of many methods to induce such \gls{elecbiosignal} activity in the brain, namely by causing \gls{ers} and \gls{erd}.
+\gls{mi} and \gls{ers}/\gls{erd} were deemed interesting as it doesn't require the external stimuli that \gls{ep} do and applies to many people, even those with limited mobility.
+However, it was also discussed that \gls{ers}/\gls{erd} following from methods such as \gls{mi} require extensive user training and are harder to detect than most \gls{ep} alternatives for inducing such \gls{elecbiosignal} activity in the brain.
 
+This chapter will discuss how brain signals can be decoded using both traditional two-step \gls{ml} and one-step \gls{dl} in more detail.
+Whilst Chapter \ref{ch:bci} already highlighted multiple breakthroughs in this regard on an intuitive level, this chapter will provide more technical details.
+First, the general pipeline for classifying brain signals and \gls{mi} \gls{eeg} in particular is discussed.
+Then the role of \gls{ml} and \gls{dl} in this pipeline and some of the most important concepts from these technologies are discussed.
+This chapter then goes over the process of evaluating and using the created and trained pipelines.
+The chapter concludes by discussing some of the common issues encountered while creating these pipelines and the conclusions that can be made from this chapter.
 
 
 % ---------------------------------------------- 
-% GENERAL EEG BCI PIPELINE
+% GENERAL TRAINING PIPELINE
 % ---------------------------------------------- 
-\section{A general EEG-based BCI pipeline}
+\section{A general pipeline for classifying brain signals}
 \label{sec:processing_signals_general_pipeline}
 
-% link back naar pipeline van cad
+\begin{sidewaysfigure}
+    \centering
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../images/pipeline/brain_signal_pipeline_training.pdf}
+        \captionsetup{width=0.9\linewidth}
+        \captionsetup{justification=centering}
+        \caption{Components of general training pipeline for brain signal classification annotated with common examples per component.}
+        \label{fig:processing_signals_pipeline_ml}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../images/pipeline/brain_signal_pipeline_predicting.pdf}
+        \captionsetup{width=0.9\linewidth}
+        \captionsetup{justification=centering}
+        \caption{Components of general prediction pipeline for brain signal classification annotated with common examples per component.}
+        \label{fig:processing_signals_pipeline_dl}
+    \end{subfigure}
+    \captionsetup{width=0.9\linewidth}
+    \captionsetup{justification=centering}
+    \caption{General training pipeline and prediction pipeline used for classifying brain signals.}
+    \label{fig:processing_signals_pipeline}
+\end{sidewaysfigure}
 
-% duidelijk bespreken welk ding echt CS en welk ding eigenlijk derden
-
-\lipsum[1-3]
+The general pipeline of classifying brain signals and \gls{eeg}-based \gls{mi} tasks in particular is similar to that of a \gls{cad} systems which was discussed in Section \ref{subsubsec:bci_gaining_popularity_improved_data_processing_better_ml_dl} and shown in Figure \ref{fig:cad_pipeline}.
+Whilst the training pipeline and prediction pipeline for classifying brain signals consist of the same components, their input and output are different.
+For this reason, this master thesis considers them as two separate pipelines.
+The remainder of this section will discuss the components used in these brain signal classification pipelines and the techniques commonly used in each of these components.
+Figure \ref{fig:processing_signals_pipeline} provides a visual overview of these pipelines and their components.
 
 % - - - - - - - - - -
 % Data acquisition
 % - - - - - - - - - -
 
-\subsection{Data acquisition}
+\subsection{Data source}
 \label{subsec:processing_signals_general_pipeline_data_acquisition}
 
 % duidelijk bespreken welk ding echt CS en welk ding eigenlijk derden
 % Bespreken data truc * 100xxx voor volt (of al besproken?)
-\lipsum[1-2]
+
+Assuming supervised learning, a \gls{ml} paradigm further discussed in Section \ref{subsec:processing_signals_ml_and_dl_tyes_of_learning_supervision}, input data for the training pipelines should include both the independent variables as wel the dependent variable.
+When working with an \gls{eeg} \gls{mi} classification problem, these independent variables are the \gls{eeg} measurements of each channel whilst the dependent variable is the \gls{mi} task performed at a specific time point.
+Multiple possibilities exist for providing these variables and the link between them.
+Most open-source \gls{mi} \gls{eeg} datasets, such as the one by \citet{eeg_data} used in this master thesis, do this by providing the \gls{eeg} recordings of an entire session as a single 2D matrix (channels x measurement per time point) and the desired labels as an equal width vector containing the marker at any given time point.
+The time points are dependent on the sampling frequency and denote the sample number counting from the first sample of the session.
+The marker may be the current content of the screen which provides tasks to the user or other event-related information.
+Figure \ref{fig:processing_signals_data_source_eeg} combines both the independent and dependent variables into a singular visualisation.
+
+The prediction pipeline only expects the independent variables as its task is to predict the dependent variable.
+In theory, these independent variables should be of the same format used during training, but in practice, they might originate from a different source or recording and as such might require additional steps during preprocessing to ensure at least an equal sampling frequency and channel distribution.
+This master thesis assumes the device used during training and prediction is identical with equal settings used and as such doesn't require this type of preprocessing.
+
+The prediction pipeline may work in an offline manner, as is the case for the experiments in this master thesis, or in an online manner.
+When using offline prediction the data was already recorded and stored before being provided in its totality to the prediction pipeline.
+In an online setting, the data is streamed to the prediction pipeline as it is being measured and the prediction pipeline should merge this incoming data to an object that is usable in the next stages itself.
+For example, a buffer may be used to collect samples until one second is obtained and pass that to the next step.
+In an online setting, windowing is often directly performed on the stream, as discussed next.
+Other types of data formatting are possible but they should all provide the same information.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{../images/pipeline/eeg.pdf}
+    \captionsetup{width=0.9\linewidth}
+    \captionsetup{justification=centering}
+    \caption{Visualisation of the \gls{eeg} recording from December 15 2015 overlayed with the provided markers for subject B in the open-source dataset by \citet{eeg_data}. The x-axis depicts the time in seconds, the y-axis depicts which channel of the recording is visualised and the colour overlay represents the active marker.}
+    \label{fig:processing_signals_data_source_eeg}
+\end{figure}
+
+% - - - - - - - - - -
+% Windowing
+% - - - - - - - - - -
+
+% TODO: start here
+
+\subsection{Windowing}
+\label{subsec:processing_signals_general_pipeline_windowing}
+
+% Several windowing methods exist and are reviewed by Podder et al (2014).
+
+% Windowing: when specific events in a signal (such as a spike or pattern) matters more than the overall shape of the complete signal, windowing allows to split a signal into fixed-length, usually overlapping, sub-sequences. Having the network focus on small sub-sequences allows it to be faster (less compute intensive, as less data is being processed), and generalize better, as a small number of easily-recognizable patterns (on which the network focuses) can appear in various positions in longer signals (that the network does not have to bother with). Several windowing methods exist, and are reviewed by Podder et al (2014). Jeong et al (2020) and Nguyen and Chung (2019) use Hamming windowing.
+
+TODO
 
 % - - - - - - - - - -
 % Preprocessing
@@ -79,20 +138,12 @@
 
 % Signal filtering: applied on the signals, filters remove frequencies of the signals, to only keep those of interest. This is a form of noise removal, in which the expert designer knows that some frequencies never convey information and can only be noise. There are many different types of filters, which fall outside of the scope of this publication. For more information on filters and digital signal processing, interested readers are referred to (Orfanidis 1996).
 
-\lipsum[1-5]
+% preprocessing: After acquiring the signal, it typically needs to be cleaned because biosignals have a low signal-tonoise ratio (SNR). This means that there will be more noise present in the acquired data, making it harder to extract useful information. Therefore, a preprocessing step is necessary to improve SNR and yield a ‘clean’ signal that eliminates artifacts, such as those resulting from power supplies or unrelated muscle
 
-% - - - - - - - - - -
-% Windowing
-% - - - - - - - - - -
+% andere e.g. nieuwe reference kiezen of zelfs nieuwe montage simulaten
+% en other artefact rejection and correction maar moeilijk want hoe consistent in prediction doen
 
-\subsection{Windowing}
-\label{subsec:processing_signals_general_pipeline_windowing}
-
-% Several windowing methods exist and are reviewed by Podder et al (2014).
-
-% Windowing: when specific events in a signal (such as a spike or pattern) matters more than the overall shape of the complete signal, windowing allows to split a signal into fixed-length, usually overlapping, sub-sequences. Having the network focus on small sub-sequences allows it to be faster (less compute intensive, as less data is being processed), and generalize better, as a small number of easily-recognizable patterns (on which the network focuses) can appear in various positions in longer signals (that the network does not have to bother with). Several windowing methods exist, and are reviewed by Podder et al (2014). Jeong et al (2020) and Nguyen and Chung (2019) use Hamming windowing.
-
-\lipsum[1-3]
+TODO
 
 % - - - - - - - - - -
 % Feature
@@ -108,93 +159,18 @@
 
 % For a detailed review of possible feature extraction methods, we refer interested readers to Rashid et al (2020).
 
-\lipsum[1-5]
+% ...Other feature engineering techniques zoals time-frequency domain
+
+TODO
 
 % - - - - - - - - - -
 % Classification
 % - - - - - - - - - -
 
-\subsection{Classification model}
+\subsection{Classification}
 \label{subsec:processing_signals_general_pipeline_classification}
 
-\lipsum[1-5]
-
-% - - - - - - - - - -
-% Performing an action
-% - - - - - - - - - -
-
-\subsection{Performing an action}
-\label{subsec:processing_signals_general_pipeline_perform_action}
-
-\lipsum[1-3]
-
-% - - - - - - - - - -
-% Evaluation
-% - - - - - - - - - -
-
-\subsection{Evaluating the classification system}
-\label{subsec:processing_signals_general_pipeline_evaluating}
-
-% accuracy, roc, froc, specificity, sensititivity etc etc
-
-\lipsum[1-6]
-
-
-
-% ---------------------------------------------- 
-% ALTERNATIVE PIPELINES
-% ---------------------------------------------- 
-\section{Alternative BCI pipelines}
-\label{sec:processing_signals_alternative_pipelines}
-
-% - - - - - - - - - -
-% No data acquisition
-% - - - - - - - - - -
-
-\subsection{Using existing open-source data for training and testing}
-\label{subsec:processing_signals_alternative_pipelines_using_existing_data}
-
-\lipsum[1-3]
-
-% - - - - - - - - - -
-% No action performing
-% - - - - - - - - - -
-
-\subsection{Calibrating an existing system}
-\label{subsec:processing_signals_alternative_calibration}
-
-% uitleggen hoe TL
-
-\lipsum[1-3]
-
-% - - - - - - - - - -
-% No preprocessing & feature engineering
-% - - - - - - - - - -
-
-\subsection{Neglecting preprocessing and feature engineering}
-\label{subsec:processing_signals_alternative_pipelines_no_preprocessing_and_features}
-
-\lipsum[1-2]
-
-% - - - - - - - - - -
-% No action performing
-% - - - - - - - - - -
-
-\subsection{No action performing step}
-\label{subsec:processing_signals_alternative_pipelines_no_actions}
-
-% niet strict conform met wolpaw's def want communication device
-
-\lipsum[1-2]
-
-% - - - - - - - - - -
-% Offline vs online
-% - - - - - - - - - -
-
-\subsection{Offline vs online BCI systems}
-\label{subsec:processing_signals_alternative_pipelines_offline_vs_online}
-
-\lipsum[1-4]
+TODO
 
 
 
@@ -230,14 +206,18 @@
 % nn_can_learn_from_raw
 % % Conceptually, given enough layers and neurons, and the proper architecture, a neural network can learn any mapping from inputs to outputs (Sonoda and Murata 2017) (they are universal function approximators). This means that any method of acquiring a signal, and representing it as floatingpoint values will eventually allow the network to make sense of the inputs, and learn something. bci review arnau
 
-\lipsum[1-3]
+TODO
 
 % - - - - - - - - - -
 % Common regular ML classifiers
 % - - - - - - - - - -
 
-\subsection{Supervised, Semi-Supervised, Unsupervised, and Self-Supervised Learning}
+\subsection{Machine learning paradigms}
 \label{subsec:processing_signals_ml_and_dl_tyes_of_learning_supervision}
+
+% Supervised, Semi-Supervised, Unsupervised, and Self-Supervised Learning
+
+% The most common form of ML is supervised learning, in which we assume that the data is presented as a set of input-output pairs, a dataset, which we call labeled data, as each input is labeled with its corresponding output.
 
 % The most common form of ML is supervised learning, in which we assume that the data is presented as a set of input-output pairs, a dataset, which we call labeled data, as each input is labeled with its corresponding output (Caruana and NiculescuMizil 2006). Alternatively, unsupervised learning techniques do not use outputs for learning, but rather learn the (unknown) structure of the data. Semi-supervised learning methods use both labeled and unlabeled data, usually to learn the structure of the training data to become able to generate more (artificial) training points (Aznan et al 2019), that are used for conventional supervised learning in a second learning phase. Self-supervised learning (Jing and Tian 2019) is a similar approach that is used to learn the relevant structure in EEG data by first learning an unsupervised pretext task, after which the model is further trained on the target task with labeled data (Banville et al 2020, Kostas et al 2021). The remainder of this review will focus on supervised learning methods.
 
@@ -245,25 +225,26 @@
 
 % Therefore, low-confidence labelled data is often used in a semi-supervised fashion as explained by \citet{deep_learn_low_label}.
 
-\lipsum[1-3]
+TODO
 
 % - - - - - - - - - -
-% Common regular ML classifiers
+% Common traditional ML classifiers
 % - - - - - - - - - -
 
-\subsection{Common regular machine learning classifiers}
+\subsection{Common traditional machine learning classifiers}
 \label{subsec:processing_signals_ml_and_dl_ml_classifiers}
 
-% KNN
-% RF
+% LDA
 % SVM
-% Single-layer Perceptron
+% RF
 % bekijk ml_strats_used_in_papers
 
-\lipsum[1-7]
+% https://doi.org/10.1145/1143844.1143865 veergelijkt SVM en RF en andere
+
+TODO
 
 % - - - - - - - - - -
-% Common regular DL classifiers
+% Common DL classifiers
 % - - - - - - - - - -
 
 \subsection{Common deep learning classifiers}
@@ -283,17 +264,81 @@
 
 % bekijk ml_strats_used_in_papers
 
-\lipsum[1-7]
+TODO
 
+% ---------------------------------------------- 
+% EVALUATING AND USING
+% ---------------------------------------------- 
+\section{Evaluating and using the classification pipeline}
+\label{sec:processing_signals_evaluating_and_using}
+
+% link back naar pipeline van cad
+
+% duidelijk bespreken welk ding echt CS en welk ding eigenlijk derden
+
+TODO
+
+% - - - - - - - - - -
+% trianing vs prediction
+% - - - - - - - - - -
+
+\subsection{Difference between training and prediction pipeline}
+\label{subsec:processing_signals_evaluating_and_using_training_vs_prediction}
+
+TODO
+
+% - - - - - - - - - -
+% offline vs online
+% - - - - - - - - - -
+
+\subsection{Difference between offline and online prediction}
+\label{subsec:processing_signals_evaluating_and_using_offline_vs_online}
+
+TODO
+
+% - - - - - - - - - -
+% calibration
+% - - - - - - - - - -
+
+\subsection{Calibrating a previously trained pipeline}
+\label{subsec:processing_signals_evaluating_and_using_calibration}
+
+TODO
+
+% - - - - - - - - - -
+% evaluting
+% - - - - - - - - - -
+
+\subsection{Evaluating the performance of the pipeline}
+\label{subsec:processing_signals_evaluating_and_using_evaluation}
+
+% CM
+% acc
+% loss
+% f1
+% ppv npv etc?
+% CV 
+
+TODO
+
+
+% - - - - - - - - - -
+% evaluting
+% - - - - - - - - - -
+
+\subsection{Hyperparameter tuning}
+\label{subsec:processing_signals_evaluating_and_using_hyperparameter_tuning}
+
+TODO
 
 % ---------------------------------------------- 
 % COMMON ISSUES
 % ---------------------------------------------- 
 
-\section{Common issues when processing brain-signals and how to avoid them}
+\section{Common issues with MI classification pipelines}
 \label{sec:processing_signals_common_issues}
 
-\lipsum[1-2]
+TODO
 
 % - - - - - - - - - -
 % biased data
@@ -302,7 +347,7 @@
 \subsection{Biased data}
 \label{subsec:processing_signals_common_issues_bias}
 
-\lipsum[1-3]
+TODO
 
 % - - - - - - - - - -
 % evaluation
@@ -312,7 +357,7 @@
 \label{subsec:processing_signals_common_issues_generalisation}
 % e.g. only look at a person we also used in training etc
 
-\lipsum[1-3]
+TODO
 
 % - - - - - - - - - -
 % explainability and interpretability
@@ -321,7 +366,7 @@
 \subsection{No explainability or interpretability}
 \label{subsec:processing_signals_common_issues_exaplainable}
 
-\lipsum[1-3]
+TODO
 
 % TOODO
 \Gls{dl} often requires significant processing power and time to train, impacting the affordability of \gls{bci} research.
@@ -340,15 +385,20 @@ Recent governmental reports have suggested that laws will be coming in place to 
 
 % To avoid over-fitting, Batch Normalization (Ioffe and Szegedy 2015) considers the input of every layer in a neural network, and normalizes it so that, in expectation, the inputs of every layer has a zero mean and a unit variance. Dropout (Srivastava et al 2014) does not modify the values that flow through a neural network, but instead randomly disables neurons every time the network is evaluated during training. Both these methods contribute to improving training speed and generalization of the network, and ensure that the model converges to an optimal loss. Both batch normalization (Tayeb et al 2019, Tam et al 2020) and dropout (Gautam et al 2020, Tortora et al 2020a) are often used in biosignal decoding papers, sometimes both at the same time. Other normalization techniques are possible, such as L1- normalization or clipping the gradients (Zhang et al 2019a), but they have been superseded by Batch Normalization and Dropout.
 
+% generalization bespreken: With neural networks, the main avenue to increase generalization is to decrease over-fitting. Over-fitting happens when a neural network remembers exactly what training input should learn which training output, without having actually made sense of the data. The network achieves a training loss close to 0, but produces garbage output on the testing set. It is like a small child that learns how to read words, and remembers that card number 7 is pronounced ‘cat’, without actually looking at the word written on the card, or being able to read at all. Batch normalization (Ioffe and Szegedy 2015) considers the input of every layer in a neural network, and normalizes it so that, in expectation, the inputs of every layer has a zero mean and a unit variance. Intuitively, this normalization prevents ludicrously large or small values from appearing inside the network, which makes it ‘behave better’ or ‘be smoother’ (so, easier to train, and better at generalization). The actual mathematical way in which batch normalization works is however still unknown, with recent papers providing the first insights (Santurkar et al 2018). Dropout (Srivastava et al 2014) does not modify the values that flow through a neural network, but instead randomly disables neurons every time the network is evaluated during training. The main motivation behind Dropout is to avoid one particular neuron in the network to learn how to compensate (and thus cancel out) another particular neuron in the network. When neurons are constantly randomly disabled and re-enabled, they all have to learn independently from each other. More mathematically, Dropout leads to a neural network that is made of a different set of neurons every time it is evaluated. This leads to a large ensemble of ‘sub-networks’, all trained on different datapoints. Ensembles of function approximators such as this are known to help with generalization (Dietterich 2000). Both batch normalization (Tayeb et al 2019, Tam et al 2020) and Dropout (Gautam et al 2020, Tortora et al 2020a) are often used in biosignal decoding papers, sometimes both at the same time. Other normalization techniques are possible, such as L1- normalization or clipping the gradients (Zhang et al 2019a), but they have been superseded by Batch Normalization and Dropout.
+
 % uit bci_review_arnau
 
-\lipsum[1-5]
+TODO
 
 % ---------------------------------------------- 
 % CONCLUSIONS OF CHAPTER
 % ---------------------------------------------- 
-\section{Chapter conclusions}
+\section{Motivation for offline classification and chapter conclusions}
 \label{sec:processing_signals_summary}
 % TODO: summary of this chapter
 
-\lipsum[1-3]
+% duidelijk bespreken classificiation echt CS terwijl die contorl vaak een andere (buiten interface ofc) ook link naar die paper division door ons
+% bespreken paper division door ons zegt dat on classi model bruikbaar moet zijn maar dit nog net iets anders want offline, dus is eigenlijk nog further subdivision
+
+TODO

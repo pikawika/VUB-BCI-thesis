@@ -14,8 +14,9 @@
     urlcolor=black
 }
 
-% Used for abbrivations etc
+% Used for abbrivations etc and disable hyperlinks on them
 \usepackage{glossaries}
+\glsdisablehyper
 
 % Used for sideways image
 \usepackage{rotating}
@@ -71,6 +72,9 @@
 \listoftables 
 \mainmatter
 
+% Glossary
+\input{../parts/F_abbreviations}
+
 % Main content
 \input{../parts/4_bcis}
 \input{../parts/5_biosignals}
@@ -82,9 +86,6 @@
 
 
 \backmatter%
-
-% Glossary
-\input{../parts/F_abbreviations}
 
 % References list (show even non cited)
 \nocite{*}
