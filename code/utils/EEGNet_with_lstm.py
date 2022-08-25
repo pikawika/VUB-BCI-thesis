@@ -170,6 +170,7 @@ def EEGNet_lstm_1Dconv(nb_classes, Chans = 64, Samples = 128,
                        dropoutRate = 0.5, kernLength = 64, F1 = 8, 
                        D = 2, norm_rate = 0.25, dropoutType = 'Dropout',
                        lstm_filters = 64, lstm_kernel_size= 4, ltsm_dropout=0.5,
+                       lstm_strides = 1, avg_pooling_before_lstm = 0, 
                        ltsm_l1 = 0.0001, ltsm_l2 = 0.0001):
     """ 
     Extension to the Keras Implementation of EEGNet provided by ARL_EEGModels.
@@ -209,12 +210,20 @@ def EEGNet_lstm_1Dconv(nb_classes, Chans = 64, Samples = 128,
     block1       = Conv2D(F1, (1, kernLength), padding = 'same', # (_, 21, 100, 1) -> (_, 21, 100, 8)
                                    input_shape = (Chans, Samples, 1), 
                                    use_bias = False)(input1)
+    
     block1       = BatchNormalization()(block1)
+    
     block1       = DepthwiseConv2D((Chans, 1), use_bias = False, # (_, 21, 100, 8) -> (_, 1, 100, 16)
                                    depth_multiplier = D,
                                    depthwise_constraint = max_norm(1.))(block1)
+    
     block1       = BatchNormalization()(block1)
+    
     block1       = Activation('elu')(block1)
+    
+    if avg_pooling_before_lstm > 0:
+        block1 = AveragePooling2D((1, avg_pooling_before_lstm))(block1)
+    
     block1       = dropoutType(dropoutRate)(block1)
     
     ###################################
@@ -224,7 +233,7 @@ def EEGNet_lstm_1Dconv(nb_classes, Chans = 64, Samples = 128,
     
     lstmconv     = Bidirectional(ConvLSTM1D(filters = lstm_filters,
                                             kernel_size = lstm_kernel_size,
-                                            strides= 1,
+                                            strides= lstm_strides,
                                             padding= "valid", # reduces dimension
                                             kernel_regularizer=regularizers.L1L2(l1= ltsm_l1, l2= ltsm_l2),
                                             data_format= "channels_first", # 21 electrodes
