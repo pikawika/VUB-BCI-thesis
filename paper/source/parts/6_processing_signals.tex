@@ -111,8 +111,6 @@ Other types of data formatting are possible but they should all provide the same
 % Windowing
 % - - - - - - - - - -
 
-% TODO: start here
-
 \subsection{Windowing}
 \label{subsec:processing_signals_general_pipeline_windowing}
 
@@ -120,7 +118,63 @@ Other types of data formatting are possible but they should all provide the same
 
 % Windowing: when specific events in a signal (such as a spike or pattern) matters more than the overall shape of the complete signal, windowing allows to split a signal into fixed-length, usually overlapping, sub-sequences. Having the network focus on small sub-sequences allows it to be faster (less compute intensive, as less data is being processed), and generalize better, as a small number of easily-recognizable patterns (on which the network focuses) can appear in various positions in longer signals (that the network does not have to bother with). Several windowing methods exist, and are reviewed by Podder et al (2014). Jeong et al (2020) and Nguyen and Chung (2019) use Hamming windowing.
 
-TODO
+The data source as described in Section \ref{subsec:processing_signals_general_pipeline_data_acquisition} provides a continous signal over multiple channels.
+To process these signals a mechanism has to be in place so that this continuous signal is split into discrete segments.
+Such techniques are often referred to as windowing, but the neurophysiological field also refers to it as epoching.
+The latter should not be confused with the meaning of epochs in a \gls{ml} setting.
+Different types of windowing exist and three common approaches are illustrated in Figure \ref{fig:processing_signals_windowing}.
+Using a fixed window surrounding known event points is trivial on the training data and results in the simplest classification task with the most consistent window labels from the three windowing techniques shown in Figure \ref{fig:processing_signals_windowing}.
+However, when trying to predict outcomes, the point at which an event occurs has to be known as well.
+This information may be known, for example during an offline \gls{mi} classification task or when using a fixed feedback loop in an online manner where actions from the user are accepted at fixed time intervals.
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../images/pipeline/fixed_window.pdf}
+        \captionsetup{width=\linewidth}
+        \captionsetup{justification=centering}
+        \caption{Fixed window surround known event.}
+        \label{fig:processing_signals_windowing_non_fixed}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../images/pipeline/non_overlapping_window.pdf}
+        \captionsetup{width=\linewidth}
+        \captionsetup{justification=centering}
+        \caption{Non-overlapping sliding windows.}
+        \label{fig:processing_signals_windowing_non_overlapping}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../images/pipeline/overlapping_window.pdf}
+        \captionsetup{width=\linewidth}
+        \captionsetup{justification=centering}
+        \caption{Overlapping sliding windows}
+        \label{fig:processing_signals_windowing_overlapping}
+    \end{subfigure}
+    \captionsetup{width=\linewidth}
+    \captionsetup{justification=centering}
+    \caption{Different types of windowing techniques.}
+    \label{fig:processing_signals_windowing}
+\end{figure}
+
+A more intuitive but computationally harder windowing technique is using sliding windows.
+A non-overlapping sliding window technique is shown in Figure \ref{fig:processing_signals_windowing_non_overlapping} and an overlapping technique is shown in Figure \ref{fig:processing_signals_windowing_overlapping}.
+Both are trivial to apply to the independent variables but deciding which dependent variable should be related becomes a difficult task.
+How much activity from the event should be included for the training window to be considered a sample of that event?
+What happens when a window includes two distinct events?
+These are questions that should be answered within the context of the application.
+When using sliding windows, singular labels such as "task right" may be split into "task right start", "task right hold" and "task right end".
+
+Many different windowing techniques exist that use far more complex strategies than the ones illustrated in Figure \ref{fig:processing_signals_windowing}, especially for controlling the boundaries of the window.
+\citet{complex_windowing} discuss some of these more complex windowing techniques in more detail.
+When done right, certain sliding window techniques can improve the performance of a \gls{mi} \gls{eeg} classification pipeline compared to even fixed windowing surround a known event, as shown by \citet{sliding_windows_better}.
+However, starting a new sliding window at each time point may cause significant computational overhead, increasing both training and prediction time.
+The latter can make the prediction pipeline too complex to be run on affordable, low-energy and portable computational hardware as desired by a \gls{bci} system doing local processing.
+This master thesis will consider a fixed window of 0.5 seconds and 1.5 seconds surround a known event for both training and prediction.
 
 % - - - - - - - - - -
 % Preprocessing
@@ -129,25 +183,116 @@ TODO
 \subsection{Preprocessing}
 \label{subsec:processing_signals_general_pipeline_preprocessing}
 
-% Hardware & software
-% Volgens review arnau niet perse nodig want DL kan van "elk signaal" leren
+Brain signals are non-linear as well as non-stationary signals and exact execution of the performed \gls{mi} tasks are bound to differ per subject as already discussed in section \ref{subsec:biomedical_signals_working_with_eeg_generalisation}.
+Combining these properties with the poor \gls{snr} of \gls{eeg}, as discussed in Section \ref{tab:biomedical_signals_modalities}, means that raw \gls{eeg} measurements are hard to intepret, even by machines.
+Luckily, as discussed by \citet{bci_review_arnau}, a \gls{dl} approach making use of sufficient layer, nodes and training should be capable of learning any mapping from input to output, including any manual preprocessing that can be done.
+As such, \gls{dl} approaches can often work directly on this raw \gls{eeg} signal and raw signals in general.
+This is one of the most promising aspects of \gls{dl} in multiple fields and it is the reason the one-step \gls{dl} approaches from this master thesis will use no preprocessing besides the \gls{ac} artefact removal that was already performed by the suppliers of the open-source database \citep{eeg_data}.
+Traditional two-step \gls{ml} approaches do not have this property of being able to learn any mapping from input to output and as such require at least minimal preprocessing of the data to obtain usable results.
+For this reason, many libraries providing the most basic \gls{eeg} preprocessing steps have been developed with MNE by \citet{mne} being the most popular for Python and used in this master thesis.
+Some automated pipelines specifically for \gls{eeg} preprocessing have also been proposed, such as the PREP pipeline by \citet{prep_pipeline}. 
 
-% as discussed by review arnau: Limit required preprocessing: extensive preprocessing will yield clean signals with a high SNR, but this usually comes at the cost of expensive computational requirements that take resources and time. It will often be necessary to balance preprocessing requirements with latency and power consumption constraints.
+% | | | | | | | | | | | | |
 
-% Conceptually, given enough layers and neurons, and the proper architecture, a neural network can learn any mapping from inputs to outputs (Sonoda and Murata 2017) (they are universal function approximators). This means that any method of acquiring a signal, and representing it as floatingpoint values will eventually allow the network to make sense of the inputs, and learn something. However, a more careful design of the inputs allows to improve two important properties of the neural network: learning speed (important when the network is used in an adaptive system that learns as it is being used) and generalization power (the ability of making high-quality predictions for unseen inputs, even if training on a small amount of input-output pairs). Designing the input, also called feature engineering, is highly domain-specific. In the signal processing literature, especially in settings that consider EEG data
+\subsubsection{Frequency filtering}
+\label{subsubsec:processing_signals_general_pipeline_preprocessing_filter}
 
-% Signal filtering: applied on the signals, filters remove frequencies of the signals, to only keep those of interest. This is a form of noise removal, in which the expert designer knows that some frequencies never convey information and can only be noise. There are many different types of filters, which fall outside of the scope of this publication. For more information on filters and digital signal processing, interested readers are referred to (Orfanidis 1996).
+One of the most common preprocessing operations done to \gls{eeg} signals is frequency filtering.
+Frequency filters come in four main categories: low-pass filters, high-pass filters, band-pass filters and band-stop filters.
+The working of these filters in the frequency domain is shown in Figure \ref{fig:processing_signals_filters}.
+Again, many variants on how to exactly perform the filter exist.
+Some use a harsh filter with no transition band whilst others use a transition band as visualised in Figure \ref{fig:processing_signals_filters}.
+As further discussed by \citet{fir_iir_filter}, a first distinction is made between \gls{fir} and \gls{iir} filters.
+Most common filter operations are using a band-stop filter to cancel out the \gls{ac} artefacts discussed in Section \ref{subsec:biomedical_signals_working_with_eeg_artefacts} and to filter out frequencies not of interest for the application.
+Since these operations are so common they are often included directly in \gls{eeg} equipment with a hardware filter.
+This master thesis uses a \gls{fir} filter design using the Blackman window method in some of its experiments to band-pass filter the signal to only include the \gls{mi} frequencies as discussed in Section \ref{subsec:biomedical_signals_working_with_eeg_brain_waves}.
+Further details of this exact filter are not of interest for this master thesis and the MNE library supplied functionality is used to obtain the desired filter \citep{mne}.
 
-% preprocessing: After acquiring the signal, it typically needs to be cleaned because biosignals have a low signal-tonoise ratio (SNR). This means that there will be more noise present in the acquired data, making it harder to extract useful information. Therefore, a preprocessing step is necessary to improve SNR and yield a ‘clean’ signal that eliminates artifacts, such as those resulting from power supplies or unrelated muscle
 
-% andere e.g. nieuwe reference kiezen of zelfs nieuwe montage simulaten
-% en other artefact rejection and correction maar moeilijk want hoe consistent in prediction doen
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../images/pipeline/lowpass_filter.pdf}
+        \captionsetup{width=\linewidth}
+        \captionsetup{justification=centering}
+        \caption{Low-pass filter.}
+        \label{fig:processing_signals_filters_lowpass}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../images/pipeline/bandpass_filter.pdf}
+        \captionsetup{width=\linewidth}
+        \captionsetup{justification=centering}
+        \caption{Band-pass filter.}
+        \label{fig:processing_signals_filters_bandpass}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../images/pipeline/highpass_filter.pdf}
+        \captionsetup{width=\linewidth}
+        \captionsetup{justification=centering}
+        \caption{High-pass filter.}
+        \label{fig:processing_signals_filters_highpass}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../images/pipeline/bandstop_filter.pdf}
+        \captionsetup{width=\linewidth}
+        \captionsetup{justification=centering}
+        \caption{Band-stop filter.}
+        \label{fig:processing_signals_filters_bandstop}
+    \end{subfigure}
+    \captionsetup{width=\linewidth}
+    \captionsetup{justification=centering}
+    \caption{Different types of filtering techniques.}
+    \label{fig:processing_signals_filters}
+\end{figure}
 
-TODO
+% | | | | | | | | | | | | |
+
+\subsubsection{Baseline correction}
+\label{subsubsec:processing_signals_general_pipeline_preprocessing_baseline_correction}
+
+Another common preprocessing operation is baseline correction on a window.
+Baseline correction consists of taking a baseline period and determining the mean voltage of each electrode's measurements during that baseline.
+This baseline is most often one or more seconds before an event occurs.
+This mean voltage is then subtracted from the remaining signal of each respective channel.
+Doing this normalizes each window such that it has a centre closer to zero.
+This can help in reducing the non-stationary problem and is used for the traditional two-step \gls{ml} experiments in this master thesis with a baseline period of one second before the event.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Channel and data downsampling or upsampling}
+\label{subsubsec:processing_signals_general_pipeline_preprocessing_subsampling}
+
+Another type of preprocessing is channel subsampling and augmentation through interpolation.
+This consists of removing channels not of interest as discussed in Section \ref{subsec:biomedical_signals_working_with_eeg_anatomy} or adding augmented channels by clever interpolation or other approaches from the existing channels.
+When a certain channel is known to be bad or artefacts described in Section \ref{subsec:biomedical_signals_working_with_eeg_artefacts} are detected, it may be replaced by an augmented channel during the artefact period as a way of resolving the artefact.
+Likewise, if the sampling frequency of \gls{eeg} equipment is too high or low, data subsampling or upsampling may be performed.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Other preprocessing techniques and preprocessing ordering}
+\label{subsubsec:processing_signals_general_pipeline_preprocessing_orders}
+
+There exist many other preprocessing techniques for signals and \gls{mi} \gls{eeg} signals in particular but these fall outside the scope of this master thesis.
+Preprocessing can happen in other places of the pipeline than the one shown in Figure \ref{fig:processing_signals_pipeline}, for example, channel subsampling reduces dimensionality and is thus often done as soon as possible to limit unneeded computational overhead.
+It is important to note that multiple preprocessing steps may be performed in sequence.
+This means that the output of a previous preprocessing step is used in the next and as such the ordering of preprocessing steps can be important depending on the techniques used in the sequence.
+It is also important to note that certain preprocessing techniques which learn parameters from the training data should use the same parameters for the prediction pipeline, as redetermining them on the prediction data may alter the data in a way unknown by the already trained classifier later in the pipeline.
+Whilst often not the case for preprocessing techniques, this is a subtility of great importance in feature engineering, the next step in the pipeline.
+
+
 
 % - - - - - - - - - -
 % Feature
 % - - - - - - - - - -
+
+% TODO: start here
 
 \subsection{Feature engineering}
 \label{subsec:processing_signals_general_pipeline_features}
