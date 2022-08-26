@@ -83,12 +83,12 @@ What we refer to as paper notebooks are notebooks which include code for experim
 | ---------- | ------------------------------------------------------ | ---------- |
 | 1: Data visualisation | Available [here](code/paper-notebooks/1-data-visualisation.ipynb) |  |
 | 2: Standard CSP pipelines | Available [here](code/paper-notebooks/2-standard-csp-pipelines.ipynb) | Available [here](code/paper-notebooks/HTML_exports/2-standard-csp-pipelines.html) |
-| 3: Advanced CSP pipelines | Available [here](code/paper-notebooks/3-advanced-csp-pipelines.ipynb) |  |
+| 3: Advanced CSP pipelines | Available [here](code/paper-notebooks/3-advanced-csp-pipelines.ipynb) | Available [here](code/paper-notebooks/HTML_exports/3-advanced-csp-pipelines.html) |
 | 4: EEGNet | Available [here](code/paper-notebooks/4-eegnet.ipynb) | Available [here](code/paper-notebooks/HTML_exports/4-eegnet.html) |
 | 5: DeepConvNet            | Available [here](code/paper-notebooks/5-deepconvnet.ipynb) | Available [here](code/paper-notebooks/HTML_exports/5-deepconvnet.html) |
 | 6: ShallowConvNet | Available [here](code/paper-notebooks/6-shallowconvnet.ipynb) | Available [here](code/paper-notebooks/HTML_exports/6-shallowconvnet.html) |
 | 7: EEGNet with LSTM | Available [here](code/paper-notebooks/7-EEGNet-with-LSTM.ipynb) | Available [here](code/paper-notebooks/HTML_exports/7-EEGNet-with-LSTM.html) |
-| 8: Going online |  | |
+| 8: Further improvements |  | |
 | A: Figures | Available [here](code/paper-notebooks/A-figures.ipynb) | |
 
 ### Experimental notebooks
