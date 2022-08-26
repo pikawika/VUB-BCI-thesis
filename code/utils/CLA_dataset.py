@@ -471,3 +471,14 @@ def get_usefull_epochs_from_raw(raw_mne, start_offset=-0.2, end_offset=0.2, base
                       baseline= baseline,
                       verbose= False,
                       tmin= (0 + start_offset), tmax= (1 + end_offset))
+    
+def get_calibration_test_split_from_epochs(epochs, amount_of_samples_in_calibration_per_class):
+    calibration = np.hstack([epochs['task/neutral'][0:amount_of_samples_in_calibration_per_class].selection,
+                             epochs['task/left'][0:amount_of_samples_in_calibration_per_class].selection, 
+                             epochs['task/right'][0:amount_of_samples_in_calibration_per_class].selection])
+    
+    test = np.hstack([epochs['task/neutral'][amount_of_samples_in_calibration_per_class:].selection,
+                      epochs['task/left'][amount_of_samples_in_calibration_per_class:].selection, 
+                      epochs['task/right'][amount_of_samples_in_calibration_per_class:].selection])
+    
+    return calibration, test
