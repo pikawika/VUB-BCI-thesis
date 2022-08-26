@@ -24,7 +24,7 @@ Chapter \ref{ch:biomedical_signals} also discussed that \gls{mi} is one of many 
 \gls{mi} and \gls{ers}/\gls{erd} were deemed interesting as it doesn't require the external stimuli that \gls{ep} do and applies to many people, even those with limited mobility.
 However, it was also discussed that \gls{ers}/\gls{erd} following from methods such as \gls{mi} require extensive user training and are harder to detect than most \gls{ep} alternatives for inducing such \gls{elecbiosignal} activity in the brain.
 
-This chapter will discuss how brain signals can be decoded using both traditional two-step \gls{ml} and one-step \gls{dl} in more detail.
+This chapter will discuss how brain signals can be decoded using both traditional two-step \gls{ml} and one-step \gls{dl} in a supervised manner.
 Whilst Chapter \ref{ch:bci} already highlighted multiple breakthroughs in this regard on an intuitive level, this chapter will provide more technical details.
 First, the general pipeline for classifying brain signals and \gls{mi} \gls{eeg} in particular is discussed.
 Then the role of \gls{ml} and \gls{dl} in this pipeline and some of the most important concepts from these technologies are discussed.
@@ -76,9 +76,6 @@ Figure \ref{fig:processing_signals_pipeline} provides a visual overview of these
 \subsection{Data source}
 \label{subsec:processing_signals_general_pipeline_data_acquisition}
 
-% duidelijk bespreken welk ding echt CS en welk ding eigenlijk derden
-% Bespreken data truc * 100xxx voor volt (of al besproken?)
-
 Assuming supervised learning, a \gls{ml} paradigm further discussed in Section \ref{subsec:processing_signals_ml_and_dl_tyes_of_learning_supervision}, input data for the training pipelines should include both the independent variables as wel the dependent variable.
 When working with an \gls{eeg} \gls{mi} classification problem, these independent variables are the \gls{eeg} measurements of each channel whilst the dependent variable is the \gls{mi} task performed at a specific time point.
 Multiple possibilities exist for providing these variables and the link between them.
@@ -113,10 +110,6 @@ Other types of data formatting are possible but they should all provide the same
 
 \subsection{Windowing}
 \label{subsec:processing_signals_general_pipeline_windowing}
-
-% Several windowing methods exist and are reviewed by Podder et al (2014).
-
-% Windowing: when specific events in a signal (such as a spike or pattern) matters more than the overall shape of the complete signal, windowing allows to split a signal into fixed-length, usually overlapping, sub-sequences. Having the network focus on small sub-sequences allows it to be faster (less compute intensive, as less data is being processed), and generalize better, as a small number of easily-recognizable patterns (on which the network focuses) can appear in various positions in longer signals (that the network does not have to bother with). Several windowing methods exist, and are reviewed by Podder et al (2014). Jeong et al (2020) and Nguyen and Chung (2019) use Hamming windowing.
 
 The data source as described in Section \ref{subsec:processing_signals_general_pipeline_data_acquisition} provides a continous signal over multiple channels.
 To process these signals a mechanism has to be in place so that this continuous signal is split into discrete segments.
@@ -209,7 +202,7 @@ This master thesis uses a \gls{fir} filter design using the Blackman window meth
 Further details of this exact filter are not of interest for this master thesis and the MNE library supplied functionality is used to obtain the desired filter \citep{mne}.
 
 
-\begin{figure}[ht]
+\begin{figure}[t]
     \centering
     \begin{subfigure}{0.45\textwidth}
         \centering
@@ -299,13 +292,14 @@ Feature engineering, or feature extraction, is the process of representing raw o
 The goal of feature extraction is to simplify a complex data structure by representing it as one or many features that are easier to interpret and/or learn.
 This step is crucial in traditional two-step \gls{ml} classification approaches as even the preprocessed data is often too complex for traditional \gls{ml} classifiers to directly learn from.
 This differs from preprocessing which aimed to improve the raw data quality, although for some of the discussed preprocessing techniques it could be debated that they are also a type of feature extraction.
+As already addressed in Section \ref{subsec:processing_signals_general_pipeline_preprocessing}, some features rely on learned parameters, such as the $W$ matrix for spatial filters discussed later in this section, these learned parameters should be reused in the prediction pipeline and not redetermined on the prediction data, as this will confuse the classification model and produce unwanted behaviour.
 
 A simple but poor feature extraction technique for \gls{eeg} data would be representing the channels' measurements not by their raw data but by their minimum, maximum, median, first quartile and third quartile, much like a boxplot would.
 Whilst this would be easy to interpret, it would carry too little information for a classifier to effectively learn anything but the simplest problems.
 Finding appropriate feature extraction techniques is a hard task which has taken years of refinement and has ongoing refinement in many fields, including \gls{eeg} classification and other medical imaging fields \citep{CAD_ml_dl_kbs}.
 \gls{eeg} feature extraction methods can be categorized by the domain they work in, namely the time domain, frequency domain, time-frequency domain or spatial domain.
-The experiments in this master thesis will only consider \gls{csp} for feature extraction in the traditional \gls{ml} classification approaches, a technique closely related to \gls{pca}.
-As discussed in Section \ref{subsec:bci_gaining_popularity_improved_data_processing}, \gls{csp} is the most commonly used feature extraction method and has seen many extensions over the years.
+The experiments in this master thesis will only consider \gls{csp} for feature extraction in the traditional \gls{ml} classification approaches, a spatial filtering technique closely related to \gls{pca} used for mainly spatial domain feature extraction.
+As discussed in Section \ref{subsec:bci_gaining_popularity_improved_data_processing}, \gls{csp} derived features are commonly used in traditional two-step \gls{ml} classification and the \gls{csp} technique has seen many extensions over the years.
 \gls{csp} is further discussed together with its extensions in Section \ref{sec:offline_bci_system_two_step_ml}.
 
 The remainder of this section briefly discusses the feature extraction possibilities in each domain but a more detailed explanation falls outside the scope of this master thesis.
@@ -325,7 +319,8 @@ This is most likely the representation of the data as it comes from the previous
 When all four of these relatively simple features are combined, surprisingly good accuracies are obtained through intrasession testing \citep{time_domain_eeg_features}.
 
 Many more time domain feature extraction techniques exist and some more examples are given by \citet{eeg_features}.
-\citet{eeg_features} discusses some other simple features such as the \textit{total line length}, a feature derived for each channel indivudually using Equation \ref{eq:processing_signals_line_length}.
+\citet{eeg_features} discusses some other simple features, including those used by \citet{time_domain_eeg_features}.
+For example, the \gls{wl} feature described by \citet{time_domain_eeg_features} is called \textit{total line length} by \citet{eeg_features} and provided in Equation \ref{eq:processing_signals_line_length}.
 \Citet{eeg_features} also details more complex features based on the entropy of the signal such as \gls{pe}, \gls{apen}, \gls{fuzzen} and more.
 
 \begin{equation}
@@ -351,7 +346,7 @@ The output of the \gls{dft} ($X_k$) is a complex number that represents the ampl
 The frequency of this sinusoidal wave is $\frac{k}{N}$ derived from Euler's formula.
 \Citet{fast_fourier_explained} discusses the \gls{ft}, \gls{ift}, \gls{dft} and \gls{idft} in more detail.
 \Citet{fast_fourier_explained} also discusses that the computation of \gls{dft} can be too complex for many applications and introduces the \gls{fft}, a faster variant of \gls{dft}.
-\Gls{fft} is the algorithm that is most commonly used for effective conversion between the time and frequency domain.
+\Gls{fft} is the algorithm that is most commonly used for effective conversion between the time and frequency domain in computer applications.
 
 \begin{equation}
     \label{eq:processing_signals_dft}
@@ -365,10 +360,11 @@ The frequency of this sinusoidal wave is $\frac{k}{N}$ derived from Euler's form
 
 Once the signal is represented in the frequency domain, most of the frequency domain features are extracted from the \gls{psd}.
 The \gls{psd} is a visualisation of the power levels of the frequency component present in the signal.
-Figure \ref{fig:processing_signals_psd} show the \gls{psd} of the \gls{eeg} signals shown in  Figure \ref{fig:processing_signals_data_source_eeg}
+Figure \ref{fig:processing_signals_psd} show the \gls{psd} of the \gls{eeg} signals previously shown in  Figure \ref{fig:processing_signals_data_source_eeg}.
+Note the sharp trough present at 50\gls{hz} due to the \gls{ac} artefact removal that is done by a band-stop filter at that frequency.
 As discussed further by \citet{eeg_features}, the features extracted from the \gls{psd} include the energy, \gls{iwmf} and \gls{iwbw} among others.
 
-\begin{figure}[ht]
+\begin{figure}[t]
     \centering
     \includegraphics[width=\linewidth]{../images/pipeline/psd.pdf}
     \captionsetup{width=0.9\linewidth}
@@ -403,7 +399,60 @@ The technical details and related feature extraction methods of which fall outsi
 \subsubsection{Spatial domain feature extraction}
 \label{subsubsec:processing_signals_general_pipeline_features_spatialdomain}
 
-% TODO: start here, previously already nagelezen
+As discussed in Section \ref{subsec:biomedical_signals_measuring_brain_modalities}, \gls{eeg} has a relatively poor spatial resolution.
+This would suggest that feature extraction based on the spatial domain is bound to perform poorly as well, bet this is not the case.
+Many \gls{bci} systems rely on features extracted from \gls{eeg} signals that were spatially filtered with techniques such as \gls{pca}, \gls{ica} and \gls{csp} \citep{bci_book}.
+To understand spatial filters, it should be repeated that \gls{eeg} channels don't represent the value of a singular electrode but rather the output of applying a differential amplifier on two channels, as was discussed in Section \ref{subsec:biomedical_signals_measuring_brain_modalities}.
+If all these channels have one electrode in common, an alternative set of channels can be created by weighing and combining the original channels \citep{bci_book}.
+This is the main idea behind spatial filtering and can be mathematically represented as the matrix equation shown in Equation \ref{eq:processing_signals_spatial_filter}.
+In this equation, $X$ represents the 2D matrix of $N$ channels and $P$ samples.
+$W$ represents the weight matrix with $M$ spatial filters and $N$ channel weights.
+Finally, $Y$ represents the alternative set of channels with $M$ spatially filtered channels and $P$ samples.
+
+There are both data-independent and data-dependent techniques for determining the weight matrix $W$ of Equation \ref{eq:processing_signals_spatial_filter}.
+In some regards, the average reference montage shown in Figure \ref{fig:biomedical_signals_eeg_montages} can be considered a data-independent spatial filter, as it uses a fixed, data-independent $W$ matrix, namely one that averages all channels.
+A more complex but comparable data-independent spatial filter is using one of many variants of surface Laplacian spatial filtering.
+Intuitively, these types of Laplacian filters use only the electrodes at a certain spatial distance for determining the average.
+Simple variants may consider each electrode in the region of interest equally important whilst others might use a weighted average based on the spatial distance of the electrode.
+Surface Laplacian spatial filtering has proven successful in improving the source localisation capabilities of \gls{eeg} by filtering out the signals present in multiple electrodes and keeping only those unique to the electrode of interest \citep{improve_eeg_spatial_laplacian1, improve_eeg_spatial_laplacian2, improve_eeg_spatial_laplacian3}.
+
+
+\begin{equation}
+    \label{eq:processing_signals_spatial_filter}
+    \begin{bmatrix} 
+        y_{11} & y_{12} & \dots \\
+        \vdots & \ddots & \\
+        y_{M1} &        & y_{MP} 
+    \end{bmatrix} = 
+    \begin{bmatrix} 
+        w_{11} & w_{12} & \dots \\
+        \vdots & \ddots & \\
+        w_{M1} &        & w_{MN} 
+    \end{bmatrix}
+    \begin{bmatrix} 
+        x_{11} & x_{12} & \dots \\
+        \vdots & \ddots & \\
+        x_{N1} &        & x_{NP} 
+    \end{bmatrix}
+\end{equation}
+
+
+However, by far the most commonly used spatial domain feature extraction happens on data after a data-dependent spatial filter such as \gls{pca}, \gls{ica} or \gls{csp} has been applied.
+These data-dependent spatial filters optimize the $W$ matrix from Equation \ref{eq:processing_signals_spatial_filter} based on measured \gls{eeg} signals.
+\Gls{pca} creates a $W$ matrix such that the resulting signal has the highest proportion of amplitude variance from the original signals matrix $X$ \citep{bci_book}.
+Whilst this can be successful, \gls{pca} only uses the values from the independent variables for creating the $W$ matrix and as such the created matrix is not optimized for best discrimination of the dependent variable.
+Imagine for example a $X$ matrix that was not preprocessed to remove the \gls{ac} artefacts described in Section \ref{subsec:biomedical_signals_working_with_eeg_artefacts}.
+Since this line current noise is so present, \gls{pca} will consider it as one of the most important \gls{pca} components even though it carries no information for the problem.
+\Gls{ica} could be seen as a variant of \gls{pca} that wishes to create a $W$ matrix such that the resulting signal consists of independent channels.
+However, as described by \citet{bci_book}, using \gls{ica} forms multiple challenges in \gls{bci} applications due to its computational cost and often imperative way of determining the number of independent channels to be found.
+Besides this, \gls{ica} also only rely on the independent variable and as such is not further considered for this master thesis.
+
+\Gls{csp} is a type of spatial filtering closely related to \gls{pca} that does use the dependent variable to create a set of new channels that are optimized to solve the problem.
+This makes \gls{csp} incredibly powerful and studied in \gls{bci} research, as already addressed in Section \ref{subsec:bci_gaining_popularity_improved_data_processing}.
+\Gls{csp} will be discussed in further detail together with its extensions in Section \ref{sec:offline_bci_system_two_step_ml}.
+\Citet{bci_book} provides a more in-depth overview of all three of these spatial filtering techniques.
+
+
 
 
 % | | | | | | | | | | | | |
@@ -411,14 +460,23 @@ The technical details and related feature extraction methods of which fall outsi
 \subsubsection{The promise and downfall of feature extraction}
 \label{subsubsec:processing_signals_general_pipeline_features_dl_link}
 
-% Better DL maar explainability...
-As discussed by \citet{CAD_ml_dl_kbs} 
+Manual feature extraction is done in what this master thesis refers to as traditional two-step \gls{ml}. 
+These traditional two-step \gls{ml} approaches have some attractive properties but also some fundamental limitations.
+Manual feature extraction such as the one discussed in this section mostly tries to implement human knowledge about a problem as an algorithm.
+Features that are derived are those that an expert deems fit for describing and learning the problem.
+This is great in terms of explainability and interpretability, as combined with the right \gls{ml} classification algorithm such as \gls{rf} it can give direct insight into how a prediction pipeline came to its conclusion.
+This is desired in many fields, especially the medical one.
+As described in Section \ref{subsec:processing_signals_common_issues_exaplainable}, explainability and interpretability could even become a requirement of general \gls{ai} applications.
+As such, traditional two-step \gls{ml} still has significant ongoing research as is shown by the many alternatives on \gls{csp} that have been proposed, as further discussed in Section \ref{sec:offline_bci_system_two_step_ml}.
 
-
-
-
-
-
+However, as discussed by \citet{CAD_ml_dl_kbs} for medical lung imaging applications, \gls{dl} that learns some form of features from data in an automated manner outperform traditional two-step \gls{ml} classification in many tasks.
+This lies in the power of \gls{dl} being able to learn features that might be unknown by experts and thus can't be encoded for manual feature extraction.
+Research in disease detection, such as \citet{attia} findings of using a \gls{cnn} to detect \gls{af} from normal sinus rhythm \gls{ecg} has shown just that.
+Given the human understanding of the brain is still limited as discussed in Section \ref{subsec:bci_opportunities_obstacles_complex}, it is likely that the right \gls{dl} models will learn features that are far more descriptive of the problem but not yet understood or discovered by experts.
+This is also likely the reason that \gls{cnn} based models, such as those by \citet{eeg_model_eegnet} and \citet{eeg_model_hbm}, have matched or even outperformed the capabilities of state-of-the-art traditional two-step \gls{ml} approaches that have taken years of refinement.
+The main limiting factor for \gls{dl} is the lack of explainability and interpretability since these approaches are seen as black box approaches.
+However, as \ref{subsec:offline_bci_system_one_step_dl_interpreting} will discuss in more detail, attempts have been made at offering some insight into the working of these models.
+These attempts at clarifying what a \gls{dl} model learns can provide experts with a deeper understanding of the problem \citep{dl_book}.
 
 
 % - - - - - - - - - -
@@ -428,7 +486,26 @@ As discussed by \citet{CAD_ml_dl_kbs}
 \subsection{Classification}
 \label{subsec:processing_signals_general_pipeline_classification}
 
-TODO
+The last step of the general pipeline for classifying brain signals is the classification itself.
+In the training pipeline, the classification model used will be trained by providing it both the independent variables processed in the previous pipeline steps and the dependent variables.
+The goal of the classification model is to learn a mapping from those independent variables to the dependent variable.
+As discussed, the independent variable is either the features extracted from preprocessed data in case of traditional two-step \gls{ml} or the minimally preprocessed raw \gls{eeg} signal in case of one-step \gls{dl} approaches.
+The dependent variable is the label of the \gls{mi} task that is being performed.
+The prediction pipeline uses this trained model to predict the dependent variable based on only the independent variables.
+
+A regression pipeline for processing brain signals would differ in this part, as it would not output the label of \gls{mi} task performed but a continuous value.
+Classification and regression are types of supervised learning, the \gls{ml} paradigm assumed by the proposed pipeline.
+The difference between regression and classification and why classification is more popular for \gls{bci} applications relying on \gls{mi} \gls{eeg} data is further discussed in Section \ref{subsec:processing_signals_ml_and_dl_tyes_of_learning_supervision}.
+
+Many different classification models exist with the popular traditional \gls{ml} algorithm providing Python library \gls{sklearn} by \citet{sklearn} having over ten different \gls{ml} classifiers each with their own tunable parameters available.
+For \gls{dl} classification models, Keras and Tensorflow \citep[Python \gls{dl} libraries by][]{keras, tensorflow} provide tens of layers that all can be combined to create an almost endless amount of unique classification models.
+Countless combinations of both these traditional \gls{ml} and \gls{dl} approaches have been tried in \gls{eeg}-based \glspl{bci}.
+As such, discussing all these different classification models falls outside the scope of this master thesis.
+The interested reader is referred to both the original review paper on classification models for \gls{eeg}-based \glspl{bci} by \citet{eeg_based_bci_classification_models_old} and the updated version \citep{eeg_based_bci_classification_models}.
+
+The traditional two-step \gls{ml} classifiers used in the experiments of this master thesis will be discussed in more detail in section \ref{subsec:processing_signals_ml_and_dl_ml_classifiers}.
+In particular, \gls{lda}, \gls{svc} (based on \gls{svm}) and \glsfirst{rf} are discussed.
+Likewise, section \ref{subsec:processing_signals_ml_and_dl_dl_classifiers} will discuss the most important concepts of \gls{dl} used for the \gls{dl} experiments in this master thesis.
 
 
 
@@ -473,6 +550,8 @@ TODO
 \subsection{Machine learning paradigms}
 \label{subsec:processing_signals_ml_and_dl_tyes_of_learning_supervision}
 
+% discuss; supervised -> classi en regres maar regres niet common bci mi eeg want te weinig info
+
 % Supervised, Semi-Supervised, Unsupervised, and Self-Supervised Learning
 
 % The most common form of ML is supervised learning, in which we assume that the data is presented as a set of input-output pairs, a dataset, which we call labeled data, as each input is labeled with its corresponding output.
@@ -509,7 +588,9 @@ TODO
 % ANN (MLP fully connected -> wanneer DL en wanneer regular ML, uitleggen soms gezienals regular ML)
 % CNN (conv layer, pooling layer)
 % RNN (e.g. long term short term memory voor die layer)
-% Zie Alexis?
+% Zie Alexis en wolf (classification)?
+
+% These approaches have been chosen because of their relevance to this thesis. For a more detailed review of deep learning approaches for EEG classification, the reader is referred to the works of Roy et al. (2019) and Craik et al. (2019). wolf
 
 % Veel al discussed in bci_opportunities_obstacles_motivating_examples_mi_models (BCIs)
 
