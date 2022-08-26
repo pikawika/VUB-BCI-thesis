@@ -292,21 +292,134 @@ Whilst often not the case for preprocessing techniques, this is a subtility of g
 % Feature
 % - - - - - - - - - -
 
-% TODO: start here
-
 \subsection{Feature engineering}
 \label{subsec:processing_signals_general_pipeline_features}
 
-% The CSP method performs feature extraction based on learned spatial filters.
-% https://www.youtube.com/watch?v=zsOULC16USU
+Feature engineering, or feature extraction, is the process of representing raw or preprocessed data by numerical features that carry information from the original data related to the problem.
+The goal of feature extraction is to simplify a complex data structure by representing it as one or many features that are easier to interpret and/or learn.
+This step is crucial in traditional two-step \gls{ml} classification approaches as even the preprocessed data is often too complex for traditional \gls{ml} classifiers to directly learn from.
+This differs from preprocessing which aimed to improve the raw data quality, although for some of the discussed preprocessing techniques it could be debated that they are also a type of feature extraction.
 
-% Feature extraction: this final step is highly variable and depends on the exact context (sleep staging, Motor Imagery detection, epilepsy seizure detection, etc) in which the signal should be decoded. In general, DL models have been shown to perform better when the input is the raw (preprocessed) signal that is still represented as timeseries of samples for each signal channel. One of the most commonly used feature extraction methods is the Fourier transform, which allows to decompose a temporal signal (a sequence of signal readings over time) to a sum of sinuses of various frequencies. The Fourier transform transforms data from the time domain to the frequency domain. This transform is loss-less and invertible, which means that it does not destroy information. It allows the neural network to more easily focus on the existence of a particular frequency in a signal, instead of having to make sense of the entire (time-domain) signal.
+A simple but poor feature extraction technique for \gls{eeg} data would be representing the channels' measurements not by their raw data but by their minimum, maximum, median, first quartile and third quartile, much like a boxplot would.
+Whilst this would be easy to interpret, it would carry too little information for a classifier to effectively learn anything but the simplest problems.
+Finding appropriate feature extraction techniques is a hard task which has taken years of refinement and has ongoing refinement in many fields, including \gls{eeg} classification and other medical imaging fields \citep{CAD_ml_dl_kbs}.
+\gls{eeg} feature extraction methods can be categorized by the domain they work in, namely the time domain, frequency domain, time-frequency domain or spatial domain.
+The experiments in this master thesis will only consider \gls{csp} for feature extraction in the traditional \gls{ml} classification approaches, a technique closely related to \gls{pca}.
+As discussed in Section \ref{subsec:bci_gaining_popularity_improved_data_processing}, \gls{csp} is the most commonly used feature extraction method and has seen many extensions over the years.
+\gls{csp} is further discussed together with its extensions in Section \ref{sec:offline_bci_system_two_step_ml}.
 
-% For a detailed review of possible feature extraction methods, we refer interested readers to Rashid et al (2020).
+The remainder of this section briefly discusses the feature extraction possibilities in each domain but a more detailed explanation falls outside the scope of this master thesis.
+The reader is reffered to chapter 7 of the \gls{bci} book by \citet{bci_book} for an in-depth overview of many feature extraction techniques for \gls{bci} applications in far greater detail.
+\Citet{eeg_features} compares the performance of multiple feature extraction techniques for epileptic seizure detection using \gls{eeg}.
+\Citet{time_domain_eeg_features} compares multiple feature extraction methods for \gls{eeg}-based \gls{bci} applications in the time domain whilst \citet{timefreq_domain_eeg_features} does the same for feature extraction methods in the frequency and time-frequency domain.
 
-% ...Other feature engineering techniques zoals time-frequency domain
 
-TODO
+% | | | | | | | | | | | | |
+
+\subsubsection{Time domain feature extraction}
+\label{subsubsec:processing_signals_general_pipeline_features_timedomain}
+
+Temporal feature extraction methods work in the time domain, where the \gls{eeg} data is analysed as a time series of voltage measurements per channel.
+This is most likely the representation of the data as it comes from the previous preprocessing step in the pipeline and as such doesn't require an additional transformation.
+\Citet{time_domain_eeg_features} describes some relatively simple feature extraction methods in the time domain, namely the windows's \gls{mav} per electrode, the amount of times a \gls{zc} and \gls{ssc} occurs per channel and the cumulative \gls{wl}.
+When all four of these relatively simple features are combined, surprisingly good accuracies are obtained through intrasession testing \citep{time_domain_eeg_features}.
+
+Many more time domain feature extraction techniques exist and some more examples are given by \citet{eeg_features}.
+\citet{eeg_features} discusses some other simple features such as the \textit{total line length}, a feature derived for each channel indivudually using Equation \ref{eq:processing_signals_line_length}.
+\Citet{eeg_features} also details more complex features based on the entropy of the signal such as \gls{pe}, \gls{apen}, \gls{fuzzen} and more.
+
+\begin{equation}
+    \label{eq:processing_signals_line_length}
+    L(X) = \sum_{i=1}^{N-1} |X[i] - X[i - 1]|
+\end{equation}
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Frequency domain feature extraction}
+\label{subsubsec:processing_signals_general_pipeline_features_freqdomain}
+
+As the name suggests, frequency domain feature extraction happens in the frequency domain.
+The frequency domain represents the measured \gls{eeg} signals in terms of frequency rather than time as was the case for the time domain.
+To extract features in the frequency domain, the signal represented in the time domain must first be transformed to its frequency domain representation.
+The most common way of going from the time domain to the frequency domain is through the use of a \gls{ft} \citep{fourier_transform}.
+A  \gls{ft} has the nice property that it can be converted back to the time domain by using the \gls{ift}.
+The theoretical \gls{ft} and \gls{ift} make use of integrals from $-\inf$ to $\inf$ and as such can't be directly used on real data.
+Many methods have been proposed to estimate this full integral solution, with the \gls{dft} and \gls{idft} being the most common.
+The \gls{dft} and \gls{idft} equations are given in Equation \ref{eq:processing_signals_dft} and \ref{eq:processing_signals_idft} respectively.
+The output of the \gls{dft} ($X_k$) is a complex number that represents the amplitude and phase of a sinusoidal wave, representing the signal in the frequency domain.
+The frequency of this sinusoidal wave is $\frac{k}{N}$ derived from Euler's formula.
+\Citet{fast_fourier_explained} discusses the \gls{ft}, \gls{ift}, \gls{dft} and \gls{idft} in more detail.
+\Citet{fast_fourier_explained} also discusses that the computation of \gls{dft} can be too complex for many applications and introduces the \gls{fft}, a faster variant of \gls{dft}.
+\Gls{fft} is the algorithm that is most commonly used for effective conversion between the time and frequency domain.
+
+\begin{equation}
+    \label{eq:processing_signals_dft}
+    X_k = \sum_{n=O}^{N-1} x_n e^{\frac{-2 \pi i k n}{N}}
+\end{equation}
+
+\begin{equation}
+    \label{eq:processing_signals_idft}
+    x_n = \frac{1}{N} \sum_{k=O}^{N-1} X_k e^{\frac{2 \pi i k n}{N}}
+\end{equation}
+
+Once the signal is represented in the frequency domain, most of the frequency domain features are extracted from the \gls{psd}.
+The \gls{psd} is a visualisation of the power levels of the frequency component present in the signal.
+Figure \ref{fig:processing_signals_psd} show the \gls{psd} of the \gls{eeg} signals shown in  Figure \ref{fig:processing_signals_data_source_eeg}
+As discussed further by \citet{eeg_features}, the features extracted from the \gls{psd} include the energy, \gls{iwmf} and \gls{iwbw} among others.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{../images/pipeline/psd.pdf}
+    \captionsetup{width=0.9\linewidth}
+    \captionsetup{justification=centering}
+    \caption{\Glsfirst{psd} for the \gls{eeg} signal previously shown in Figure \ref{fig:processing_signals_data_source_eeg}. Only the C3, Cz and C4 channels are shown.}
+    \label{fig:processing_signals_psd}
+\end{figure}
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Time-frequency domain feature extraction}
+\label{subsubsec:processing_signals_general_pipeline_features_timefreqdomain}
+
+Whilst it is possible to extract features from both the time and frequency domain and rely on the classifier to learn a mapping between them, attempts have been made at combining both domains.
+For example, when further windowing the time domain signal into short time segments and using a \gls{ft} on those shorter time segments, a \gls{stft} is obtained.
+\Gls{stft} assumes that those shorter time segments are stationary, even if the complete signal from which those time segments are taken was non-stationary.
+This allows for using frequency-domain feature extraction on those shorter \gls{ft} signals.
+This will result in features that represent frequency domain characteristics but are ordered in a time respective order.
+These features could then be seen as individual data points in the time domain and thus can be further processed with time-domain feature extraction techniques.
+
+However, the use of \gls{stft} in \gls{eeg} applications is limited as finding a balance between long enough time segments such that the \gls{ft} is meaningful but short enough so that enough time domain information is retained has been proven challenging.
+A better alternative is using \gls{wt}, a technique that has been proven powerful in image compression and many other fields \citep{wavelet_transform_uses}.
+Compared to the \gls{ft} that works with sinusoidal waves, \gls{wt} works with wavelets.
+These wavelets are characterised by their scale and location.
+The scale relates to the frequency domain whilst the location relates to the time domain, showing a clear link with the time-frequency domain.
+Compared to \gls{stft}, \gls{wt} does not make any assumptions about stationarity.
+The book by \citet{book_wavelet} discusses \gls{wt} in detail.
+The technical details and related feature extraction methods of which fall outside the scope of this master thesis.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Spatial domain feature extraction}
+\label{subsubsec:processing_signals_general_pipeline_features_spatialdomain}
+
+% TODO: start here, previously already nagelezen
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{The promise and downfall of feature extraction}
+\label{subsubsec:processing_signals_general_pipeline_features_dl_link}
+
+% Better DL maar explainability...
+As discussed by \citet{CAD_ml_dl_kbs} 
+
+
+
+
+
+
+
 
 % - - - - - - - - - -
 % Classification
@@ -379,9 +492,7 @@ TODO
 \subsection{Common traditional machine learning classifiers}
 \label{subsec:processing_signals_ml_and_dl_ml_classifiers}
 
-% LDA
-% SVM
-% RF
+% To discuss: LDA, SVM and RF
 % bekijk ml_strats_used_in_papers
 
 % https://doi.org/10.1145/1143844.1143865 veergelijkt SVM en RF en andere
@@ -398,6 +509,7 @@ TODO
 % ANN (MLP fully connected -> wanneer DL en wanneer regular ML, uitleggen soms gezienals regular ML)
 % CNN (conv layer, pooling layer)
 % RNN (e.g. long term short term memory voor die layer)
+% Zie Alexis?
 
 % Veel al discussed in bci_opportunities_obstacles_motivating_examples_mi_models (BCIs)
 
@@ -414,7 +526,7 @@ TODO
 % ---------------------------------------------- 
 % EVALUATING AND USING
 % ---------------------------------------------- 
-\section{Evaluating and using the classification pipeline}
+\section{Using and evaluating the classification pipeline}
 \label{sec:processing_signals_evaluating_and_using}
 
 % link back naar pipeline van cad
