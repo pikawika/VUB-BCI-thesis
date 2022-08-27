@@ -473,6 +473,7 @@ def get_usefull_epochs_from_raw(raw_mne, start_offset=-0.2, end_offset=0.2, base
                       tmin= (0 + start_offset), tmax= (1 + end_offset))
     
 def get_calibration_test_split_from_epochs(epochs, amount_of_samples_in_calibration_per_class):
+    """Gets a split of the epoch where the first amount_of_samples_in_calibration_per_class for each MI class are returned as calibrated data and the remaineder as test data."""
     calibration = np.hstack([epochs['task/neutral'][0:amount_of_samples_in_calibration_per_class].selection,
                              epochs['task/left'][0:amount_of_samples_in_calibration_per_class].selection, 
                              epochs['task/right'][0:amount_of_samples_in_calibration_per_class].selection])
@@ -482,3 +483,30 @@ def get_calibration_test_split_from_epochs(epochs, amount_of_samples_in_calibrat
                       epochs['task/right'][amount_of_samples_in_calibration_per_class:].selection])
     
     return calibration, test
+    
+def get_data_from_all_but_one_subject(test_subject, val_subject):
+    """
+    Gets all available data from all subjects in the CLA dataset except for the one provided as argument.
+    This function merges all MNE RAW objects into a singular MNE raw
+    """
+    
+    train_subjects = ["A", "B", "C", "D", "E", "F"]
+    train_subjects.remove(test_subject)
+    train_subjects.remove(val_subject)
+    
+    mne_raws = []
+    
+    # Get all training data
+    for train_subject in train_subjects:
+        mne_raws.extend(get_all_raw_mne_data_for_subject(subject_id= train_subject))
+        
+    training_data = mne.concatenate_raws(mne_raws)
+
+    
+    training_data.info["subject_info"]["his_id"] = "Merged data"
+    
+    # Proposed validation subject is D as there is only one recording for him
+    val_data = get_last_raw_mne_data_for_subject(val_subject)
+        
+    # Combine training data into singular mne raw and return it
+    return training_data, val_data
