@@ -242,6 +242,7 @@ These are all aspects that can be optimized based on the implementation of the p
 It should also be noted that \gls{fbcsp} does not explicitly learn frequency bands but rather provides multiple features from multiple frequency bands for which it relies on the classifier to ignore those that have no or little information.
 
 Whilst being a relatively simple extension to \gls{csp}, \gls{fbcsp} combined with a classifier such as \gls{svm} or \gls{rf} has been proven successful at classifying \gls{mi} \gls{eeg} with far greater accuracy then the traditional \gls{csp} pipeline used in this master thesis \citep{eeg_model_fbcsp, four_class_mi_CSP_good, fbcsp_classi_eeg_mi}.
+The performance of \gls{fbcsp} even rivals state-of-the-art one-step \gls{dl} classifiers such as DeepConvNet and ShallowConvNet \citep{eeg_model_hbm}.
 However, the implementation and evaluation of such a pipeline fall outside the scope of this master thesis.
 It should also be noted that whilst \gls{fbcsp} is often used in literature it is not included in any of the popular Python \gls{eeg} processing libraries.
 Providing this feature extraction method as an \gls{sklearn} compatible component can be a helpful future work to facilitate pipeline development of future research.
@@ -255,20 +256,88 @@ It is noted that some open-source Python implementations of \gls{fbcsp} are avai
 \section{Convolutional-based one-step DL approaches}
 \label{sec:offline_bci_system_one_step_dl}
 
-% TODO: start here
-% Figure van pipeline met component "DL classifier" zodat je nadien gewoon enkel de classifer architecture kan tonen
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{../images/pipeline/dl_pipeline.pdf}
+    \captionsetup{width=0.8\linewidth}
+    \captionsetup{justification=centering}
+    \caption{Visual overview of a pipeline using a \gls{dl} classifier for \gls{mi} \gls{eeg} classification.}
+    \label{fig:offline_bci_system_dl_pipeline}
+\end{figure}
 
-TODO
+The majority of the models considered in this master thesis use a \gls{dl} classifier.
+Their pipelines are simplified from those used in traditional two-step \gls{ml} classification since they require minimal preprocessing and no feature extraction as was discussed in Section \ref{subsec:processing_signals_ml_and_dl_difference}.
+Figure \ref{fig:offline_bci_system_dl_pipeline} shows the general pipeline structure used for the \gls{dl} \gls{mi} \gls{eeg} classifiers that will be discussed in greater detail below.
+It should be noted once again that the used open-source dataset has already performed a band-stop filter to cancel out the \gls{ac} artefacts discussed in Section \ref{subsec:biomedical_signals_working_with_eeg_artefacts}.
+However, it could be argued that even this filtering of the signal to remove the \gls{ac} artefacts can be learned by the \gls{dl} model.
+Although due to this frequency being overpopulated by the \gls{ac} artefact there is likely very slim to no information present in the filtered out frequency range.
+As such, removing the \gls{ac} artefact and other artefacts manually can facilitate the learning process, decreasing the computational time it takes to train the model.
+For these reasons, minimal preprocessing, such as \gls{ac} artefacts removal is often still done in \gls{dl} pipelines.
+
 
 % - - - - - - - - - -
 % EEGNet
 % - - - - - - - - - -
 % TODO: We gebruiken speciale dropoff, niet de "traditionele"
+% TODO: Refs voorzien naar DL explains
 
 \subsection{EEGNet}
 \label{subsec:offline_bci_system_one_step_dl_eegnet}
 
-TODO
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{../images/pipeline/eegnet_intuitive.pdf}
+    \captionsetup{width=0.8\linewidth}
+    \captionsetup{justification=centering}
+    \caption{A conceptual overview of EEGNet after the overview by \citet{eeg_model_eegnet}.}
+    \label{fig:offline_bci_system_dl_eegnet_intuitive}
+\end{figure}
+
+EEGNet is a \gls{cnn} based \gls{eeg} classification model proposed by \citet{eeg_model_eegnet}.
+There are some key properties of EEGNet that make it different from other \gls{dl} models proposed in the \gls{bci} field.
+First, rather than using traditional convolutional layers, it uses depthwise and separable convolutional layers to reflect known performant feature extraction methods from the \gls{bci} field.
+These special types of convolutional layers were already discusesd in Section \ref{subsec:processing_signals_ml_and_dl_dl_classifiers}.
+As a result of using these special types of convolutional filters and by being a compact \gls{cnn}, EEGNet can learn from relatively few samples \citep{eeg_model_eegnet}.
+
+Second, instead of focusing on one specific \gls{bci} paradigm such as \gls{ers} and \gls{erd} or even more specifically \gls{mi}, the model is created in such a way that it is applicable to many \gls{bci} paradigms.
+In the paper proposing the model, four distinct datasets from different paradigms were used to compare the performance with other models.
+The first dataset consists of visual P300 \gls{erp} signals.
+The second dataset revolves around another type of \gls{erp} signal which occurs after an unusual event occurs in the subject's environment or task: an \gls{ern}.
+The third datasets contains both \gls{erp} signals and oscillatory components as a consequence of \gls{ers} or \gls{erd}.
+This type of potential is known as a \gls{mrcp}.
+The fourth and final dataset revolves \gls{mi}, the most challenging paradigm according to \citet{eeg_model_eegnet}.
+\citet{eeg_model_eegnet} have shown that EEGNet has comparable performance across all these tested paradigms compared to the state-of-the-art of that specific paradigm when few data samples are available.
+
+Third, \citet{eeg_model_eegnet} proposed a method of visualising the learned features of the model.
+This helps in reducing the black-box problem discussed in Section \ref{subsec:processing_signals_common_issues_exaplainable}.
+Together with DeepConvNet and ShallowConvNet that is discussed later in this chapter, EEGNet is considered a state-of-the-art method in the \gls{bci} field.
+
+The most important components of EEGNet are the different convolutional layers as shown in the conceptual overview of \ref{fig:offline_bci_system_dl_eegnet_intuitive}.
+The first convolutional layer is a regular two-dimensional convolutional layer and is used to learn frequency-like filters.
+The second convolutional layer is a depthwise convolution layer and is used to learn spatial filters specific to the frequency-converted signal given as output by the previous layer.
+The third and final convolutional layer is a separable convolution layer.
+As discussed in Section \ref{subsec:processing_signals_ml_and_dl_dl_classifiers}, this is a combination of a depthwise convolution followed by a pointwise convolution.
+\Citet{eeg_model_eegnet} state this depthwise convolution learns a temporal summary for each feature map individually and the pointwise convolution layer learns how to optimally mix the feature maps together.
+
+When comparing this design with the \gls{fbcsp} method visualised in Figure \ref{fig:offline_bci_system_fbcsp_pipeline} it is clear that they share a lot of similarities.
+The first convolutional layer which tries to learn frequency-like filters relates to the first step of \gls{fbcsp} performing different band-pass filters.
+The second convolutional layer which tries to learn a spatial filter for the frequency filtered signal is comparable to the use of \gls{csp} in the second phase of \gls{fbcsp}.
+The third and final convolutional layer which aims to extract temporal features from the spatial filter and connect all layers back together is comparable to the feature extraction from the \gls{csp} threads in \gls{fbcsp} and the traditional two-step \gls{ml} classifier used in \gls{fbcsp}.
+
+An overview of all layers effectively used is given in Figure \ref{fig:offline_bci_system_dl_eegnet_full}.
+This combines the use of dropout and batch normalization to combat overfitting tendencies and the internal covariate shift as discussed in Section \ref{subsec:processing_signals_ml_and_dl_dl_classifiers} among other technicalities.
+Compared to the implementation of EEGNet provided by \citet{arl_eegmodels} many more parameters of the model were made tunable.
+In particular, the following parameters are tunable and their defaults for the experiments are given in brackets: channel amount (21), amount of timepoints (100), amount of classes (3), the dropout rate (0.5), the kernel length (50), F1 (8), F2 (16), D (2), the normalisation rate (0.25) and the dropout type (2D spatial dropout).
+Most of these parameters are based on the recommnedation provided by \citet{eeg_model_eegnet} and \citet{arl_eegmodels}.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{../images/pipeline/eegnet_full.pdf}
+    \captionsetup{width=0.8\linewidth}
+    \captionsetup{justification=centering}
+    \caption{All layers of the EEGNet model.}
+    \label{fig:offline_bci_system_dl_eegnet_full}
+\end{figure}
 
 % - - - - - - - - - -
 % DeepConvNet
@@ -277,7 +346,37 @@ TODO
 \subsection{DeepConvNet}
 \label{subsec:offline_bci_system_one_step_dl_deepconvnet}
 
-TODO
+DeepConvNet is another \gls{cnn} based \gls{eeg} classification model.
+It is proposed by \citet{eeg_model_hbm} and was made for the more specific use of decoding \gls{mi} and effective motory tasks.
+Although DeepConvNet took a relatively general \gls{dl} approach, it is shown by by \citet{eeg_model_eegnet} that it generalizes worse to \gls{bci} paradigms beside \gls{mi}.
+In particular, \citet{eeg_model_eegnet} found DeepConvNet to perform poorly on the \gls{mrcp} paradigm dataset where EEGNet got almost double the \gls{auc}.
+\Citet{eeg_model_eegnet} found the performance of EEGNet and DeepConvNet to be comparable for the \gls{mi} dataset.
+To further validate these results, DeepConvNet was also used in the experiments of this master thesis.
+
+An additional motivation for using the DeepConvNet model proposed by \citet{eeg_model_eegnet} is the fact that it also has a visualisation technique of the learned features just like EEGNet.
+Another motivating aspect of including DeepConvNet in the experiments of this master thesis follows from the authors also proposing a more shallow alternative, ShallowConvNet.
+ShallowConvNet is also used in the experiments of this master thesis and discussed in Section \ref{subsec:offline_bci_system_one_step_dl_shallowconvnet}.
+Having both an explicitly deep and shallow network allows for comparing the two besides the theoretical discussion from Section \ref{subsec:processing_signals_ml_and_dl_dl_classifiers}.
+Finally, since DeepConvNet is a relatively general \gls{dl} model that is inspired by successful \gls{cnn} from the computer vision field such as ImageNet by \citet{imagenet}, it doesn't strictly represent feature extraction in terms of knowing good strategies.
+This is sharp contrast with EEGNet that took clear inspiration of \gls{fbcsp} as discussed in Section \ref{subsec:offline_bci_system_one_step_dl_eegnet}.
+
+An overview of all layers effectively used is given in Figure \ref{fig:offline_bci_system_dl_deepconvnet_full}.
+One noteworthy aspect of this architecture is that there is no activation function between the second and third layers, which are both convolutional layers.
+The first convolutional layer goes over the timepoints while the second goes over the channels.
+Since these are two separate dimensions and there is no activation function in between, they could have been combined into a singular convolutional layer. 
+Whilst the base implementation of DeepConvNet was provided by \citet{arl_eegmodels}, many more parameters of the model were made tunable once again.
+In particular, the following parameters are tunable and their defaults for the experiments are given in brackets: number of classes (3), number of channels (21), amount of timepoints (100), dropout rate (0.6), the kernel length of the first convolutional layer (4), striding of 2D convolution layers (1, 2), pool size (1, 2).
+Most of these parameters are lowered from their recommended settings by \citet{eeg_model_hbm} due to the low amount of training data present for the experiments of this master thesis.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{../images/pipeline/deepconvnet_full.pdf}
+    \captionsetup{width=0.8\linewidth}
+    \captionsetup{justification=centering}
+    \caption{All layers of the DeepConvNet model.}
+    \label{fig:offline_bci_system_dl_deepconvnet_full}
+\end{figure}
+
 
 % - - - - - - - - - -
 % ShallowConvNet
@@ -285,11 +384,27 @@ TODO
 
 \subsection{ShallowConvNet}
 \label{subsec:offline_bci_system_one_step_dl_shallowconvnet}
-% TODO: Bespreek moeilijkheid bepalen goede dropoff want heel data dependent
-% TODO: heeft 2 custom objects nodig - ook bespreken
-% TODO: bespreek ossilication - https://stackoverflow.com/questions/55894132/how-to-correct-unstable-loss-and-accuracy-during-training-binary-classificatio
 
-TODO
+As discussed in Section \ref{subsec:offline_bci_system_one_step_dl_deepconvnet}, ShallowConvNet is a more shallow \gls{cnn} based \gls{eeg} classificiation model proposed in the same paper of the DeepConvNet proposal \citep{eeg_model_hbm}.
+As opposed to DeepConvNet which took inspiration from complex \gls{cnn} from the computer vision field, ShallowConvNet takes inspiration from \gls{fbcsp} in their design.
+\Citet{eeg_model_hbm} argues the first convolutional layer corresponds to the band pass filtering of \gls{fbcsp} and the second to the \gls{csp} filter in \gls{fbcsp}.
+\Citet{eeg_model_hbm} argues the rest of the model relates to the \gls{fbcsp} phase of finding features in the \gls{csp} streams, combining them and training a traditional \gls{ml} classifier.
+
+An overview of all layers effectively used is given in Figure \ref{fig:offline_bci_system_dl_deepconvnet_full}.
+Again, there is no activation function between the second and third layers, which are both convolutional layers.
+As discussed for DeepConvNet, this means they could have been combined into a singular convolutional layer. 
+Whilst the base implementation of ShallowConvNet was provided by \citet{arl_eegmodels}, some more parameters of the model were made tunable once again.
+In particular, the following parameters are tunable and their defaults for the experiments are given in brackets: number of classes (3), number of channels (21), amount of timepoints (100), dropout rate (0.5), the kernel length of the first convolutional layer (10), striding of 2D convolution layers (1, 6), pool size (1, 30).
+Most of these parameters correspond to the recommended settings by \citet{eeg_model_hbm}.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{../images/pipeline/deepconvnet_full.pdf}
+    \captionsetup{width=0.8\linewidth}
+    \captionsetup{justification=centering}
+    \caption{All layers of the DeepConvNet model.}
+    \label{fig:shallowconvnet_full}
+\end{figure}
 
 % - - - - - - - - - -
 % Interpreting 
