@@ -452,9 +452,6 @@ This makes \gls{csp} incredibly powerful and studied in \gls{bci} research, as a
 \Gls{csp} will be discussed in further detail together with its extensions in Section \ref{sec:offline_bci_system_two_step_ml}.
 \Citet{bci_book} provides a more in-depth overview of all three of these spatial filtering techniques.
 
-
-
-
 % | | | | | | | | | | | | |
 
 \subsubsection{The promise and downfall of feature extraction}
@@ -513,35 +510,17 @@ Likewise, section \ref{subsec:processing_signals_ml_and_dl_dl_classifiers} will 
 % ML AND DL TECHNIQUES
 % ---------------------------------------------- 
 
-\section{The role of machine learning and deep learning}
+\section{Machine learning and deep learning for classification}
 \label{sec:processing_signals_ml_and_dl}
 
-% learning and prediction phase
-
-
-% The dominance of CNN with regard to model choice can be attributed to the relative ease of use and the popularity of this architecture in other research fields that use DL. While RNN architectures have been successful in closely related fields such as speech recognition and natural language processing, they have only seen limited deployment in a biosignal decoding context. Typically, CNNs also have less trainable parameters which makes them less sensitive to small datasets and lower their computational requirements. Other architectures were investigated for biosignal decoding, but state-of-the-art research mostly focuses on CNN architectures (Buongiorno et al 2019, Roy et al 2019).
-
-% nog een pro CNN en waarom wij focussen op CNN: The choice of DL model is highly dependent on the application requirements and how the data is preprocessed. CNNs can often work with raw data that is only cleaned in the preprocessing step, while other models will typically necessitate feature extraction before passing the input to the ANN (Schirrmeister et al 2017). Alternatively, RNNs are also used for biosignal decoding, but these architectures typically need more technical knowledge to deploy and evaluate. The literature review clearly shows that CNN is the most deployed model and that biosignal decoding models are typically rather shallow, which can be attributed to the limited availability of data.
-
-% Neural networks e.v. lezen van review arnau
-
-% dus wel RNN vermelden en uitleggen ma eigenlijk enkel zien naarr CNN based zoals de EEGnet en ShallowConvNet
-
-% Designing a neural network requires experience, as there is no systematic approach. More information on neural networks and their architectures is presented in the appendix, section ‘Neural networks’.
-
-% We refer readers interested in knowing more than what we present to books such as Goodfellow et al (2016) and Aggarwal (2018).
-
-% - - - - - - - - - -
-% Difference ML & DL
-% - - - - - - - - - -
-
-\subsection{Difference between traditional machine learning and deep learning}
-\label{subsec:processing_signals_ml_and_dl_difference}
-
-% nn_can_learn_from_raw
-% % Conceptually, given enough layers and neurons, and the proper architecture, a neural network can learn any mapping from inputs to outputs (Sonoda and Murata 2017) (they are universal function approximators). This means that any method of acquiring a signal, and representing it as floatingpoint values will eventually allow the network to make sense of the inputs, and learn something. bci review arnau
-
-TODO
+Machine learning is a broad field in computer science that focuses on algorithms aiming to relate specific data with a task at hand.
+Many different \gls{ml} paradigms exist, with this master thesis focusing on supervised learning with classification in particular.
+Throughout this master thesis, the terms \textit{traditional two-step \gls{ml}} and \textit{one-step \gls{dl}} were used quite often.
+This section will explain how \gls{dl} is a subfield of \gls{ml} and the most important difference between \gls{dl} and \gls{ml} are given.
+Three traditional \gls{ml} classifiers are discussed in more detail: \gls{lda}, \gls{svc} and \gls{rf}.
+The most important concepts of \gls{dl} for this master thesis will also be discussed, including fully connected layers (as seen in \glspl{ann}), convolutional layers and pooling layers (as seen in \glspl{cnn}) along with various important concepts such as dropout, batch normalization and activation functions.
+For even further insights, the interested reader is referred to the \gls{ml} book by \citet{ml_book} and \gls{dl} book by \citet{dl_book} which cover all \gls{ml} and \gls{dl} concepts needed for this master thesis and much more.
+The practical book on both traditional two-step \gls{ml} model development using \gls{sklearn} and one-step \gls{dl} model development using Keras and Tensorflow by \citet{ml_dl_book} covers all practical aspects needed to understand the Python implementations of the experiments performed in this master thesis.
 
 % - - - - - - - - - -
 % Common regular ML classifiers
@@ -562,13 +541,98 @@ TODO
 
 % Therefore, low-confidence labelled data is often used in a semi-supervised fashion as explained by \citet{deep_learn_low_label}.
 
-TODO
+In \gls{ml} four major categories of learning are distinguished: supervised, unsupervised, semi-supervised and reinforcement learning.
+The following will briefly discuss the difference between these four major \gls{ml} paradigms.
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Supervised learning}
+\label{subsubsec:processing_signals_ml_and_dl_tyes_of_learning_supervision_supervised}
+
+In supervised learning, the dataset used for learning consists of $N$ \textit{labeled samples}: $\{(\textbf{x}_i, y_i)\}^N_{i=1}$.
+The feature vector $\textbf{x}_i$ contains the independent variable(s) and $y_i$ contains the label of a specific sample $i$.
+The feature vector can contain all sorts of information in all sorts of data structures but the order of elements in the feature vector $\textbf{x}_i$ must be respected for all samples.
+For examples, if the second feature of sample $i$ in the feature vector represents the age of a subject $i$ ($\textbf{x}_i^2 = \text{age of subject }i$), it should also represent age for any other subject $j$ ($\textbf{x}_j^2 = \text{age of subject }j$).
+The label $y_i$ can also be any data type, although it most belongs to a finite set of classes (e.g. whether an email is considered spam or not expressed as a string or integer) or an infinite set of continuous values (e.g. a decimal denoting the risk of having a disease).
+
+Within supervised learning, a further division can be made between classification and regression.
+Classification consists of predicting the class of a sample ($y_i$ is a class) based on its feature vector ($\textbf{x}_i$).
+Regression consists of predicting the real-valued label ($y_i$ is a continous value) based on its feature vector ($\textbf{x}_i$).
+In both cases, the goal of supervised learning is to find a model that maps the feature vector $\textbf{x}_i$ to the corresponding label $y_i$ as good as possible.
+
+Supervised learning is one of the most commonly studied \gls{ml} paradigms, especially for \gls{eeg}-based \gls{bci} where it is almost exclusively used for classification \citep{bci_review_arnau}.
+In the proposed pipeline for \gls{mi} \gls{eeg} data classification from Section \ref{sec:processing_signals_general_pipeline}, the feature vector contains $\textbf{x}_i$ either the features extracted in the feature extraction phase when using two-step \gls{ml} or the minimally preprocessed \gls{eeg} signal when using one-step \gls{dl}.
+One sample $i$ corresponds with the data of one window.
+The classes possible for $y_i$ are the \gls{mi} tasks that the user is allowed to perform.
+
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Unsupervised learning}
+\label{subsubsec:processing_signals_ml_and_dl_tyes_of_learning_supervision_unsupervised}
+
+In unsupervised learning the dataset only contains the feature vector of samples, it is a collection of unlabeled samples: $\{(\textbf{x}_i)\}^N_{i=1}$.
+Multiple goals for unsupervised learning exist, with clustering being the most common.
+In clustering, the model is asked to find groupings (clusters) in its data and return the group (cluster) a new sample belongs to.
+In a clustering task, the model is expected to find patterns in the data which might reveal interesting outcomes.
+Other common unsupervised learning tasks include dimensionality reduction and outlier detection amongst others \citep{ml_book}.
+Unsupervised learning is most commonly used in the \gls{bci} field for calibrating an already trained model to a new subject or session without requiring explicit calibration from the user where the user is asked to perform a specific task.
+This is a promising technique in the \gls{bci} as it uses the data already collected by a \gls{bci} to further improve itself.
+\Citet{unsupervised_learning_bci} reviews and tests this technique in an \gls{erp}-based \gls{bci} setting.
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Semi-supervised learning}
+\label{subsubsec:processing_signals_ml_and_dl_tyes_of_learning_supervision_semisupervised}
+
+The above-given example of using unsupervised learning to perform calibration without requiring specific actions from a \gls{bci} user shows that unlabeled data can enhance the quality of what is otherwise a supervised learning problem.
+Semi-supervised learning builds on the same idea, both labelled and unlabeled samples are provided for learning what is otherwise a supervised learning goal.
+This is especially handy in cases where a large amount of unlabeled data is available but only a small amount of labelled data is present.
+Since this is the case for most applications of the \gls{bci} field, this type of learning has seen a growing interest in the field \citep{semi_supervised_bci1, semi_supervised_bci2, semi_supervised_bci3}.
+These approaches deliver promising results compared to traditional supervised learning approaches with similar classification results but requiring fewer training samples and thus shorter calibration.
+However, more research is needed to ensure the reliability of these methods in learning useful properties from the provided unlabeled data.
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Reinforcement learning}
+\label{subsubsec:processing_signals_ml_and_dl_tyes_of_learning_supervision_rl}
+
+\Gls{rl} is a completely different approach to \gls{ml} as those described before.
+In \gls{rl} an \textit{agent} ("an algorithm") lives in the real world or a simulation.
+The world the agent lives in, albeit simulated or not, is called the environment and the agent can perceive this environment through a feature vector that is called a \textit{state}.
+The agent can then perform \textit{actions} in the environment which may change the state.
+After a sequence of actions, the agent receives a \textit{reward}, which is comparable to a label and can be dependent on multiple factors including the final state and the time it took to get there.
+The goal of the agent is to learn a policy for choosing the best action for each possible state which yields the best reward.
+Whilst \gls{rl} is an interesting approach that has yielded algorithms which outperform human experts in multiple games such as Go \citep{alphago}, its usability in the \gls{bci} field is limited as of now and as such this paradigm is not discussed further.
+
+
+% - - - - - - - - - -
+% Difference ML & DL
+% - - - - - - - - - -
+
+\subsection{Traditional two-step ML vs one-step DL classifiers}
+\label{subsec:processing_signals_ml_and_dl_difference}
+
+Throughout the discussion of the general brain signal classification pipeline in Section \ref{sec:processing_signals_general_pipeline}, it was discussed how \gls{dl} approaches differ from traditional \gls{ml} approaches by being able to learn directly from the raw, or minimally preprocessed, \gls{eeg} signal.
+Since \gls{dl} is a subdivision of \gls{ml}, the difference between the two approaches is often emphasized by calling these \gls{ml} classifiers that require explicit feature extraction \textit{tradition two-step \gls{ml}} whilst \gls{dl} approaches who don't require this step are referred to as \textit{one-step \gls{dl}}.
+
+As described by \citet{nn_can_learn_from_raw}, \gls{dl} models are universal function approximaters.
+This is the foundational reason why \gls{dl} can learn any preprocessing or feature extraction step from labelled data, given sufficient layer, nodes and training as discussed in Section \ref{subsec:processing_signals_general_pipeline_preprocessing}.
+Thus, \gls{dl} models learn some form of feature extraction during training.
+As discussed in Section \ref{subsec:processing_signals_general_pipeline_classification} this makes it possible to gain additional knowledge of a problem by interpreting these features created by the \gls{dl} model.
+Whilst this is a non-trivial task due to the black-box property of \gls{dl}, it has been achieved for multiple types of \gls{dl} models in multiple fields \citep{eeg_model_hbm, black_box_insight1, black_box_insight2}.
+For some of the experiments in this master thesis, the \gls{cnn} based \gls{eeg} classification models DeepConvNet and ShallowConvNet by \citet{eeg_model_hbm} are used. 
+For these models, a visualisation of their learned features exists, as further discussed in Section \ref{subsec:offline_bci_system_one_step_dl_interpreting}.
 
 % - - - - - - - - - -
 % Common traditional ML classifiers
 % - - - - - - - - - -
 
-\subsection{Common traditional machine learning classifiers}
+\subsection{Common traditional one-step ML classifiers}
 \label{subsec:processing_signals_ml_and_dl_ml_classifiers}
 
 % To discuss: LDA, SVM and RF
@@ -576,14 +640,198 @@ TODO
 
 % https://doi.org/10.1145/1143844.1143865 veergelijkt SVM en RF en andere
 
-TODO
+As discussed in Section \ref{subsec:processing_signals_general_pipeline_classification}, many different tradition two-step \gls{ml} classifiers exist.
+The experiments in this master thesis make use of three such classifiers: \gls{lda}, \gls{svc} (based on \gls{svm}) and \gls{rf}.
+This section will introduce these \gls{ml} techniques in what follows.
+For more theoretical details, the interested reader is referred to the work by \citet{ml_book}.
+For more practical implementation details, \citet{ml_dl_book} provides a discussion on how to use these models with \gls{sklearn}, the same Python library used for the experiments in this master thesis \citep{sklearn}.
+
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Linear Discriminant Analysis (LDA)}
+\label{subsubsec:processing_signals_ml_and_dl_ml_classifiers_lda}
+
+As the name suggests, \gls{lda} uses linear decision boundaries to classify data points.
+The most attractive feature of \gls{lda} is the fact that it has no hyperparameters to tune.
+As discussed in Section \ref{subsec:processing_signals_evaluating_and_using_hyperparameter_tuning}, hyperparameter tuning is a time-consuming process that explodes in possibilities as more tunable components are added to the pipeline.
+For this reason, \gls{lda} is often used when already hyperparameter tuning many parameters for the feature extraction components, as eliminating classifier finetuning can speed up to process significantly.
+Adding to this, \gls{lda} is inherently multiclass, has an easy-to-compute closed form solution and has been shown to work well with \gls{csp}-based feature extraction \citep{csp_lda1, csp_lda2}.
+These are the exact reasons \gls{lda} is used in this master thesis when using complex hyperparameter tuning setups for \gls{csp} and frequency filtering.
+However, \gls{lda} assumes that the features from each feature vector $\textbf{x}_i$ have a normal (Gaussian) distribution and thus the data is a multivariate Gaussian.
+It also assumes that each feature $\textbf{x}^j_i$ has a comparable variance around their mean on average.
+These assumptions are not super strict and as discussed, it has been shown that \gls{lda} works well with \gls{csp}-based feature extraction \citep{csp_lda1, csp_lda2}.
+
+\Gls{lda} was first proposed by \citet{lda_invention} as a dimensionality reduction technique.
+It is inspired by \gls{pca} but makes use of both the feature vector $\textbf{x}_i$ and class labels $y_i$, where \gls{pca} only used the feature vector $\textbf{x}_i$.
+The dimensionality reduction of \gls{lda} works by maximizing the ratio of the intra-class scatter, given in Equation \ref{eq:processing_signals_lda_intrascatter}, to the inter-class scatter, given in Equation \ref{eq:processing_signals_lda_interscatter} \citep{lda_classification}.
+In these equations, $n$ denotes the number of classes, $c_i$ denotes the class $i$, $m_i$ denotes the number of training samples for class $i$, $\mathbf{\bar{x}_i}$ is the mean for class $i$, and $\mathbf{\bar{x}}$ is the total mean vector derived from Equation \ref{eq:processing_signals_lda_total_mean}.
+From these values, the linear transformation $\Phi$ can be derived by solving the eigenvalue problem shown in Equation \ref{eq:processing_signals_lda_linear_transform}.
+This linear transformation ($\Phi$) can then be used for predicting the class $c_{pred}$ of a new sample $\mathbf{x}_{new}$ in the transformed space by using any arbitrary distance measure $d$ in equation \ref{eq:processing_signals_lda_classificiation}.
+\Citet{lda_classification} discusses \gls{lda} classification in further detail.
+
+\begin{equation}
+    \label{eq:processing_signals_lda_intrascatter}
+    \hat{\Sigma}_w = S_1 + ... + S_n = \sum^n_{i = 1} \sum_{x \in c_i} (\mathbf{x} - \mathbf{\bar{x}_i}) (\mathbf{x} - \mathbf{\bar{x}_i})'
+\end{equation}
+
+\begin{equation}
+    \label{eq:processing_signals_lda_interscatter}
+    \hat{\Sigma}_b = \sum^n_{i = 1} m_i (\mathbf{\bar{x}_i} - \mathbf{\bar{x}}) (\mathbf{\bar{x}_i} - \mathbf{\bar{x}})'
+\end{equation}
+
+\begin{equation}
+    \label{eq:processing_signals_lda_total_mean}
+    \mathbf{\bar{x}} = \frac{1}{m} \sum^n_{i = 1} m_i \mathbf{\bar{x}_i}
+\end{equation}
+
+\begin{equation}
+    \label{eq:processing_signals_lda_linear_transform}
+    \hat{\Sigma}_b \Phi = \lambda \hat{\Sigma}_w \Phi
+\end{equation}
+
+\begin{equation}
+    \label{eq:processing_signals_lda_classificiation}
+    c_{pred} = \underset{j}{\arg\min} d(\mathbf{x}_{new} \Phi, \mathbf{\bar{x}}_j \Phi)
+\end{equation}
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Support vector machines (SVM)}
+\label{subsubsec:processing_signals_ml_and_dl_ml_classifiers_svm}
+
+\Gls{svm} are a popular supervised \gls{ml} algorithm for classification (\gls{svc}), regression, outlier detection and more \citep{svm_explained}.
+The fundamental idea behind \gls{svm} was first introduced by \citet{first_svm} but has since seen some changes to become the algorithm it is known as today \citep{svm_history}.
+The general ideas of using \gls{svm} as a classifier will be discussed here.
+For a more detailed explanation or more information about the use of \gls{svm} for regression and other tasks, the reader is referred to the work by \citet{svm_explained}.
+
+Just like \gls{lda}, \gls{svm} also uses linear decision boundries, however, it is not inherently multiclass like \gls{lda}.
+multiclass classification using \gls{svm} can be established using a wide variety of methods, such as a one-vs-rest scheme or a one-vs-one scheme.
+The \gls{sklearn} implementation of the \gls{svm} classifier, \gls{svc}, uses a one-vs-one scheme \citep{sklearn}.
+This means that multiple \gls{svm} are made, one for each possible pair of classes, and the prediction of a new sample is made based on a (potentially weighted) majority vote.
+
+There are three important concepts to address about \gls{svm} classifier: linear boundary optimisation, soft margins and the kernel trick.
+When a problem is linearly separable there exists not one but many linear decision boundaries, as is shown in Figure \ref{fig:processing_signals_svm_boundary_multiple}.
+Whilst intuitively one decision boundary shown in Figure \ref{fig:processing_signals_svm_boundary_multiple} might be better than another, they all separate the training data equally well and without making any assumptions, no \textit{best} decision boundary can be chosen.
+
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../images/pipeline/svm_multiple_boundaries.pdf}
+        \captionsetup{width=\linewidth}
+        \captionsetup{justification=centering}
+        \caption{Multiple equally good linear decision boundaries for the train data. Free figure by Sylenius, CC BY-SA 3.0, via Wikimedia Commons.}
+        \label{fig:processing_signals_svm_boundary_multiple}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../images/pipeline/svm_best_boundary.pdf}
+        \captionsetup{width=\linewidth}
+        \captionsetup{justification=centering}
+        \caption{The decision boundary chosen by SVM is based on the maximized distance to the support vectors. Free figure by Sylenius, CC BY-SA 3.0, via Wikimedia Commons.}
+        \label{fig:processing_signals_svm_boundary_best}
+    \end{subfigure}
+    \captionsetup{width=\linewidth}
+    \captionsetup{justification=centering}
+    \caption{A linearly separable problem with multiple possibilities for decision boundaries.}
+    \label{fig:processing_signals_svm_boundary}
+\end{figure}
+
+
+\Gls{svm} assumes that the best decision boundary is the one which maximizes the distance from the \textit{support vectors} to the decision boundary.
+These support vectors are the points closest to the decision boundary.
+Figure \ref{fig:processing_signals_svm_boundary_best} shows the decision boundary chosen by \gls{svm} based on the maximized distance from the support vectors circled in blue to the decision boundaries shown in red.
+In higher dimensionality, this decision boundary becomes a hyperplane which can be described by Equation \ref{eq:processing_signals_svm_decission_boundary} where $\mathbf{w}$ is the weight vector normal to the hyperplane and $b$ is the bias.
+The distance from a point $\mathbf{p}$ to this decision boundary can be calculated using Equation \ref{eq:processing_signals_svm_point_distance}.
+$||\mathbf{w}||$ denotes the euclidean norm of the weight vector $\mathbf{w}$.
+
+Since we assume a linear separation is possible, we know that for the training samples $\mathbf{x}_i$ with binary class label $y_i$ that Equation \ref{eq:processing_signals_svm_rules} holds.
+Since scaling $y_i (\mathbf{w}^T \cdot \mathbf{x}_i + b)$ won't change the position of the hyperplane, it is possible to state that for a certain set $\mathbf{w}$ and $b$ the minimal value is 1 since the result will always be different from zero due to the linear separability assumption and the possibility of scaling.
+As such, the distance to the hyperplane at the support vectors can be simplified from $\frac{y_i (\mathbf{w}^T \cdot \mathbf{x}_i + b)}{||\mathbf{w}||}$ to $\frac{1}{||\mathbf{w}||}$.
+Maximizing $\frac{1}{||\mathbf{w}||}$ corresponds to minimzining $||\mathbf{w}||$ which is computationally easier and what is done by the \gls{svm} algorithm in an iterative way.
+
+
+\begin{equation}
+    \label{eq:processing_signals_svm_decission_boundary}
+    \mathbf{w} \cdot \mathbf{x} + b = 0
+\end{equation}
+
+\begin{equation}
+    \label{eq:processing_signals_svm_point_distance}
+    \text{Distance to point } \mathbf{p} = \frac{\mathbf{w}^T \cdot \mathbf{p} + b}{||\mathbf{w}||}
+\end{equation}
+
+\begin{equation}
+    \label{eq:processing_signals_svm_rules}
+    \mathbf{w}^T \cdot \mathbf{x}_i + b 
+    \begin{cases}
+          < 0 & \text{if $y_i$ = -1} \\
+          > 0 & \text{if $y_i$ = 1}
+    \end{cases}
+    \Longleftrightarrow y_i (\mathbf{w}^T \cdot \mathbf{x}_i + b) > 0
+\end{equation}
+
+With the decision boundary in place, making predictions is trivial.
+However, the calculations shown all assume a perfectly linearly separable problem, which is often not the case with real-world data and especially not with \gls{eeg} data.
+When making this assumption, the \gls{svm} approach is reffered to as \textit{hard margin} \gls{svm} classification.
+To allow for classifying in non-linearly separable problems, \textit{soft margin} \gls{svm} classification has to be used.
+Soft margin \gls{svm} classification assumes the samples that stop the linear separation from being possible are noise and can be ignored.
+Mathematically this is done by changing the minimum condition from $y_i (\mathbf{w}^T \cdot \mathbf{x}_i + b) = 1$ to $y_i (\mathbf{w}^T \cdot \mathbf{x}_i + b) = 1 - \xi_i$.
+$\xi_i$ is called the slack variable and \citet{svm_explained} explains in greater detail how it can be controlled by the hyperparameter $C$, which makes a tradeoff between the maximizing the margin and the number of misclassification on the training data.
+
+Whilst the slack variable allows non-linearly separable problems to be learned by \gls{svm}, it assumes that the classification errors it makes are noise in the data.
+As such, it only works well for data that is \textit{almost} linearly separable.
+However, \gls{svm} has a clever mechanism for reducing non-linear problems to (almost) linear problems.
+By finding a higher dimensional representation of the data, \gls{svm} can reduce a non-linear problem to a linear one.
+This is known as the \textit{kernel trick} and an intuitive example is shown in Figure \ref{fig:processing_signals_svm_kernel}.
+The specific transformation done in this figure is from 2D to 3D with the kernel function shown in Equation \ref{eq:processing_signals_svm_kernel_function}.
+In practice, much more complex kernels are often used, with the most common ones being the linear kernel, the polynomial kernel and the \gls{rbf} kernel.
+From these, the \gls{rbf} kernel is the most notable as its feature space has an infinite number of dimensions \citep{ml_book}.
+Equation \ref{eq:processing_signals_svm_rbf} shows the \gls{rbf} kernel function.
+By tuning the hyperparameter $\sigma$, the smoothness of the decision boundary in the original space can be controlled.
+
+\begin{equation}
+    \label{eq:processing_signals_svm_kernel_function}
+    \Phi ((x_1, x_2)) = (x_1, x_2, x_1^2 + x_2^2)
+\end{equation}
+
+\begin{equation}
+    \label{eq:processing_signals_svm_rbf}
+    \Phi ((\mathbf{x}, \mathbf{x}')) = \exp(- \frac{|| \mathbf{x} - \mathbf{x}' ||^2}{2 \sigma^2} )
+\end{equation}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{../images/pipeline/svm_kernel_trick.pdf}
+    \captionsetup{width=0.8\linewidth}
+    \captionsetup{justification=centering}
+    \caption{An intuitive example of SVM's kernel trick where a 2D non-linearly separable problem is transformed into a 3D problem where it is linearly separable. Free to use Figure by Shiyu Ji, CC BY-SA 4.0, via Wikimedia Commons.}
+    \label{fig:processing_signals_svm_kernel}
+\end{figure}
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Random forest (RF)}
+\label{subsubsec:processing_signals_ml_and_dl_ml_classifiers_rf}
+
+% TODO: start here, with LDA being simple SVM capable byt many hyperparameters and poor explainibility due to high dimension, we opt for RF which ...
+% Besrpreken dat je kan visualiseren
+
+TODO 
+
 
 % - - - - - - - - - -
 % Common DL classifiers
 % - - - - - - - - - -
 
-\subsection{Common deep learning classifiers}
+\subsection{Common one-step DL classifier layers}
 \label{subsec:processing_signals_ml_and_dl_dl_classifiers}
+
+% Shallow vs deep learning uitleggen
+% Zie file:///Users/lennertbontinck/Library/CloudStorage/OneDrive-VrijeUniversiteitBrussel/SEM%202/Master%20thesis/books/ml_book.pdf
 
 % ANN (MLP fully connected -> wanneer DL en wanneer regular ML, uitleggen soms gezienals regular ML)
 % CNN (conv layer, pooling layer)
@@ -600,9 +848,19 @@ TODO
 % In practice, neural networks can combine many layers of different kinds. It is not unusual to find neural networks that start with a few convolutional layers, to detect patterns independently of where they are in the input (such as edges in an image, or features in a 1D signal), then have one LSTM layer to be able to make sense of sequences of inputs, followed by a few feed-forward MLP-like layers to map what the LSTM layer learned to actual outputs. In the papers that we review in this article, great care is always given to explain and motivate the choice of neural architecture. Designing a neural network requires experience, as there is no systematic approach. We refer readers interested in knowing more than what we present here to books such as Goodfellow et al (2016) and Aggarwal (2018).
 
 
+% The dominance of CNN with regard to model choice can be attributed to the relative ease of use and the popularity of this architecture in other research fields that use DL. While RNN architectures have been successful in closely related fields such as speech recognition and natural language processing, they have only seen limited deployment in a biosignal decoding context. Typically, CNNs also have less trainable parameters which makes them less sensitive to small datasets and lower their computational requirements. Other architectures were investigated for biosignal decoding, but state-of-the-art research mostly focuses on CNN architectures (Buongiorno et al 2019, Roy et al 2019).
+
+% nog een pro CNN en waarom wij focussen op CNN: The choice of DL model is highly dependent on the application requirements and how the data is preprocessed. CNNs can often work with raw data that is only cleaned in the preprocessing step, while other models will typically necessitate feature extraction before passing the input to the ANN (Schirrmeister et al 2017). Alternatively, RNNs are also used for biosignal decoding, but these architectures typically need more technical knowledge to deploy and evaluate. The literature review clearly shows that CNN is the most deployed model and that biosignal decoding models are typically rather shallow, which can be attributed to the limited availability of data.
+
+
+% Designing a neural network requires experience, as there is no systematic approach. More information on neural networks and their architectures is presented in the appendix, section ‘Neural networks’.
+
+
+
 % bekijk ml_strats_used_in_papers
 
 TODO
+The most important concepts of \gls{dl} with respect to this master thesis will also be discussed, including fully connected layers (as seen in \glspl{ann}), convolutional layers and pooling layers (as seen in \glspl{cnn}) along with various important concepts such as dropout, batch normalization and activation functions.
 
 % ---------------------------------------------- 
 % EVALUATING AND USING
