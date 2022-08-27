@@ -127,7 +127,7 @@ This information may be known, for example during an offline \gls{mi} classifica
         \includegraphics[width=\textwidth]{../images/pipeline/fixed_window.pdf}
         \captionsetup{width=\linewidth}
         \captionsetup{justification=centering}
-        \caption{Fixed window surround known event.}
+        \caption{Fixed window surrounding a known event.}
         \label{fig:processing_signals_windowing_non_fixed}
     \end{subfigure}
     \hfill
@@ -292,7 +292,7 @@ Feature engineering, or feature extraction, is the process of representing raw o
 The goal of feature extraction is to simplify a complex data structure by representing it as one or many features that are easier to interpret and/or learn.
 This step is crucial in traditional two-step \gls{ml} classification approaches as even the preprocessed data is often too complex for traditional \gls{ml} classifiers to directly learn from.
 This differs from preprocessing which aimed to improve the raw data quality, although for some of the discussed preprocessing techniques it could be debated that they are also a type of feature extraction.
-As already addressed in Section \ref{subsec:processing_signals_general_pipeline_preprocessing}, some features rely on learned parameters, such as the $W$ matrix for spatial filters discussed later in this section, these learned parameters should be reused in the prediction pipeline and not redetermined on the prediction data, as this will confuse the classification model and produce unwanted behaviour.
+As already addressed in Section \ref{subsec:processing_signals_general_pipeline_preprocessing}, some features rely on learned parameters, such as the $\mathbf{W}$ matrix for spatial filters discussed later in this section, these learned parameters should be reused in the prediction pipeline and not redetermined on the prediction data, as this will confuse the classification model and produce unwanted behaviour.
 
 A simple but poor feature extraction technique for \gls{eeg} data would be representing the channels' measurements not by their raw data but by their minimum, maximum, median, first quartile and third quartile, much like a boxplot would.
 Whilst this would be easy to interpret, it would carry too little information for a classifier to effectively learn anything but the simplest problems.
@@ -405,12 +405,12 @@ Many \gls{bci} systems rely on features extracted from \gls{eeg} signals that we
 To understand spatial filters, it should be repeated that \gls{eeg} channels don't represent the value of a singular electrode but rather the output of applying a differential amplifier on two channels, as was discussed in Section \ref{subsec:biomedical_signals_measuring_brain_modalities}.
 If all these channels have one electrode in common, an alternative set of channels can be created by weighing and combining the original channels \citep{bci_book}.
 This is the main idea behind spatial filtering and can be mathematically represented as the matrix equation shown in Equation \ref{eq:processing_signals_spatial_filter}.
-In this equation, $X$ represents the 2D matrix of $N$ channels and $P$ samples.
-$W$ represents the weight matrix with $M$ spatial filters and $N$ channel weights.
-Finally, $Y$ represents the alternative set of channels with $M$ spatially filtered channels and $P$ samples.
+In this equation, $\mathbf{X}$ represents the 2D matrix of $N$ channels and $P$ samples.
+$\mathbf{W}$ represents the weight matrix with $M$ spatial filters and $N$ channel weights.
+Finally, $\mathbf{Y}$ represents the alternative set of channels with $M$ spatially filtered channels and $P$ samples.
 
-There are both data-independent and data-dependent techniques for determining the weight matrix $W$ of Equation \ref{eq:processing_signals_spatial_filter}.
-In some regards, the average reference montage shown in Figure \ref{fig:biomedical_signals_eeg_montages} can be considered a data-independent spatial filter, as it uses a fixed, data-independent $W$ matrix, namely one that averages all channels.
+There are both data-independent and data-dependent techniques for determining the weight matrix $\mathbf{W}$ of Equation \ref{eq:processing_signals_spatial_filter}.
+In some regards, the average reference montage shown in Figure \ref{fig:biomedical_signals_eeg_montages} can be considered a data-independent spatial filter, as it uses a fixed, data-independent $\mathbf{W}$ matrix, namely one that averages all channels.
 A more complex but comparable data-independent spatial filter is using one of many variants of surface Laplacian spatial filtering.
 Intuitively, these types of Laplacian filters use only the electrodes at a certain spatial distance for determining the average.
 Simple variants may consider each electrode in the region of interest equally important whilst others might use a weighted average based on the spatial distance of the electrode.
@@ -438,12 +438,12 @@ Surface Laplacian spatial filtering has proven successful in improving the sourc
 
 
 However, by far the most commonly used spatial domain feature extraction happens on data after a data-dependent spatial filter such as \gls{pca}, \gls{ica} or \gls{csp} has been applied.
-These data-dependent spatial filters optimize the $W$ matrix from Equation \ref{eq:processing_signals_spatial_filter} based on measured \gls{eeg} signals.
-\Gls{pca} creates a $W$ matrix such that the resulting signal has the highest proportion of amplitude variance from the original signals matrix $X$ \citep{bci_book}.
-Whilst this can be successful, \gls{pca} only uses the values from the independent variables for creating the $W$ matrix and as such the created matrix is not optimized for best discrimination of the dependent variable.
-Imagine for example a $X$ matrix that was not preprocessed to remove the \gls{ac} artefacts described in Section \ref{subsec:biomedical_signals_working_with_eeg_artefacts}.
+These data-dependent spatial filters optimize the $\mathbf{W}$ matrix from Equation \ref{eq:processing_signals_spatial_filter} based on measured \gls{eeg} signals.
+\Gls{pca} creates a $\mathbf{W}$ matrix such that the resulting signal has the highest proportion of amplitude variance from the original signals matrix $\mathbf{X}$ \citep{bci_book}.
+Whilst this can be successful, \gls{pca} only uses the values from the independent variables for creating the $\mathbf{W}$ matrix and as such the created matrix is not optimized for best discrimination of the dependent variable.
+Imagine for example a $\mathbf{X}$ matrix that was not preprocessed to remove the \gls{ac} artefacts described in Section \ref{subsec:biomedical_signals_working_with_eeg_artefacts}.
 Since this line current noise is so present, \gls{pca} will consider it as one of the most important \gls{pca} components even though it carries no information for the problem.
-\Gls{ica} could be seen as a variant of \gls{pca} that wishes to create a $W$ matrix such that the resulting signal consists of independent channels.
+\Gls{ica} could be seen as a variant of \gls{pca} that wishes to create a $\mathbf{W}$ matrix such that the resulting signal consists of independent channels.
 However, as described by \citet{bci_book}, using \gls{ica} forms multiple challenges in \gls{bci} applications due to its computational cost and often imperative way of determining the number of independent channels to be found.
 Besides this, \gls{ica} also only rely on the independent variable and as such is not further considered for this master thesis.
 
@@ -632,7 +632,7 @@ For these models, a visualisation of their learned features exists, as further d
 % Common traditional ML classifiers
 % - - - - - - - - - -
 
-\subsection{Common traditional one-step ML classifiers}
+\subsection{Common traditional two-step ML classifiers}
 \label{subsec:processing_signals_ml_and_dl_ml_classifiers}
 
 % To discuss: LDA, SVM and RF
@@ -744,12 +744,12 @@ Whilst intuitively one decision boundary shown in Figure \ref{fig:processing_sig
 \Gls{svm} assumes that the best decision boundary is the one which maximizes the distance from the \textit{support vectors} to the decision boundary.
 These support vectors are the points closest to the decision boundary.
 Figure \ref{fig:processing_signals_svm_boundary_best} shows the decision boundary chosen by \gls{svm} based on the maximized distance from the support vectors circled in blue to the decision boundaries shown in red.
-In higher dimensionality, this decision boundary becomes a hyperplane which can be described by Equation \ref{eq:processing_signals_svm_decission_boundary} where $\mathbf{w}$ is the weight vector normal to the hyperplane and $b$ is the bias.
+In higher dimensionality, this decision boundary becomes a hyperplane which can be described by Equation \ref{eq:processing_signals_svm_decission_boundary} where $\mathbf{W}$ is the weight vector normal to the hyperplane and $b$ is the bias.
 The distance from a point $\mathbf{p}$ to this decision boundary can be calculated using Equation \ref{eq:processing_signals_svm_point_distance}.
-$||\mathbf{w}||$ denotes the euclidean norm of the weight vector $\mathbf{w}$.
+$||\mathbf{w}||$ denotes the euclidean norm of the weight vector $\mathbf{W}$.
 
 Since we assume a linear separation is possible, we know that for the training samples $\mathbf{x}_i$ with binary class label $y_i$ that Equation \ref{eq:processing_signals_svm_rules} holds.
-Since scaling $y_i (\mathbf{w}^T \cdot \mathbf{x}_i + b)$ won't change the position of the hyperplane, it is possible to state that for a certain set $\mathbf{w}$ and $b$ the minimal value is 1 since the result will always be different from zero due to the linear separability assumption and the possibility of scaling.
+Since scaling $y_i (\mathbf{w}^T \cdot \mathbf{x}_i + b)$ won't change the position of the hyperplane, it is possible to state that for a certain set $\mathbf{W}$ and $b$ the minimal value is 1 since the result will always be different from zero due to the linear separability assumption and the possibility of scaling.
 As such, the distance to the hyperplane at the support vectors can be simplified from $\frac{y_i (\mathbf{w}^T \cdot \mathbf{x}_i + b)}{||\mathbf{w}||}$ to $\frac{1}{||\mathbf{w}||}$.
 Maximizing $\frac{1}{||\mathbf{w}||}$ corresponds to minimzining $||\mathbf{w}||$ which is computationally easier and what is done by the \gls{svm} algorithm in an iterative way.
 

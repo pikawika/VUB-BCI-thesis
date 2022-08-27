@@ -34,7 +34,14 @@ TODO
 \label{sec:evaluation_data_source}
 % Bespreken data truc * 100xxx voor volt
 
+% A modified 10/20 montage was used for the data recording. The modified montage consisted of 19 standard 10/20 EEG leads, two ground leads labeled A1 and A2 (placed at the earbuds), and one bipolar lead X3 used for data synchronization, for a total of 22 input channels recorded. The EEG signal was recorded at sampling rate of 200 Hz unless otherwise indicated in the data file. The reference point for all recordings was “System 0 V” as defined by the EEG-1200’s technical manual at 0.55*(C3 + C4) V. No custom filtering was applied to the recorded EEG signal. A band-pass filter of 0.53-70 Hz was present in all EEG data recorded at 200 Hz sampling rate in the Neurofax software. A 0.53–100 Hz band-pass filter (the widest choice possible in Neurofax software) was applied to the EEG recordings acquired at 1000 Hz sampling rate. These are the hardware filters and therefore part of all the published records. Additionally, a 50 Hz notch filter is present in the EEG-1200 hardware to reduce electrical grid interference.
+
+% zeggen fixed window surround event want nodig voor CSP en ook gewoon makkelijkste computationally en common baseline
+% -1 tot 2 sec,  shortend naar 0.1 tot 0.6 en -.25 tot 1.25
+
 TODO
+
+% As discussed in Section \ref{subsec:processing_signals_general_pipeline_windowing}, different windowing stragies exist but are not epxlored in this master thesis, in part due to \gls{csp} assuming a known fixed time window as discussed in Section \ref{subsec:offline_bci_system_two_step_ml_csp_explained}.
 
 % ---------------------------------------------- 
 % INTRA SESSION
