@@ -268,6 +268,8 @@ It is noted that some open-source Python implementations of \gls{fbcsp} are avai
 The majority of the models considered in this master thesis use a \gls{dl} classifier.
 Their pipelines are simplified from those used in traditional two-step \gls{ml} classification since they require minimal preprocessing and no feature extraction as was discussed in Section \ref{subsec:processing_signals_ml_and_dl_difference}.
 Figure \ref{fig:offline_bci_system_dl_pipeline} shows the general pipeline structure used for the \gls{dl} \gls{mi} \gls{eeg} classifiers that will be discussed in greater detail below.
+All of these classifiers are made using Keras and are available via the appropriate utility files on the GitHub repository of this master thesis \citep{github_project, keras}.
+
 It should be noted once again that the used open-source dataset has already performed a band-stop filter to cancel out the \gls{ac} artefacts discussed in Section \ref{subsec:biomedical_signals_working_with_eeg_artefacts}.
 However, it could be argued that even this filtering of the signal to remove the \gls{ac} artefacts can be learned by the \gls{dl} model.
 Although due to this frequency being overpopulated by the \gls{ac} artefact there is likely very slim to no information present in the filtered out frequency range.
@@ -296,7 +298,7 @@ For these reasons, minimal preprocessing, such as \gls{ac} artefacts removal is 
 EEGNet is a \gls{cnn} based \gls{eeg} classification model proposed by \citet{eeg_model_eegnet}.
 There are some key properties of EEGNet that make it different from other \gls{dl} models proposed in the \gls{bci} field.
 First, rather than using traditional convolutional layers, it uses depthwise and separable convolutional layers to reflect known performant feature extraction methods from the \gls{bci} field.
-These special types of convolutional layers were already discusesd in Section \ref{subsec:processing_signals_ml_and_dl_dl_classifiers}.
+These special types of convolutional layers were already discussed in Section \ref{subsec:processing_signals_ml_and_dl_dl_classifiers}.
 As a result of using these special types of convolutional filters and by being a compact \gls{cnn}, EEGNet can learn from relatively few samples \citep{eeg_model_eegnet}.
 
 Second, instead of focusing on one specific \gls{bci} paradigm such as \gls{ers} and \gls{erd} or even more specifically \gls{mi}, the model is created in such a way that it is applicable to many \gls{bci} paradigms.
@@ -399,10 +401,10 @@ Most of these parameters correspond to the recommended settings by \citet{eeg_mo
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{../images/pipeline/deepconvnet_full.pdf}
+    \includegraphics[width=\linewidth]{../images/pipeline/shallowconvnet_full.pdf}
     \captionsetup{width=0.8\linewidth}
     \captionsetup{justification=centering}
-    \caption{All layers of the DeepConvNet model.}
+    \caption{All layers of the ShallowConvNet model.}
     \label{fig:shallowconvnet_full}
 \end{figure}
 
@@ -413,7 +415,24 @@ Most of these parameters correspond to the recommended settings by \citet{eeg_mo
 \subsection{Interpreting these black box models}
 \label{subsec:offline_bci_system_one_step_dl_interpreting}
 
-TODO
+It was discussed for both the EEGNet model as well as the DeepConvNet and ShallowConvNet model that the visualisation methods are described in the papers proposing the models \citep{eeg_model_eegnet,eeg_model_hbm}.
+The intuitive reasoning behind these visualisations is that, as discussed, the first two convolutional layers of these models relate to the first two steps of the \gls{fbcsp} feature extraction method.
+This means that the transformation offered by the first convolutional layer corresponds to frequency-like filters.
+As such, the trained model can be shortened to include only this first convolutional layer and when passing through the source \gls{eeg} data, each output channel (filter) of the convolutional layer represents a frequency-like filtered \gls{eeg} signal when plotted.
+Both through frequency analysis of these output channels and by analysis of the weights of the learned kernel, insight into what exact modifications have been made can be determined.
+Intuitively, this is how both papers visualise or determine the learned frequency band-pass filters.
+
+Likewise, the second convolutional layer of these models corresponds to the temporal filtering done in \gls{fbcsp}.
+Looking at the learned kernel weights, it can be seen how much each channel of the input \gls{eeg} contributes to the output of the second convolutional layers.
+This allows for creating \glspl{topomap} similar to those that can be created from a \gls{csp} feature extraction map.
+An example of such \glspl{topomap} created from multiple \gls{csp} components is given in Figure XXX. % TODO add figure of CSP from subsampled!
+
+For more details on how these visualisation work for the discussed \gls{cnn} models, the reader is referred to the original paper proposing them \citep{eeg_model_eegnet,eeg_model_hbm}.
+Neither \citet[][Authors of EEGNet ]{eeg_model_eegnet} or \citet[][Authors of DeepConvNet and ShallowConvNet ]{eeg_model_hbm} provide their source code to recreate these visualisations.
+Adding to this, the proposed visualisation method in the EEGNet paper makes use of the DeepExplain Python library by \citep{deepexplain} for visualising Keras models.
+However, this library only has official support for TensorFlow V1, whilst the Keras and the TensorFlow version used for the implementations in this master thesis are V2.
+Because of this, providing further details on this visualisation through means of reimplementation of these methods falls outside the scope of this master thesis.
+More details on visualisation techniques for \gls{cnn} in general is given by \citet{cnn_visualisations}.
 
 % ---------------------------------------------- 
 % Adding recurrent NN
@@ -421,18 +440,18 @@ TODO
 \section{Adding memory to one-step DL approaches}
 \label{sec:offline_bci_system_adding_memory}
 
-TODO
+Section \ref{subsec:processing_signals_ml_and_dl_dl_classifiers} discussed that convolutional layers used on time series data, or on the time axis of a 2D signal such as \gls{eeg}, can learn kernels which detect local patterns in the time series.
+In that same section, it is also discussed that \gls{lstm} layers have explicit memory built into their design.
+This makes processing time series where temporal features are of most importance an ideal application for \gls{lstm}.
+For these reasons, studies across many fields have been done to encorperate both convolutional layers for feature extraction and an \gls{lstm} layers for working with the time-series features into a singular \gls{cnn}-\gls{lstm} model \citep{lstm_cnn_mi_eeg, cnn_bilstm_eeg_robot_arm}.
 
-% cnn_bilstm_eeg_robot_arm
-
-% - - - - - - - - - -
-% time series
-% - - - - - - - - - -
-
-\subsection{Using the time series property of EEG data}
-\label{subsec:offline_bci_system_adding_memory_time_series}
-
-TODO
+Given that the EEGNet model works well on multiple \gls{bci} paradigms, it is assumed that the features extracted by EEGNet carry a lot of information.
+Following this reasoning, this master thesis proposes two \gls{cnn}-\gls{lstm} models where the \gls{cnn} based feature extraction is heavily inspired by the EEGNet model.
+Having the EEGNet architecture first, the EEGNet-specific visualisation could still be used.
+Likewise, the visualisation of \gls{lstm} layers to determine which areas in a temporal domain are of interest has also already been widely studied.
+Most commonly in the processing of \gls{ecg}, this technique has seen great success, with \citet{lstm_visual_ecg} using \gls{lstm} to visualise which regions of an \gls{ecg} was used most for determining the classification of possible arrhythmia.
+As such, it is believed that a \gls{cnn}-\gls{lstm} model can give great insight into both the spatial features and temporal features learned when using appropriate visualisation techniques.
+The study of which is an interesting future work for this master thesis.
 
 % - - - - - - - - - -
 % LSTM eegnet
@@ -441,7 +460,30 @@ TODO
 \subsection{Adding an additional LSTM layer to EEGNet}
 \label{subsec:offline_bci_system_adding_memory_lstm_eegnet}
 
-TODO
+% TODO: add figure of model summary so that the conversion etc are clear en trainable params vermelden
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{../images/pipeline/eegnetlstm_full.pdf}
+    \captionsetup{width=0.8\linewidth}
+    \captionsetup{justification=centering}
+    \caption{All layers of the CNN-LSTM model using all EEGNet layers for feature extraction and the addition of LSTM functionality for time series processing.}
+    \label{fig:eegnetlstm_full}
+\end{figure}
+
+The first proposed \gls{cnn}-\gls{lstm} model consists of the combination of all EEGNet layers discussed in Section \ref{subsec:offline_bci_system_one_step_dl_eegnet} with a traditional bidirectional \gls{lstm} layer.
+This layer type was discussed in Section \ref{subsec:processing_signals_ml_and_dl_dl_classifiers}.
+An overview of all layers used is given in Figure \ref{fig:eegnetlstm_full}.
+Note some subtle changes in the EEGNet feature extraction part of the model, namely a reduction in the downsampling performed by the pooling layers.
+This was done to retain a reasonable amount of temporal resolution.
+Besides this, some dimensionality transformations and permutations are in place to ensure a correct data representation for the \gls{lstm} layer.
+It is important to note that the \gls{lstm} layer also makes use of internal dropout functionality provided by Keras \citep{keras}.
+The dropout layer shown after the \gls{lstm} layer is an additional regular dropout layer using half of the internal dropout rate provided for the \gls{lstm} layer.
+Such an aggressive dropout strategy is needed due to the many additional trainable parameters introduced by the \gls{lstm} increasing the risk of overfitting.
+
+The input of the \gls{lstm} layer using the default parameters given below corresponds to a 2D matrix of 25 timepoints, a reduction of four compared to the input signal due to the two pooling layers, having 16 features each.
+The following parameters are tunable for the EEGNet part of the model and their defaults for the experiments are given in brackets: channel amount (21), amount of timepoints (100), amount of classes (3), the dropout rate (0.5), the kernel length (50), F1 (8), F2 (16), D (2), the normalisation rate (0.30) and the dropout type (2D spatial dropout).
+For the added layers, the parameters and their defaults for the experiments given in brackets are: \gls{lstm} units (64), \gls{lstm} specific dropout (0.6) and \gls{lstm} specific kernel legularizer (L1= L2 = 0.0001).
 
 % - - - - - - - - - -
 % Convolutional LSTM eegnet
@@ -450,15 +492,42 @@ TODO
 \subsection{EEGNet with convolutional LSTM layer}
 \label{subsec:offline_bci_system_adding_memory_convlstm_eegnet}
 
-% Geen specifieke CUDA optim in Keras en dus trage training waardoor limited experiments
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{../images/pipeline/eegnetlstmconv_full.pdf}
+    \captionsetup{width=0.8\linewidth}
+    \captionsetup{justification=centering}
+    \caption{All layers of the CNN-LSTM model using a reduced version of EEGNet for feature extraction and the addition of convolutional LSTM functionality for time series processing.}
+    \label{fig:eegnetlstmconv_full}
+\end{figure}
 
-TODO
+The second \gls{cnn}-\gls{lstm} model that this master thesis proposes consists of the combination of only the first two convolutional layers from EEGNet discussed in Section \ref{subsec:offline_bci_system_one_step_dl_eegnet} with a bidirectional one dimensional convolutional \gls{lstm} layer.
+This layer type was discussed in Section \ref{subsec:processing_signals_ml_and_dl_dl_classifiers}.
+An overview of all layers used is given in Figure \ref{fig:eegnetlstmconv_full}.
+In essence, the last convolutional layer that was present in EEGNet is replaced by a \gls{lstm} layer that uses a comparable convolution.
+
+For the same reasons as before, a reduction in the downsampling performed by the pooling layer is performed, with the default setting used for this experiment not using this pooling layer at all.
+Again, the \gls{lstm} layer makes use of internal dropout functionality provided by Keras \citep{keras} and the dropout layer shown after the \gls{lstm} layer is an additional regular dropout layer using half of the internal dropout rate provided for the \gls{lstm} layer.
+It is noted that the Keras implementation of the one-dimensional convolutional LSTM layer has no CUDA support and as such is incredibly slow to train.
+
+The input of the \gls{lstm} layer using the default parameters given below corresponds to 100 timepoints having 16 features each.
+These 16 features are over 1 channel due to the depthwise convolutional layer present in the model.
+The following parameters are tunable for the EEGNet part of the model and their defaults for the experiments are given in brackets: channel amount (21), amount of timepoints (100), amount of classes (3), the dropout rate (0.5), the kernel length (50), F1 (8), D (2), the normalisation rate (0.25), average pooling before LSTM (None) and the dropout type (dropout).
+For the added layers, the parameters and their defaults for the experiments given in brackets are: \gls{lstm} filters (64), \gls{lstm} kernel size (4), \gls{lstm} specific dropout (0.6), strides used for convolution (1) and \gls{lstm} specific kernel legularizer (L1= L2 = 0.0001).
 
 % ---------------------------------------------- 
 % CONCLUSIONS OF CHAPTER
 % ---------------------------------------------- 
 \section{Chapter conclusions}
 \label{sec:offline_bci_summary}
-% TODO: summary of this chapter
 
-TODO
+This chapter discussed the seven different \gls{mi} \gls{eeg} classification pipelines used for the experiments in this master thesis.
+Two traditional two-step \gls{ml} approaches were discussed, both relying on the \gls{csp} spatial filter for feature extraction.
+One used a hyperparameter tuned frequency band-pass filter for preprocessing the signal and the other a fixed one.
+This led to the discussion of \gls{fbcsp}, a pipeline that is not implemented but the working of which is addressed.
+The main focus of this master thesis revolves around one-step \gls{dl} methods and five different such pipelines were discussed.
+Three implemented state-of-the-art literature proposed \gls{cnn} based models were discussed: EEGNet, DeepConvNet and ShallowConvNet.
+Besides their architectural design, their relation to the \gls{fbcsp} method was also discussed as well as the possibilities of visualising them.
+Finally, two \gls{cnn}-\gls{lstm} models were proposed that extend upon EEGNet.
+One makes use of an additional bidirectional \gls{lstm} layer on top of the EEGNet-derived features whilst the other aims to directly incorporate LSTM functionality into the EEGNet architecture by using a bidirectional convolutional \gls{lstm} layer.
+For these models, it was also discussed how potential visualisation of the learned behaviour could be done.
