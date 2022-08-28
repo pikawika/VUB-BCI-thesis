@@ -919,7 +919,205 @@ TODO
 % ppv npv etc?
 % CV 
 
-TODO
+% TODO: lees dit en dan CM - basic ML metrics - risk assessment - usability (e.g. train/pred time)
+
+Section \ref{subsec:bci_opportunities_obstacles_lack_of_testing} discussed how a lack of standardized methods for both evaluation and reporting in \gls{bc} systems and \glspl{bci} in particular is one of many open issues.
+As discussed, the main problem resides in evaluation strategies made for testing specific parts of the \gls{bci} system, such as the classification pipeline, not representing the final performance of the complete system.
+However, due to the complexity of proposing a complete \gls{bci} system and performing an in-depth user study of that complete system, it is not feasible for every paper on \gls{bci} related research, including this master thesis, to do such extensive testing on a complete system.
+
+For this reason, it was proposed in section \ref{subsec:bci_opportunities_obstacles_lack_of_testing} that the proposal of a complete \gls{bci} system should happen over at least four distinct papers, each focusing on a specific part.
+As discussed, the contents of this master thesis relate most to the second of those four, where classification pipelines are compared and proposed.
+As such, most of the evaluation metrics revolve around general \gls{ml} metrics derived from the \gls{cm} on either validation and/or test set.
+However, as further discussed by \citet{ml_underspec}, it should be noted that these metrics don't include certain deployment factors and are most often an overestimation of real-world performance.
+Besides these general \gls{ml} metrics, some metrics mostly used in testing the performance of medical \gls{ml} can be insightful for evaluating the risks associated with misclassification by the pipeline.
+The remainder of this section discusses these topics in more detail.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{The train, validation and test set split}
+\label{subsubsec:processing_signals_evaluating_and_using_evaluation_valtest}
+
+To test the performance of a classification pipeline, it is important that testing happens on data that was not used for training.
+Intuitively, this has to be done as asking the classifier to classify a sample it has already seen the label for during training, is not going to give any indication of the real-world performance of the algorithm.
+A simple 1-nearest neighbour algorithm would score perfectly in such a case and more complex algorithms would be incentivised to overfit to the data rather than learning the problem, an issue discussed in Section \ref{subsec:processing_signals_common_issues_overfitting}.
+
+Most commonly, a complete dataset is split into three distinct sets: a training set, a validation set and a test set.
+The difference between this validation and test set is their intended use.
+For deciding the right parameters of a model, having some data that was not used for training, allows for testing which parameters are performing better.
+The validation set is made for these kinds of assessments.
+However, extensive use of the validation set will degrade the effectiveness of this set.
+Given enough variations of a model, one is bound to perform well on this validation, even if it doesn't learn anything or it is a completely random one.
+As such, another set, the test set, is needed for one \textit{final} performance assessment of the model.
+It is important to stress that this test set should only be used once for this final assessment as further changes after obtaining an initial test score to improve this test score results in the test set becoming a validation set.
+In medical research, a 7:1:2 ratio for training, validation and test split is relatively common \citep{attia}.
+However, this is heavily dependent on the amount of data available and the problem at hand.
+
+One issue with splitting the data into a train, validation and test set is that the obtained split is not representative of the data it is taken from or that it suffers from \textit{data leakage}.
+Depending on the dataset, it can be a complex task to combat this.
+First, samples should be sampled randomly such that each sample has an equal chance of being selected.
+Second, the sampling should happen in a stratified manner such that the distribution of classes or other attributes present in the data is respected.
+This will reduce the risk that a certain set contains an unreasonably high or low amount of samples from a certain class or attribute.
+Take for example a test set for the \gls{mi} \gls{eeg} data where due to unfortunate random sampling the test set consists of only healthy subjects (attribute) and mostly samples from a certain \gls{mi} task (class) whilst the original dataset was balanced across all classes and had stroke patients included as well.
+A stratified approach based on the class label and health status of the subject eliminates such a scenario from happening.
+Third, no data leakage should happen, which requires taking into consideration certain groupings present in the data.
+Data leakage occurs when the training data contains information that directly helps in classifying samples from the validation or test split that is not present for a true unseen sample.
+For example, in a 3D medical lung imaging setting for classifying cancerous patients, having images or slices from the same patient in both the training and validation/test set is a common example of data leakage.
+Even though the training set does not contain that specific slice or image, it contains closely related data that would not be present for a true unseen sample in real-world applications.
+Grouped splits can solve this issue by ensuring all data of a subject is in the same group.
+However, when data is limited, ensuring all three of these things can be challenging or even impossible.
+Take for example data where all samples of a certain class are also from the same group, making it impossible to satisfy both the grouped or stratified conditions discussed.
+Additionaly the data may contain bias, an issue further discussed in Section \ref{subsec:processing_signals_common_issues_bias}.
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{K-fold cross validation}
+\label{subsubsec:processing_signals_evaluating_and_using_evaluation_kfold}
+
+
+Rather than taking a fixed train and validation set, using k-fold \gls{cv} can provide better results.
+The intuitive idea behind K-fold \gls{cv} is simple.
+Rather than making a train/validation/test split, a train/test split is made using the same reasoning.
+This training data is then further divided into K folds, with five to ten being relatively common depending on the number of training samples available. 
+The classification pipeline is then trained K times on K-1 of these folds.
+The fold that is not used for training, is used as a validation set and this set differs in each of the K training steps.
+This results in K different scorings for the validation set and thus allows for determining variance as well.
+It should be noted that the folds created have to use the same strategy as a fixed validation split to ensure each split is representative of the data without data leakage.
+The algorithm behind K-fold \gls{cv} is given as pseudocode in Algorithm \ref{alg:processing_signals_kfold}.
+One major drawback of using K-fold \gls{cv} is that it requires training the classification pipeline K times.
+Considering some pipelines can take hours, days or even weeks to train, K-fold \gls{cv} is not always feasible.
+
+\begin{algorithm}
+    \caption{K-fold cross-validation}
+    \label{alg:processing_signals_kfold}
+    \begin{algorithmic}
+        \State Divide training data in $K$ folds \Comment{Respecting a certain splitting strategy}
+        \State $\text{val\_scores} \gets []$ \Comment{Initialize list of validation scores}
+        \For{fold $k_i$ in $K$ folds}
+            \State Train model on $K \setminus k_i$
+            \State $\text{val\_scores} \gets \text{val\_scores} + $ metrics for validation set $k_i$ 
+        \EndFor
+        \State process $\text{val\_scores}$ as desired
+    \end{algorithmic}
+\end{algorithm}
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{The confusion matrix and its derived scores}
+\label{subsubsec:processing_signals_evaluating_and_using_evaluation_cm} 
+
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../images/pipeline/cm_binary.pdf}
+        \captionsetup{width=\linewidth}
+        \captionsetup{justification=centering}
+        \caption{Confusion matrix for a universal binary classification problem.}
+        \label{fig:processing_signals_cm_binary}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../images/pipeline/cm_three_class.pdf}
+        \captionsetup{width=\linewidth}
+        \captionsetup{justification=centering}
+        \caption{Confusion matrix for a three-class \gls{mi} classification problem.}
+        \label{fig:processing_signals_cm_three}
+    \end{subfigure}
+    \captionsetup{width=\linewidth}
+    \captionsetup{justification=centering}
+    \caption{Design of a binary and three-class confusion matrix.}
+    \label{fig:processing_signals_cm}
+\end{figure}
+
+The \gls{cm} is a simple but powerful tool for visualising the predictions made by a classification pipeline.
+The structure of a \gls{cm} for both a universal binary classification problem and a three-class \gls{mi} classification problem is shown in Figure \ref{fig:processing_signals_cm}.
+Many of the metrics used for evaluating the performance of a classification pipeline are derived from this \gls{cm}.
+Take for example the most commonly used classification accuracy metric, it can be derived by equation \ref{eq:processing_signals_accuracy}.
+
+\begin{equation}
+    \begin{aligned} 
+        \text{Binary accuracy} &= \frac{TP + TN}{TP + FN + FP + TN} \\\\
+        \text{Three-class accuracy} &= \frac{\sum\limits_{x \in \text{classes}} T_x}{\sum\limits_{x \in \text{classes}} F_x}
+    \end{aligned}
+    \label{eq:processing_signals_accuracy}
+\end{equation}
+
+However, reporting on accuracy alone is often not enough as it is also interesting to know what the per-class performance is.
+For this, sensitivity (also known as recall) and specificity are also commonly reported.
+Their binary formulea are given in Equation \ref{eq:processing_signals_sensitivity} and \ref{eq:processing_signals_specificity} respectively.
+Sensitivity gives information on the fraction of true samples being predicted as true whilst specificity provides the fraction of false samples being predicted as false.
+For a \gls{cm} where more classes are present, the specificity and sensitivity per class can be calculated similarly.
+
+\begin{equation} % recall
+    \text{Binary sensitivity} = \frac{TP}{TP + FN}
+    \label{eq:processing_signals_sensitivity}
+\end{equation}
+
+\begin{equation}
+    \text{Binary specificity} = \frac{TN}{TN + FP}
+    \label{eq:processing_signals_specificity}
+\end{equation}
+
+Whilst specificity and sensitivity already provide more information, these metrics don't report nicely on unbalanced datasets.
+Assume a binary test setting where only 5\% of the samples are of the true class, something that is relatively common for medical conditions such as \gls{af}.
+Papers studying the classification of this phenomenon, such as the one by \citet{attia}, will often boast a good specificity and sensitivity, i.e. \citet{attia} reported both to be above 80\%.
+However, due to the class imbalance, these metrics are not sufficient on their own or in combination with the classification accuracy.
+A mention of the \gls{ppv} and \gls{npv} is also needed.
+The binary formulea for which are given in Equation \ref{eq:processing_signals_ppv} and \ref{eq:processing_signals_npv} respectively. 
+The \gls{ppv} specifies how many of the samples labelled as true are actually true, the \gls{npv} does the same but for negatives.
+Whilst not reported in the previously mentioned paper by \citet{attia}, the \gls{ppv} was found to be under 30\% \citep{ppv_attia}.
+In contrast with the high sensitivity and specificity, this would mean that for less than one in three times the model predicted true, the sample was indeed true.
+Relating this back to a \gls{bci} system, if the sensitivity and specificity of a risky action are good but the \gls{ppv} is not reported and turns out to be poor due to an imbalance in the testing strategy, the model can not be used in a real-world application as so many unwanted executions of risky actions are not acceptable.
+The \gls{ppv} is also referred to as the precision of a model.
+The \gls{ppv} and \gls{npv} can also be determined for each class independently in case of a multi-class classification problem.
+
+\begin{equation} % Precision
+    \text{PPV} = \frac{TP}{TP + FP}
+    \label{eq:processing_signals_ppv}
+\end{equation}
+
+\begin{equation}
+    \text{NPV} = \frac{TN}{TN + FN}
+    \label{eq:processing_signals_npv}
+\end{equation}
+
+A final metric that is often reported is the F1 score.
+The F1 score is also derived from the idea that sensitivity alone isn't enough for imbalanced data.
+To solve this, it provides the harmonic mean of the \gls{ppv} and the sensitivity.
+It's binary formula is given in Equation \ref{eq:processing_signals_f1}. 
+
+\begin{equation}
+    F1 = 2 * \frac{PPV * \text{sensitivity}}{PPV + \text{sensitivity}}
+    \label{eq:processing_signals_f1}
+\end{equation}
+
+% | | | | | | | | | | | | |
+
+\subsubsection{The ROC curve and choosing classification thresholds}
+\label{subsubsec:processing_signals_evaluating_and_using_evaluation_risk} 
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.6\linewidth]{../images/pipeline/ROC.pdf}
+    \captionsetup{width=0.7\linewidth}
+    \captionsetup{justification=centering}
+    \caption{ROC curve with some arbitrary examples. Free to use figure by cmglee, MartinThoma, CC BY-SA 4.0, via Wikimedia Commons.}
+    \label{fig:processing_signals_roc_explained}
+\end{figure}
+
+Besides the \gls{cm}, the \gls{roc} is also a powerful tool for visualising the performance of a classification pipeline.
+The idea behind the \gls{roc} curve is to visualize the model's performance when making a trade-off between sensitivity (also known as the true positive rate) and the false positive rate (1 - sensitivity).
+This trade-off can be controlled by changing the threshold at which a prediction made by the model is considered a prediction of the true label.
+By default, this is when the model returns a prediction of 0.5 or higher for the true class, but changing this value can yield more preferred behaviour.
+For example, lowering the threshold will make the model classify samples as positive more often, resulting in an equal or higher sensitivity (desired) but also an equal or higher true negative rate (not desired).
+Lowering the threshold value does the reverse.
+Finding the best balance between both is application specific.
+An example of this graph with some examples to demonstrate its working is shown in Figure \ref{fig:processing_signals_roc_explained}.
+The \gls{roc} curve is often used to determine the optimal threshold value.
+The \gls{auc} is also derived from the \gls{roc} curve as a common evaluation metric.
 
 
 % - - - - - - - - - -

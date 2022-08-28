@@ -16,7 +16,6 @@
 % Will need a new title since it is no longer a system to use
 \chapter{Evaluation of the proposed pipelines}
 \label{ch:evaluation}
-TODO
 
 % ---------------------------------------------- 
 % INTRODUCTION
@@ -25,23 +24,62 @@ TODO
 \label{sec:evaluation_introduction}
 % NOTE: "Introduction" exists in each chapter and gives a short intro to the chapter + what can be expected in the chapter
 
-TODO
+The previous chapters discussed in great detail which \gls{mi} \gls{eeg} classification pipelines were considered for this master thesis, how they work and how they can be evaluated.
+This chapter details the performed evaluations and the results obtained.
+In particular, three main test settings were used: intrasession, intersession and intersubject evaluation.
+Besides providing an overview of the obtained evaluation metrics, reasoning into why certain experiments were performed and why certain results were expected are also given.
+The used open-source \gls{mi} \gls{eeg} dataset is also briefly discussed.
+Most experiments revolve around offline \gls{mi} \gls{eeg} classification performance, as this is the focus of this master thesis.
+Some pilot experiments regarding recommended changes for going to an online setting discussed in Chapter \ref{ch:online_bci_system} were also performed and are also discussed in this section.
 
 % ---------------------------------------------- 
 % USED DATA
 % ---------------------------------------------- 
 \section{Three class MI EEG data source}
 \label{sec:evaluation_data_source}
-% Bespreken data truc * 100xxx voor volt
 
-% A modified 10/20 montage was used for the data recording. The modified montage consisted of 19 standard 10/20 EEG leads, two ground leads labeled A1 and A2 (placed at the earbuds), and one bipolar lead X3 used for data synchronization, for a total of 22 input channels recorded. The EEG signal was recorded at sampling rate of 200 Hz unless otherwise indicated in the data file. The reference point for all recordings was “System 0 V” as defined by the EEG-1200’s technical manual at 0.55*(C3 + C4) V. No custom filtering was applied to the recorded EEG signal. A band-pass filter of 0.53-70 Hz was present in all EEG data recorded at 200 Hz sampling rate in the Neurofax software. A 0.53–100 Hz band-pass filter (the widest choice possible in Neurofax software) was applied to the EEG recordings acquired at 1000 Hz sampling rate. These are the hardware filters and therefore part of all the published records. Additionally, a 50 Hz notch filter is present in the EEG-1200 hardware to reduce electrical grid interference.
+Following this master thesis' proposal of splitting \gls{bci} development in at least four distinct papers, as discussed in Section \ref{subsec:bci_opportunities_obstacles_lack_of_testing}, this master thesis focusing on the classification pipeline should provide a summary of the data used.
+The \gls{mi} \gls{eeg} data used for this master thesis is from an open-source dataset by \citet{eeg_data}.
+The complete dataset provided by them consists of four different types of \gls{mi} interaction tasks, of which this master thesis works with the three class \gls{mi} \gls{eeg} dataset provided as the "CLA" dataset.
 
-% zeggen fixed window surround event want nodig voor CSP en ook gewoon makkelijkste computationally en common baseline
-% -1 tot 2 sec,  shortend naar 0.1 tot 0.6 en -.25 tot 1.25
+The hardware used for the data acquisition of this dataset uses the international 10-20 system discussed in \ref{subsec:biomedical_signals_working_with_eeg_standards}.
+The used \gls{eeg} equipment makes use of wet electrodes and a sampling rate of 200\gls{hz}.
+The participants were seated in a comfortable position throughout the experiment and remained motionless throughout the recordings, with a fixed gaze-fixation point to limit the presence of muscle artefacts who were discussed in Section \ref{subsec:biomedical_signals_working_with_eeg_artefacts}.
+The provided data is band-pass filtered to include the frequencies between 0.53\gls{hz} and 70\gls{hz}.
+A band-stop filter was also in place to remove \gls{ac} artefacts as discussed in Section \ref{subsec:biomedical_signals_working_with_eeg_artefacts}.
+All of these frequency filters are hardware filters directly integrated into the hardware of the EEG-1200 hardware used for data acquisition.
 
-TODO
+The recordings of the CLA dataset provides balanced sampels of three \gls{mi} tasks reffered to as left-hand \gls{mi}, right-hand \gls{mi} and neutral \gls{mi}.
+For the left-hand and right-hand \gls{mi} tasks, the participants were asked to imagine closing and opening the respective fist once.
+For the neutral \gls{mi} task, the patient was asked to perform no \gls{mi}.
+The communication of which task to perform was done via a simple graphical interface.
+Upon showing the icon for which task to perform (event onset), the subject should perform the specific \gls{mi} task.
+The icon is visible on the screen for one second past the event onset.
+A random resting period of 1.5 to 2.5 seconds was present between the event offset and the event onset of a new task.
+This process was repeated for 15 minutes, after which a longer resting period was present where it was ensured the \gls{eeg} equipment remained properly seated.
+In total, three 15-minute trials were performed in one session.
+This resulted in roughly 300 samples for each \gls{mi} task for each session.
+Some subjects only had one recorded session whilst others had up to three.
+All subjects were healthy, between 20 and 35 years old and living in Turkey.
+No specific survey was performed to test the \gls{mi} capabilities beforehand nor does \citet{eeg_data} describe that any specific \gls{mi} training happened.
 
-% As discussed in Section \ref{subsec:processing_signals_general_pipeline_windowing}, different windowing stragies exist but are not epxlored in this master thesis, in part due to \gls{csp} assuming a known fixed time window as discussed in Section \ref{subsec:offline_bci_system_two_step_ml_csp_explained}.
+The data from the CLA dataset is provided as MatLab files originally.
+To make them usable in Python, the experimental notebooks provided on the GitHub repository of this project provide conversion methods to convert these MatLab files to MNE Raw objects \citep{github_project, mne}.
+To facilitate the use of this dataset in Python for other researchers, the GitHub repository provides the CLA dataset as \gls{fif} files \citep{github_project}.
+These \gls{fif} files can be easily opened with MNE Python and include all provided details by \citet{eeg_data} stored in the associated info object.
+The utility file $\texttt{CLA\_dataset.py}$ provides many functions for working with this CLA dataset in Python.
+
+% ---------------------------------------------- 
+% DATA PREPERATION
+% ---------------------------------------------- 
+\section{Data preparation}
+\label{sec:evaluation_data_preperation}
+
+% TODO: start here
+
+% window length
+% epoch
+% It is noted that due to the used representation of the \gls{eeg} signal, values are extremely small and have been multiplied by 1000000 before being used in the \gls{dl} pipelines as such small values may cause unwanted behaviour from the \gls{dl} approaches.
 
 % ---------------------------------------------- 
 % INTRA SESSION
@@ -71,28 +109,45 @@ TODO
 TODO
 
 % ---------------------------------------------- 
-% CALIBRATION
+% PILOT STUDIES
 % ---------------------------------------------- 
-\section{Calibration evaluation}
-\label{sec:evaluation_calibration}
+\section{Additional pilot studies}
+\label{sec:evaluation_pilot_studies}
+
+TODO
+
+% - - - - - - - - - -
+% more data
+% - - - - - - - - - -
+\subsection{Improving intersubject performance by providing more data}
+\label{subsec:evaluation_pilot_studies_more data}
 
 
 TODO
 
-% ---------------------------------------------- 
-% COMPLEXITIES
-% ---------------------------------------------- 
-\section{Comparing complexities}
-\label{sec:evaluation_complexities}
-% Link naar possible op cheap hardware
+% - - - - - - - - - -
+% dropping electrodes
+% - - - - - - - - - -
+\subsection{Reducing complexity by subsampling the electrodes}
+\label{subsec:evaluation_pilot_studies_electrode_drop}
+
 
 TODO
 
-% ---------------------------------------------- 
-% INTER SESSION
-% ---------------------------------------------- 
-\section{Expected results of moving to an online system}
-\label{sec:evaluation_online}
+% - - - - - - - - - -
+% calibration
+% - - - - - - - - - -
+\subsection{Additional finetuning through minimal calibration}
+\label{subsec:evaluation_pilot_studies_calibration}
+
+
+TODO
+
+% - - - - - - - - - -
+% prediction time
+% - - - - - - - - - -
+\subsection{Comparison of prediction times}
+\label{subsec:evaluation_pilot_studies_prediction_time}
 
 
 TODO
