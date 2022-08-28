@@ -425,7 +425,16 @@ Intuitively, this is how both papers visualise or determine the learned frequenc
 Likewise, the second convolutional layer of these models corresponds to the temporal filtering done in \gls{fbcsp}.
 Looking at the learned kernel weights, it can be seen how much each channel of the input \gls{eeg} contributes to the output of the second convolutional layers.
 This allows for creating \glspl{topomap} similar to those that can be created from a \gls{csp} feature extraction map.
-An example of such \glspl{topomap} created from multiple \gls{csp} components is given in Figure XXX. % TODO add figure of CSP from subsampled!
+An example of such \glspl{topomap} created from multiple \gls{csp} components is given in Figure \ref{fig:offline_bci_csp_visual}.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{../images/offline/csp_vis.pdf}
+    \captionsetup{width=0.85\linewidth}
+    \captionsetup{justification=centering}
+    \caption{\glspl{topomap} created from multiple \gls{csp} components using subsampled channels from the international 10-20 system.}
+    \label{fig:offline_bci_csp_visual}
+\end{figure}
 
 For more details on how these visualisation work for the discussed \gls{cnn} models, the reader is referred to the original paper proposing them \citep{eeg_model_eegnet,eeg_model_hbm}.
 Neither \citet[][Authors of EEGNet ]{eeg_model_eegnet} or \citet[][Authors of DeepConvNet and ShallowConvNet ]{eeg_model_hbm} provide their source code to recreate these visualisations.
