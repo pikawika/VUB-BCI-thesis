@@ -1,8 +1,8 @@
-# BCI Master Thesis @ VUB 2021 - 2022
+# Master Thesis @ VUB 2021 - 2022
 
 This repository includes installation instructions, source code, extra documents and more from Lennert Bontinck's Master Thesis on processing and using EEG signals from motor imagery tasks in a BCI setting @ VUB 2021 - 2022.
 
-The current draft version of the thesis can be found [here](paper/bci_master_thesis.pdf), the source code of this LaTeX document is [also available](paper/source) and the source files for the figures are available [here](figures/).
+> The PDF version of the master thesis is available [here](paper/bci_master_thesis.pdf).
 
 ## Table of contents
 
