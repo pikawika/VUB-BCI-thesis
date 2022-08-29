@@ -1,17 +1,3 @@
-% TODO:
-%   - Kijk na of titels in header overflowen
-% ----------  
-% Questions:
-%   - XXX
-
-
-
-
-
-
-
-% feedback is belangrijk en kan soms voor actie zijn om dan te cancellen met bv eye movement oid
-
 \chapter{Moving towards an online BCI system}
 \label{ch:online_bci_system}
 
@@ -23,45 +9,75 @@
 \label{sec:online_bci_system_introduction}
 % NOTE: "Introduction" exists in each chapter and gives a short intro to the chapter + what can be expected in the chapter
 
-Whilst the focus of the experiments in this master thesis is on the evaluation of offline \gls{mi} \gls{eeg} classification pipelines, the link to a complete \gls{bci} system should not be forgotten.
-For this reason, this chapter discusses some of the key differences in what is the wanted goal of a \gls{bci} system vs that of a classifier.
+Whilst the focus of this master thesis is on the evaluation of offline \gls{mi} \gls{eeg} classification pipelines, this chapter aims to provide a link of these pipelines to a complete \gls{bci} system.
+Some of the key differences in what is the wanted goal of a \gls{bci} system compared to that of a \gls{mi} \gls{eeg} classifier are discussed.
 This includes the difference between classification and regression in the pipeline of a \gls{bci} system, working with relatively limited data and computational power and focusing on limiting risk rather than the best overall accuracy.
 Next, some common steps in going from these proposed offline \gls{mi} \gls{eeg} classification pipelines to an online \gls{bci} are discussed.
 Since these are provided as pointers rather than effective guidelines, most explanations in this chapter remain high-level.
-This includes providing some details on working with continuous data, tricks to improve classification performance, the need for spatial subsampling and a revision of smart mapping between predicted classes and actions on the external device.
+This includes providing some details on working with continuous data, tricks to improve classification performance, the potential of spatial subsampling and a revision of smart mapping between predicted classes and the actions taken on the external device.
 
 
 % ---------------------------------------------- 
 % INTRODUCTION
 % ---------------------------------------------- 
-\section{The different goals of a BCI system}
+\section{BCI system try to solve another problem}
 \label{sec:online_bci_system_different_goal}
 
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{../images/online/bci_pipeline.pdf}
+    \captionsetup{width=0.8\linewidth}
+    \captionsetup{justification=centering}
+    \caption{Overview of a complete BCI pipeline.}
+    \label{fig:online_bci_system_full_bci_pipeline}
+\end{figure}
 
-% pipeline geven van complete BCI zoals in arnay
 
-TODO
+Whilst the general pipeline for classifying brain signals discussed in Section \ref{sec:processing_signals_general_pipeline} forms the majority of the \gls{bci} system pipeline, the components to map predicted class labels to effective actions taken on the external device are missing.
+Figure \ref{fig:online_bci_system_full_bci_pipeline} shows the complete \gls{bci} pipeline where a high-level controller for mapping classification labels to specific actions on the external device is present.
+Whilst rather uncommon in \gls{bci} research, it is also possible for a regression model to be used to create a more low-level mapping to the external device \citep{bci_review_arnau}.
+The difference between both approaches is discussed in the following section.
+Some other differences are present, such as a far more complex dataset, relatively low-powered computational hardware and a focus on minimizing risk rather than maximising accuracy.
+These things are also briefly discussed in the following sections.
 
 % - - - - - - - - - -
 % Classification vs regression
 % - - - - - - - - - -
 
-\subsection{Classification or regression}
+\subsection{Using classification vs regression in a BCI system}
 \label{subsec:online_bci_system_different_goal_classi_vs_reg} 
 
-% classification vs regression: This can either be classified into a discrete set of classes or regression into a value that is relevant to the control application. regression vooral in exoskeleton en prosthesis by data from bci_review_arnau
-% maar ook Arnau: EEG is exclusively used in classification tasks, as demonstrated by figure 5, where the decoded intention can be mapped to a low-level device action or to a high-level command that is composed of a sequence of low-level actions
+As discussed in Section \ref{subsec:bci_common_use_cases_prosthesis_exoskeleton}, one of the use-cases for \glspl{bci} is their use as a novel interaction method for prosthesis and exoskeleton control.
+Ideally, the control over such an exoskeleton would require some sort of continuous mapping rather than a discrete one.
+A traditional exoskeleton might rely on muscle movement to create a near 1:1 mapping where continuous values are passed to the low-level controller which denotes the angles of the arm and as such the desired angles of the exoskeleton.
+Regression algorithms can be used to map a feature vector, i.e. from \gls{emg}, to a continuous output that denotes such angles.
 
-TODO
+Since classification is discrete by design, such a near 1:1 mapping is not feasible.
+Instead, an often limited amount of classes exist to keep learning possible and a high-level controller is used to map one class label with a relatively complex set of actions rather than just one minuscule one.
+The design of such a system was already shown in Figure \ref{fig:example_arm_control} for a robot arm.
+Intuitively, the mapping possible between a regressor and a low-level controller could be compared with the control of a joystick allowing fine control of movement in a game.
+In that setting, classification linked to a high-level controller could be compared with the regular buttons on the game controller which are mapped to an action that performs multiple complex steps upon the press of one button.
+
+An argument could be made that the regressor approach is more intuitive and allows for better control over the external device.
+However, due to the discussed complexity of brain signals, creating an effective mapping from brain signals to a continuous value is a far harder problem than the classification of only a select few classes.
+This is further illustrated by a lack of successful literature on proposed regression pipelines for \gls{eeg} systems as discussed by \citet{bci_review_arnau}.
 
 % - - - - - - - - - -
 % comp power
 % - - - - - - - - - -
 
-\subsection{Limited data and computational power}
+\subsection{Complexer data and less powerful systems}
 \label{subsec:online_bci_system_different_goal_speed} 
 
-TODO
+The data used for the experiments of this master thesis, and most of the open-source \gls{mi} \gls{eeg} datasets available, contain data recorded in near lab-like environments.
+Section \ref{sec:evaluation_data_source} discusses the used dataset for the experiments in this master thesis where it will become clear that these recordings are also relatively lab-like.
+Whilst this makes for clean data, it is by no means representative of the real world.
+As discussed in Section \ref{subsec:biomedical_signals_working_with_eeg_artefacts}, many artefacts such as electrode popping and \gls{emg} artefacts are expected when the \gls{bci} user is walking, talking or even just looking around.
+This means the test metrics obtained from these-open source datasets are likely to be non-representative of their performance when used in a real-world setting.
+
+Adding to this, the portability and affordability desired for a \gls{bci} system mean that the available hardware is often as cheap as possible, especially for the processing unit.
+As such, complex deep learning models requiring specific \glspl{gpu} or drivers to be present are non-feasible for real-world use.
+This causes a problem for the convolutional \gls{lstm} extension to EEGNet proposed in this master thesis, as is further discussed in Section \ref{sec:evaluation_pilot_studies} where some additional pilot studies are performed.
 
 % - - - - - - - - - -
 % risky errors
@@ -70,7 +86,12 @@ TODO
 \subsection{Limiting risky errors}
 \label{subsec:online_bci_system_different_goal_limit_risk} 
 
-TODO
+As discussed in Section \ref{sec:evaluation_eval_metrics}, reporting on test accuracy alone has little meaning for a \gls{bci} setting, where additional metrics such as the \gls{ppv} are desired to obtain a complete insight on the model's performance.
+This is particularly important when moving to an online system.
+A system having 80\% accuracy but where all misclassification results in the passive case being predicted, where no action is performed, is far more desirable than one with an accuracy of 90\% but where it performs a risky action 10\% of the time during misclassification.
+Traditional optimisation of a model will typically only look at accuracy or loss metrics and as such doesn't take into account this information.
+There exist multiple ways of calculating the risk-related metrics of a classifier.
+For the evaluation of the pipelines in this master thesis, Section \ref{sec:evaluation_eval_metrics} details three such metrics that give insight into the risky behaviour of the classifier.
 
 % ---------------------------------------------- 
 % INTRODUCTION
@@ -78,28 +99,37 @@ TODO
 \section{Common steps towards an online BCI system}
 \label{sec:online_bci_system_different_common_steps}
 
-TODO
+With the general difference between creating, training and optimizing a classifier and a complete \gls{bci} system discussed, some proposals are made on how to adopt the classification pipeline to consider these aspects.
 
 % - - - - - - - - - -
-% continous data
+% continuous data
 % - - - - - - - - - -
 
 \subsection{Working with continuous data}
 \label{subsec:online_bci_system_different_common_steps_sliding_window} 
 
-TODO
+Due to the use of \gls{ers} and \gls{erd} potentials by using \gls{mi}, which can be induced without an external stimuli, there is no specific event onset (see section \ref{subsec:biomedical_signals_working_with_eeg_inducing_methods}).
+As such, the windowing strategy used in the experiments of this master thesis is not applicable.
+Whilst it could be made to work, by providing an event onset indication on regular time intervals when the user is allowed to perform a \gls{mi} task for classification, it is not the most attractive solution.
+As such, sliding windows, preferably overlapping, should be used.
+However, such a window design makes the problem complex to learn and classify.
+As such, some of the evaluations discussed in Chapter \ref{ch:evaluation} should ideally be reproduced using such sliding windows to finetune parameters and gain insight into the model performance when using sliding windows.
 
 % - - - - - - - - - -
 % improving performance
 % - - - - - - - - - -
 
-\subsection{Improving classification performance}
+\subsection{Improving classification performance and adding more classes}
 \label{subsec:online_bci_system_different_common_steps_better_classi} 
 
-% \Citet{bci_prostheses} also highlight that whilst multi-label classification of \gls{eeg} is possible with considerable accuracy in an offline lab setting, the number of detectable classes is limited in a real-time and real-life environment. uit bci_common_use_cases_prosthesis_exoskeleton
 
-
-TODO
+Even when the classification results obtained are satisfactory, small risky errors can already be troublesome for some risky \gls{bci} systems.
+As such, additional tricks should be put into place to increase the performance of these models w.r.t. risky misclassification.
+For example, if using sliding windows and assuming that misclassification is independent of the previous sliding window, requiring three consecutive classifications of the same class before performing a specific action can reduce the original misclassification of that class from 20\% to just 0.8\% ($0.2*0.2*0.2$).
+However, the assumption that misclassification is independent of the previous sliding window does not hold in real life, so the actual misclassification decrease will be less.
+Alternatively, before performing a potentially risky action this action could be communicated to the user in such a way that the user can still cancel it.
+This cancelling can then be done by some of the easier to detect \gls{emg} artefacts discussed in section \ref{subsec:biomedical_signals_working_with_eeg_artefacts} as these have high classification accuracy.
+Another interesting technique is using the \gls{roc} curve for determining an ideal prediction threshold such that the FPR of risky actions is minimal as was discussed in Section \ref{subsubsec:processing_signals_evaluating_and_using_evaluation_valtest}.
 
 % - - - - - - - - - -
 % spatial subsampling
@@ -108,27 +138,25 @@ TODO
 \subsection{Spatial subsampling}
 \label{subsec:online_bci_system_different_common_steps_subsampling} 
 
-TODO
-
-% - - - - - - - - - -
-% more classes
-% - - - - - - - - - -
-
-\subsection{Adding more classes}
-\label{subsec:online_bci_system_different_common_steps_more_classs} 
-
-TODO
+As discussed in section \ref{subsec:biomedical_signals_working_with_eeg_anatomy}, when it is known in which region of the brain the signals of interest are expected to originate, the channels can be subsampled to only include those that are of interest.
+This decrease the complexity, making the prediction computationally easier to perform and thus easier to execute on the affordable and portable hardware desired from a general \gls{bci} system.
+Additionally, removing the frontal electrodes will remove the channels most related to an artefact from facial muscle movement and eye movement.
+This could help in reducing the added data complexity by removing some of the artefact-filled channels.
 
 % - - - - - - - - - -
 % mapping
 % - - - - - - - - - -
 
-\subsection{Smart mapping between classes and actions}
+\subsection{Configuring the high-level controller}
 \label{subsec:online_bci_system_different_common_steps_mapping} 
 
-% Efforts are being made to develop standardized platforms that facilitate the deployment of control systems into real or simulated environments. Previous research solutions attempted to create common ecosystems for neurorobotic applications, in terms of open source frameworks such as the Neurorobotics platform (Falotico et al 2017), ROS-Health (Beraldo et al 2018) and its successor ROS-Neuro (Tonin et al 2019). ROS-Neuro was already successfully used in a DL context (Valenti et al 2020, 2021). For more general applications, the OpenVibe platform provides several environments and integrates with a large variety of devices for BCI control experiments (Renard et al 2010).
+Once the \gls{mi} \gls{eeg} pipelines are reconfigured to work better for the use of a sliding window in an online \gls{bci} setting, the mapping from classification labels to actions may be done.
+Not only should this mapping take into account the \gls{ppv} of a class to determine which is most fit for taking risky actions, but the mapping and interaction with the external device itself should also be carefully designed to require the least possible steps to achieve the desired result.
+This was already explained with the robotic arm example in Section \ref{subsec:bci_opportunities_obstacles_motivating_examples}.
 
-TODO
+Once an appropriate mapping is determined, implementing it such that the external device does the desired action can be a difficult task since many devices often have a different way of being programmatically controlled (interfacing method).
+As discussed by \citet{bci_review_arnau}, there are currently proposals being made for standardized platforms such that multiple external devices such as exoskeleton and prosthesis share an equal interfacing method.
+These standardized platforms can also allow for simulated interaction, which can be helpful when combined with \gls{vr} to let a new user test if a certain external device would work as desired. 
 
 % ---------------------------------------------- 
 % Other required changes
@@ -136,4 +164,6 @@ TODO
 \section{Chapter conclusions}
 \label{sec:online_bci_system_other_changes_conclusion}
 
-Some experiments will be performed regarding the common steps of going to an online system, however, these studies are only considered pilot studies as described in the next chapter, Chapter \ref{ch:evaluation}.
+This chapter gave a brief overview of the challenges present when going from an offline \gls{mi} \gls{eeg} classification pipeline to an online \gls{bci} system.
+Some broad steps were discussed that could be performed to facilitate this move to an online \gls{bci} system.
+In the next chapter, some pilot studies are also discussed that provide initial results of some of the changes proposed in this section.
