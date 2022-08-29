@@ -22,15 +22,14 @@
 \label{sec:biomedical_signals_introduction}
 % NOTE: "Introduction" exists in each chapter and gives a short intro to the chapter + what can be expected in the chapter
 
-Whilst Chapter \ref{ch:bci} has provided an in-depth intuitive introduction to \glspl{bci}, some more technical aspects need addressing as well to provide a computer scientist with all of the required foundational knowledge for \gls{bci} research.
+Whilst Chapter \ref{ch:bci} has provided an in-depth intuitive introduction to \glspl{bci}, some more technical aspects need addressing as well to provide a computer scientist with all of the required foundational knowledge that is necessary for \gls{bci} research.
 This chapter provides the required technical knowledge on the data that \gls{bci} systems use, brain signals.
 Brain signals are only one of the many types of \gls{biosignal} present in the human body.
 Whilst from a computer scientist's perspective brain signals may just be another type of input data to a classification model, having at least a basic understanding of this data is crucial in making good classification algorithms for \gls{bci} systems.
-Even when using \gls{dl} approaches where no manual feature engineering has to be done and where basic models without much thought may have pleasing results, understanding the data will allow for the creation of better models.
+Even when using \gls{dl} approaches where no manual feature engineering is necessary and where basic models may have satisfactory results, understanding the data will allow for the creation of better models.
 This understanding of the data also helps in troubleshooting why some models may not have the desired results.
 
-To provide this basic understanding, this chapter starts by briefly discussing \glspl{biosignal} in general.
-It is discussed what \glspl{biosignal} are and where they originate from in the human body.
+To provide this basic understanding, this chapter starts by briefly discussing what \glspl{biosignal} are and where they originate from in the human body.
 After this general discussion on \glspl{biosignal}, a focus is put on the different \glspl{biosignal} from the human brain, with brain signals measured using \gls{eeg} in particular.
 This \gls{eeg} measuring technique and other measuring techniques are also discussed in greater detail.
 Whilst it is addressed that \gls{eeg} has some fundamental shortcomings over other measuring modalities, it also has some attractive properties over these alternatives.
@@ -43,11 +42,11 @@ These attractive properties are listed and provide an argument as to why the rem
 \section{Biosignals in the human body}
 \label{sec:biomedical_signals_biosignals_in_human}
 
-In theory, a \glspl{biosignal} is nothing more than a measurement over time of a living
+\Glspl{biosignal} are nothing more than a measurement over time of a living
 being.
 In practice, these \glspl{biosignal} are closely related to physiological processes.
 This makes it possible to monitor or detect those physiological processes using \glspl{biosignal}.
-\Glspl{biosignal} can be produced by different energy forms, such as the electrical energy form when measuring \gls{eeg} in \gls{mv}.
+\Glspl{biosignal} can be produced by different forms of energy, such as the electrical energy form when measuring \gls{eeg} in \gls{mv}.
 Table \ref{tab:biomedical_signals_energy_forms} summarizes some of these energy forms and which type of \glspl{biosignal} they can produce.
 Whilst living beings, including humans, produce many different types of \glspl{biosignal}, this master thesis will only consider time-varying electrical \glspl{biosignal}.
 These types of \glspl{biosignal}, sometimes reffered to as \gls{elecbiosignal}, are the ones used as input data for \gls{bci} systems.
@@ -78,16 +77,16 @@ These types of \glspl{biosignal}, sometimes reffered to as \gls{elecbiosignal}, 
 % how produced
 % - - - - - - - - - -
 
-\subsection{Origin of electricity inside the human body}
+\subsection{Origin of electrical activity inside the human body}
 \label{subsec:biomedical_signals_biosignals_electrical}
 
-Electricity in the human body, better known as bioelectricity, can be seen as the generation or action of tiny electric currents and voltages in physiological processes.
+Electrical activity in the human body, better known as bioelectricity, can be seen as the generation or action of electric currents and voltages in physiological processes.
 As shown in Table \ref{tab:biomedical_signals_energy_forms}, the measurement of this bioelectricity is what enables the monitoring of \glspl{elecbiosignal}.
-This is one of the reasons \glspl{biosignal} are closely related to physiological processes since it measures the bioelectricity used in some of these processes.
-A complete understanding of how bioelectricity is made, maintained and transmitted in the human body isn't required for a computer scientist to contribute to the \gls{bci} field.
+This is one of the reasons \glspl{biosignal} are closely related to physiological processes since it measures the bioelectricity generated by these processes.
+A complete understanding of how bioelectricity is generated, maintained and transmitted in the human body isn't required for a computer scientist to contribute to the \gls{bci} field.
 However, a superficial understanding of this process makes it easier to understand the limits of the accompanied \glspl{elecbiosignal}.
-For this reason, the remainder of this section gives a simplified explanation of how bioelectricity is made, maintained and transmitted in the human brain.
-This explanation is based on chapter 12 of the recently renewed book by \citet{bioelec_book}, an \gls{eeg} focused explanation of bioelectricity by \citet{eeg_bioelec_creation} and multiple YouTube videos by Neuroscientifically Challenged\footnote{\url{https://youtu.be/tIzF2tWy6KI}}\footnote{\url{https://youtu.be/W2hHt_PXe5o}}\footnote{\url{https://youtu.be/WhowH0kb7n0}}.
+As such, the remainder of this section gives a simplified explanation of how bioelectricity is made, maintained and transmitted in the human brain.
+This explanation is based on chapter 12 of the recently renewed book by \citet{bioelec_book} and an \gls{eeg} focused explanation of bioelectricity by \citet{eeg_bioelec_creation}.
 
 % | | | | | | | | | | | | |
 
@@ -202,6 +201,7 @@ Neuroimaging is a discipline focused on capturing the anatomy and function of th
 As such, the modalities for measuring biosignals in the brain are mostly a subcollection of neuroimaging techniques.
 Many different types of these modalities exist, both invasive and non-invasive.
 There is no singular best measuring modality and often a trade-off has to be made between affordability, the \gls{snr}, the ease-of-use and the risks involved.
+The \gls{snr} metric provides the ratio of the meaningful input to that of meaningless or unwanted input.
 Section \ref{subsec:biomedical_signals_measuring_brain_modalities} will discuss these modalities in further detail.
 The remainder of this master thesis then focuses on the \gls{eeg} modality as it remains one of the most attractive modalities for \gls{bci} research.
 
@@ -372,7 +372,7 @@ Whilst the poor temporal resolution of \gls{fnirs} limits it usability for onlin
 % Why EEG
 % - - - - - - - - - -
 
-\subsection{The attractiveness of non-invasive EEG for BCIs}
+\subsection{Non-invasive EEG for BCIs}
 \label{subsec:biomedical_signals_measuring_brain_why_eeg}
 
 It is clear from table \ref{tab:biomedical_signals_modalities} that invasive modalities for measuring \glspl{elecbiosignal} from the brain generaly have excellent spatial and temporal resolution.
@@ -728,7 +728,7 @@ Because of this, subject-wise finetuning may be required for obtaining optimal r
 
 
 For general \glspl{bci} to consistently work with brain signals, it is often desired that the expected signals can be induced by the user.
-There are two possible approaches for this, either by using external stimulations to trigger \glspl{ep} or by relying on specific tasks performed by the user which causes \gls{ers} or \gls{erd} without the need for external stimulation.
+There are two possible approaches for this, either by using external stimulus to trigger \glspl{ep} or by relying on specific tasks performed by the user which causes \gls{ers} or \gls{erd} without the need for external stimulation.
 Figure \ref{fig:biomedical_signals_inducing_methods} provides an overview of these methods.
 
 % | | | | | | | | | | | | |

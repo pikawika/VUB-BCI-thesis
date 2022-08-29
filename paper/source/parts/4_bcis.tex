@@ -14,41 +14,29 @@
 % ---------------------------------------------- 
 \section{Introduction}
 \label{sec:bci_introduction}
-% NOTE: "Introduction" exists in each chapter and gives short intro to chapter + what can be expected in chapter
+% NOTE: "Introduction" exists in each chapter and gives a short intro to the chapter + what can be expected in the chapter
 
 \Glspl{bci} are systems, consisting of hardware and software, that aim to read or even stimulate a user's brain signals for a wide variety of applications.
 Whilst many of these applications for \glspl{bci} revolve around providing novel interaction methods for computer applications, they are capable of fulfilling more general tasks as well.
 Because of this, \glspl{bci} are also referred to as \glspl{bmi} and can be seen as a special type of the more general \glspl{hmi} and \gls{bc} systems.
-A well-known Professor in this field is Jonathan R. Wolpaw who was also the guest editor for the first international meeting devoted to \gls{bci} research and development as part of the IEEE conference on Rehabilitation Engineering.
-During that meeting, a first formal definition for \glspl{bci} was given:
+A well-known Professor in this field, Jonathan R. Wolpaw, was part of the group that provided the following first formal definition for \glspl{bci}:
 
 \setlength{\epigraphwidth}{0.9\textwidth}
-\epigraph{A brain-computer interface is a communication system that does not depend on the brain’s normal output pathways of peripheral nerves and muscles.}{\textit{\citet{first_bci_meeting}}}
+\epigraph{A brain-computer interface is a communication system that does not depend on the brain's normal output pathways of peripheral nerves and muscles.}{\textit{\citet{first_bci_meeting}}}
 
-Since then, Jonathan R. Wolpaw has (co-)authored a lot of influential papers in the field of \glspl{bci} \citep{bci_rehabilitation, bci_in_medicine, first_bci_meeting} and created a great introductory textbook to the field \citep{bci_book}.
-As a board-certified neurologist, Wolpaw's work is often centred around applications in a more medical setting rather than a commercial one. In this medical setting, his opinion on what defines a \textit{perfect} \gls{bci} is often strived for and can be summarized as follows:
+Considering Wolpaw's many contributions to the field, his opinion on what defines a \textit{perfect medical \gls{bci}} is often strived for \citep{bci_rehabilitation, bci_in_medicine, first_bci_meeting, bci_book}.
+Whilst being focused on medical applications, these properties would also be beneficial for commercial \gls{bci} systems.
+For these reasons, this first chapter relates many of the discussed topics to the definition below quite a lot.
+It is noted that the term communication in these definitions simply depicts the exchange of information rather than specific human communication such as speech.
 
 \setlength{\epigraphwidth}{0.9\textwidth}
 \epigraph{The perfect [medical] \gls{bci} is a safe and affordable system which works all the time, does not require the permanent assistance of a technician or a scientist, restores communication at “normal” speed, is aesthetically acceptable, is reliable and, for the same function, does not require more concentration for a patient user than what it does for an able-bodied person.}{\textit{\citet{bci_book, cheap_bci_feasibility}}}
 
+This first chapter aims to provide all the required background information needed for understanding \glspl{bci} on an intuitive level.
+It is written in such a way that it is accessible to new people in the field that are otherwise confronted with the steep learning curve related to the \gls{bci} field.
+For those that already have experience in the field or are looking for a more technical discussion of the field are invited to read diagonally through this first chapter, focusing primarly on the summaries provided in Section \ref{subsec:bci_gaining_popularity_summary} and \ref{subsec:bci_common_use_summary}, Section \ref{sec:bci_opportunities_obstacles} in its entirety and the chapter conclusions under Section \ref{sec:bci_concolusion_and_proposing_ours}.
 
-One of the things this thesis aims to study is how far \glspl{bci} have come concerning this definition of a perfect \gls{bci}.
-It is noted that the term communication in these definitions simply depicts the exchange of information rather than specific human communication such as speech. For example, a computer mouse could be seen as a communication device that exchanges information about the user's intent to the computer.
-Many of these properties for a perfect medical \gls{bci} system would also be beneficial for commercial \gls{bci} systems.
-
-Especially the commercial interest in \glspl{bci} has seen a recent spike, through multiple big-tech companies such as Meta (formerly known as Facebook), Valve (a major gaming company) and Neuralink (an Elon Musk company) showing interest in the field \citep{facebook_bci_blog, bci_valve, neuralink_whitepaper}.
-This has given rise to the public interest for potential life-improving \gls{bci} applications as well as some public outrage on more ethical aspects that challenges these systems. 
-
-This first part of the thesis aims to provide all required background information needed for understanding \glspl{bci}.
-The remainder of this chapter further introduces the main rationale behind \glspl{bci} research by discussing the rise in popularity of both medical and commercial \glspl{bci}, some practical examples of \gls{bci} systems that have been developed and some of the opportunities and obstacles in the field. The chapter ends with a note on some of the ethical challenges for \gls{bci} systems and a discussion of the proposed system for this thesis.
-Chapter \ref{ch:biomedical_signals} gives more depth on the origins and measurability of brain signals while Chapter \ref{ch:processing_signals} addresses the techniques and technologies needed to process brain-signals and take actions based on their interpretation. 
-As research on \glspl{bci} is highly multidisciplinary, entering the field as a computer scientist can be rather intimidating due to the steep learning curve of the ideas, technologies, challenges and terminology used in such research.
-To lower this initial learning curve, these first three chapters aim to introduce the most important concepts in an easy-to-understand manner for a typical computer scientist student with some \gls{ai} background.
-These first chapters follow no standardized procedure for systematic review.
-However, special attention was payed to favor papers from reputable sources, such as famous authors in the field (i.e. Jonathan R. Wolpaw).
-A focus was also put on articles which have been influential based on both the amount of times the work itself is cited in other articles and the performance of these other articles citing the original article.
-The latter was determined by using the connected papers tool\footnote{\url{https://www.connectedpapers.com/}}.
-
+For those interested in this chapter in its entirety, this chapter further introduces the main rationale behind \glspl{bci} research by discussing the rise in popularity of both medical and commercial \glspl{bci}, some practical examples of \gls{bci} systems that have been developed and some of the opportunities and obstacles in the field. The chapter ends with a note on some of the ethical challenges for \gls{bci} systems and a discussion of the proposed system for this thesis.
 The interested reader is also referred to the great introductory book on \glspl{bci} by \citet{bci_book} and the review article by \citet{bci_review} when more introductory insight is desired.
 Whilst these resources have dated a little and state-of-the-art has changed since then, the main ideas discussed in them remain unchanged.
 A more recent, systematic review article by \citet{bci_review_arnau} focuses on current \gls{dl} techniques for use with \glspl{bci} among other \gls{bc} systems.
