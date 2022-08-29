@@ -4,89 +4,136 @@
 % Questions:
 %   - XXX
 
-% uitleggen hoe van deze offline classificatie naar een effectieve BCI gaan
-% pipeline geven van complete BCI zoals in arnay
-% regression uitleggen
-% classification vs regression: This can either be classification into a discrete set of classes or regression into a value that is relevant to the control application. regression vooral in exoskeleton en prosthesis by data from bci_review_arnau
-% maar ook arnau: EEG is exclusively used in classification tasks, as demonstrated by figure 5, where the decoded intention can be mapped to a low-level device action or to a high-level command that is composed of a sequence of low-level actions
 
-% One publication uses EEG for wheelchair control (Zgallai et al 2019) uit Arnau
 
-% zeggen dat voor bepalen van uw systeem dat ge wilt doen moet ge zien naar arnau zijn review: 5.2. A literature-based guide to DL for biosignal control
 
-% Efforts are being made to develop standardized platforms that facilitate the deployment of control systems into real or simulated environments. Previous research solutions attempted to create common ecosystems for neurorobotic applications, in terms of open source frameworks such as the Neurorobotics platform (Falotico et al 2017), ROS-Health (Beraldo et al 2018) and its successor ROS-Neuro (Tonin et al 2019). ROS-Neuro was already successfully used in a DL context (Valenti et al 2020, 2021). For more general applications, the OpenVibe platform provides several environments and integrates with a large variety of devices for BCI control experiments (Renard et al 2010).
 
-% \Citet{bci_prostheses} also highlight that whilst multi-label classification of \gls{eeg} is possible with considerable accuracy in an offline lab setting, the number of detectable classes is limited in a real-time and real-life environment. uit bci_common_use_cases_prosthesis_exoskeleton
+
 
 % feedback is belangrijk en kan soms voor actie zijn om dan te cancellen met bv eye movement oid
 
-\chapter{Moving from an offline classification system toward an online BCI system}
+\chapter{Moving towards an online BCI system}
 \label{ch:online_bci_system}
+
+
+% ---------------------------------------------- 
+% INTRODUCTION
+% ---------------------------------------------- 
+\section{Introduction}
+\label{sec:online_bci_system_introduction}
+% NOTE: "Introduction" exists in each chapter and gives a short intro to the chapter + what can be expected in the chapter
+
+Whilst the focus of the experiments in this master thesis is on the evaluation of offline \gls{mi} \gls{eeg} classification pipelines, the link to a complete \gls{bci} system should not be forgotten.
+For this reason, this chapter discusses some of the key differences in what is the wanted goal of a \gls{bci} system vs that of a classifier.
+This includes the difference between classification and regression in the pipeline of a \gls{bci} system, working with relatively limited data and computational power and focusing on limiting risk rather than the best overall accuracy.
+Next, some common steps in going from these proposed offline \gls{mi} \gls{eeg} classification pipelines to an online \gls{bci} are discussed.
+Since these are provided as pointers rather than effective guidelines, most explanations in this chapter remain high-level.
+This includes providing some details on working with continuous data, tricks to improve classification performance, the need for spatial subsampling and a revision of smart mapping between predicted classes and actions on the external device.
+
+
+% ---------------------------------------------- 
+% INTRODUCTION
+% ---------------------------------------------- 
+\section{The different goals of a BCI system}
+\label{sec:online_bci_system_different_goal}
+
+
+% pipeline geven van complete BCI zoals in arnay
+
+TODO
+
+% - - - - - - - - - -
+% Classification vs regression
+% - - - - - - - - - -
+
+\subsection{Classification or regression}
+\label{subsec:online_bci_system_different_goal_classi_vs_reg} 
+
+% classification vs regression: This can either be classified into a discrete set of classes or regression into a value that is relevant to the control application. regression vooral in exoskeleton en prosthesis by data from bci_review_arnau
+% maar ook Arnau: EEG is exclusively used in classification tasks, as demonstrated by figure 5, where the decoded intention can be mapped to a low-level device action or to a high-level command that is composed of a sequence of low-level actions
+
+TODO
+
+% - - - - - - - - - -
+% comp power
+% - - - - - - - - - -
+
+\subsection{Limited data and computational power}
+\label{subsec:online_bci_system_different_goal_speed} 
+
+TODO
+
+% - - - - - - - - - -
+% risky errors
+% - - - - - - - - - -
+
+\subsection{Limiting risky errors}
+\label{subsec:online_bci_system_different_goal_limit_risk} 
+
 TODO
 
 % ---------------------------------------------- 
 % INTRODUCTION
 % ---------------------------------------------- 
-\section{Introduction to this chapter}
-\label{sec:online_bci_system_introduction}
-% NOTE: "Introduction" exists in each chapter and gives a short intro to the chapter + what can be expected in the chapter
-
-TODO
-
-% ---------------------------------------------- 
-% ISSUES WITH GOING ONLINE
-% ---------------------------------------------- 
-\section{Common problems with going to an online BCI system}
-\label{sec:online_bci_system_common_problems}
-
-TODO
-
-% ---------------------------------------------- 
-% Calibration
-% ---------------------------------------------- 
-\section{Realistic calibration procedure}
-\label{sec:online_bci_system_common_calibration}
-
-TODO
-
-% ---------------------------------------------- 
-% Working with continuous data
-% ---------------------------------------------- 
-\section{Working with continuous data}
-\label{sec:online_bci_system_continous_data}
+\section{Common steps towards an online BCI system}
+\label{sec:online_bci_system_different_common_steps}
 
 TODO
 
 % - - - - - - - - - -
-% Fixed intervals
+% continous data
 % - - - - - - - - - -
 
-\subsection{Using a fixed timing for instructions}
-\label{subsec:online_bci_system_continous_data_fixed_timing}
+\subsection{Working with continuous data}
+\label{subsec:online_bci_system_different_common_steps_sliding_window} 
 
 TODO
 
 % - - - - - - - - - -
-% Sliding windows
+% improving performance
 % - - - - - - - - - -
 
-\subsection{Sliding windows}
-\label{subsec:online_bci_system_continous_data_sliding_window}
+\subsection{Improving classification performance}
+\label{subsec:online_bci_system_different_common_steps_better_classi} 
+
+% \Citet{bci_prostheses} also highlight that whilst multi-label classification of \gls{eeg} is possible with considerable accuracy in an offline lab setting, the number of detectable classes is limited in a real-time and real-life environment. uit bci_common_use_cases_prosthesis_exoskeleton
+
 
 TODO
 
-% ---------------------------------------------- 
-% Low computational power
-% ---------------------------------------------- 
-\section{Working with low computational power}
-\label{sec:online_bci_system_low_computational_power}
+% - - - - - - - - - -
+% spatial subsampling
+% - - - - - - - - - -
+
+\subsection{Spatial subsampling}
+\label{subsec:online_bci_system_different_common_steps_subsampling} 
+
+TODO
+
+% - - - - - - - - - -
+% more classes
+% - - - - - - - - - -
+
+\subsection{Adding more classes}
+\label{subsec:online_bci_system_different_common_steps_more_classs} 
+
+TODO
+
+% - - - - - - - - - -
+% mapping
+% - - - - - - - - - -
+
+\subsection{Smart mapping between classes and actions}
+\label{subsec:online_bci_system_different_common_steps_mapping} 
+
+% Efforts are being made to develop standardized platforms that facilitate the deployment of control systems into real or simulated environments. Previous research solutions attempted to create common ecosystems for neurorobotic applications, in terms of open source frameworks such as the Neurorobotics platform (Falotico et al 2017), ROS-Health (Beraldo et al 2018) and its successor ROS-Neuro (Tonin et al 2019). ROS-Neuro was already successfully used in a DL context (Valenti et al 2020, 2021). For more general applications, the OpenVibe platform provides several environments and integrates with a large variety of devices for BCI control experiments (Renard et al 2010).
 
 TODO
 
 % ---------------------------------------------- 
 % Other required changes
 % ---------------------------------------------- 
-\section{Other required changes and chapter conclusions}
+\section{Chapter conclusions}
 \label{sec:online_bci_system_other_changes_conclusion}
 
-TODO
+Some experiments will be performed regarding the common steps of going to an online system, however, these studies are only considered pilot studies as described in the next chapter, Chapter \ref{ch:evaluation}.
