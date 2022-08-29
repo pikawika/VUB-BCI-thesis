@@ -132,6 +132,30 @@ This cancelling can then be done by some of the easier to detect \gls{emg} artef
 Another interesting technique is using the \gls{roc} curve for determining an ideal prediction threshold such that the FPR of risky actions is minimal as was discussed in Section \ref{subsubsec:processing_signals_evaluating_and_using_evaluation_valtest}.
 
 % - - - - - - - - - -
+% calibration
+% - - - - - - - - - -
+
+\subsection{Calibrating the classification pipeline before use}
+\label{subsec:online_bci_system_different_common_steps_calibration} 
+
+It was discussed that brain signals are non-stationary oscillatory signals that can vary greatly between subjects and even between sessions of the same subject.
+Besides using techniques to reduce risky misclassification, it is often the case that calibration of a \gls{dl} model is performed.
+The main idea behind calibration is using a data acquisition method for obtaining labelled samples of the subject wanting to use the \gls{bci} before actually trying to predict for that session of the subject.
+These additional labelled samples are often obtained in less than 20 minutes \citep{eeg_model_eegnet}.
+After being obtained, a previously trained model, either intersession or intersubject, is loaded and the additional data is fed to the model for further training.
+The idea is that this reduces an intersubject or intersession problem to an intrasession problem, as the classifier has access to the data from the same session it asked to predict samples for after calibration.
+Since this calibration data is often limited, a model can sometimes overfit the training data in such a small amount of time that the validation scores won't increase.
+This often requires stopping certain parts of a model from learning, \textit{freezing} them, and only training the last part(s) of the model further on the additional data using a very low learning rate.
+
+Calibration can have varying results, if too few samples are present and the model overfits right away neither validation nor test accuracy will increase and they often even decrease.
+If too many new samples are present, it might be better to just train a completely new shallow model using an intrasession approach.
+Finding the sweet spot is not an easy task and often it is too long in time for a user to enjoy the process of calibration each time they want to use the \gls{bci} system.
+For these reasons, data augmentation techniques for \gls{eeg} are being proposed which aim to artificially increase the number of samples obtained from a short calibration period.
+\citet{gan_eeg_augmentation} has shown the use of a \gls{gan} to augment such \gls{eeg} data with satisfactory results.
+
+
+
+% - - - - - - - - - -
 % spatial subsampling
 % - - - - - - - - - -
 

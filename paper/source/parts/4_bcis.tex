@@ -1,11 +1,3 @@
-% TODO:
-%   - Changes Arnau
-%   - P300 is GEEN steady state (zie Common methods for inducing electrical brain activity)
-%   - Further subdivision of "four papers to bci" mogelijk want we hebben bv offline classi dat nog verder studied zou moeten worden voor online use
-% ----------  
-% Questions:
-%   - 
-
 % NOTE: Uncomment this if the use of parts is desired
 \part{Understanding brain-computer interfaces}
 \label{part:understanding}
@@ -529,7 +521,6 @@ A recent example of this is the controversy surround Clearview AI.
 Here, state-of-the-art \gls{dl} image recognition algorithms are used on billions of images collected from all over the internet, including social-media platforms, to recognize almost anyone with a public profile linked to them.
 As further discussed by \citet{clearview_ai}, this technology conflicts with many EU laws yet was used by multiple police departments.
 Adding to this, new regulatory changes are being proposed to limit the use of algorithms which lack explainability and interpretability \citep{eu_ai_blackbox_report, explainable_ai_policy}.
-This challenges many \gls{ml} and \gls{dl} approaches currently used as explained further in Section \ref{subsec:processing_signals_common_issues_exaplainable}.
 
 Nevertheless, there is still a high amount of resources being put into \gls{ml} and \gls{dl} research.
 Throughout history, these technologies have been linked with the biomedical setting a lot.
@@ -599,8 +590,8 @@ Section \ref{subsec:processing_signals_ml_and_dl_dl_classifiers} discusses \gls{
 A \gls{dl} approach is interesting as it can allow for skipping the feature extraction process where good features have to be found by the developer of the system.
 Finding such good features can not only be time-consuming but limited expert knowledge can also make creating features that carry enough differentiating information impossible, meaning that even the best classifiers can't learn from them.
 Adding to this, \gls{dl} approaches in \gls{cad} systems have also been proven to outperform state-of-the-art \gls{ml} approaches \citep{CAD_ml_dl_kbs}.
-However, \gls{dl} models are more challanging in terms of explainability and interpretability as further discussed in Section \ref{subsec:processing_signals_common_issues_exaplainable}.
-The challenge in \gls{dl} approaches is finding a suitable model and training it in a way such that it doesn't overfit, a phenomenon further discussed in section \ref{subsec:processing_signals_common_issues_overfitting}.
+However, \gls{dl} models are more challanging in terms of explainability and interpretability.
+The challenge in \gls{dl} approaches is finding a suitable model and training it in a way such that it doesn't overfit.
 In a way, \gls{dl} allows a person with limited domain knowledge of the data to obtain a better result as it bypasses the need for manual feature extraction.
 However, this is a double-edged sword as limited knowledge of the data increases the risk of bias, overfitting and other potential issues.
 
@@ -775,7 +766,7 @@ Sensitivity could be seen as the accuracy of the model on positive cases (i.e. i
 However, \citet{eeg_dangerous_situation_car} do provide the \gls{roc} and provide reasoning for choosing an optimal classification threshold that resulted in this 70\% accuracy.
 This threshold specifies how certain the classification prediction should be before acting on its classification.
 This shows that it is important to look at more than just accuracy, as for this application being good at taking action in case a dangerous scenario is present is ideal, but taking action when there is no dangerous scenario could create a dangerous scenario itself.
-Section \ref{subsec:processing_signals_evaluating_and_using_evaluation} discusses how to evaluate systems using different metrics and reasoning in more detail.
+Section \ref{sec:evaluation_eval_metrics} discusses how to evaluate systems using different metrics and reasoning in more detail.
 Many other examples of using \glspl{bci} for the detection of symptoms that can lead to traffic accidents exist. 
 \Citet{eeg_motion_sickness} developed a system that could estimate motion sickness levels, which in turn could again be used to alert drivers to take a break.
 
@@ -1361,7 +1352,7 @@ Second, as discussed the brain signals produced during \gls{mi} tasks can vary g
 This variability means that creating a general model is far less successful, the trained model does not generalize well to other users.
 This makes \glsfirst{tl} far more difficult.
 This issue cascades to making the training procedure longer and having higher inter-patient variability in terms of accuracy results \citep{cheap_bci_feasibility, mi_training_hard}.
-The generalisation issue is an important one in many \gls{ml} applications and is discussed further in Section \ref{subsec:processing_signals_common_issues_generalisation}.
+The generalisation issue is an important one in many \gls{ml} applications.
 
 These issues with \gls{mi} result in datasets that seem comparable from a high-level description of the performed \gls{mi} task but are very different in the used training procedure and data acquisition process.
 The general \gls{mi} capabilities of the participants can also differ greatly between datasets, with some performing a survey beforehand to only include participants with a high possibility of being good at \gls{mi}.
@@ -1436,8 +1427,6 @@ The system proposed by \Citet{cheap_bci_feasibility} is of less importance in th
 \subsubsection{Detailed literature on complex classification pipelines}
 \label{subsubsec:bci_opportunities_obstacles_motivating_examples_mi_models}
 
-% TODO: reread once thesis finished to provide better references
-
 The above discussed article by \citet{cheap_bci_feasibility} provides great insight on the steps required to develop an \gls{eeg}-based consumer-grade \gls{bci} which uses \gls{mi} related signals.
 Since \citet{cheap_bci_feasibility} uses a binary classification model, there are only two possible outputs of the classifier, which is too limited for most applications.
 However, when working with \glspl{bci}, a lack of training samples combined with noisy and often high-dimensional data makes multi-class classification considerably harder than binary.
@@ -1449,7 +1438,7 @@ Many other multi-class classification pipelines have been proposed in literature
 These proposed pipelines generally work on both consumer-grade and medical-grade systems, although consumer-grade systems can often benefit more from pipelines with specific noise-reduction steps.
 Some of the proposed pipelines also focus on providing a general model which has been trained on data from multiple users and has usable performance for unseen users.
 Whilst such models have poorer performance compared to one trained for a specific user, they can be used as an initial model to allow the user to explore the possibilities of the \gls{bci} without having to undergo the often tedious training data collection process.
-Such a general model can also be used as a base model for calibration, a process based on the idea of \glsfirst{tl} further discussed in Section \ref{subsec:processing_signals_evaluating_and_using_calibration}.
+Such a general model can also be used as a base model for calibration, a process based on the idea of \glsfirst{tl} further discussed in Section \ref{subsec:online_bci_system_different_common_steps_calibration}.
 
 A complete in-depth review of all of the different approaches that have been proposed for \gls{eeg} classification falls outside the scope of this research paper.
 \Citet{eeg_analysis_methods_epilepsy_review} compared \glsfirst{lr}, \glsfirst{ann}, \glsfirst{svm} and \glsfirst{cnn} for a binary classification task of either being epileptic \gls{eeg} data or not.
@@ -1464,7 +1453,6 @@ The \gls{cnn}-based approach by \citet{eeg_model_hbm} is commonly regarded as cu
 The article by \citet{eeg_model_hbm} includes two different models, a deep \gls{cnn} named \text{DeepConvNet} and a shallower one named \text{ShallowConvNet}.
 In Chapter \ref{ch:offline_bci_system}, both of these models will be implemented and discussed further.
 \Citet{eeg_model_hbm} also describe a method of extracting a visualisation of the used brain signals by the model, which can aid in the explainability and interpretability of the model.
-Explainability and interpretability are further discussed in Section \ref{subsec:processing_signals_common_issues_exaplainable}, Chapter \ref{ch:offline_bci_system} further addresses the visualisation technique.
 
 One issue with more complex \gls{cnn}-based pipelines such as the DeepConvNet variant by \citet{eeg_model_hbm}, is the time and computational resources it takes to train the model and do predictions with it.
 The latter is an issue for real-time classification, something that is needed for an online \gls{bci} system which often works with relatively low-powered computational units.
@@ -1801,7 +1789,6 @@ This external noise includes common artifacts such as electrical interference an
 
 All of these factors already makes brain signals an incredibly complex data source for \gls{ml} and \gls{dl}, as is used in \gls{bci} systems.
 The limited knowledge of the brain's inner working and the dynamic, nonstationary and noisy nature of brain signal measurements also challenges the explainability and interpretability of these signals.
-This issue of explainability and interpretability is further discussed in Section \ref{subsec:processing_signals_common_issues_exaplainable}.
 Besides these factors, brain measurements are far harder to collect resulting in an often very limited amount of training data \citep{bci_applications}.
 This makes many of the techniques used in fields where gigantic datasets are available, unapplicable for \gls{bci} research.
 Take for example the \gls{eeg} \gls{mi} dataset by \citet{eeg_data}, which is one of the largest publicly available datasets of this type.
@@ -2011,9 +1998,6 @@ Will all companies put in the required resources and effort to protect their \gl
 \glsreset{bci}
 \glsreset{biosignal}
 
-% TODO: redo this part once thesis is finished
-\textbf{NOTE: this will be edited once the thesis is "finished"}
-
 This first chapter gave an in-depth but intuitive introduction to \glspl{bci}.
 Section \ref{sec:bci_gaining_popularity} discussed the growing scientific and commercial interest in \glspl{bci}.
 Sections \ref{sec:bci_common_use_cases} and \ref{sec:bci_opportunities_obstacles} provided some more insight on the common use cases for \glspl{bci} and some of the opportunities and obstacles for \gls{bci} research.
@@ -2035,11 +2019,10 @@ The remainder of Part \ref{part:understanding} will provide some more general \g
 To do this, Chapter \ref{ch:biomedical_signals} will discuss in greater detail what \glspl{biosignal} such as brain signals are, where they originate from and how they can be measured.
 With a deeper understanding of what \gls{eeg} data is, Chapter \ref{ch:processing_signals} discusses in greater detail how they can be processed.
 All of the components from a common \gls{bci} pipeline are discussed and some examples of these components are given.
-Alternatives to this common \gls{bci} pipeline are also discussed together with the role of \gls{ml} and \gls{dl} and some of the issues that often arise when creating classifiers for these systems.
 
-The next part, Part \ref{part:development} puts this theory to practice by discussing the development of multiple \gls{bci} pipelines.
-This includes the implementation of state-of-the-art two-step \gls{ml} approaches and one-step \gls{dl} approaches.
-Two \gls{lstm} extensions to the \gls{cnn} based EEGNet model are also proposed.
-Whilst focusing on an offline \gls{bci} system in Chapter \ref{ch:offline_bci_system}, the required steps to go to an online system are discussed in Chapter \ref{ch:online_bci_system}.
+The next part, Part \ref{part:development} puts this theory to practice by discussing the development of seven offline \gls{mi} \gls{eeg} classification pipelines.
+This includes the implementation of two \gls{csp} based two-step \gls{ml} approaches and three literature proposed state-of-the-art \gls{cnn} based one-step \gls{dl} approaches.
+Two \gls{lstm} extensions to the \gls{cnn} based EEGNet model are also proposed and evaluated accordingly.
+Whilst focusing on an offline \gls{bci} system in Chapter \ref{ch:offline_bci_system}, some of the required steps to go to an online system are discussed in Chapter \ref{ch:online_bci_system}.
 The implemented system makes use of existing \gls{eeg} data from multiple \gls{mi} tasks for classification.
 All of the implemented variants of the \gls{bci} pipeline are compared and the results of this master thesis are further discussed in Part \ref{part:reflection}, the final part.

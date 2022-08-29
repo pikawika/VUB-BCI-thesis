@@ -1,13 +1,3 @@
-% TODO:
-%   - Kijk na of titels in header overflowen
-% ----------  
-% Questions:
-%   - XXX
-
-
-% In a new chapter, reset the GLS to once again use full version in first occurence
-\glsresetall
-
 \chapter{Decoding brain signals with machine learning}
 \label{ch:processing_signals}
 
@@ -463,7 +453,6 @@ Manual feature extraction such as the one discussed in this section mostly tries
 Features that are derived are those that an expert deems fit for describing and learning the problem.
 This is great in terms of explainability and interpretability, as combined with the right \gls{ml} classification algorithm such as \gls{rf} it can give direct insight into how a prediction pipeline came to its conclusion.
 This is desired in many fields, especially the medical one.
-As described in Section \ref{subsec:processing_signals_common_issues_exaplainable}, explainability and interpretability could even become a requirement of general \gls{ai} applications.
 As such, traditional two-step \gls{ml} still has significant ongoing research as is shown by the many alternatives on \gls{csp} that have been proposed, as further discussed in Section \ref{sec:offline_bci_system_two_step_ml}.
 
 However, as discussed by \citet{CAD_ml_dl_kbs} for medical lung imaging applications, \gls{dl} that learns some form of features from data in an automated manner outperform traditional two-step \gls{ml} classification in many tasks.
@@ -655,7 +644,6 @@ For more practical implementation details, \citet{ml_dl_book} provides a discuss
 
 As the name suggests, \gls{lda} uses linear decision boundaries to classify data points.
 The most attractive feature of \gls{lda} is the fact that it has no hyperparameters to tune.
-As discussed in Section \ref{subsec:processing_signals_evaluating_and_using_hyperparameter_tuning}, hyperparameter tuning is a time-consuming process that explodes in possibilities as more tunable components are added to the pipeline.
 For this reason, \gls{lda} is often used when already hyperparameter tuning many parameters for the feature extraction components, as eliminating classifier finetuning can speed up to process significantly.
 Adding to this, \gls{lda} is inherently multiclass, has an easy-to-compute closed form solution and has been shown to work well with \gls{csp}-based feature extraction \citep{csp_lda1, csp_lda2}.
 These are the exact reasons \gls{lda} is used in this master thesis when using complex hyperparameter tuning setups for \gls{csp} and frequency filtering.
@@ -814,76 +802,239 @@ By tuning the hyperparameter $\sigma$, the smoothness of the decision boundary i
 
 % | | | | | | | | | | | | |
 
-\subsubsection{Random forest (RF) (TODO)}
+\subsubsection{Random forest (RF)}
 \label{subsubsec:processing_signals_ml_and_dl_ml_classifiers_rf}
 
-% TODO: start here, with LDA being simple SVM capable byt many hyperparameters and poor explainibility due to high dimension, we opt for RF which ...
-% Besrpreken dat je kan visualiseren
+To understand the \gls{rf} classifier, decision trees, bootstrapping, aggregation and ensemble learning should first be understood.
+Decision trees are a type of classifier that learns how to best split the training data based on certain feature value comparisons.
+For example, in a dataset of healthy patients and patients with lung cancer, it might be found that the best first split to make for dividing the data into two most discriminative sets is splitting on whether the subject is younger or older than 60. 
+As subsequent splits happen, a tree-like structure is made where every split has a rule, a \textit{decission} and where steps in a particular direction are called branches.
+The branches eventually lead to a collection of training data each from the same class.
+At this point, further splitting of this branch stops and this last part is called a leaf.
+When predicting using the decision tree, each subsequent condition is checked and the tree is decent in the right direction.
+When reaching a leaf, the model returns the class label that is most dominant among the training samples in that leaf.
+When no additional restrictions are in place, a decision tree can be made that is so big and precise that all training samples are classified correctly, assuming no two training samples are identical but from another class. 
+Since this is a clear sign of overfitting, common methods for limiting this behaviour include having a fixed maximum depth (amount of consecutive splits), a minimal amount of samples needed to perform an additional split and more.
+The criteria used to determine what split to make is dependent on the implementation, \citet{dec_trees_compared} compares to the most important ones: ID3, C4.5, and CART.
 
-TODO 
+Decision trees on their own are often limited in performance when applied to a complex dataset.
+\Gls{rf} works by combining many different decision trees to form a forest, where each decision tree is trained using a bootstrapped version of the training data and an often limited random subselection of features.
+Bootstrapping is the simple technique of building a new dataset based on randomly picking examples with replacements from the original training set.
+This results in distinct trees, as each tree had different training sets and different features to work with.
+In essence, a complex problem is divided into many simplified ones.
+having 100 to 2000 decision trees in a random forest is not uncommon.
+To decide the final classification, each decision tree's output is collected through a process called aggregation where a majority vote or other technique can be used to determine the final individual classification output of the \gls{rf}.
+As \gls{rf} uses both bootstrapping and aggregation, it is often called a \textit{bagging} method.
+Since it uses many weaker models to create a strong model, it is often called an \textit{ensemble} method.
+
+
 
 
 % - - - - - - - - - -
 % Common DL classifiers
 % - - - - - - - - - -
 
-\subsection{Common one-step DL classifier layers (TODO)}
+\subsection{Common one-step DL classifier layers}
 \label{subsec:processing_signals_ml_and_dl_dl_classifiers}
 
-% Shallow vs deep learning uitleggen (!!!)
-% Zie file:///Users/lennertbontinck/Library/CloudStorage/OneDrive-VrijeUniversiteitBrussel/SEM%202/Master%20thesis/books/ml_book.pdf
-
-
-% These approaches have been chosen because of their relevance to this thesis. For a more detailed review of deep learning approaches for EEG classification, the reader is referred to the works of Roy et al. (2019) and Craik et al. (2019). wolf
-
-% TODO: cnn bespreken a la: The most common type of DL neural networks at this time are the previously described CNNs (LeCun et al 1989). The subsequent application of convolutional layers results in a high-level representation of the input as stipulated by Goodfellow et al (2016). For example, in an object classification task, the network learns to extract primitive shapes from the raw input (a matrix of pixel values) in the first layer and then learns to extract objects from these primitive features in the next layer.
-% en dus niet perse laatste layers voor classification maar vaak laatste layers terug mlps oid ipv puur convolutional layer
-
-% In practice, neural networks can combine many layers of different kinds. It is not unusual to find neural networks that start with a few convolutional layers, to detect patterns independently of where they are in the input (such as edges in an image, or features in a 1D signal), then have one LSTM layer to be able to make sense of sequences of inputs, followed by a few feed-forward MLP-like layers to map what the LSTM layer learned to actual outputs. In the papers that we review in this article, great care is always given to explain and motivate the choice of neural architecture. Designing a neural network requires experience, as there is no systematic approach. We refer readers interested in knowing more than what we present here to books such as Goodfellow et al (2016) and Aggarwal (2018).
-
-
-% The dominance of CNN with regard to model choice can be attributed to the relative ease of use and the popularity of this architecture in other research fields that use DL. While RNN architectures have been successful in closely related fields such as speech recognition and natural language processing, they have only seen limited deployment in a biosignal decoding context. Typically, CNNs also have less trainable parameters which makes them less sensitive to small datasets and lower their computational requirements. Other architectures were investigated for biosignal decoding, but state-of-the-art research mostly focuses on CNN architectures (Buongiorno et al 2019, Roy et al 2019).
-
-% nog een pro CNN en waarom wij focussen op CNN: The choice of DL model is highly dependent on the application requirements and how the data is preprocessed. CNNs can often work with raw data that is only cleaned in the preprocessing step, while other models will typically necessitate feature extraction before passing the input to the ANN (Schirrmeister et al 2017). Alternatively, RNNs are also used for biosignal decoding, but these architectures typically need more technical knowledge to deploy and evaluate. The literature review clearly shows that CNN is the most deployed model and that biosignal decoding models are typically rather shallow, which can be attributed to the limited availability of data.
-
-
-% Designing a neural network requires experience, as there is no systematic approach. More information on neural networks and their architectures is presented in the appendix, section ‘Neural networks’.
 
 
 
-% bekijk ml_strats_used_in_papers
 
-TODO
-The most important concepts of \gls{dl} with respect to this master thesis will also be discussed, including fully connected layers (as seen in \glspl{ann}), convolutional layers and pooling layers (as seen in \glspl{cnn}) along with various important concepts such as dropout, batch normalization and activation functions.
+\Glsfirst{dl} is a subset of \gls{ml} that can be described as any \glsfirst{ann} model that has at least three layers.
+\Gls{ann}, often simply reffered to as \gls{nn}, are named after the biological neural network present in the brain and in part discussed in Section \ref{sec:biomedical_signals_biosignals_in_human}.
+Where it was discussed the biological neural network consists of many connected neurons that can activate each other in varying strengths based on the number of neurotransmitters released, an \gls{ann} consists of neurons connected through edges which have a learnable weight associated that specifies how much one node activates another.
+Figure \ref{fig:processing_signals_mlp} visualizes one of the most basic \gls{nn} possible, a \gls{mlp} with three layers, the minimum amount to be considered a \gls{dl} model.
+As discussed in Section \ref{subsec:processing_signals_ml_and_dl_difference}, \gls{nn} are universal function approximators.
+For the \gls{mlp} shown in Figure \ref{fig:processing_signals_mlp}, it is a nested function where each layer is seen as a different function.
+As such, this \gls{mlp} can be mathematically written as Equation \ref{eq:nn_math}, where $y$ denotes the scalar returned by the singular output node.
+The function of the first two layers, $\mathbf{f}_1$ and $\mathbf{f}_2$, are vector functions as these layers consist of multiple neurons.
+This mathematical notation is further detailed by \citet{ml_book}.
 
-% Besproken als zijnde hier gezegd
-% convolutional layer
-% depthwise conv 2D
-% seperable conv
-% 1D conv 
-% dropout & 2D spatial dropout voor overfitting
-% batch norm voor internal covariate shift
-% lstm (with 1D conv kernel and regular and bidirectional)
+
+\begin{equation}
+    \label{eq:nn_math}
+    y = f_{NN}(\mathbf{x}) = f_3(\mathbf{f}_2(\mathbf{f}_1(x)))
+\end{equation}
+
+
+
+Sometimes \gls{dl} networks are reffered to as \textit{deep} or \textit{shallow}, as is the case for the DeepConvNet and ShallowConvNet \gls{cnn} based classificiation models considered for the experiments of this master thesis.
+These definitions of shallow and deep \gls{nn} are rather ambiguous as following the provided definition of \gls{dl}, any \gls{nn} with more than three layers is considered a deep one.
+Concerning the models used in this master thesis, the difference between a shallow and a deep \gls{nn} is that the latter has a significantly large amount of layers whilst the former doesn't.
+
+A \gls{dl} model is defined by the layers it has, of which there consist many different types, too many to be listed here.
+As a result, this section only glosses over the layers of most interest for this master thesis.
+A focus is put on the intuitive explanation of the concepts with resources provided if more technical detail is desired.
+The \gls{dl} book by \citet{dl_book} and the more general book on \gls{ml} by \citet{ml_book} also provide more insight on these layers.
+\Citet{ml_dl_book} provides a more hands-on book where the implementation of \gls{dl} models using Keras is discussed.
+For the understanding of the \gls{lstm} architecture, the reader is referred to the work by \citet{staudemeyer_understanding_2019}.
+Due to time constraints, it was not feasible to provide a detailed discussion on this layer, as it requires the explanation of some general \gls{rnn} concepts as well, which fall outside the scope of this master thesis.
+It is important to know that these layers are created with time series in mind and as such are good at working with time series, which \gls{eeg} is.
+Their direct focus on this kind of data is why these layers are used for both the extension to EEGNet proposed by this master thesis.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Multilayer perceptron (MLP)}
+\label{subsubsec:processing_signals_ml_and_dl_dl_classifiers_mlp}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.5\linewidth]{../images/pipeline/mlp.pdf}
+    \captionsetup{width=0.8\linewidth}
+    \captionsetup{justification=centering}
+    \caption{An example of a three-layer \gls{mlp} with a multidimensional input layer and a one-dimensional output layer. Dots denote neurons and lines denote edges which have an associated weight that can be learned.}
+    \label{fig:processing_signals_mlp}
+\end{figure}
+
+a \glsfirst{mlp} is one of the simplest types of a \gls{ffnn} and it is often reffered to as a vanilla \gls{nn} \citep{ml_book}.
+An \gls{mlp} consists of an input layer, one or more hidden layers and an output layer, all of which can be multidimensional of differing sizes.
+Al neurons are fully connected to the neurons in the consecutive layer in a one-directional manner, explaining why they are a type of \gls{ffnn}.
+Depending on the activation function used in the output layer, \gls{mlp} can be a function approximator for a classification issue or a regression issue.
+For a \gls{mlp} to learn non-linear mappings from input to output, a non-linear activation function has to be used in at least one of its layers.
+
+The architectural design of a \gls{mlp} is conceptually simple.
+Despite its simplicity, being a universal function approximator and providing non-linearity through a correct activation function choice, a \gls{mlp} can be very capable.
+However, given each neuron is connected to all neurons of the following layer, it is a full-connected \gls{nn} and as such can quickly blow up in the number of trainable parameters when sufficient neurons and layers are used.
+Thus, considering the number of edges and neurons present, there are more interesting approaches available.
+Whilst none of the models considered in this master thesis made explicit use of a \gls{mlp}, they did make use of a dense layer, which is a fully connected \gls{ff} layer and as such is similar to a singular layer of the \gls{mlp}.
+
+
+
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Activation functions}
+\label{subsubsec:processing_signals_ml_and_dl_dl_classifiers_af}
+
 % activation: elu
+As discussed, the activation function is what provides the \gls{mlp} with non-linearity.
+Intuitively, this is easy to understand as all the neuron has is a sum of weighted inputs and a bias.
+None of these operations is non-linear and as such, no non-linear functionality can be learned as is.
+When providing the neuron with the activation function, it uses this activation function and passes its sum of weighted inputs to it to obtain the output.
+If this activation function is non-linear then the network can learn non-linear mappings.
+As such, using non-linear activation functions has almost become a requirement for obtaining capable \gls{nn}.
+
+In theory, any arbitrary function can be used as an activation function and many different activation functions exist.
+Choosing the right one can influence the training behaviour of the model a lot.
+Whilst not required in theory, most of the time each neuron of a layer uses the same activation function.
+This is also denoted in the notation of the \gls{mlp} in Equation \ref{eq:nn_math}.
+
+As described by \citet{dl_book}, the default go to activation function currently is \gls{relu}, the definition for which is given in Equation \ref{eq:relu}.
+\gls{relu} was first described by \citet{first_relu}
+Whilst this equation looks linear, it is not given the change from a flat line on $0$ for $x<=0$ and a linear function for $x>0$.
+\gls{relu} is a simple activation function as it either passes zero or its input value.
+As such, using \gls{relu} is computationally efficient, which is one of the reasons it is so popular.
+\gls{relu} can also be used as classification function as described by \citet{relu_classi}.
+
+\begin{equation}
+    \label{eq:relu}
+    ReLU = f(x) = max(0, x)
+\end{equation}
+
+However, by far the most famous classification function, especially for multiclass classification is softmax, which is used by all \gls{dl} networks considered in this master thesis and was first introduced by \citet{softmax}.
+Softmax provides a value between 0 and 1 for each of the output nodes, the sum of which totals 1.
+Strictly taken it is not a probability but rather a certainty metric of the network that happens to total 1.
+The network would have to be calibrated on another dataset such that this output indeed represents probabilities \citep{softmcax_calibration}.
+The softmax function is given in Equation \ref{eq:softmax}
+
+\begin{equation}
+    \label{eq:softmax}
+    \text{softmax} = f(x_i) = \frac{e^{x_i}}{\sum_j e^{x_j}}
+\end{equation}
+
+Another commonly used activation function is \gls{elu} and is used by most of the \gls{dl} models considered for this master thesis.
+It was first proposed by \citet{elu} who argued that despite being slower to calculate than \gls{relu}, it causes faster convergence overall.
+It also eliminates the "dead \gls{relu}" problem, where a \gls{relu} activated neuron gets stuck in a position where it always outputs zero and thus is "disabled".
+The \gls{elu} function is given in Equation \ref{eq:elu}.
+The $\alpha$ parameter is a tunable value between 0 and 1.
+It was left at its default of 1 in this master thesis.
+
+\begin{equation}
+    \label{eq:elu}
+    ELU = f(x) = \begin{cases}
+        x  & if x > 0 \\
+        \alpha(e^x -1) & otherwise
+      \end{cases}
+\end{equation}
+
+Many other activation functions exist but are not used in this master thesis.
+ShallowConvNet, as proposed by \citet{eeg_model_hbm}, makes use of the self-explanatory square and log activation function.
+Activation functions are still an active area of research where gains are still possible, as discussed by \citet{rl_activation_function_compare}.
+These gains revolve mainly around having more stable and faster convergence rather than obtaining better accuracy results.
+
+
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Convolutional neural networks}
+\label{subsubsec:processing_signals_ml_and_dl_dl_classifiers_cnn}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{../images/pipeline/cnn.pdf}
+    \captionsetup{width=0.8\linewidth}
+    \captionsetup{justification=centering}
+    \caption{Visualisation of a convolutional layer.}
+    \label{fig:processing_signals_cnn}
+\end{figure}
+
+
+\Gls{cnn} are a type of \gls{nn} consisting of multiple consecutive convolutional layers often having intermediate pooling layers.
+A convolution using a 2x2 kernel and stride 1 working over a 2D input is shown in figure \ref{fig:processing_signals_cnn}.
+The idea of a convolutional layer is as follows.
+For the specified amount of output channels $n$, $n$ different kernels of a specified kernel size are made.
+Each of these kernels has trainable parameters which represent the values to use for the convolution.
+The kernel passes over the input in a left to right, top to bottom order, stepping by a step size that can be configured as the stride.
+On each step, the convolution is calculated and a singular value is placed on the appropriate location of the output.
+Taking the convolution of a kernel over the input consists of multiplying the overlapped values and taking the sum.
+When no padding is used, as is the case for the example in Figure \ref{fig:processing_signals_cnn}, downsizing occurs due to the kernel reaching the border of the input space.
+This reduction corresponds to the size of the kernel in the corresponding orientation minus 1.
+Thus for Figure \ref{fig:processing_signals_cnn}, both horizontal and vertical dimensions are reduced by 1.
+Settings exist to apply padding, which adds zeros or some other values around the image such that the output dimensions are equal to the input.
+
+It is important to stress that the same kernel weights are used for processing the whole input.
+This makes convolutional approaches an interesting approach, as the amount of trainable parameters is limited and it has been shown that convolution layers are excellent at extracting spatially correlated features \citep{cnn_explained}.
+When considering the 2D matrix shown in Figure \ref{fig:processing_signals_cnn} as an \gls{eeg} signal, using a kernel of height 1, a 1D convolution is done over the \gls{eeg} signals, without modifying the channels dimension.
+This is done by many of the models considered in this master thesis.
+The convolutional approach is further described in detail by \citet{cnn_explained}.
+When using convolutional networks on a timeseries, it can detect local patterns and as discussed in Section \ref{subsec:offline_bci_system_one_step_dl_eegnet} it can even learn frequency filters.
+
+Besides a convolutional layer, a pooling layer is often used right after a convolutional layer.
+Pooling layers are made to reduce the dimensions of their input.
+As such, a pooling layer could be seen as a convolutional layer but where the kernel used a predefined fixed function that doesn't learn or adapt itself.
+Famous examples of this are max-pooling and mean-pooling.
+
+The proposed models in this master thesis make use of a variant of the conventional layer called depthwise separable convolution and depthwise convolution.
+Depthwise separable convolution consists of two steps.
+First, a depthwise spatial convolution is performed, this acts on each input channel separately.
+Afterwards, a pointwise convolution is performed, this merges the resulting output channels.
+These variants are mostly used due to the speed increase they offer, as their outputs can also be achieved by regular multiple regular convolutional steps.
+These extension of \gls{cnn} are further discussed by \citet{lu_optimizing_2022} who also discuss further computational optimisations.
+
+% | | | | | | | | | | | | |
+
+\subsubsection{Dropout and batch normalization}
+\label{subsubsec:processing_signals_ml_and_dl_dl_classifiers_drop}
+
+Dropout is a layer most commonly used to combat overfitting.
+A dropout layer disables random neurons of its input by setting them to zero.
+This is done at a given probability.
+By doing so, you are forcing neurons to learn from many different neurons, as relying on one neuron for its output will degrade its performance when this neuron is turned off due to the dropout functionality.
+Intuitively, this incentivizes neurons to consider the input of more neurons and as such has proven to significantly help in reducing overfitting.
+A more detailed explanation as to why this is, is provided by \citet{dropout}.
+
+Batch normalization is a normalization layer.
+It collects a batch of samples, determines the mean and standard deviation and provides the normalized samples as output by having them subtracted by the mean and then divided by the standard deviation.
+In doing so the values have a zero mean and unit variance.
+This helps combat the internal covariate shift problem which is further discussed by \citet{ioffe_batch_2015}.
 
 % ---------------------------------------------- 
 % EVALUATING AND USING
 % ---------------------------------------------- 
-\section{Using and evaluating the classification pipeline (TODO)}
+\section{Evaluating the performance of the pipeline}
 \label{sec:processing_signals_evaluating_and_using}
-
-% link back naar pipeline van cad
-
-% duidelijk bespreken welk ding echt CS en welk ding eigenlijk derden
-
-TODO
-
-% - - - - - - - - - -
-% evaluting
-% - - - - - - - - - -
-
-\subsection{Evaluating the performance of the pipeline}
-\label{subsec:processing_signals_evaluating_and_using_evaluation}
 
 Section \ref{subsec:bci_opportunities_obstacles_lack_of_testing} discussed how a lack of standardized methods for both evaluation and reporting in \gls{bc} systems and \glspl{bci} in particular is one of many open issues.
 As discussed, the main problem resides in evaluation strategies made for testing specific parts of the \gls{bci} system, such as the classification pipeline, not representing the final performance of the complete system.
@@ -903,7 +1054,7 @@ The remainder of this section discusses these topics in more detail.
 
 To test the performance of a classification pipeline, it is important that testing happens on data that was not used for training.
 Intuitively, this has to be done as asking the classifier to classify a sample it has already seen the label for during training, is not going to give any indication of the real-world performance of the algorithm.
-A simple 1-nearest neighbour algorithm would score perfectly in such a case and more complex algorithms would be incentivised to overfit to the data rather than learning the problem, an issue discussed in Section \ref{subsec:processing_signals_common_issues_overfitting}.
+A simple 1-nearest neighbour algorithm would score perfectly in such a case and more complex algorithms would be incentivised to overfit to the data rather than learning the problem.
 
 Most commonly, a complete dataset is split into three distinct sets: a training set, a validation set and a test set.
 The difference between this validation and test set is their intended use.
@@ -930,7 +1081,6 @@ Even though the training set does not contain that specific slice or image, it c
 Grouped splits can solve this issue by ensuring all data of a subject is in the same group.
 However, when data is limited, ensuring all three of these things can be challenging or even impossible.
 Take for example data where all samples of a certain class are also from the same group, making it impossible to satisfy both the grouped or stratified conditions discussed.
-Additionaly the data may contain bias, an issue further discussed in Section \ref{subsec:processing_signals_common_issues_bias}.
 
 
 % | | | | | | | | | | | | |
@@ -1083,84 +1233,15 @@ An example of this graph with some examples to demonstrate its working is shown 
 The \gls{roc} curve is often used to determine the optimal threshold value.
 The \gls{auc} is also derived from the \gls{roc} curve as a common evaluation metric.
 
-
-% - - - - - - - - - -
-% evaluting
-% - - - - - - - - - -
-
-\subsection{Hyperparameter tuning (TODO)}
-\label{subsec:processing_signals_evaluating_and_using_hyperparameter_tuning}
-
-TODO
-
-% ---------------------------------------------- 
-% COMMON ISSUES
-% ---------------------------------------------- 
-
-\section{Common issues with MI classification pipelines (TODO)}
-\label{sec:processing_signals_common_issues}
-
-TODO
-
-% - - - - - - - - - -
-% biased data
-% - - - - - - - - - -
-
-\subsection{Biased data (TODO)}
-\label{subsec:processing_signals_common_issues_bias}
-
-TODO
-
-% - - - - - - - - - -
-% evaluation
-% - - - - - - - - - -
-
-\subsection{Incorrect or ambiguous evaluation and reporting (TODO)}
-\label{subsec:processing_signals_common_issues_generalisation}
-% e.g. only look at a person we also used in training etc
-
-TODO
-
-% - - - - - - - - - -
-% explainability and interpretability
-% - - - - - - - - - -
-
-\subsection{The issue of explainability and interpretability (TODO)}
-\label{subsec:processing_signals_common_issues_exaplainable}
-
-TODO
-
-% TOODO
-\Gls{dl} often requires significant processing power and time to train, impacting the affordability of \gls{bci} research.
-This is especially true when working with many \gls{eeg} sensors and features, and thus a high dimensional setting. 
-\Gls{dl} is often also used in a black-box principle.
-This means that the trained system lacks explainability and interpretability.
-% TODO explain both terms
-Recent governmental reports have suggested that laws will be coming in place to require these properties \citep{eu_ai_blackbox_report, explainable_ai_policy}.
-
-% - - - - - - - - - -
-% overfitting
-% - - - - - - - - - -
-
-\subsection{Overfitting (TODO)}
-\label{subsec:processing_signals_common_issues_overfitting}
-
-% To avoid over-fitting, Batch Normalization (Ioffe and Szegedy 2015) considers the input of every layer in a neural network, and normalizes it so that, in expectation, the inputs of every layer has a zero mean and a unit variance. Dropout (Srivastava et al 2014) does not modify the values that flow through a neural network, but instead randomly disables neurons every time the network is evaluated during training. Both these methods contribute to improving training speed and generalization of the network, and ensure that the model converges to an optimal loss. Both batch normalization (Tayeb et al 2019, Tam et al 2020) and dropout (Gautam et al 2020, Tortora et al 2020a) are often used in biosignal decoding papers, sometimes both at the same time. Other normalization techniques are possible, such as L1- normalization or clipping the gradients (Zhang et al 2019a), but they have been superseded by Batch Normalization and Dropout.
-
-% generalization bespreken: With neural networks, the main avenue to increase generalization is to decrease over-fitting. Over-fitting happens when a neural network remembers exactly what training input should learn which training output, without having actually made sense of the data. The network achieves a training loss close to 0, but produces garbage output on the testing set. It is like a small child that learns how to read words, and remembers that card number 7 is pronounced ‘cat’, without actually looking at the word written on the card, or being able to read at all. Batch normalization (Ioffe and Szegedy 2015) considers the input of every layer in a neural network, and normalizes it so that, in expectation, the inputs of every layer has a zero mean and a unit variance. Intuitively, this normalization prevents ludicrously large or small values from appearing inside the network, which makes it ‘behave better’ or ‘be smoother’ (so, easier to train, and better at generalization). The actual mathematical way in which batch normalization works is however still unknown, with recent papers providing the first insights (Santurkar et al 2018). Dropout (Srivastava et al 2014) does not modify the values that flow through a neural network, but instead randomly disables neurons every time the network is evaluated during training. The main motivation behind Dropout is to avoid one particular neuron in the network to learn how to compensate (and thus cancel out) another particular neuron in the network. When neurons are constantly randomly disabled and re-enabled, they all have to learn independently from each other. More mathematically, Dropout leads to a neural network that is made of a different set of neurons every time it is evaluated. This leads to a large ensemble of ‘sub-networks’, all trained on different datapoints. Ensembles of function approximators such as this are known to help with generalization (Dietterich 2000). Both batch normalization (Tayeb et al 2019, Tam et al 2020) and Dropout (Gautam et al 2020, Tortora et al 2020a) are often used in biosignal decoding papers, sometimes both at the same time. Other normalization techniques are possible, such as L1- normalization or clipping the gradients (Zhang et al 2019a), but they have been superseded by Batch Normalization and Dropout.
-
-% uit bci_review_arnau
-
-TODO
-
 % ---------------------------------------------- 
 % CONCLUSIONS OF CHAPTER
 % ---------------------------------------------- 
-\section{Chapter conclusions (TODO)}
+\section{Chapter conclusions}
 \label{sec:processing_signals_summary}
-% TODO: summary of this chapter
 
-% duidelijk bespreken classificiation echt CS terwijl die contorl vaak een andere (buiten interface ofc) ook link naar die paper division door ons
-% bespreken paper division door ons zegt dat on classi model bruikbaar moet zijn maar dit nog net iets anders want offline, dus is eigenlijk nog further subdivision
-
-TODO
+This chapter revolved around the discussion of a general pipeline for classifying brain signals.
+By discussing five different components and providing some examples of the techniques available within each component, all required insights for understanding the seven proposed classification pipelines in the next chapter should be provided.
+A discussion on which evaluation metrics are recommended to report was also given.
+This included a discussion on both general \gls{ml} metrics and metrics more tailored towards the biomedical field where risk factors are more important than overall accuracy results.
+It was reasoned that this is also the case for \gls{bci} systems, especially those that can execute risky actions.
+Unfortunately, due to time constraints, it was not feasible to report on the \gls{lstm} layers, although the references provided explain this layer in great detail.

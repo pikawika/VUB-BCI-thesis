@@ -272,7 +272,7 @@ All of these classifiers are made using Keras and are available via the appropri
 
 It should be noted once again that the used open-source dataset has already performed a band-stop filter to cancel out the \gls{ac} artefacts discussed in Section \ref{subsec:biomedical_signals_working_with_eeg_artefacts}.
 However, it could be argued that even this filtering of the signal to remove the \gls{ac} artefacts can be learned by the \gls{dl} model.
-Although due to this frequency being overpopulated by the \gls{ac} artefact there is likely very slim to no information present in the filtered out frequency range.
+Although due to this frequency being overpopulated by the \gls{ac} artefact there is likely very slim to no information present in the filtered-out frequency range.
 As such, removing the \gls{ac} artefact and other artefacts manually can facilitate the learning process, decreasing the computational time it takes to train the model.
 For these reasons, minimal preprocessing, such as \gls{ac} artefacts removal is often still done in \gls{dl} pipelines.
 
@@ -311,7 +311,6 @@ The fourth and final dataset revolves \gls{mi}, the most challenging paradigm ac
 \citet{eeg_model_eegnet} have shown that EEGNet has comparable performance across all these tested paradigms compared to the state-of-the-art of that specific paradigm when few data samples are available.
 
 Third, \citet{eeg_model_eegnet} proposed a method of visualising the learned features of the model.
-This helps in reducing the black-box problem discussed in Section \ref{subsec:processing_signals_common_issues_exaplainable}.
 Together with DeepConvNet and ShallowConvNet that is discussed later in this chapter, EEGNet is considered a state-of-the-art method in the \gls{bci} field.
 
 The most important components of EEGNet are the different convolutional layers as shown in the conceptual overview of \ref{fig:offline_bci_system_dl_eegnet_intuitive}.
@@ -468,8 +467,6 @@ The study of which is an interesting future work for this master thesis.
 
 \subsection{Adding an additional LSTM layer to EEGNet}
 \label{subsec:offline_bci_system_adding_memory_lstm_eegnet}
-
-% TODO: add figure of model summary so that the conversion etc are clear en trainable params vermelden
 
 \begin{figure}[t]
     \centering
