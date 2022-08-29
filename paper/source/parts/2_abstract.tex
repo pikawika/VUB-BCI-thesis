@@ -1,34 +1,24 @@
-% TODO:
-%   - Nalezen op einde of alles included; mss ook extensie niet gewoon comparison
-% ----------  
-% Questions:
-%   - 
-
-% NOTE: In a new chapter, reset the GLS to once again use the full version in the first occurrence
 \glsresetall
 
 \chapter*{Abstract}
 \label{ch:abstract}
 
-\Glspl{bci} are fascinating systems that aim to translate brain signals into actions.
-A recent rise in scientific and commercial interest in these systems has helped in popularizing them outside highly specialized labs.
-With seemingly thousands of use cases for these systems, many researchers and students have shown interest in contributing to the field of \glspl{bci}.
-However, the highly interdisciplinary nature of \gls{bci} research among other factors cause a steep learning curve which deters many individuals who wish to work with these kinds of systems.
-Those who do commit to overcoming the steep learning curve are faced with complex and sometimes contradictory research.
+\Glspl{bci} are systems that aim to translate brain signals into actions.
+A recent rise in both scientific and commercial interest in these systems has helped popularize them outside highly specialized labs.
+However, the highly interdisciplinary nature of \gls{bci} research among many other complex factors results in a steep learning curve which deters many individuals who wish to work with these kinds of systems.
 
-This master thesis aims to facilitate this entry into the fascinating field of \glspl{bci} for computer scientists.
-Part \ref{part:understanding} aims to provide all foundational knowledge required to work in the \gls{bci} field as a computer scientist.
-An exhaustive literature review in the introductory chapter aims to provide an intuitive introduction to the field by addressing the reasons for a growing scientific and commercial interest along with some of the common use cases for \glspl{bci}.
-This introductory chapter also addresses some promising opportunities and obstacles in the field.
-The introductory chapter ends by touching upon some ethical challenges related to \gls{bci} research.
-The other chapters in Part \ref{part:understanding} provide the more technical knowledge required for computer scientists in the field.
-Chapter \ref{ch:biomedical_signals} discusses the origin and measuring modalities for \glspl{biosignal} and brain signals in particular.
-Chapter \ref{ch:processing_signals} goes over some common \gls{bci} pipeline components for classifying  \gls{mi} \gls{eeg} data, the most common task of computer scientists in this field.
+This master thesis aims to facilitate this entry into the \gls{bci} field for computer scientists.
+Through an extensive but intuitive introduction of \glspl{bci}, a scoping review is performed to address recent advancements, current opportunities and open issues in the field together with some ethical concerns.
+This intuitive understanding is then grounded by providing the required technical background on the \glspl{biosignal}, brain signal acquisition systems and the general \gls{mi} \gls{eeg} classification pipeline that enables these systems.
 
-Part \ref{part:development} puts this theory to practice and compares multiple state-of-the-art techniques in \gls{mi} \gls{eeg} classification.
-The focus of this part is on offline techniques with both two-step \gls{ml} approaches and one-step \gls{dl} approaches implemented.
-Some of the steps required to move to an online classification system and eventually a complete \gls{bci} system are also addressed.
-This master thesis ends with Part \ref{part:reflection} where the results and added value of this work are reflected upon.
+This theory is put to practice by discussing, implementing and evaluating seven unique offline \gls{mi} \gls{eeg} classification pipelines.
+In particular, two traditional two-step \gls{ml} approaches based on \gls{csp} feature extraction, three literature proposed state-of-the-art \gls{cnn} based approaches and two proposed extensions providing \gls{lstm} functionalities to such \gls{cnn} models are considered.
+The latter extensions were proposed to explore the question if added \gls{lstm} functionalities helps the state-of-the-art EEGNet model in optimally decoding \gls{mi} \gls{eeg} data.
+It was found that for 1.5-second windowed samples centred around a known event, one of the \gls{lstm} extension outperforms the \gls{cnn} based state-of-the-art EEGNet model it is based on in an intersubject evaluation strategy for testing three-class \gls{mi} \gls{eeg} classification performance.
+This model obtained a mean test accuracy of  $65.52$ ± $0.89$, over the $60.68$ ± $1.64$ obtained by the EEGNet model it is based on.
+Other \gls{cm} derived metrics were also found favourable for the extension.
+It is discussed how this difference could increase further when using a different windowing technique.
 
-
-
+Due to the considerable amount of information this master thesis wishes to provide, a multitude of new questions and potential future work arises.
+Some of these discussed future possibilities, such as moving from the offline \gls{mi} \gls{eeg} classification pipelines to a complete \gls{bci} system, benefit from pilot studies also presented in this master thesis.
+In this regard, a pilot study found that an intersubject test accuracy of over 90\% can be reached for certain subjects of the open-source dataset used.
