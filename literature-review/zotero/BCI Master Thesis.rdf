@@ -21229,11 +21229,6 @@ DOI: 10.1007/978-981-16-5640-8_11</dc:description>
         <dcterms:isReferencedBy rdf:resource="#item_1521"/>
         <dc:subject>
             <z:AutomaticTag>
-                <rdf:value>Computer Vision and Pattern Recognition (cs.CV)</rdf:value>
-            </z:AutomaticTag>
-        </dc:subject>
-        <dc:subject>
-            <z:AutomaticTag>
                <rdf:value>FOS: Computer and information sciences</rdf:value>
             </z:AutomaticTag>
         </dc:subject>
@@ -21245,6 +21240,11 @@ DOI: 10.1007/978-981-16-5640-8_11</dc:description>
         <dc:subject>
             <z:AutomaticTag>
                <rdf:value>Machine Learning (stat.ML)</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Computer Vision and Pattern Recognition (cs.CV)</rdf:value>
             </z:AutomaticTag>
         </dc:subject>
         <dc:subject>
@@ -21325,11 +21325,6 @@ Version Number: 2</dc:description>
         <dcterms:isReferencedBy rdf:resource="#item_1524"/>
         <dc:subject>
             <z:AutomaticTag>
-                <rdf:value>Computer Vision and Pattern Recognition (cs.CV)</rdf:value>
-            </z:AutomaticTag>
-        </dc:subject>
-        <dc:subject>
-            <z:AutomaticTag>
                <rdf:value>FOS: Computer and information sciences</rdf:value>
             </z:AutomaticTag>
         </dc:subject>
@@ -21341,6 +21336,11 @@ Version Number: 2</dc:description>
         <dc:subject>
             <z:AutomaticTag>
                <rdf:value>Machine Learning (stat.ML)</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Computer Vision and Pattern Recognition (cs.CV)</rdf:value>
             </z:AutomaticTag>
         </dc:subject>
         <dc:title>Calibration of Neural Networks using Splines</dc:title>
@@ -21604,17 +21604,17 @@ Version Number: 3</dc:description>
         <dcterms:isReferencedBy rdf:resource="#item_1534"/>
         <dc:subject>
             <z:AutomaticTag>
-               <rdf:value>Computation and Language (cs.CL)</rdf:value>
-            </z:AutomaticTag>
-        </dc:subject>
-        <dc:subject>
-            <z:AutomaticTag>
                <rdf:value>FOS: Computer and information sciences</rdf:value>
             </z:AutomaticTag>
         </dc:subject>
         <dc:subject>
             <z:AutomaticTag>
                <rdf:value>Machine Learning (cs.LG)</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Computation and Language (cs.CL)</rdf:value>
             </z:AutomaticTag>
         </dc:subject>
         <dc:subject>
