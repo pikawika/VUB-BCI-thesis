@@ -4,6 +4,23 @@ This repository includes installation instructions, source code, extra documents
 
 > The PDF version of the master thesis is available [here](paper/bci_master_thesis.pdf).
 
+> The Google Scholar link is available [here](https://scholar.google.com/citations?view_op=view_citation&user=aWNhp6kAAAAJ&citation_for_view=aWNhp6kAAAAJ:u-x6o8ySG0sC).
+
+Please use the following bibtex citation when referencing the work
+
+```bibtex
+@mastersthesis{bontinck2022bci,
+	title        = {Evaluation and extension of motor imagery decoding methods: A scoping review of brain-computer interfaces and adding LSTM to CNN classification methods},
+	author       = {Bontinck, Lennert and Wiggins, Geraint and De Pauw, Kevin and Dillen, Arnau},
+	year         = 2022,
+	address      = {Brussels, Belgium},
+	url          = {https://researchportal.vub.be/nl/studentTheses/evaluation-and-extension-of-motor-imagery-decoding-methods},
+	school       = {Vrije Universiteit Brussel},
+	type         = {Master's thesis},
+	institution  = {Vrije Universiteit Brussel, AI Lab and MFYS}
+}
+```
+
 ## Table of contents
 
 - [BCI Master Thesis @ VUB 2021 - 2022](#bci-master-thesis--vub-2021---2022)
